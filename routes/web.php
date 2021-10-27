@@ -14,6 +14,6 @@ use App\Http\Controllers\GameController;
 */
 
 Route::get('/',[GameController::class, 'index']);
-
+Route::resource('ajax-posts', 'ajaxcrud\AjaxPostController');
 
 Route::get('/admin/games', [GameController::class, 'admin']);
