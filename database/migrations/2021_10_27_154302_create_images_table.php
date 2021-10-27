@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMediaTypesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateMediaTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('media_types', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('type');
-            $table->float('ratio');
+            $table->integer('type');
+            $table->index(['content_id', 'type'], 'idx_image_game_type');
+            $table->morph('content');
+            $table->string('path');
         });
     }
 
@@ -28,6 +30,9 @@ class CreateMediaTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media_types');
+        Schema::dropIfExists('images',  function (Blueprint $table) {
+            $table->dropIndex('idx_image_game_type');
+        });
+
     }
 }

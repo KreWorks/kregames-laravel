@@ -20,7 +20,7 @@ class CreateGamesTable extends Migration
             $table->string('slug')->index('idx_games_slug');
             $table->dateTime('publish_date');
             $table->integer('icon')->unsigned();
-            $table->foreign('icon')->reference('id')->on('medias')->onDelete('cascade');
+            $table->foreign('icon')->reference('id')->on('images')->onDelete('cascade');
             $table->integer('jam_id')->nullable()->unsigned();
             $table->foreing('jam_id')->reference('id')->on('jams')->onDelete('set null');
         });
@@ -33,6 +33,10 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('games' function (Blueprint $table) {
+            $table->dropForeign('games_icon_foreign');
+            $table->dropForeign('games_jam_id_foreign');
+            $table->dropIndex('idx_games_slug');
+        });
     }
 }
