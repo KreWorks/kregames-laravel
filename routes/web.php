@@ -24,4 +24,8 @@ Route::get('/{slug}', [IndexController::class, 'game']);
 Route::get('/admin/games', [GameController::class, 'admin']);
 
 
+Route::get('/admin/games', [GameController::class, 'admin']);
+Auth::routes();
 
+
+Route::get('admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin/login');
