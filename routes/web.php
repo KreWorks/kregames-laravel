@@ -15,5 +15,8 @@ use App\Http\Controllers\GameController;
 
 Route::get('/',[GameController::class, 'index']);
 
-
 Route::get('/admin/games', [GameController::class, 'admin']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin/login');

@@ -12,7 +12,6 @@ class GameController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
 
-
     public function index()
     {
         return view('admin/index');
