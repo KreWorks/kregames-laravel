@@ -17,8 +17,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('type');
-            $table->index(['content_id', 'type'], 'idx_image_game_type');
-            $table->morphs('content');
+            $table->index(['imageable_id', 'type'], 'idx_image_game_type');
+            $table->morphs('imageable');
             $table->string('path');
         });
     }

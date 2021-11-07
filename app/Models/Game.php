@@ -23,6 +23,7 @@ class Game extends Model
      */
     public function icon()
     {
+        //return $this->morphOne(Image::class, 'imageable')->ofMany('type', Image::ICON);
         foreach($this->images as $image) {
             if ($image->type === Image::ICON)
             {
@@ -36,6 +37,6 @@ class Game extends Model
      */
     public function images()
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 }

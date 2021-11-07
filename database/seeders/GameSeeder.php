@@ -20,8 +20,8 @@ class GameSeeder extends Seeder
             'game_icon' => [
                 'id' => 1, 
                 'type' => Image::ICON, 
-                'content_id' => 1, 
-                'content_type' => App\Models\Games::class, 
+                'imageable_id' => 1, 
+                'imageable_type' => App\Models\Game::class, 
                 'path' => "one-true-pairing\icon.png"
             ], 
             'jam' => [
@@ -36,8 +36,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 2, 
                 'type' => Image::ICON, 
-                'content_id' => 1, 
-                'content_type' => App\Models\Jam::class,
+                'imageable_id' => 1, 
+                'imageable_type' => App\Models\Jam::class,
                 'path' => "brackeys-2.jpg"
             ]
         ], 
@@ -52,8 +52,8 @@ class GameSeeder extends Seeder
             'game_icon' => [
                 'id' => 3, 
                 'type' => Image::ICON, 
-                'content_id' => 2, 
-                'content_type' => App\Models\Games::class, 
+                'imageable_id' => 2, 
+                'imageable_type' => App\Models\Game::class, 
                 'path' => "dark-liquid-company\icon.png"
             ], 
             'jam' => [
@@ -68,8 +68,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 4, 
                 'type' => Image::ICON, 
-                'content_id' => 2, 
-                'content_type' => App\Models\Jam::class,
+                'imageable_id' => 2, 
+                'imageable_type' => App\Models\Jam::class,
                 'path' => "pizza-jam.jpg"
             ]
         ],
@@ -84,8 +84,8 @@ class GameSeeder extends Seeder
             'game_icon' => [
                 'id' => 5, 
                 'type' => Image::ICON, 
-                'content_id' => 3, 
-                'content_type' => App\Models\Games::class, 
+                'imageable_id' => 3, 
+                'imageable_type' => App\Models\Game::class, 
                 'path' => "escape-from-the-bsnk\icon.png"
             ], 
             'jam' => [
@@ -100,8 +100,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 6, 
                 'type' => Image::ICON, 
-                'content_id' => 3, 
-                'content_type' => App\Models\Jam::class,
+                'imageable_id' => 3, 
+                'imageable_type' => App\Models\Jam::class,
                 'path' => "ludum-dare-44.jpg"
             ]
         ], 
@@ -116,8 +116,8 @@ class GameSeeder extends Seeder
             'game_icon' => [
                 'id' => 7, 
                 'type' => Image::ICON, 
-                'content_id' => 4, 
-                'content_type' => App\Models\Games::class, 
+                'imageable_id' => 4, 
+                'imageable_type' => App\Models\Game::class, 
                 'path' => "pothole-panic\icon.png"
             ], 
             'jam' => [
@@ -132,8 +132,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 8, 
                 'type' => Image::ICON, 
-                'content_id' => 4, 
-                'content_type' => App\Models\Jam::class,
+                'imageable_id' => 4, 
+                'imageable_type' => App\Models\Jam::class,
                 'path' => "brackeys-3.jpg"
             ]
         ], 
@@ -167,8 +167,8 @@ class GameSeeder extends Seeder
         DB::table('images')->insert([
             'id' => 1, 
             'type' => Image::ICON, 
-            'content_id' => 1, 
-            'content_type' => App\Models\Jam::class,
+            'imageable_id' => 1, 
+            'imageable_type' => App\Models\Jam::class,
             'path' => "brackeys-2.jpg"
         ]);
         DB::table('games')->insert([
@@ -181,8 +181,8 @@ class GameSeeder extends Seeder
         DB::table('images')->insert([
             'id' => 2, 
             'type' => Image::ICON, 
-            'content_id' => 1, 
-            'content_type' => App\Models\Games::class, 
+            'imageable_id' => 1, 
+            'imageable_type' => App\Models\Games::class, 
             'path' => "brackeys-2\icon.png"
         ]);
         */
