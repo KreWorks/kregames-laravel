@@ -9,8 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
-    public const ICON = 0; 
-    public const SCREENSHOOT = 1;
+    public const ICON = 'icon'; 
+    public const SCREENSHOOT = 'screenshoot';
 
     /**
      * Get the parent imageable model (jam or game).

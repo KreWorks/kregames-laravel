@@ -24,7 +24,6 @@ class Jam extends Model
      */
     public function icon()
     {
-        return $this->morphOne('Image', 'imageable')->ofMany('type', Image::ICON);
-        //return $this->morphOne(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

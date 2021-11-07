@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Image;
+use App\Models\Jam; 
+use App\Models\Game;
 
 class GameSeeder extends Seeder
 {
@@ -15,13 +17,13 @@ class GameSeeder extends Seeder
                 'name' => 'One True Pairing',
                 'slug' => 'one-true-pairing',
                 'publish_date' => '2019-02-23 08:12:00', 
-                'jam_id' => 1
+                //'jam_id' => 1
             ],
             'game_icon' => [
                 'id' => 1, 
                 'type' => Image::ICON, 
-                'imageable_id' => 1, 
-                'imageable_type' => App\Models\Game::class, 
+                /*'imageable_id' => 1, 
+                'imageable_type' => App\Models\Game::class, */
                 'path' => "one-true-pairing\icon.png"
             ], 
             'jam' => [
@@ -36,8 +38,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 2, 
                 'type' => Image::ICON, 
-                'imageable_id' => 1, 
-                'imageable_type' => App\Models\Jam::class,
+                /*'imageable_id' => 1, 
+                'imageable_type' => App\Models\Jam::class,*/
                 'path' => "brackeys-2.jpg"
             ]
         ], 
@@ -47,13 +49,13 @@ class GameSeeder extends Seeder
                 'name' => 'Dark Liquid Company',
                 'slug' => 'dark-liquid-company',
                 'publish_date' => '2019-03-24 14:26:00', 
-                'jam_id' => 2
+                //'jam_id' => 2
             ],
             'game_icon' => [
                 'id' => 3, 
                 'type' => Image::ICON, 
-                'imageable_id' => 2, 
-                'imageable_type' => App\Models\Game::class, 
+               /* 'imageable_id' => 2, 
+                'imageable_type' => App\Models\Game::class, */
                 'path' => "dark-liquid-company\icon.png"
             ], 
             'jam' => [
@@ -68,8 +70,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 4, 
                 'type' => Image::ICON, 
-                'imageable_id' => 2, 
-                'imageable_type' => App\Models\Jam::class,
+                /*'imageable_id' => 2, 
+                'imageable_type' => App\Models\Jam::class,*/
                 'path' => "pizza-jam.jpg"
             ]
         ],
@@ -79,13 +81,13 @@ class GameSeeder extends Seeder
                 'name' => 'Escape from the bank',
                 'slug' => 'escape-from-the-bank',
                 'publish_date' => '2019-04-29 20:42:00', 
-                'jam_id' => 3
+                //'jam_id' => 3
             ],
             'game_icon' => [
                 'id' => 5, 
                 'type' => Image::ICON, 
-                'imageable_id' => 3, 
-                'imageable_type' => App\Models\Game::class, 
+               /* 'imageable_id' => 3, 
+                'imageable_type' => App\Models\Game::class, */
                 'path' => "escape-from-the-bsnk\icon.png"
             ], 
             'jam' => [
@@ -100,8 +102,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 6, 
                 'type' => Image::ICON, 
-                'imageable_id' => 3, 
-                'imageable_type' => App\Models\Jam::class,
+                /*'imageable_id' => 3, 
+                'imageable_type' => App\Models\Jam::class,*/
                 'path' => "ludum-dare-44.jpg"
             ]
         ], 
@@ -111,13 +113,13 @@ class GameSeeder extends Seeder
                 'name' => 'Pothole panic',
                 'slug' => 'pothole-panic',
                 'publish_date' => '2020-02-22 15:51:00', 
-                'jam_id' => 2
+                //'jam_id' => 2
             ],
             'game_icon' => [
                 'id' => 7, 
                 'type' => Image::ICON, 
-                'imageable_id' => 4, 
-                'imageable_type' => App\Models\Game::class, 
+                /*'imageable_id' => 4, 
+                'imageable_type' => App\Models\Game::class, */
                 'path' => "pothole-panic\icon.png"
             ], 
             'jam' => [
@@ -132,8 +134,8 @@ class GameSeeder extends Seeder
             'jam_icon' => [
                 'id' => 8, 
                 'type' => Image::ICON, 
-                'imageable_id' => 4, 
-                'imageable_type' => App\Models\Jam::class,
+                /*'imageable_id' => 4, 
+                'imageable_type' => App\Models\Jam::class,*/
                 'path' => "brackeys-3.jpg"
             ]
         ], 
@@ -148,11 +150,25 @@ class GameSeeder extends Seeder
     public function run()
     {
         foreach(self::GAME_DATAS as $data) {
+            $jam = Jam::create($data['jam']);
+            //$jam->icon()->create([$data['jam_icon']]);
+            $game = Game::create([$data['game']]);
+            $game->jam = $jam;
+            $game->images()->create([$data['game_icon']]);
+            /*
+            $jamIcon = Image::create($data['jam_icon']);
+            $data['game']['jam_id'] = $jam->id;
+            $game = Game::create($data['game']);
+            $gameIcon = Image
             echo '1 missisippi';
             DB::table('jams')->insert($data['jam']);
             DB::table('images')->insert($data['jam_icon']);
             DB::table('games')->insert($data['game']);
-            DB::table('images')->insert($data['game_icon']);
+            DB::table('images')->insert($data['game_icon']);*/
+
+            /*$flight = Flight::create([
+                'name' => 'London to Paris',
+            ])*/
         }
         /*
         DB::table('jams')->insert([
