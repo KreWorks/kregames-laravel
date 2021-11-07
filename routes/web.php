@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,13 @@ use App\Http\Controllers\GameController;
 |
 */
 
-Route::get('/',[GameController::class, 'index']);
+//Admin routes
 
-Route::get('/admin/games', [GameController::class, 'admin']);
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');
+Route::get('admin/belepes', [App\Http\Controllers\AdminController::class, 'login'])->name('admin/belepes');
 Route::get('admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin/login');
+
+Route::get('/',[GameController::class, 'index']);
+Route::get('/admin/games', [GameController::class, 'admin']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
