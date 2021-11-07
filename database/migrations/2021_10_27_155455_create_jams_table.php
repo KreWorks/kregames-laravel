@@ -33,7 +33,6 @@ class CreateJamsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('jams', function (Blueprint $table) {
-            $table->dropForeign('jams_icon_foreign');
             $table->dropIndex('idx_jams_slug');
         });
     }
