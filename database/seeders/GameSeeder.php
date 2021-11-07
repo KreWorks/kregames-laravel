@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Models\Image;
 
 class GameSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class GameSeeder extends Seeder
                 'id' => 1, 
                 'name' => 'One True Pairing',
                 'slug' => 'one-true-pairing',
-                'published_date' => '2019-02-23 08:12:00', 
+                'publish_date' => '2019-02-23 08:12:00', 
                 'jam_id' => 1
             ],
             'game_icon' => [
@@ -44,7 +46,7 @@ class GameSeeder extends Seeder
                 'id' => 2, 
                 'name' => 'Dark Liquid Company',
                 'slug' => 'dark-liquid-company',
-                'published_date' => '2019-03-24 14:26:00', 
+                'publish_date' => '2019-03-24 14:26:00', 
                 'jam_id' => 2
             ],
             'game_icon' => [
@@ -76,7 +78,7 @@ class GameSeeder extends Seeder
                 'id' => 3, 
                 'name' => 'Escape from the bank',
                 'slug' => 'escape-from-the-bank',
-                'published_date' => '2019-04-29 20:42:00', 
+                'publish_date' => '2019-04-29 20:42:00', 
                 'jam_id' => 3
             ],
             'game_icon' => [
@@ -90,7 +92,6 @@ class GameSeeder extends Seeder
                 'id' => 3,
                 'name' => "Ludum Dare 44",
                 'slug' => "ludum-dare-44",
-                'icon' => 3, 
                 'entries' => 2538,
                 'theme' => "Your life is currency",
                 'start_date' => "2019-04-27 03:00:00",
@@ -109,7 +110,7 @@ class GameSeeder extends Seeder
                 'id' => 4, 
                 'name' => 'Pothole panic',
                 'slug' => 'pothole-panic',
-                'published_date' => '2020-02-22 15:51:00', 
+                'publish_date' => '2020-02-22 15:51:00', 
                 'jam_id' => 2
             ],
             'game_icon' => [
@@ -147,6 +148,7 @@ class GameSeeder extends Seeder
     public function run()
     {
         foreach(self::GAME_DATAS as $data) {
+            echo '1 missisippi';
             DB::table('jams')->insert($data['jam']);
             DB::table('images')->insert($data['jam_icon']);
             DB::table('games')->insert($data['game']);
