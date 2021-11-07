@@ -14,6 +14,7 @@ class GameController extends Controller
     public function index()
     {
         //
+        echo 'hi';
     }
 
     /**

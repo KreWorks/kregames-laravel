@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GameController;
+use App\Http\Controllers\IndexController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,8 @@ use App\Http\Controllers\GameController;
 |
 */
 
-Route::get('/',[GameController::class, 'index']);
-Route::resource('ajax-posts', 'ajaxcrud\AjaxPostController');
+Route::get('/',[IndexController::class, 'index']);
+
+//Route::resource('ajax-posts', 'ajaxcrud\AjaxPostController');
 
 Route::get('/admin/games', [GameController::class, 'admin']);
