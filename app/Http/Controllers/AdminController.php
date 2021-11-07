@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        return view('admin.index');
+    }
+
     //
     public function login()
     {
-        return view('auth.login');
+        return view('admin.login');
     }
 
      /**
@@ -28,7 +33,7 @@ class AdminController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('admin');
         }
 
         return back()->withErrors([

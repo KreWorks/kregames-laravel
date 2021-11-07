@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,19 @@ use App\Http\Controllers\IndexController;
 |
 */
 
+
 Route::get('/',[IndexController::class, 'index']);
 Route::get('/{slug}', [IndexController::class, 'game']);
 
 //Route::resource('ajax-posts', 'ajaxcrud\AjaxPostController');
 
-Route::get('/admin/games', [GameController::class, 'admin']);
 
 
-Route::get('/admin/games', [GameController::class, 'admin']);
-Auth::routes();
-
-
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');
+Route::get('admin/belepes', [App\Http\Controllers\AdminController::class, 'login'])->name('admin/belepes');
 Route::get('admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin/login');
+
+
+Route::get('/admin/games', [GameController::class, 'admin']);
+
+
