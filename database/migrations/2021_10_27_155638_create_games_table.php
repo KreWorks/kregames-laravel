@@ -19,8 +19,6 @@ class CreateGamesTable extends Migration
             $table->string('name');
             $table->string('slug')->index('idx_games_slug');
             $table->dateTime('publish_date');
-            $table->integer('icon')->unsigned();
-            $table->foreign('icon')->reference('id')->on('images')->onDelete('cascade');
             $table->integer('jam_id')->nullable()->unsigned();
             $table->foreing('jam_id')->reference('id')->on('jams')->onDelete('set null');
         });

@@ -18,8 +18,6 @@ class CreateJamsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('slug')->index('idx_jams_slug');
-            $table->integer('icon')->unsigned();
-            $table->foreign('icon')->reference('id')->on('images')->onDelete('cascade');
             $table->integer('entries');
             $table->string('theme');
             $table->dateTime('start_date');
