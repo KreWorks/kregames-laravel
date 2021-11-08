@@ -13,21 +13,18 @@ class GameSeeder extends Seeder
     const GAME_DATAS = [
         [
             'game' => [
-                'id' => 1, 
                 'name' => 'One True Pairing',
                 'slug' => 'one-true-pairing',
                 'publish_date' => '2019-02-23 08:12:00', 
                 //'jam_id' => 1
             ],
             'game_icon' => [
-                'id' => 1, 
                 'type' => Image::ICON, 
                 /*'imageable_id' => 1, 
                 'imageable_type' => App\Models\Game::class, */
                 'path' => "one-true-pairing\icon.png"
             ], 
             'jam' => [
-                'id' => 1,
                 'name' => "Brackey's Game jam #2",
                 'slug' => "brackeys-2",
                 'entries' => 318,
@@ -36,7 +33,6 @@ class GameSeeder extends Seeder
                 'end_date' => "2019-02-23 09:00:00"
             ],
             'jam_icon' => [
-                'id' => 2, 
                 'type' => Image::ICON, 
                 /*'imageable_id' => 1, 
                 'imageable_type' => App\Models\Jam::class,*/
@@ -45,21 +41,18 @@ class GameSeeder extends Seeder
         ], 
         [
             'game' => [
-                'id' => 2, 
                 'name' => 'Dark Liquid Company',
                 'slug' => 'dark-liquid-company',
                 'publish_date' => '2019-03-24 14:26:00', 
                 //'jam_id' => 2
             ],
             'game_icon' => [
-                'id' => 3, 
                 'type' => Image::ICON, 
                /* 'imageable_id' => 2, 
                 'imageable_type' => App\Models\Game::class, */
                 'path' => "dark-liquid-company\icon.png"
             ], 
             'jam' => [
-                'id' => 2,
                 'name' => "Pizza Jam",
                 'slug' => "pizza-jam",
                 'entries' => 53,
@@ -67,8 +60,7 @@ class GameSeeder extends Seeder
                 'start_date' => "2019-03-22 19:00:00",
                 'end_date' => "2019-03-24 19:00:00"
             ],
-            'jam_icon' => [
-                'id' => 4, 
+            'jam_icon' => [ 
                 'type' => Image::ICON, 
                 /*'imageable_id' => 2, 
                 'imageable_type' => App\Models\Jam::class,*/
@@ -77,21 +69,18 @@ class GameSeeder extends Seeder
         ],
         [
             'game' => [
-                'id' => 3, 
                 'name' => 'Escape from the bank',
                 'slug' => 'escape-from-the-bank',
                 'publish_date' => '2019-04-29 20:42:00', 
                 //'jam_id' => 3
             ],
             'game_icon' => [
-                'id' => 5, 
                 'type' => Image::ICON, 
                /* 'imageable_id' => 3, 
                 'imageable_type' => App\Models\Game::class, */
                 'path' => "escape-from-the-bsnk\icon.png"
             ], 
             'jam' => [
-                'id' => 3,
                 'name' => "Ludum Dare 44",
                 'slug' => "ludum-dare-44",
                 'entries' => 2538,
@@ -100,7 +89,6 @@ class GameSeeder extends Seeder
                 'end_date' => "2019-04-30 03:00:00"
             ],
             'jam_icon' => [
-                'id' => 6, 
                 'type' => Image::ICON, 
                 /*'imageable_id' => 3, 
                 'imageable_type' => App\Models\Jam::class,*/
@@ -109,21 +97,18 @@ class GameSeeder extends Seeder
         ], 
         [
             'game' => [
-                'id' => 4, 
                 'name' => 'Pothole panic',
                 'slug' => 'pothole-panic',
                 'publish_date' => '2020-02-22 15:51:00', 
                 //'jam_id' => 2
             ],
             'game_icon' => [
-                'id' => 7, 
                 'type' => Image::ICON, 
                 /*'imageable_id' => 4, 
                 'imageable_type' => App\Models\Game::class, */
                 'path' => "pothole-panic\icon.png"
             ], 
             'jam' => [
-                'id' => 4,
                 'name' => "Brackeys Game Jam 2020.1",
                 'slug' => "brackeys-3",
                 'entries' => 700,
@@ -132,7 +117,6 @@ class GameSeeder extends Seeder
                 'end_date' => "2020-02-23 09:00:00"
             ],
             'jam_icon' => [
-                'id' => 8, 
                 'type' => Image::ICON, 
                 /*'imageable_id' => 4, 
                 'imageable_type' => App\Models\Jam::class,*/
@@ -151,10 +135,13 @@ class GameSeeder extends Seeder
     {
         foreach(self::GAME_DATAS as $data) {
             $jam = Jam::create($data['jam']);
-            //$jam->icon()->create([$data['jam_icon']]);
-            $game = Game::create([$data['game']]);
-            $game->jam = $jam;
-            $game->images()->create([$data['game_icon']]);
+            
+            $jam->icon()->create($data['jam_icon']);
+            $game = $jam->games()->create($data['game']);
+            $game->images()->create($data['game_icon']);
+            //$game = Game::create([$data['game']]);
+            //$game->jam = $jam;
+            //  $game->images()->create([$data['game_icon']]);
             /*
             $jamIcon = Image::create($data['jam_icon']);
             $data['game']['jam_id'] = $jam->id;

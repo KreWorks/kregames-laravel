@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>SZIA</h1>    
+    Játékok száma: {{ count($games) }}
     @foreach ($games as $game)
     <p>{{ $game->name }}</p>
      {{ count($game->images) }}
