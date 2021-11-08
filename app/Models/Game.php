@@ -24,13 +24,7 @@ class Game extends Model
      */
     public function icon()
     {
-        //return $this->morphOne(Image::class, 'imageable')->ofMany('type', Image::ICON);
-        foreach($this->images as $image) {
-            if ($image->type === Image::ICON)
-            {
-                return $image;
-            }
-        }
+        return $this->morphOne(Image::class, 'imageable')->where('type', Image::ICON);
     }
 
     /**
