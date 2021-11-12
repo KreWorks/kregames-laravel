@@ -11,30 +11,20 @@
                 <ul class="metismenu" id="menu">
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="ti-dashboard"></i><span>Jam</span>
+                        </a>
+                        <ul class="collapse">
+                            <li><a href="index.html">Összes jam</a></li>
+                            <li><a href="index2.html">Új jam hozzáadása</a></li>
+                        </ul>
+                    </li>    
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true">
                             <i class="ti-dashboard"></i><span>Játékok</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Kategóriák</span>
-                        </a>
                         <ul class="collapse">
-                            <li class="active"><a href="index.html">Játék kategóriák</a></li>
-                            <li><a href="index2.html">Kategória típusok</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Jamek</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Linkek</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="active"><a href="index.html">Játék linkek</a></li>
-                            <li><a href="index2.html">Link típusok</a></li>
+                            <li><a href="index.html">Összes játék</a></li>
+                            <li><a href="index2.html">Új játék hozzáadása</a></li>
                         </ul>
                     </li>
                     <li>
@@ -47,6 +37,26 @@
                             <li><a href="index2.html">Kép kategóriák</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="ti-dashboard"></i><span>Kategóriák</span>
+                        </a>
+                        <ul class="collapse">
+                            <li class="active"><a href="index.html">Játék kategóriák</a></li>
+                            <li><a href="index2.html">Kategória típusok</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="ti-dashboard"></i><span>Linkek</span>
+                        </a>
+                        <ul class="collapse">
+                            <li class="active"><a href="index.html">Játék linkek</a></li>
+                            <li><a href="index2.html">Link típusok</a></li>
+                        </ul>
+                    </li>
+                    
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
                         <ul class="collapse">

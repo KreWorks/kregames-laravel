@@ -11,56 +11,23 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
-    /*public function index()
-    {
-        return view('admin.index');
-    }
-*/
 
-    //
+    public function index()
+    {
+        if(Auth::check()){
+            return view('admin.index', ['user' => Auth::user()]);
+        }
+  
+        return redirect("admin/login")->withSuccess('You are not allowed to access');
+    }  
+    
+    
     public function login()
     {
         return view('admin.login');
     }
 
-     /**
-     * Handle an authentication attempt.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function authenticate(Request $request)
-    {
-
-        echo 'itt vagyok';
-
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        var_dump($credentials);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            die('here i come');
-            return redirect()->intended('admin');
-        }
-        die('here we are');
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
-    }
-
-
-    //From web 
-    public function index()
-    {
-        return view('admin.auth.login');
-    }  
-      
-
-    public function customLogin(Request $request)
     {
         $request->validate([
             'email' => 'required',
@@ -69,7 +36,7 @@ class AdminController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard')
+            return redirect()->intended('admin')
                         ->withSuccess('Signed in');
         }
   
@@ -84,7 +51,7 @@ class AdminController extends Controller
     }
       
 
-    public function customRegistration(Request $request)
+    public function register(Request $request)
     {  
         $request->validate([
             'name' => 'required',
@@ -95,7 +62,7 @@ class AdminController extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect("admin/dashboard")->withSuccess('You have signed-in');
+        return redirect("admin")->withSuccess('You have signed-in');
     }
 
 
@@ -106,20 +73,9 @@ class AdminController extends Controller
         'email' => $data['email'],
         'password' => Hash::make($data['password'])
       ]);
-    }    
-    
+    }      
 
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('admin.dashboard');
-        }
-  
-        return redirect("admin/login")->withSuccess('You are not allowed to access');
-    }
-    
-
-    public function signOut() {
+    public function logout() {
         Session::flush();
         Auth::logout();
   

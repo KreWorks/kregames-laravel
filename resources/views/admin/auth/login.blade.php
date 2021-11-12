@@ -4,7 +4,7 @@
 <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
-                <form method="POST" action="{{ route('admin/custom-login') }}">
+                <form method="POST" action="{{ route('admin/authenticate') }}">
                     @csrf
                     <div class="login-form-head">
                         <h4>Belépés</h4>
@@ -13,7 +13,7 @@
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="email">Email cím</label>
-                            <input type="text" placeholder="Email" id="email" class="form-control" name="email" required
+                            <input type="text" id="email" class="form-control" name="email" required
                                     autofocus>
                             @if ($errors->has('email'))
                             <div class="text-danger">{{ $errors->first('email') }}</div>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-gp">
                             <label for="password">Jelszó</label>
-                            <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
+                            <input type="password" id="password" class="form-control" name="password" required>
                             @if ($errors->has('password'))
                             <div class="text-danger">{{ $errors->first('password') }}</div>
                             @endif

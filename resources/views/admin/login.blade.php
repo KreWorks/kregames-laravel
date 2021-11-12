@@ -1,12 +1,11 @@
 @extends('admin._layout.logout_layout')
 
 @section('content')
-<!-- login area start -->
 <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
-
-                <form method="post" action="{{ route('login.custom') }}">
+                <form method="POST" action="{{ route('admin/authenticate') }}">
+                    @csrf
                     <div class="login-form-head">
                         <h4>Belépés</h4>
                         <p>Kapu az adatokhoz</p>
@@ -14,15 +13,20 @@
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="email">Email cím</label>
-                            <input type="email" id="email">
+                            <input type="text" id="email" class="form-control" name="email" required
+                                    autofocus>
+                            @if ($errors->has('email'))
+                            <div class="text-danger">{{ $errors->first('email') }}</div>
+                            @endif
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
                         </div>
                         <div class="form-gp">
                             <label for="password">Jelszó</label>
-                            <input type="password" id="password">
+                            <input type="password" id="password" class="form-control" name="password" required>
+                            @if ($errors->has('password'))
+                            <div class="text-danger">{{ $errors->first('password') }}</div>
+                            @endif
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
                         </div>
                         <div class="row mb-4 rmber-area">
                             <div class="col-6">
