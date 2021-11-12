@@ -14,7 +14,7 @@ class JamController extends Controller
      */
     public function index()
     {
-        return 
+        return 'itt van a jameknél';
     }
 
     /**
@@ -24,7 +24,7 @@ class JamController extends Controller
      */
     public function create()
     {
-        //
+        return  'most meg create van';
     }
 
     /**

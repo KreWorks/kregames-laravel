@@ -14,8 +14,8 @@
                             <i class="ti-dashboard"></i><span>Jam</span>
                         </a>
                         <ul class="collapse">
-                            <li><a href="index.html">Összes jam</a></li>
-                            <li><a href="index2.html">Új jam hozzáadása</a></li>
+                            <li><a href="{{ route('admin.jams.index') }}">Összes jam</a></li>
+                            <li><a href="{{ route('admin.jams.create') }}">Új jam hozzáadása</a></li>
                         </ul>
                     </li>    
                     <li>
