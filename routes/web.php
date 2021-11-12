@@ -27,34 +27,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
     Route::resource('admin/jams', JamController::class);
 });
-/*
-Route::get('admin/login', [AdminController::class, 'login'])->name('admin/login');
-Route::post('admin/authenticate', [AdminController::class, 'authenticate'])->name('admin/authenticate'); 
-Route::get('admin/registration', [AdminController::class, 'registration'])->name('admin/registration');
-Route::post('admin/register', [AdminController::class, 'register'])->name('admin/register'); 
-Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin/logout');
-*/
-/*
-Route::namespace('Admin\Hotel')->group(function () {
-    Route::resource('hotels', 'HotelController');
-    Route::prefix('hotels')->name('hotels.')->group(function () {
-        Route::resource('gallery', 'HotelGalleryController');
-        Route::resource('rooms', 'RoomController');
-        Route::resource('rooms/gallery', 'RoomGalleryController');
-    });
-});
-*/
-/*
-Route::resource('admin/jams', JamController::class)->names([
-    'index' => 'admin.jams.index', 
-    'store' => 'admin.jams.store',
-    'create' => 'admin.jams.create',
-    'show' => 'admin.jams.show',
-    'update' => 'admin.jams.update',
-    'destroy' => 'admin.jams.destroy',
-    'edit' => 'admin.jams.edit'
-]);
-*/
+
 /*
 Route::get('/admin/games', [GameController::class, 'admin']);
 

@@ -14,7 +14,26 @@ class JamController extends Controller
      */
     public function index()
     {
-        return 'itt van a jameknél';
+        $data = [
+            'controller' => 'Jam',
+            'action' => 'Lista',
+            'table' => [
+                'iconPath' => 'icon', 
+                'id' => 'id', 
+                'name' => 'név', 
+                'theme' => 'téma', 
+                'entries' => 'versenyzők', 
+                'start_date' => 'kezdés', 
+                'end_date' => 'vég', 
+                'duration' => 'hossz'
+            ], 
+            'datas' => Jam::all(),
+            'editRoute' => 'admin.jams.edit',
+            'destroyRoute' => 'admin.jams.destroy',
+            'newRoute' => 'admin.jams.create',
+            'newRouteText' => 'Új jam hozzáadása'
+        ];
+        return view('admin.jams.index', $data);
     }
 
     /**
@@ -24,7 +43,12 @@ class JamController extends Controller
      */
     public function create()
     {
-        return  'most meg create van';
+        $data = [
+            'controller' => 'Jam',
+            'action' => 'Létrehozás',
+        ];
+
+        return  view('admin.jams.form', $data);
     }
 
     /**
