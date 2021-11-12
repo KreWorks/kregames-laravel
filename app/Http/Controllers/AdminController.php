@@ -16,6 +16,7 @@ class AdminController extends Controller
         return view('admin.index');
     }
 */
+
     //
     public function login()
     {
@@ -30,11 +31,14 @@ class AdminController extends Controller
      */
     public function authenticate(Request $request)
     {
+
         echo 'itt vagyok';
+
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+
         var_dump($credentials);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -42,10 +46,12 @@ class AdminController extends Controller
             return redirect()->intended('admin');
         }
         die('here we are');
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
 
     //From web 
     public function index()

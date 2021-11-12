@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
@@ -38,7 +39,4 @@ Route::get('/',[IndexController::class, 'index']);
 
 //Route::resource('ajax-posts', 'ajaxcrud\AjaxPostController');
 
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

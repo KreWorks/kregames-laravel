@@ -5,6 +5,7 @@
 <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
+
                 <form method="post" action="{{ route('login.custom') }}">
                     <div class="login-form-head">
                         <h4>Belépés</h4>
