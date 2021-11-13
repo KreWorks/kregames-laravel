@@ -57,7 +57,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Message</a>
                                 <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="{{ route('admin/logout') }}">Log Out</a>
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}">Log Out</a>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
 <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
-                <form method="POST" action="{{ route('admin/authenticate') }}">
+                <form method="POST" action="{{ route('admin.authenticate') }}">
                     @csrf
                     <div class="login-form-head">
                         <h4>Belépés</h4>
