@@ -15,8 +15,8 @@ class AdminController extends Controller
     public function index()
     {
         $data = [
-            'controller' => 'Jam',
-            'action' => 'Létrehozás',
+            'controller' => 'Admin',
+            'action' => 'Főoldal',
         ];
 
         if(Auth::check()){

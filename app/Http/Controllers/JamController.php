@@ -46,6 +46,7 @@ class JamController extends Controller
         $data = [
             'controller' => 'Jam',
             'action' => 'Létrehozás',
+            'entity' => null
         ];
 
         return  view('admin.jams.form', $data);

@@ -3,6 +3,68 @@
 @section('content')
             <div class="main-content-inner">
                 <div class="row">
+                    <div class="col-lg-12 col-ml-12">
+                        <div class="row">
+                        <div class="col-12 mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Jam létrehozása</h4>
+                                    <form action="#">
+                                     <div class="form-row align-items-center">
+                                        <div class="col-sm-6 my-1">
+                                            <label class="sr-only" for="inlineFormInputName">Name</label>
+                                            <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+                                        </div>
+                                        <div class="col-sm-6 my-1">
+                                            <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">@</div>
+                                                </div>
+                                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                                            </div>
+                                        </div>
+</div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="name" class="col-form-label">Név</label>
+                                            <input class="form-control" type="text" value="{{ $entity ? $entity->name : '' }}" id="name" onkeyup="document.getElementById('slug').value = value.toLowerCase()">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="slug" class="col-form-label">Slug</label>
+                                            <input class="form-control" type="text" value="{{ $entity ? $entity->slug : '' }}" id="slug">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="entries" class="col-form-label">Indulók</label>
+                                            <input class="form-control" type="number" value="{{ $entity ? $entity->entries : '' }}" id="entries">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="theme" class="col-form-label">Téma</label>
+                                            <input class="form-control" type="text" value="{{ $entity ? $entity->theme : '' }}" id="theme">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="start_date" class="col-form-label">Kezdés</label>
+                                            <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->start_date : '' }}" id="start_date">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="end_date" class="col-form-label">Vég</label>
+                                            <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->end_date : '' }}" id="end_date">
+                                        </div>
+                                        <div class="input-group col-lg-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Logó</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="logo">
+                                                <label class="custom-file-label" for="logo">Válassz fájlt</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-6 col-ml-12">
                         <div class="row">
                             <!-- Textual inputs start -->
