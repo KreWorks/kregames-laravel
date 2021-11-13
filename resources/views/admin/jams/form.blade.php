@@ -30,11 +30,11 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="start_date" class="col-form-label">Kezdés</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->start_date : '' }}" id="start_date">
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->start_date : time() }}" id="start_date">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="end_date" class="col-form-label">Vég</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->end_date : '' }}" id="end_date">
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->end_date : time() }}" id="end_date">
                             </div>
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary col-6">Mentés</button>
@@ -42,16 +42,13 @@
 
                         </div>
                         <div class="col-6">
-                        <div class="form-group col-lg-12">
-                                <label for="end_date" class="col-form-label">Logó</label>
-                                <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="logo">
-                                    <label class="custom-file-label" for="logo">Válassz fájlt!</label>
-                                </div>
+                            <div class="form-group col-lg-12">
+                                <label for="icon" class="form-label">Logó</label>
+                                <input class="form-control" type="file" id="icon">
                             </div>
+                            <div class="col-lg-12">
+                                <img class="col-lg-6" src="{{ asset('/images/games/pothole-panic/icon.GIF') }}">
                             </div>
-                            
                         </div>
                         </form>
                     </div>
