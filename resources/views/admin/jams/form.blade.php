@@ -9,32 +9,32 @@
                         <h4 class="header-title">Jam létrehozása</h4>
                     </div>
                     <div class="card-body d-flex">
-                        
                         <div class="col-6">
-                        <form action="#">
+                        <form method="post" action="{{ route('admin.jams.store') }}" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-group col-lg-12">
                                 <label for="name" class="col-form-label">Név</label>
-                                <input class="form-control" type="text" value="{{ $entity ? $entity->name : '' }}" id="name" onkeyup="document.getElementById('slug').value = value.toLowerCase()">
+                                <input class="form-control" type="text" value="{{ $entity ? $entity->name : '' }}" id="name" name="name" onkeyup="document.getElementById('slug').value = createSlug(value)">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="slug" class="col-form-label">Slug</label>
-                                <input class="form-control" type="text" value="{{ $entity ? $entity->slug : '' }}" id="slug">
+                                <input class="form-control" type="text" value="{{ $entity ? $entity->slug : '' }}" id="slug" name="slug">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="entries" class="col-form-label">Indulók</label>
-                                <input class="form-control" type="number" value="{{ $entity ? $entity->entries : '' }}" id="entries">
+                                <input class="form-control" type="number" value="{{ $entity ? $entity->entries : '' }}" id="entries" name="entries">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="theme" class="col-form-label">Téma</label>
-                                <input class="form-control" type="text" value="{{ $entity ? $entity->theme : '' }}" id="theme">
+                                <input class="form-control" type="text" value="{{ $entity ? $entity->theme : '' }}" id="theme" name="theme">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="start_date" class="col-form-label">Kezdés</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->start_date : time() }}" id="start_date">
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->start_date : time() }}" id="start_date" name="start_date">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="end_date" class="col-form-label">Vég</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->end_date : time() }}" id="end_date">
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->end_date : time() }}" id="end_date" name="end_date">
                             </div>
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary col-6">Mentés</button>
@@ -44,7 +44,7 @@
                         <div class="col-6">
                             <div class="form-group col-lg-12">
                                 <label for="icon" class="form-label">Logó</label>
-                                <input class="form-control" type="file" id="icon">
+                                <input class="form-control" type="file" id="icon" name="icon">
                             </div>
                             <div class="col-lg-12">
                                 <img class="col-lg-6" src="{{ asset('/images/games/pothole-panic/icon.GIF') }}">
