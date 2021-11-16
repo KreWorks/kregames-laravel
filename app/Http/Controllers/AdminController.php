@@ -14,8 +14,13 @@ class AdminController extends Controller
 
     public function index()
     {
+        $data = [
+            'controller' => 'Admin',
+            'action' => 'Főoldal',
+        ];
+
         if(Auth::check()){
-            return view('admin.index', ['user' => Auth::user()]);
+            return view('admin.index', $data);
         }
   
         return redirect("admin/login")->withSuccess('You are not allowed to access');

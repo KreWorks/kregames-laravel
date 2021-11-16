@@ -2,7 +2,7 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="index.html"><img src="{{ asset('srtdash/assets/images/icon/logo.png') }}" alt="logo"></a>
+            <a href="{{ route('admin') }}"><img src="{{ asset('srtdash/assets/images/icon/logo.png') }}" alt="logo"></a>
         </div>
     </div>
     <div class="main-menu">
@@ -14,8 +14,8 @@
                             <i class="ti-dashboard"></i><span>Jam</span>
                         </a>
                         <ul class="collapse">
-                            <li><a href="index.html">Összes jam</a></li>
-                            <li><a href="index2.html">Új jam hozzáadása</a></li>
+                            <li><a href="{{ route('admin.jams.index') }}">Összes jam</a></li>
+                            <li><a href="{{ route('admin.jams.create') }}">Új jam hozzáadása</a></li>
                         </ul>
                     </li>    
                     <li>
