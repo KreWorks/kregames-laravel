@@ -164,8 +164,7 @@ class JamController extends Controller
         if ($jam->icon == null) {
             $icon = $jam->icon()->create($imageData);
         } else {
-            $icon = $jam->icon;
-            $jam = Image::where('id',$jam->icon->id)->update($imageData);
+            $icon = Image::where('id',$jam->icon->id)->update($imageData);
         }
         
     }
