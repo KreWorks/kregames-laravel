@@ -39,7 +39,11 @@
                                                                 <a href="{{route('admin.jams.edit', $entity->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ route('admin.jams.destroy', $entity->id) }}" class="text-danger"><i class="ti-trash"></i></a>
+                                                                <form method="POST" action="{{route('admin.jams.destroy', $entity->id) }}"  >
+                                                                    @method('DELETE') 
+                                                                    @csrf
+                                                                    <button class="btn btn-danger"><i class="ti-trash"></i></button>
+                                                                </form>
                                                             </li>
                                                         </ul>
                                                     </td>

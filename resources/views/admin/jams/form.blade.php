@@ -10,7 +10,12 @@
                     </div>
                     <div class="card-body d-flex">
                         <div class="col-6">
-                        <form method="post" action="{{ route('admin.jams.store') }}" enctype="multipart/form-data">
+                        @if ($entity)
+                        <form method="POST" action="{{ route($formAction, $entity->id) }}" enctype="multipart/form-data">
+                            @method('PUT')
+                        @else 
+                        <form method="POST" action="{{ route($formAction) }}" enctype="multipart/form-data">
+                        @endif
                             @csrf
                             <div class="form-group col-lg-12">
                                 <label for="name" class="col-form-label">Név</label>
@@ -30,11 +35,11 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="start_date" class="col-form-label">Kezdés</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->start_date : time() }}" id="start_date" name="start_date">
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? preg_replace('/ /', 'T', $entity->start_date) : time() }}" id="start_date" name="start_date">
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="end_date" class="col-form-label">Vég</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? $entity->end_date : time() }}" id="end_date" name="end_date">
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? preg_replace('/ /', 'T', $entity->end_date) : time() }}" id="end_date" name="end_date">
                             </div>
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary col-6">Mentés</button>
@@ -46,9 +51,11 @@
                                 <label for="icon" class="form-label">Logó</label>
                                 <input class="form-control" type="file" id="icon" name="icon">
                             </div>
+                            @if ($entity)
                             <div class="col-lg-12">
-                                <img class="col-lg-6" src="{{ asset('/images/games/pothole-panic/icon.GIF') }}">
+                                <img class="col-lg-6" src=" {{ ($entity->icon->path) }}">
                             </div>
+                            @endif
                         </div>
                         </form>
                     </div>

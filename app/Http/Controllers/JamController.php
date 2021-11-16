@@ -48,7 +48,8 @@ class JamController extends Controller
         $data = [
             'controller' => 'Jam',
             'action' => 'Létrehozás',
-            'entity' => null
+            'entity' => null,
+            'formAction' => 'admin.jams.store'
         ];
 
         return  view('admin.jams.form', $data);
@@ -62,38 +63,13 @@ class JamController extends Controller
      */
     public function store(Request $request)
     {
-        $jam = Jam::create([
-            'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'entries' => $request->input('entries'),
-            'theme' => $request->input('theme'),
-            'start_date' => $request->input('start_date'),
-            'end_date' => $request->input('end_date')
-        ]);
+        $jam = Jam::create($this->getDataFromRequest($request));
 
         if ($request->hasFile('icon')) {
-            $folder = 'images/jams';
-            $filename = $request->input('slug') . "." . $request->icon->extension();
-            $path = $request->icon->storeAs($folder, $filename);
-
-            $icon = $jam->icon()->create([
-                'type' => Image::ICON, 
-                'path' => $path
-            ]);
+            $this->storeIcon($request, $jam);
         }
 
         return redirect(route("admin.jams.index"));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -104,7 +80,16 @@ class JamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jam = Jam::find($id);
+
+        $data = [
+            'controller' => 'Jam',
+            'action' => 'Szerkesztés',
+            'entity' => $jam,
+            'formAction' => 'admin.jams.update'
+        ];
+
+        return  view('admin.jams.form', $data);
     }
 
     /**
@@ -116,7 +101,21 @@ class JamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $jam = Jam::find($id); 
+            $jam->update($this->getDataFromRequest($request));
+
+            if ($request->hasFile('icon')) {
+                $this->storeIcon($request, $jam);
+            }
+    
+            return redirect(route("admin.jams.index"));
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
+
     }
 
     /**
@@ -127,6 +126,47 @@ class JamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deletedIds = Image::where(['imageable_type' => Jam::class, 'imageable_id' => $id])->delete();
+        Jam::destroy($id);
+
+        return redirect(route("admin.jams.index"));
+    }
+
+    /**
+     * Create a data array from the request. Need to remove image content
+     * 
+     * @param Request $request
+     * @return Array $datas
+     */
+    private function getDataFromRequest(Request $request)
+    {
+        return [
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'entries' => $request->input('entries'),
+            'theme' => $request->input('theme'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date')
+        ];
+    } 
+
+    private function storeIcon(Request $request, $jam)
+    {
+        $folder = 'images/jams';
+        $filename = $request->input('slug') . "." . $request->icon->extension();
+        $path = $request->icon->storeAs($folder, $filename);
+
+        $imageData = [
+            'type' => Image::ICON, 
+            'path' => $path
+        ];
+
+        if ($jam->icon == null) {
+            $icon = $jam->icon()->create($imageData);
+        } else {
+            $icon = $jam->icon;
+            $jam = Image::where('id',$jam->icon->id)->update($imageData);
+        }
+        
     }
 }
