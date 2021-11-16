@@ -23,8 +23,8 @@
                             <i class="ti-dashboard"></i><span>Játékok</span>
                         </a>
                         <ul class="collapse">
-                            <li><a href="index.html">Összes játék</a></li>
-                            <li><a href="index2.html">Új játék hozzáadása</a></li>
+                            <li><a href="{{ route('admin.games.index') }}">Összes játék</a></li>
+                            <li><a href="{{ route('admin.games.create') }}">Új játék hozzáadása</a></li>
                         </ul>
                     </li>
                     <li>
