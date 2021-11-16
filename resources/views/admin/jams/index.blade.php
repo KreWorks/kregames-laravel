@@ -25,7 +25,13 @@
                                                 @foreach($datas as $entity)
                                                 <tr>
                                                     @foreach($table as $key => $column)
-                                                    <td>{{ $entity->__get($key) }}</td>
+                                                    <td class="align-middle">
+                                                        @if ($key == 'iconPath')
+                                                        <img src="/{{ $entity->__get($key) }}" style="width:40px; height:40px;margin:-10px;">
+                                                        @else
+                                                        {{ $entity->__get($key) }}
+                                                        @endif
+                                                    </td>
                                                     @endforeach
                                                     <td>
                                                         <ul class="d-flex justify-content-center">

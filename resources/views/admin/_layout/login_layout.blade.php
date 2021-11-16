@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('srtdash/assets/css/responsive.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('srtdash/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/kre.js') }}"></script>
 </head>
 
 <body>
