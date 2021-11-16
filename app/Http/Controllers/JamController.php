@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jam;
+use App\Models\Image;
 
 class JamController extends Controller
 {
@@ -33,6 +34,7 @@ class JamController extends Controller
             'newRoute' => 'admin.jams.create',
             'newRouteText' => 'Új jam hozzáadása'
         ];
+
         return view('admin.jams.index', $data);
     }
 
@@ -60,7 +62,27 @@ class JamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jam = Jam::create([
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'entries' => $request->input('entries'),
+            'theme' => $request->input('theme'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date')
+        ]);
+
+        if ($request->hasFile('icon')) {
+            $folder = 'images/jams';
+            $filename = $request->input('slug') . "." . $request->icon->extension();
+            $path = $request->icon->storeAs($folder, $filename);
+
+            $icon = $jam->icon()->create([
+                'type' => Image::ICON, 
+                'path' => $path
+            ]);
+        }
+
+        return redirect(route("admin.jams.index"));
     }
 
     /**

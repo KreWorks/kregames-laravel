@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('registration', [AdminController::class, 'registration'])->name('registration');
     Route::post('register', [AdminController::class, 'register'])->name('register'); 
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
-    Route::resource('admin/jams', JamController::class);
+    Route::resource('jams', JamController::class);
 });
 
 /*

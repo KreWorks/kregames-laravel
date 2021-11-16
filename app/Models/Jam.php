@@ -12,6 +12,7 @@ class Jam extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug','entries', 'theme', 'start_date', 'end_date'];
     /**
      * The games related to this jam
      */
