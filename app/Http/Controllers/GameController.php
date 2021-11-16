@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Game;
 
 class GameController extends Controller
 {
@@ -13,8 +14,23 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
-        echo 'hi';
+        $data = [
+            'controller' => 'Játék',
+            'action' => 'Lista',
+            'table' => [
+                'iconPath' => 'icon', 
+                'id' => 'id', 
+                'name' => 'név', 
+                'release_date' => 'kiadási év'
+            ], 
+            'datas' => Game::all(),
+            'editRoute' => 'admin.games.edit',
+            'destroyRoute' => 'admin.games.destroy',
+            'newRoute' => 'admin.games.create',
+            'newRouteText' => 'Új jam hozzáadása'
+        ];
+
+        return view('admin.jams.index', $data);
     }
 
     /**
@@ -24,7 +40,14 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'controller' => 'Játék',
+            'action' => 'Létrehozás',
+            'entity' => null,
+            'formAction' => 'admin.games.store'
+        ];
+
+        return  view('admin.jams.form', $data);
     }
 
     /**
