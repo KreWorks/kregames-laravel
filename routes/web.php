@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
     Route::resource('jams', JamController::class);
     Route::resource('games', GameController::class);
+    Route::resource('images', GameController::class);
+    Route::resource('users', GameController::class);
 });
 
 /*
