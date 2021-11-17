@@ -21,16 +21,14 @@ class GameController extends Controller
                 'iconPath' => 'icon', 
                 'id' => 'id', 
                 'name' => 'név', 
-                'release_date' => 'kiadási év'
+                'publish_date' => 'kiadási dátum'
             ], 
             'datas' => Game::all(),
-            'editRoute' => 'admin.games.edit',
-            'destroyRoute' => 'admin.games.destroy',
-            'newRoute' => 'admin.games.create',
-            'newRouteText' => 'Új jam hozzáadása'
+            'routeName' => 'games',
+            'newBtnText' => 'Új játék hozzáadása'
         ];
 
-        return view('admin.jams.index', $data);
+        return view('admin._layout.list', $data);
     }
 
     /**
@@ -47,7 +45,7 @@ class GameController extends Controller
             'formAction' => 'admin.games.store'
         ];
 
-        return  view('admin.jams.form', $data);
+        return  view('admin.games.form', $data);
     }
 
     /**
@@ -80,7 +78,14 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'controller' => 'Játék',
+            'action' => 'Létrehozás',
+            'entity' => Game::find($id),
+            'formAction' => 'admin.games.store'
+        ];
+
+        return  view('admin.games.form', $data);
     }
 
     /**

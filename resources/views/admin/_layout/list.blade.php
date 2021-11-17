@@ -7,8 +7,8 @@
                     <div class="col-lg-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{ route($newRoute) }}">    
-                                    <button class="btn btn-primary">{{ $newRouteText}}</button>
+                                <a href="{{ route('admin.'.$routeName.'.create') }}">    
+                                    <button class="btn btn-primary">{{ $newBtnText}}</button>
                                 </a>
                                 <div class="single-table">
                                     <div class="table-responsive">
@@ -36,10 +36,10 @@
                                                     <td>
                                                         <ul class="d-flex justify-content-center">
                                                             <li class="mr-3">
-                                                                <a href="{{route('admin.jams.edit', $entity->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                                <a href="{{route('admin.'.$routeName.'.edit', $entity->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a>
                                                             </li>
                                                             <li>
-                                                                <form method="POST" action="{{route('admin.jams.destroy', $entity->id) }}"  >
+                                                                <form method="POST" action="{{route('admin.'.$routeName.'.destroy', $entity->id) }}"  >
                                                                     @method('DELETE') 
                                                                     @csrf
                                                                     <button class="btn btn-danger"><i class="ti-trash"></i></button>

@@ -29,13 +29,11 @@ class JamController extends Controller
                 'duration' => 'hossz'
             ], 
             'datas' => Jam::all(),
-            'editRoute' => 'admin.jams.edit',
-            'destroyRoute' => 'admin.jams.destroy',
-            'newRoute' => 'admin.jams.create',
-            'newRouteText' => 'Új jam hozzáadása'
+            'routeName' => 'jams',
+            'newBtnText' => 'Új jam hozzáadása'
         ];
 
-        return view('admin.jams.index', $data);
+        return view('admin._layout.list', $data);
     }
 
     /**
