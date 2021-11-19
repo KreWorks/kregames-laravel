@@ -6,6 +6,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JamController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -27,8 +29,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
     Route::resource('jams', JamController::class);
     Route::resource('games', GameController::class);
-    Route::resource('images', GameController::class);
-    Route::resource('users', GameController::class);
+    Route::resource('images', ImageController::class);
+    Route::resource('users', UserController::class);
 });
 
 /*
