@@ -3,54 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\ResourceWithIconController;
 use App\Models\Jam;
 use App\Models\Image;
 
-class JamController extends Controller
+class JamController extends ResourceWithIconController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        $data = [
-            'controller' => 'Jam',
-            'action' => 'Lista',
-            'table' => [
-                'iconPath' => 'icon', 
-                'id' => 'id', 
-                'name' => 'név', 
-                'theme' => 'téma', 
-                'entries' => 'versenyzők', 
-                'start_date' => 'kezdés', 
-                'end_date' => 'vég', 
-                'duration' => 'hossz'
-            ], 
-            'datas' => Jam::all(),
-            'routeName' => 'jams',
-            'newBtnText' => 'Új jam hozzáadása'
+        $this->_controller = 'Jam';
+        $this->_route = 'jams';
+        $this->_name = 'jam';
+        $this->_table = [
+            'iconPath' => 'icon', 
+            'id' => 'id', 
+            'name' => 'név', 
+            'theme' => 'téma', 
+            'entries' => 'versenyzők', 
+            'start_date' => 'kezdés', 
+            'end_date' => 'vég', 
+            'duration' => 'hossz'
         ];
-
-        return view('admin._layout.list', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $data = [
-            'controller' => 'Jam',
-            'action' => 'Létrehozás',
-            'entity' => null,
-            'formAction' => 'admin.jams.store'
-        ];
-
-        return  view('admin.jams.form', $data);
     }
 
     /**
@@ -68,26 +41,6 @@ class JamController extends Controller
         }
 
         return redirect(route("admin.jams.index"));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $jam = Jam::find($id);
-
-        $data = [
-            'controller' => 'Jam',
-            'action' => 'Szerkesztés',
-            'entity' => $jam,
-            'formAction' => 'admin.jams.update'
-        ];
-
-        return  view('admin.jams.form', $data);
     }
 
     /**
@@ -116,19 +69,6 @@ class JamController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $deletedIds = Image::where(['imageable_type' => Jam::class, 'imageable_id' => $id])->delete();
-        Jam::destroy($id);
-
-        return redirect(route("admin.jams.index"));
-    }
 
     /**
      * Create a data array from the request. Need to remove image content
@@ -136,7 +76,7 @@ class JamController extends Controller
      * @param Request $request
      * @return Array $datas
      */
-    private function getDataFromRequest(Request $request)
+    protected function getDataFromRequest(Request $request)
     {
         return [
             'name' => $request->input('name'),
@@ -148,22 +88,18 @@ class JamController extends Controller
         ];
     } 
 
-    private function storeIcon(Request $request, $jam)
+    protected function getAll()
     {
-        $folder = 'images/jams';
-        $filename = $request->input('slug') . "." . $request->icon->extension();
-        $path = $request->icon->storeAs($folder, $filename);
-
-        $imageData = [
-            'type' => Image::ICON, 
-            'path' => $path
-        ];
-
-        if ($jam->icon == null) {
-            $icon = $jam->icon()->create($imageData);
-        } else {
-            $icon = Image::where('id',$jam->icon->id)->update($imageData);
-        }
-        
+        return Jam::all();
     }
+    protected function getEntity($id)
+    {
+        return Jam::find($id);
+    }
+    protected function delete($id)
+    {
+        $deletedIds = Image::where(['imageable_type' => Jam::class, 'imageable_id' => $id])->delete();
+        Jam::destroy($id);
+    }
+
 }

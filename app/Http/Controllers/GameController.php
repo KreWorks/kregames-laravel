@@ -56,18 +56,13 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $jam = Games::create($this->getDataFromRequest($request));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        if ($request->hasFile('icon')) {
+            $this->storeIcon($request, $jam);
+        }
+
+        return redirect(route("admin.jams.index"));
     }
 
     /**
