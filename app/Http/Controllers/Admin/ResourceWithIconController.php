@@ -8,10 +8,8 @@ use App\Models\Image;
 
 abstract class ResourceWithIconController extends ResourceController
 {
-    protected function storeIcon(Request $request, $parent)
+    protected function storeIcon(Request $request, $parent, $folder, $filename)
     {
-        $folder = 'images/jams';
-        $filename = $request->input('slug') . "." . $request->icon->extension();
         $path = $request->icon->storeAs($folder, $filename);
 
         $imageData = [
@@ -23,7 +21,8 @@ abstract class ResourceWithIconController extends ResourceController
             $icon = $parent->icon()->create($imageData);
         } else {
             $icon = Image::where('id', $parent->icon->id)->update($imageData);
-        }
-        
+        }   
     }
+
+    abstract protected function checkImage(Request $request, $entity);
 }

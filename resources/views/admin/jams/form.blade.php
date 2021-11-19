@@ -53,7 +53,7 @@
                             </div>
                             @if ($entity)
                             <div class="col-lg-12">
-                                <img class="col-lg-6" src=" {{ ($entity->icon->path) }}">
+                                <img class="col-lg-3" src="/{{ $entity->icon->path }}">
                             </div>
                             @endif
                         </div>

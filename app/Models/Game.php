@@ -36,4 +36,12 @@ class Game extends Model
     {
         return $this->morphMany('App\Models\Image', 'imageable');
     }
+
+    /** 
+     * Return the path to the icon of the jam
+     */
+    public function getIconPathAttribute()
+    {
+        return $this->icon->path;
+    }
 }

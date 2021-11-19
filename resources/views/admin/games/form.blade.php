@@ -32,9 +32,9 @@
                             <div class="form-group col-lg-12">
                                 <label for="jam_id" class="col-form-label">Jam</label>
                                 <select class="form-control" id="jam_id" name="jam_id">
-                                    <option id="0">Nincs jam</option>
+                                    <option id="0" {{ $entity ? '' : 'selected'}}>Nincs jam</option>
                                     @foreach($jams as $jam)
-                                        @if($jam == $entity->jam)
+                                        @if($entity && $jam == $entity->jam)
                                         <option id="{{$jam->id}}" selected>{{$jam->name}}</option>
                                         @else
                                         <option id="{{$jam->id}}">{{$jam->name}}</option>
@@ -54,7 +54,7 @@
                             </div>
                             @if ($entity)
                             <div class="col-lg-12">
-                                <img class="col-lg-6" src=" {{ ($entity->icon->path) }}">
+                                <img class="col-lg-3" src="/{{ $entity->__get('iconPath') }}">
                             </div>
                             @endif
                         </div>

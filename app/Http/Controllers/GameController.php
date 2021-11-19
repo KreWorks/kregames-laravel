@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Filesystem\Filesystem;
 use App\Http\Controllers\Admin\ResourceWithIconController;
 use App\Models\Game;
 use App\Models\Image;
@@ -22,6 +23,24 @@ class GameController extends ResourceWithIconController
             'publish_date' => 'kiadási dátum'
         ];
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $data = [
+            'controller' => $this->_controller,
+            'action' => 'Létrehozás',
+            'entity' => null,
+            'formAction' => 'admin.'.$this->_route.'.store',
+            'jams' => Jam::all()
+        ];
+
+        return  view('admin.'.$this->_route.'.form', $data);
+    }
     
     /**
      * Store a newly created resource in storage.
@@ -31,38 +50,11 @@ class GameController extends ResourceWithIconController
      */
     public function store(Request $request)
     {
-        $game = Games::create($this->getDataFromRequest($request));
+        $game = Game::create($this->getDataFromRequest($request));
 
-        if ($request->hasFile('icon')) {
-            $this->storeIcon($request, $game);
-        }
+        $this->checkImage($request, $game);
 
         return redirect(route("admin.games.index"));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        try
-        {
-            $game = Game::find($id); 
-            $game->update($this->getDataFromRequest($request));
-
-            if ($request->hasFile('icon')) {
-                $this->storeIcon($request, $game);
-            }
-    
-            return redirect(route("admin.games.index"));
-
-        }catch(QueryException $ex) {
-            return ['success'=>false, 'error'=>$ex->getMessage()];
-        }
     }
 
     /**
@@ -87,6 +79,29 @@ class GameController extends ResourceWithIconController
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        try
+        {
+            $game = Game::find($id); 
+            $game->update($this->getDataFromRequest($request));
+
+            $this->checkImage($request, $game);
+    
+            return redirect(route("admin.games.index"));
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
+    }
+
+    /**
      * Create a data array from the request. Need to remove image content
      * 
      * @param Request $request
@@ -97,10 +112,7 @@ class GameController extends ResourceWithIconController
         return [
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
-            'entries' => $request->input('entries'),
-            'theme' => $request->input('theme'),
-            'start_date' => $request->input('start_date'),
-            'end_date' => $request->input('end_date')
+            'publish_date' => $request->input('publish_date')
         ];
     } 
 
@@ -116,5 +128,21 @@ class GameController extends ResourceWithIconController
     {
         $deletedIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
         Game::destroy($id);
+    }
+
+    protected function checkImage(Request $request, $game)
+    {
+        
+        $file = new Filesystem();
+        $folder = '/images/games/'.$game->slug;
+
+        if (!$file->isDirectory(storage_path($folder))) {
+            $file->makeDirectory(storage_path($folder), 755, true, true);
+        } 
+
+        if ($request->hasFile('icon')) {
+            $filename = 'icon.' . $request->icon->extension();
+            $this->storeIcon($request, $game, $folder, $filename);
+        }
     }
 }
