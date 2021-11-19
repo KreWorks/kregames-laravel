@@ -3,51 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\ResourceWithIconController;
 use App\Models\Game;
+use App\Models\Image;
+use App\Models\Jam;
 
-class GameController extends Controller
+class GameController extends ResourceWithIconController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        $data = [
-            'controller' => 'Játék',
-            'action' => 'Lista',
-            'table' => [
-                'iconPath' => 'icon', 
-                'id' => 'id', 
-                'name' => 'név', 
-                'publish_date' => 'kiadási dátum'
-            ], 
-            'datas' => Game::all(),
-            'routeName' => 'games',
-            'newBtnText' => 'Új játék hozzáadása'
+        $this->_controller = 'Játék';
+        $this->_route = 'games';
+        $this->_name = 'játék';
+        $this->_table = [
+            'iconPath' => 'icon', 
+            'id' => 'id', 
+            'name' => 'név', 
+            'publish_date' => 'kiadási dátum'
         ];
-
-        return view('admin._layout.list', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $data = [
-            'controller' => 'Játék',
-            'action' => 'Létrehozás',
-            'entity' => null,
-            'formAction' => 'admin.games.store'
-        ];
-
-        return  view('admin.games.form', $data);
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -56,31 +31,13 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $jam = Games::create($this->getDataFromRequest($request));
+        $game = Games::create($this->getDataFromRequest($request));
 
         if ($request->hasFile('icon')) {
-            $this->storeIcon($request, $jam);
+            $this->storeIcon($request, $game);
         }
 
-        return redirect(route("admin.jams.index"));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data = [
-            'controller' => 'Játék',
-            'action' => 'Létrehozás',
-            'entity' => Game::find($id),
-            'formAction' => 'admin.games.store'
-        ];
-
-        return  view('admin.games.form', $data);
+        return redirect(route("admin.games.index"));
     }
 
     /**
@@ -92,17 +49,72 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $game = Game::find($id); 
+            $game->update($this->getDataFromRequest($request));
+
+            if ($request->hasFile('icon')) {
+                $this->storeIcon($request, $game);
+            }
+    
+            return redirect(route("admin.games.index"));
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function edit($id)
     {
-        //
+        $entity = $this->getEntity($id);
+
+        $data = [
+            'controller' => 'Jam',
+            'action' => 'Szerkesztés',
+            'entity' => $entity,
+            'formAction' => 'admin.'.$this->_route.'.update',
+            'jams' => Jam::all(),
+        ];
+
+        return  view('admin.'.$this->_route.'.form', $data);
+    }
+
+    /**
+     * Create a data array from the request. Need to remove image content
+     * 
+     * @param Request $request
+     * @return Array $datas
+     */
+    protected function getDataFromRequest(Request $request)
+    {
+        return [
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'entries' => $request->input('entries'),
+            'theme' => $request->input('theme'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date')
+        ];
+    } 
+
+    protected function getAll()
+    {
+        return Game::all();
+    }
+    protected function getEntity($id)
+    {
+        return Game::find($id);
+    }
+    protected function delete($id)
+    {
+        $deletedIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
+        Game::destroy($id);
     }
 }

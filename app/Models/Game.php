@@ -11,6 +11,8 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug','publish_date'];
+
     /**
      * Get the jam of the game
      */

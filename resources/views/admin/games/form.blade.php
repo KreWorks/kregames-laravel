@@ -6,7 +6,7 @@
             <div class="col-lg-12 col-ml-12 mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="header-title">Jam létrehozása</h4>
+                        <h4 class="header-title">Játék létrehozása</h4>
                     </div>
                     <div class="card-body d-flex">
                         <div class="col-6">
@@ -26,20 +26,21 @@
                                 <input class="form-control" type="text" value="{{ $entity ? $entity->slug : '' }}" id="slug" name="slug">
                             </div>
                             <div class="form-group col-lg-12">
-                                <label for="entries" class="col-form-label">Indulók</label>
-                                <input class="form-control" type="number" value="{{ $entity ? $entity->entries : '' }}" id="entries" name="entries">
+                                <label for="publish_date" class="col-form-label">Megjelenés dátuma</label>
+                                <input class="form-control" type="datetime-local" value="{{ $entity ? preg_replace('/ /', 'T', $entity->publish_date) : time() }}" id="publish_date" name="publish_date">
                             </div>
                             <div class="form-group col-lg-12">
-                                <label for="theme" class="col-form-label">Téma</label>
-                                <input class="form-control" type="text" value="{{ $entity ? $entity->theme : '' }}" id="theme" name="theme">
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="start_date" class="col-form-label">Kezdés</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? preg_replace('/ /', 'T', $entity->start_date) : time() }}" id="start_date" name="start_date">
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="end_date" class="col-form-label">Vég</label>
-                                <input class="form-control" type="datetime-local" value="{{ $entity ? preg_replace('/ /', 'T', $entity->end_date) : time() }}" id="end_date" name="end_date">
+                                <label for="jam_id" class="col-form-label">Jam</label>
+                                <select class="form-control" id="jam_id" name="jam_id">
+                                    <option id="0">Nincs jam</option>
+                                    @foreach($jams as $jam)
+                                        @if($jam == $entity->jam)
+                                        <option id="{{$jam->id}}" selected>{{$jam->name}}</option>
+                                        @else
+                                        <option id="{{$jam->id}}">{{$jam->name}}</option>
+                                        @endif
+                                    @endforeach
+                                <select>
                             </div>
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary col-6">Mentés</button>

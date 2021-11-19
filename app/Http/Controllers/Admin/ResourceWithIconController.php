@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
+use App\Models\Image;
+
 abstract class ResourceWithIconController extends ResourceController
 {
     protected function storeIcon(Request $request, $parent)
