@@ -49,23 +49,6 @@ abstract class ResourceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $jam = Jam::create($this->getDataFromRequest($request));
-
-        if ($request->hasFile('icon')) {
-            $this->storeIcon($request, $jam);
-        }
-
-        return redirect(route("admin.jams.index"));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -83,32 +66,6 @@ abstract class ResourceController extends Controller
         ];
 
         return  view('admin.'.$this->_route.'.form', $data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        try
-        {
-            $jam = Jam::find($id); 
-            $jam->update($this->getDataFromRequest($request));
-
-            if ($request->hasFile('icon')) {
-                $this->storeIcon($request, $jam);
-            }
-    
-            return redirect(route("admin.jams.index"));
-
-        }catch(QueryException $ex) {
-            return ['success'=>false, 'error'=>$ex->getMessage()];
-        }
-
     }
 
     /**

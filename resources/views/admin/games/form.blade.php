@@ -35,9 +35,9 @@
                                     <option id="0" {{ $entity ? '' : 'selected'}}>Nincs jam</option>
                                     @foreach($jams as $jam)
                                         @if($entity && $jam == $entity->jam)
-                                        <option id="{{$jam->id}}" selected>{{$jam->name}}</option>
+                                        <option value="{{$jam->id}}" selected>{{$jam->name}}</option>
                                         @else
-                                        <option id="{{$jam->id}}">{{$jam->name}}</option>
+                                        <option value="{{$jam->id}}">{{$jam->name}}</option>
                                         @endif
                                     @endforeach
                                 <select>

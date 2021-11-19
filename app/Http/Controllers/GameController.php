@@ -52,6 +52,11 @@ class GameController extends ResourceWithIconController
     {
         $game = Game::create($this->getDataFromRequest($request));
 
+        if ($request->input('jam_id')) {
+            $jam = Jam::find($request->input('jam_id'));
+            $jam->games()->save($game);
+        }
+
         $this->checkImage($request, $game);
 
         return redirect(route("admin.games.index"));
@@ -92,6 +97,11 @@ class GameController extends ResourceWithIconController
             $game = Game::find($id); 
             $game->update($this->getDataFromRequest($request));
 
+            if ($request->input('jam_id')) {
+                $jam = Jam::find($request->input('jam_id'));
+                $jam->games()->save($game);
+            }
+
             $this->checkImage($request, $game);
     
             return redirect(route("admin.games.index"));
@@ -115,6 +125,7 @@ class GameController extends ResourceWithIconController
             'publish_date' => $request->input('publish_date')
         ];
     } 
+
 
     protected function getAll()
     {
