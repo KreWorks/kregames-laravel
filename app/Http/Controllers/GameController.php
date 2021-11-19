@@ -20,6 +20,7 @@ class GameController extends ResourceWithIconController
             'iconPath' => 'icon', 
             'id' => 'id', 
             'name' => 'név', 
+            'jamName' => "Jam",
             'publish_date' => 'kiadási dátum'
         ];
     }
@@ -97,9 +98,12 @@ class GameController extends ResourceWithIconController
             $game = Game::find($id); 
             $game->update($this->getDataFromRequest($request));
 
-            if ($request->input('jam_id')) {
+            if ($request->input('jam_id') && $request->input('jam_id') != 0) {
                 $jam = Jam::find($request->input('jam_id'));
                 $jam->games()->save($game);
+            } else {
+                $game->jam_id = null;
+                $game->save();
             }
 
             $this->checkImage($request, $game);

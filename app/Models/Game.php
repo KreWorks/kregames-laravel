@@ -44,4 +44,13 @@ class Game extends Model
     {
         return $this->icon->path;
     }
+
+    public function getJamNameAttribute()
+    {
+        if ($this->jam != null) {
+            return $this->jam->name;
+        } else {
+            return '-';
+        }
+    }
 }

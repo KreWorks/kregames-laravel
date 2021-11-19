@@ -32,7 +32,7 @@
                             <div class="form-group col-lg-12">
                                 <label for="jam_id" class="col-form-label">Jam</label>
                                 <select class="form-control" id="jam_id" name="jam_id">
-                                    <option id="0" {{ $entity ? '' : 'selected'}}>Nincs jam</option>
+                                    <option value="0" {{ $entity ? '' : 'selected'}}>Nincs jam</option>
                                     @foreach($jams as $jam)
                                         @if($entity && $jam == $entity->jam)
                                         <option value="{{$jam->id}}" selected>{{$jam->name}}</option>
