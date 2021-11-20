@@ -29,12 +29,7 @@ class UserController extends ResourceWithIconController
      */
     public function store(Request $request)
     {
-        $game = Game::create($this->getDataFromRequest($request));
-
-        if ($request->input('jam_id')) {
-            $jam = Jam::find($request->input('jam_id'));
-            $jam->games()->save($game);
-        }
+        $user = Game::create($this->getDataFromRequest($request));
 
         $this->checkImage($request, $game);
 
