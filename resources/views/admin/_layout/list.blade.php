@@ -26,7 +26,7 @@
                                                 <tr>
                                                     @foreach($table as $key => $column)
                                                     <td class="align-middle">
-                                                        @if ($key == 'iconPath')
+                                                        @if ($key == 'iconPath' || $key == 'path')
                                                         <img src="/{{ $entity->__get($key) }}" style="width:40px; height:40px;margin:-10px;">
                                                         @else
                                                         {{ $entity->__get($key) }}
