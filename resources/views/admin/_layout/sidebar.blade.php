@@ -27,7 +27,7 @@
                             <li><a href="{{ route('admin.games.create') }}">Új játék hozzáadása</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="javascript:void(0)" aria-expanded="true">
                             <i class="ti-dashboard"></i><span>Képek</span>
                         </a>
@@ -35,7 +35,7 @@
                             <li><a href="{{ route('admin.images.index') }}">Összes kép</a></li>
                             <li><a href="{{ route('admin.images.create') }}">Kép kategóriák</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true">
                             <i class="ti-dashboard"></i><span>Felhasználók</span>
