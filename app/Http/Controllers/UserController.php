@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Admin\ResourceWithIconController;
 use App\Models\User;
+use App\Models\Image;
 
 class UserController extends ResourceWithIconController
 {
@@ -17,6 +20,7 @@ class UserController extends ResourceWithIconController
             'avatarPath' => 'avatar', 
             'id' => 'id', 
             'name' => 'név',
+            'username' => 'felhaszálónév',
             'email' => 'email'
         ];
     }
@@ -29,11 +33,11 @@ class UserController extends ResourceWithIconController
      */
     public function store(Request $request)
     {
-        $user = Game::create($this->getDataFromRequest($request));
+        $user = User::create($this->getDataFromRequest($request));
 
-        $this->checkImage($request, $game);
+        $this->checkImage($request, $user);
 
-        return redirect(route("admin.games.index"));
+        return redirect(route("admin.users.index"));
     }
 
 
@@ -49,20 +53,12 @@ class UserController extends ResourceWithIconController
     {
         try
         {
-            $game = Game::find($id); 
-            $game->update($this->getDataFromRequest($request));
+            $user = User::find($id); 
+            $user->update($this->getDataFromRequest($request));
 
-            if ($request->input('jam_id') && $request->input('jam_id') != 0) {
-                $jam = Jam::find($request->input('jam_id'));
-                $jam->games()->save($game);
-            } else {
-                $game->jam_id = null;
-                $game->save();
-            }
-
-            $this->checkImage($request, $game);
+            $this->checkImage($request, $user);
     
-            return redirect(route("admin.games.index"));
+            return redirect(route("admin.users.index"));
 
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
@@ -77,11 +73,17 @@ class UserController extends ResourceWithIconController
      */
     protected function getDataFromRequest(Request $request)
     {
-        return [
+        $data = [
             'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date')
+            'username' => $request->input('username'),
+            'email' => $request->input('email')
         ];
+
+        if ($request->has('password') && $request->input('passowrd') != '') {
+            $data['password'] = Hash::make($request->input('passowrd'));
+        }
+
+        return $data;
     } 
 
 
@@ -109,9 +111,25 @@ class UserController extends ResourceWithIconController
             $file->makeDirectory(storage_path($folder), 755, true, true);
         } 
 
-        if ($request->hasFile('icon')) {
-            $filename = 'avatar_'.$user->id.'.' . $request->icon->extension();
-            $this->storeIcon($request, $game, $folder, $filename);
+        if ($request->hasFile('avatar')) {
+            $filename = 'avatar_'.$user->id.'.' . $request->avatar->extension();
+            $this->storeIcon($request, $user, $folder, $filename);
         }
+    }
+
+    protected function storeIcon(Request $request, $parent, $folder, $filename)
+    {
+        $path = $request->avatar->storeAs($folder, $filename);
+
+        $imageData = [
+            'type' => Image::ICON, 
+            'path' => $path
+        ];
+
+        if ($parent->avatar == null) {
+            $avatar = $parent->avatar()->create($imageData);
+        } else {
+            $avatar = Image::where('id', $parent->avatar->id)->update($imageData);
+        }   
     }
 }

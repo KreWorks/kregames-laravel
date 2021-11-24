@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
 use App\Models\Jam;
+use App\Models\User;
 
 class Game extends Model
 {
@@ -19,6 +20,11 @@ class Game extends Model
     public function jam()
     {
         return $this->belongsTo(Jam::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

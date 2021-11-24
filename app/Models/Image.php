@@ -36,7 +36,8 @@ class Image extends Model
     {
         return [
             Game::class => 'játék', 
-            Jam::class => 'jam'
+            Jam::class => 'jam',
+            User::class => 'felhasználó'
         ];
     }
 }
