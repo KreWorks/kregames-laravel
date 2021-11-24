@@ -16,6 +16,7 @@ class GameSeeder extends Seeder
                 'name' => 'One True Pairing',
                 'slug' => 'one-true-pairing',
                 'publish_date' => '2019-02-23 08:12:00', 
+                'user_id' => 1,
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
@@ -39,6 +40,7 @@ class GameSeeder extends Seeder
                 'name' => 'Dark Liquid Company',
                 'slug' => 'dark-liquid-company',
                 'publish_date' => '2019-03-24 14:26:00', 
+                'user_id' => 1,
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
@@ -62,6 +64,7 @@ class GameSeeder extends Seeder
                 'name' => 'Escape from the bank',
                 'slug' => 'escape-from-the-bank',
                 'publish_date' => '2019-04-29 20:42:00', 
+                'user_id' => 1,
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
@@ -85,6 +88,7 @@ class GameSeeder extends Seeder
                 'name' => 'Pothole panic',
                 'slug' => 'pothole-panic',
                 'publish_date' => '2020-02-22 15:51:00', 
+                'user_id' => 1,
             ],
             'game_icon' => [
                 'type' => Image::ICON, 

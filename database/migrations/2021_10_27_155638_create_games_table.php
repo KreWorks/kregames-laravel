@@ -19,6 +19,7 @@ class CreateGamesTable extends Migration
             $table->string('name');
             $table->string('slug')->index('idx_games_slug');
             $table->dateTime('publish_date');
+            $table->foreignId('user_id');
             $table->foreignId('jam_id')->nullable()->constrained();
             //$table->integer('jam_id')->nullable()->unsigned();
             //$table->foreign('jam_id')->nullable()->reference('id')->on('jams')->nullOnDelete();
