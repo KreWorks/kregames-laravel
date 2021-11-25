@@ -29,6 +29,10 @@ class AdminController extends Controller
     
     public function login()
     {
+        if (isset($_GET['apa']) && $_GET['apa'] == 1)
+        {
+            return view('apa.login');
+        }
         return view('admin.login');
     }
 
