@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="password_again" class="col-form-label">Jelszó ismét</label>
-                                <input class="form-control" type="passord" value="" id="password_again" name="password_again">
+                                <input class="form-control" type="password" value="" id="password_again" name="password_again">
                             </div>
 
                             <div class="col-auto my-1">

@@ -40,8 +40,6 @@ class UserController extends ResourceWithIconController
         return redirect(route("admin.users.index"));
     }
 
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -79,7 +77,7 @@ class UserController extends ResourceWithIconController
             'email' => $request->input('email')
         ];
 
-        if ($request->has('password') && $request->input('passowrd') != '') {
+        if ($request->has('password') && $request->input('password') != '') {
             $data['password'] = Hash::make($request->input('passowrd'));
         }
 
