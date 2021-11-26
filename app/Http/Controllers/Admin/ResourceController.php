@@ -27,7 +27,13 @@ abstract class ResourceController extends BaseController
             'newBtnText' => 'Új '.$this->_name.' hozzáadása'
         ];
 
-        return view('admin._layout.list', $data);
+        if (isset($_GET['apa']) && $_GET['apa'] == 1)
+        {
+            return view('apa._layout.list', $data);
+        } else {
+            return view('admin._layout.list', $data);
+        }
+        
     }
 
     /**
