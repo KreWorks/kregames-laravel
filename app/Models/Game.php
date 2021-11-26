@@ -60,6 +60,11 @@ class Game extends Model
         }
     }
 
+    public function getReleaseDateAttribute()
+    {
+        return substr($this->publish_date, 0, 10);
+    }
+
     public function getDeleteStringAttribute()
     {
         return $this->name;

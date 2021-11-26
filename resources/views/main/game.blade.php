@@ -39,22 +39,25 @@
         <div class="container-fluid p-0">
             <!-- About-->
             <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        {{$game->name}}
-                        <span class="text-primary">#{{$game->id}}</span>
+                <div class="resume-section-content row">
+                    <img class="img-fluid img-profile rounded mx-auto mb-1 col-lg-2" src="/{{$game->icon->path }}" alt="..." />
+                    <h1 class="mb-0 col-lg-10">
+                        {{$game->name}}<br>
+                        <span class="text-primary">({{$game->releaseDate}})</span>
                     </h1>
                     <div class="subheading mb-5">
                         {{$game->jam->name}}
                         <a href="mailto:name@email.com">{{$game->jam->theme}}</a>
                     </div>
-                    <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                    <div class="social-icons">
+                    
+                    <!--
+                        <div class="social-icons">
                         <a class="social-icon" href="#!"><i class="fab fa-linkedin-in"></i></a>
                         <a class="social-icon" href="#!"><i class="fab fa-github"></i></a>
                         <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
                     </div>
+-->
                 </div>
             </section>        
         </div>

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Resume - Start Bootstrap Theme</title>
+        <title>KRÉ Games - Portfolió</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -41,19 +41,19 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <h1 class="mb-0">
-                        Clarence
-                        <span class="text-primary">Taylor</span>
+                        KRÉ
+                        <span class="text-primary">Games</span>
                     </h1>
                     <div class="subheading mb-5">
-                        3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
-                        <a href="mailto:name@email.com">name@email.com</a>
+                        Szabadidejében játékokat készítő anya, programozó, gamer
+                        <a href="mailto:kre@kregames.hu">kre@kregames.hu</a>
                     </div>
-                    <p class="lead mb-5">https://codemyui.com/3d-flip-image-content-slider/</p>
                     <div class="social-icons">
-                        <a class="social-icon" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="#!"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="social-icon" href="https://www.linkedin.com/in/r%C3%A9ka-cs%C3%A1sz%C3%A1r-kozma-68045170/"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="social-icon" href="https://github.com/KreWorks"><i class="fab fa-github"></i></a>
+                        <a class="social-icon" href="https://twitter.com/KreVagyok"><i class="fab fa-twitter"></i></a>
+                        <a class="social-icon" href="https://twitter.com/KreGames"><i class="fab fa-twitter"></i></a>
+                        <a class="social-icon" href="https://codemyui.com/3d-flip-image-content-slider/"><i class="fab fa-itch-io"></i></a>
                     </div>
                 </div>
             </section>
