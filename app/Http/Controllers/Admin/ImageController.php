@@ -22,26 +22,6 @@ class ImageController extends ResourceController
             'parent' => "szülő",
         ];
     }
-    
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $data = [
-            'controller' => $this->_controller,
-            'action' => 'Létrehozás',
-            'entity' => null,
-            'formAction' => 'admin.'.$this->_route.'.store', 
-            'types' => Image::getImageTypeList(),
-            'morphTypes' => Image::getMorphList(), 
-            'morphs' => $this->getMorphs(),
-        ];
-
-        return  view('admin.'.$this->_route.'.form', $data);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,30 +42,6 @@ class ImageController extends ResourceController
 
         return redirect(route("admin.games.index"));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $entity = $this->getEntity($id);
-
-        $data = [
-            'controller' => 'Jam',
-            'action' => 'Szerkesztés',
-            'entity' => $entity,
-            'formAction' => 'admin.'.$this->_route.'.update',
-            'types' => Image::getImageTypeList(),
-            'morphTypes' => Image::getMorphList(),
-            'morphs' => $this->getMorphs(),
-        ];
-
-        return  view('admin.'.$this->_route.'.form', $data);
-    }
-
 
     /**
      * Update the specified resource in storage.

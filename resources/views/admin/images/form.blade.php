@@ -17,63 +17,9 @@
                         <form method="POST" action="{{ route($formAction) }}" enctype="multipart/form-data">
                         @endif
                             @csrf
-                            <div class="form-group col-lg-12">
-                                <label for="type" class="col-form-label">Típus</label>
-                                <select class="form-control" id="type" >
-                                    <option value="0" {{$entity ? '': 'selected'}}>Válassz</option>
-                                    @foreach($types as $value => $type)
-                                        @if($entity && $entity->type == $value)
-                                        <option value="{{$value}}" selected>{{$type}}</option>
-                                        @else 
-                                        <option value="{{$value}}">{{$type}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="imageable_type" class="col-form-label">Szülő típus</label>
-                                <select class="form-control" id="imageable_type" name="imageable_type">
-                                    <option value="0" {{$entity ? '' : 'selected'}}>Válassz</option>
-                                    @foreach($morphTypes as $value => $morph)
-                                        @if ($entity && $entity->imageable_type == $value)
-                                        <option value="{{$value}}" selected>{{$morph}}</option>
-                                        @else
-                                        <option value="{{$value}}">{{$morph}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="publish_date" class="col-form-label">Szülő</label>
-                                @if ($entity && $entity->imageable_type == 'App\Models\Game')
-                                <select class="form-control" id="imageable_id" name="imageable_id">
-                                    <option value="0" {{$entity ? '' : 'selected'}}>Válassz</option>
-                                    @foreach($morphs['games'] as $game)
-                                        @if ($entity && $entity->imageable_id == $game->id)
-                                        <option value="{{$game->id}}" selected>{{$game->name}}</option>
-                                        @else
-                                        <option value="{{$game->id}}">{{$game->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @elseif ($entity && $entity->imageable_type == 'App\Models\Jam')
-                                <select class="form-control" id="imageable_id" name="imageable_id">
-                                    <option value="0" {{$entity ? '' : 'selected'}}>Válassz</option>
-                                    @foreach($morphs['jams'] as $jam)
-                                        @if ($entity && $entity->imageable_id == $jam->id)
-                                        <option value="{{$jam->id}}" selected>{{$jam->name}}</option>
-                                        @else
-                                        <option value="{{$jam->id}}">{{$jam->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @endif
-                            </div>
-
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary col-6">Mentés</button>
                             </div>
-
                         </div>
                         <div class="col-6">
                             <div class="form-group col-lg-12">

@@ -45,4 +45,9 @@ class Image extends Model
     {
         return $this->path;
     }
+
+    public function getParentAttribute()
+    {
+        return $this->imageable_type;
+    }
 }
