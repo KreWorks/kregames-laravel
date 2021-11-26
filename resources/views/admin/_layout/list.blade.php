@@ -42,7 +42,7 @@
                                                                 <form method="POST" action="{{route('admin.'.$routeName.'.destroy', $entity->id) }}"  >
                                                                     @method('DELETE') 
                                                                     @csrf
-                                                                    <button class="btn btn-danger"><i class="ti-trash"></i></button>
+                                                                    <button class="btn btn-danger" onclick="deleteConfirm()"><i class="ti-trash"></i></button>
                                                                 </form>
                                                             </li>
                                                         </ul>
@@ -57,6 +57,23 @@
                         </div>
                     </div>
                     <!-- Hoverable Rows Table end -->
+                </div>
+            </div>
+            <div class="modal fade bd-example-modal-sm">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Törlés</h5>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Biztos, hogy szeretnéd törölni a(z) <span id="title"> blabla</span> nevű elemet?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nem</button>
+                            <button type="button" class="btn btn-primary">Biztos</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
