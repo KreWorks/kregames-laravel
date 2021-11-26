@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Admin\ResourceWithIconController;
 use App\Models\User;
 use App\Models\Image;
 

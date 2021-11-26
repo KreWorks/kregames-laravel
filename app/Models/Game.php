@@ -48,7 +48,7 @@ class Game extends Model
      */
     public function getIconPathAttribute()
     {
-        return $this->icon->path;
+        return $this->icon ? $this->icon->path : '';
     }
 
     public function getJamNameAttribute()

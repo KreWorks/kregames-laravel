@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Hash;
 use Session;
-use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
 
-class AdminController extends Controller
+class AdminController extends BaseController
 {
     //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
 

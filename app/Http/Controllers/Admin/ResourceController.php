@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-abstract class ResourceController extends Controller
+abstract class ResourceController extends BaseController
 {
     protected $_controller; 
     protected $_route; 

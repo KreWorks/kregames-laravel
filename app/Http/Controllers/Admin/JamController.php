@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\ResourceWithIconController;
 use App\Models\Jam;
 use App\Models\Image;
 
@@ -35,7 +34,6 @@ class JamController extends ResourceWithIconController
     public function store(Request $request)
     {
         $jam = Jam::create($this->getDataFromRequest($request));
-
         $this->checkImage($request, $jam);
 
         return redirect(route("admin.jams.index"));
@@ -62,9 +60,7 @@ class JamController extends ResourceWithIconController
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
         }
-
     }
-
 
     /**
      * Create a data array from the request. Need to remove image content

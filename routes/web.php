@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\JamController;
-use App\Http\Controllers\GameController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\JamController;
+use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\UserController;
 
 
 /*

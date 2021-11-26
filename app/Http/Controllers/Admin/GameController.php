@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\ResourceController;
+use Illuminate\Filesystem\Filesystem;
+use App\Models\Game;
 use App\Models\Image;
-use App\Models\Game; 
 use App\Models\Jam;
 
-class ImageController extends ResourceController
+class GameController extends ResourceWithIconController
 {
     public function __construct()
     {
-        $this->_controller = 'Kép';
-        $this->_route = 'images';
-        $this->_name = 'kép';
-        $this->_table = [ 
-            'id' => 'id',
-            'path' => 'Kép',
-            'type' => 'típus', 
-            'parent' => "szülő",
+        $this->_controller = 'Játék';
+        $this->_route = 'games';
+        $this->_name = 'játék';
+        $this->_table = [
+            'iconPath' => 'icon', 
+            'id' => 'id', 
+            'name' => 'név', 
+            'jamName' => "Jam",
+            'publish_date' => 'kiadási dátum'
         ];
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,15 +35,13 @@ class ImageController extends ResourceController
             'controller' => $this->_controller,
             'action' => 'Létrehozás',
             'entity' => null,
-            'formAction' => 'admin.'.$this->_route.'.store', 
-            'types' => Image::getImageTypeList(),
-            'morphTypes' => Image::getMorphList(), 
-            'morphs' => $this->getMorphs(),
+            'formAction' => 'admin.'.$this->_route.'.store',
+            'jams' => Jam::all()
         ];
 
         return  view('admin.'.$this->_route.'.form', $data);
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -78,14 +77,11 @@ class ImageController extends ResourceController
             'action' => 'Szerkesztés',
             'entity' => $entity,
             'formAction' => 'admin.'.$this->_route.'.update',
-            'types' => Image::getImageTypeList(),
-            'morphTypes' => Image::getMorphList(),
-            'morphs' => $this->getMorphs(),
+            'jams' => Jam::all(),
         ];
 
         return  view('admin.'.$this->_route.'.form', $data);
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -136,21 +132,31 @@ class ImageController extends ResourceController
 
     protected function getAll()
     {
-        return Image::all();
+        return Game::all();
     }
     protected function getEntity($id)
     {
-        return Image::find($id);
+        return Game::find($id);
     }
     protected function delete($id)
     {
-        Image::destroy($id);
+        $deletedIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
+        Game::destroy($id);
     }
-    private function getMorphs()
+
+    protected function checkImage(Request $request, $game)
     {
-        return [
-            'jams' => Jam::all(),
-            'games' => Game::all()
-        ];
+        
+        $file = new Filesystem();
+        $folder = '/images/games/'.$game->slug;
+
+        if (!$file->isDirectory(storage_path($folder))) {
+            $file->makeDirectory(storage_path($folder), 755, true, true);
+        } 
+
+        if ($request->hasFile('icon')) {
+            $filename = 'icon.' . $request->icon->extension();
+            $this->storeIcon($request, $game, $folder, $filename);
+        }
     }
 }
