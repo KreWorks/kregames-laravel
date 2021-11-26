@@ -11,6 +11,7 @@ class ImageController extends ResourceController
 {
     public function __construct()
     {
+        parent::__construct();
         $this->_controller = 'Kép';
         $this->_route = 'images';
         $this->_name = 'kép';

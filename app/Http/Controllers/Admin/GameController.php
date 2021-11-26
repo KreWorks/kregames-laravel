@@ -12,6 +12,7 @@ class GameController extends ResourceWithIconController
 {
     public function __construct()
     {
+        parent::__construct();
         $this->_controller = 'Játék';
         $this->_route = 'games';
         $this->_name = 'játék';

@@ -10,6 +10,7 @@ class JamController extends ResourceWithIconController
 {
     public function __construct()
     {
+        parent::__construct();
         $this->_controller = 'Jam';
         $this->_route = 'jams';
         $this->_name = 'jam';

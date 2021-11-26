@@ -12,6 +12,7 @@ class UserController extends ResourceWithIconController
 {
     public function __construct()
     {
+        parent::__construct();
         $this->_controller = 'Felhasználó';
         $this->_route = 'users';
         $this->_name = 'felhasználó';

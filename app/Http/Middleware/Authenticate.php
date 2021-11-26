@@ -14,12 +14,12 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            if (app()->getLocale() == 'hu') {
-                return route('admin.belepes');
-            } else {
+        if (!$request->expectsJson()) {
+            /*if (app()->getLocale() == 'hu') {
+                return route('admin/belepes');
+            } else {*/
                 return route('admin.login');
-            }
+            //}
         }
     }
 }

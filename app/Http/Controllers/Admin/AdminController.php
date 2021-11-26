@@ -11,16 +11,12 @@ use App\Providers\RouteServiceProvider;
 
 class AdminController extends BaseController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
+
     public function __construct()
     {
-        //$this->middleware('guest');
+        $this->middleware('guest')->except(['index', 'logout']);
     }
-    //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
 
     public function index()
     {
@@ -29,11 +25,7 @@ class AdminController extends BaseController
             'action' => 'Főoldal',
         ];
 
-        if(Auth::check()){
-            return view('admin.index', $data);
-        }
-  
-        return redirect("admin/login")->withSuccess('You are not allowed to access');
+        return view('admin.index', $data);
     }  
     
     

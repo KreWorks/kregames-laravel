@@ -20,9 +20,10 @@ class BaseController extends Controller
      */
     public function __construct()
     {
-        /*$this->middleware('auth');
-        if (auth()->user() == null) {
+        $this->middleware('auth');
+        if (auth()->user() == null) 
+        {
             return redirect("admin.login")->withSuccess('You login has been expired');
-        }*/
+        }
     }
 }
