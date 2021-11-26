@@ -11,6 +11,15 @@ use App\Providers\RouteServiceProvider;
 
 class AdminController extends BaseController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('guest');
+    }
     //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
 
     public function index()
