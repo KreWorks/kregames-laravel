@@ -25,7 +25,9 @@ class UserSeeder extends Seeder
 
         $user->avatar()->create([
             'type' => Image::ICON, 
-            'path' => 'noimage'
+            'path' => 'noimage',
+            'title' => 'kre avatar',
+            'alt_title' => 'kre avatar'
         ]);
     }
 }

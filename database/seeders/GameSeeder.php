@@ -20,10 +20,12 @@ class GameSeeder extends Seeder
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
-                'path' => "one-true-pairing\icon.png"
+                'path' => "one-true-pairing\icon.png", 
+                'title' => 'One True Pairing icon',
+                'alt_title' => 'One True Pairing icon'
             ], 
             'jam' => [
-                'name' => "Brackey's Game jam #2",
+                'name' => "Brackey's Game Jam #2",
                 'slug' => "brackeys-2",
                 'entries' => 318,
                 'theme' => "Love is blind",
@@ -32,7 +34,9 @@ class GameSeeder extends Seeder
             ],
             'jam_icon' => [
                 'type' => Image::ICON, 
-                'path' => "brackeys-2.jpg"
+                'path' => "brackeys-2.jpg",
+                'title' => "Brackey's Game Jam #2 icon",
+                'alt_title' => "Brackey's Game Jam #2 icon"
             ]
         ], 
         [
@@ -44,7 +48,9 @@ class GameSeeder extends Seeder
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
-                'path' => "dark-liquid-company\icon.png"
+                'path' => "dark-liquid-company\icon.png",
+                'title' => "Dark Liquid Company icon",
+                'alt_title' => "Dark Liquid Company icon"
             ], 
             'jam' => [
                 'name' => "Pizza Jam",
@@ -56,7 +62,9 @@ class GameSeeder extends Seeder
             ],
             'jam_icon' => [ 
                 'type' => Image::ICON, 
-                'path' => "pizza-jam.jpg"
+                'path' => "pizza-jam.jpg",
+                'title' => "Pizza Jam icon",
+                'alt_title' => "Pizza Jam icon"
             ]
         ],
         [
@@ -68,7 +76,9 @@ class GameSeeder extends Seeder
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
-                'path' => "escape-from-the-bsnk\icon.png"
+                'path' => "escape-from-the-bsnk\icon.png",
+                'title' => "Escape from the bank icon",
+                'alt_title' => "Escape from the bank icon"
             ], 
             'jam' => [
                 'name' => "Ludum Dare 44",
@@ -80,7 +90,9 @@ class GameSeeder extends Seeder
             ],
             'jam_icon' => [
                 'type' => Image::ICON, 
-                'path' => "ludum-dare-44.jpg"
+                'path' => "ludum-dare-44.jpg",
+                'title' => "Ludum Dare 44 icon",
+                'alt_title' => "Ludum Dare 44 icon"
             ]
         ], 
         [
@@ -92,7 +104,9 @@ class GameSeeder extends Seeder
             ],
             'game_icon' => [
                 'type' => Image::ICON, 
-                'path' => "pothole-panic\icon.png"
+                'path' => "pothole-panic\icon.png",
+                'title' => "Pothole panic icon",
+                'alt_title' => "Pothole panic icon"
             ], 
             'jam' => [
                 'name' => "Brackeys Game Jam 2020.1",
@@ -104,7 +118,9 @@ class GameSeeder extends Seeder
             ],
             'jam_icon' => [
                 'type' => Image::ICON, 
-                'path' => "brackeys-3.jpg"
+                'path' => "brackeys-3.jpg",
+                'title' => "Brackeys Game Jam 2020.1 icon",
+                'alt_title' => "Brackeys Game Jam 2020.1 icon"
             ]
         ], 
     ];

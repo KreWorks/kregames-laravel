@@ -20,6 +20,8 @@ class CreateImagesTable extends Migration
             $table->index(['imageable_id', 'type'], 'idx_image_game_type');
             $table->morphs('imageable');
             $table->string('path');
+            $table->string('title');
+            $table->string('alt_title');
         });
     }
 

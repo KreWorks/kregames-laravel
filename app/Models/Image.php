@@ -14,7 +14,7 @@ class Image extends Model
     public const ICON = 'icon'; 
     public const SCREENSHOT = 'screenshot';
 
-    protected $fillable = ['type', 'path'];
+    protected $fillable = ['type', 'path', 'title', 'alt_title'];
 
     /**
      * Get the parent imageable model (jam or game).

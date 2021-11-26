@@ -27,7 +27,7 @@
                                         @foreach($table as $key => $column)
                                         <td class="align-middle">
                                             @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
-                                            <img src="/{{ $entity->__get($key) }}" style="width:50px; height:50px;margin:-10px;">
+                                            <img src="/{{ $entity->__get($key) }}" style="width:50px; height:50px;">
                                             @else
                                             {{ $entity->__get($key) }}
                                             @endif
@@ -36,11 +36,11 @@
                                         <td>
                                             <ul class="d-flex justify-content-center">
                                                 <li class="mr-3">
-                                                    <button class="btn btn-warning">
                                                     <a href="{{route('admin.'.$routeName.'.edit', $entity->id) }}" class="text-secondary">
+                                                    <button class="btn btn-warning">
                                                         <i class="fa fa-edit"></i>
-                                                    </a>
                                                     </button>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     <button class="btn btn-danger"

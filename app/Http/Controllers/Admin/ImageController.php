@@ -54,7 +54,22 @@ class ImageController extends ResourceController
     {
         try
         {
-            $game = Game::find($id); 
+            $image = Image::find($id); 
+            $folder = $image->path;
+            $filename = $request->input('slug') . "." . $request->icon->extension();
+            $path = $request->icon->storeAs($folder, $filename);
+    
+            $imageData = [
+                'type' => Image::ICON, 
+                'path' => $path
+            ];
+    
+            if ($parent->icon == null) {
+                $icon = $parent->icon()->create($imageData);
+            } else {
+                $icon = Image::where('id', $parent->icon->id)->update($imageData);
+            }
+            $image = Image::find($id); 
             $game->update($this->getDataFromRequest($request));
 
             if ($request->input('jam_id') && $request->input('jam_id') != 0) {
@@ -83,9 +98,8 @@ class ImageController extends ResourceController
     protected function getDataFromRequest(Request $request)
     {
         return [
-            'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date')
+            'title' => $request->input('name'),
+            'alt_title' => $request->input('slug'),
         ];
     } 
 
@@ -101,12 +115,5 @@ class ImageController extends ResourceController
     protected function delete($id)
     {
         Image::destroy($id);
-    }
-    private function getMorphs()
-    {
-        return [
-            'jams' => Jam::all(),
-            'games' => Game::all()
-        ];
     }
 }
