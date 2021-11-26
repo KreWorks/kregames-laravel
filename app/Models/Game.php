@@ -59,4 +59,9 @@ class Game extends Model
             return '-';
         }
     }
+
+    public function getDeleteStringAttribute()
+    {
+        return $this->name;
+    }
 }

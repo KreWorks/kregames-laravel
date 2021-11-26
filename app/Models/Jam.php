@@ -49,4 +49,9 @@ class Jam extends Model
 
         return  $interval->format('%a nap');
     }
+    
+    public function getDeleteStringAttribute()
+    {
+        return $this->name;
+    }
 }

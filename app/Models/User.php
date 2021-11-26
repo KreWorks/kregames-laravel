@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->avatar->path;
     }
+
+    public function getDeleteStringAttribute()
+    {
+        return $this->name;
+    }
 }

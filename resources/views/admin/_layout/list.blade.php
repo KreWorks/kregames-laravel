@@ -27,7 +27,7 @@
                                                     @foreach($table as $key => $column)
                                                     <td class="align-middle">
                                                         @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
-                                                        <img src="/{{ $entity->__get($key) }}" style="width:40px; height:40px;margin:-10px;">
+                                                        <img src="/{{ $entity->__get($key) }}" style="width:50px; height:50px;margin:-10px;">
                                                         @else
                                                         {{ $entity->__get($key) }}
                                                         @endif
@@ -36,14 +36,14 @@
                                                     <td>
                                                         <ul class="d-flex justify-content-center">
                                                             <li class="mr-3">
-                                                                <a href="{{route('admin.'.$routeName.'.edit', $entity->id) }}" class="text-secondary"><i class="fa fa-edit"></i></a>
+                                                                <a href="{{route('admin.'.$routeName.'.edit', $entity->id) }}" class="text-secondary">
+                                                                    <button class="btn btn-warning"><i class="fa fa-edit"></i></button></a>
                                                             </li>
                                                             <li>
-                                                                <form method="POST" action="{{route('admin.'.$routeName.'.destroy', $entity->id) }}"  >
-                                                                    @method('DELETE') 
-                                                                    @csrf
-                                                                    <button class="btn btn-danger" onclick="deleteConfirm()"><i class="ti-trash"></i></button>
-                                                                </form>
+                                                                
+                                                                    <button class="btn btn-danger"
+                                                                    data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$routeName.'.destroy', $entity->id) }}', '{{ $entity->deleteString }}' )"><i class="ti-trash"></i></button>
+                                                                
                                                             </li>
                                                         </ul>
                                                     </td>
@@ -59,23 +59,6 @@
                     <!-- Hoverable Rows Table end -->
                 </div>
             </div>
-            <div class="modal fade bd-example-modal-sm">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Törlés</h5>
-                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Biztos, hogy szeretnéd törölni a(z) <span id="title"> blabla</span> nevű elemet?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nem</button>
-                            <button type="button" class="btn btn-primary">Biztos</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @include('admin._layout.delete_modal')
             
 @endsection

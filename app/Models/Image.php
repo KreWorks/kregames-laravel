@@ -40,4 +40,9 @@ class Image extends Model
             User::class => 'felhasználó'
         ];
     }
+
+    public function getDeleteStringAttribute()
+    {
+        return $this->path;
+    }
 }
