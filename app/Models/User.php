@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute()
     {
-        return $this->avatar->path;
+        return $this->avatar ? $this->avatar->path : '';
     }
 
     public function getDeleteStringAttribute()

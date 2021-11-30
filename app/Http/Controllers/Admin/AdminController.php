@@ -14,6 +14,7 @@ class AdminController extends BaseController
     //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
 
     protected $page = 'admin';
+
     public function __construct()
     {
         $this->middleware('guest')->except(['index', 'logout']);
@@ -26,12 +27,17 @@ class AdminController extends BaseController
 
     public function index()
     {
+        if(!Auth::check()) {
+            return redirect("admin/login");
+        }
+        
         $data = [
             'controller' => 'Admin',
             'action' => 'Főoldal',
         ];
 
         return view($this->page.'.index', $data);
+
     }  
     
     

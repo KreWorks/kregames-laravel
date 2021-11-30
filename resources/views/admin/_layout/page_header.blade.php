@@ -12,11 +12,11 @@
         </div>
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src="/{{ auth()->user()->avatarPath }}" alt="avatar">
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->name }}<i class="fa fa-angle-down"></i></h4>
+                <img class="avatar user-thumb" src="/{{ auth()->user() ? auth()->user()->avatarPath : '' }}" alt="avatar">
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user() ? auth()->user()->name : '' }}<i class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('admin.users.edit', auth()->user()->id)}}">Szerkesztés</a>
-                    <a class="dropdown-item" href="{{ route('admin.users.edit', auth()->user()->id)}}">Új jelszó</a>
+                    <a class="dropdown-item" href="{{ route('admin.users.edit', auth()->user() ? auth()->user()->id : '') }}">Szerkesztés</a>
+                    <a class="dropdown-item" href="{{ route('admin.users.edit', auth()->user() ? auth()->user()->id : '') }}">Új jelszó</a>
                     <a class="dropdown-item" href="{{ route('admin.logout') }}">Kilépés</a>
                 </div>
             </div>
