@@ -78,7 +78,7 @@ class UserController extends ResourceWithIconController
         ];
 
         if ($request->has('password') && $request->input('password') != '') {
-            $data['password'] = Hash::make($request->input('passowrd'));
+            $data['password'] = Hash::make($request->input('password'));
         }
 
         return $data;
