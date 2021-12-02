@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Artisan;
 
 class ArtisanController extends BaseController
 {
@@ -18,7 +13,8 @@ class ArtisanController extends BaseController
 
     public function routerefresh()
     {
-
+        $clear = Artisan::call('route:clear');
+        $refresh = Artisan::call('route:cache');
     }
 
     public function viewrefrest()
@@ -33,6 +29,6 @@ class ArtisanController extends BaseController
 
     public function migrate()
     {
-        
+
     }
 }
