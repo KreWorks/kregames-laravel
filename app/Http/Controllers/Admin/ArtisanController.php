@@ -6,26 +6,29 @@ use Illuminate\Support\Facades\Artisan;
 
 class ArtisanController extends BaseController
 {
+
     public function index()
     {
+        $data = [
+            'controller' => 'Artisan',
+            'action' => 'Index'
+        ]; 
 
-    }
+        return view('admin.artisan', $data);
+    }   
 
     public function routerefresh()
     {
-        $clear = Artisan::call('route:clear');
         $refresh = Artisan::call('route:cache');
     }
 
     public function viewrefrest()
     {
-        $clear = Artisan::call('view:clear');
         $refresh = Artisan::call('view::cache');
     }
 
     public function configrefresh()
     {
-        $clear = Artisan::call('config:clear');
         $refresh = Artisan::call('config:cache');
     }
 

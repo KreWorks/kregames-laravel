@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArtisanController;
 use App\Http\Controllers\Admin\JamController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\ImageController;
@@ -27,6 +28,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('registration', [AdminController::class, 'registration'])->name('registration');
     Route::post('register', [AdminController::class, 'register'])->name('register'); 
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+    Route::get('artisan', [ArtisanController::class, 'index'])->name('artisan');
     Route::resource('jams', JamController::class);
     Route::resource('games', GameController::class);
     Route::resource('images', ImageController::class);

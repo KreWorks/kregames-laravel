@@ -57,6 +57,11 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="{{ $controller == 'Artisan' ? 'active' : ''}}">
+                        <a href="{{ route('admin.artisan') }}" >
+                            <i class="ti-dashboard"></i><span>Artisan</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
