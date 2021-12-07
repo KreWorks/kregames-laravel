@@ -19,96 +19,23 @@
                                         <td class="text-left">Magyarázat</td>
                                         <td class="text-center">Futtatás</td>
                                     </tr>
+                                    @foreach($commands as $command)
                                     <tr>
                                         <td class="mv-icon">
-                                            <i class="fa fa-file-code-o fa-2x"></i>
+                                            <i class="fa {{ $command['fa-icon'] }} fa-2x"></i>
                                         </td>
-                                        <td class="text-left">route</td>
-                                        <td class="text-left">Ismételten felolvassa a routes mappa tartalmát, és frissíti a routing-ot, egy route::clear, és egy route::cache történik. </td>
+                                        <td class="text-left">{{ $command['route'] }}</td>
+                                        <td class="text-left">{{ $command['description'] }}</td>
                                         <td class="text-center">
                                         <button class="btn btn-success" 
                                                 data-toggle="modal" 
                                                 data-target="#commandModal"
-                                                onclick="runCommandConfirm('runalma', 'Nem szabad almát dobni', 'alma')">
+                                                onclick="runCommandConfirm('{{$command['route']}}', '{{$command['command']}}', '{{$command['warningMsg']}}')">
                                                 <i class="fa fa-play fa-2x"></i>
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="mv-icon">
-                                            <i class="fa fa-file-code-o fa-2x "></i>
-                                        </td>
-                                        <td class="text-left">view</td>
-                                        <td class="text-left">Frissíti a blade templatekből generált view-kat. Szintén clear és cache parancsok kerülnek futtatásra. </td>
-                                        <td class="text-center">
-                                        <button class="btn btn-success" 
-                                                data-toggle="modal" 
-                                                data-target="#commandModal"
-                                                onclick="runCommandConfirm('alma', 'Nem szabad almát dobni', 'runalma')">
-                                                <i class="fa fa-play fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mv-icon">
-                                            <i class="fa fa-cog fa-2x "></i>
-                                        </td>
-                                        <td class="text-left">config</td>
-                                        <td class="text-left">Frissíti a config leírókat. Akkor szükséges, ha valamilyen változás történik a hozzáférésekben, elérési utakban. </td>
-                                        <td class="text-center">
-                                        <button class="btn btn-success" 
-                                                data-toggle="modal" 
-                                                data-target="#commandModal"
-                                                onclick="runCommandConfirm('alma', 'Nem szabad almát dobni', 'runalma')">
-                                                <i class="fa fa-play fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mv-icon">
-                                            <i class="fa fa-database fa-2x"></i>
-                                        </td>
-                                        <td class="text-left">migrate</td>
-                                        <td class="text-left">Futtatja azokat a migárciókat, amelyek még nem voltak futtatva. Mindezt a migrate táblában tárolja el. Ha frissül az adatbázis séma, akkor szükséges.</td>
-                                        <td class="text-center">
-                                        <button class="btn btn-success" 
-                                                data-toggle="modal" 
-                                                data-target="#commandModal"
-                                                onclick="runCommandConfirm('alma', 'Nem szabad almát dobni', 'runalma')">
-                                                <i class="fa fa-play fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mv-icon">
-                                            <i class="fa fa-database fa-2x"></i>
-                                        </td>
-                                        <td class="text-left">reload DB</td>
-                                        <td class="text-left">Eldobja a jelenlegi adatbázist, és újra visszatölti a szerkezetét. Fontos, hogy csak a szerkezetét tölti vissza. Minden adat elvész ennek a futtatásakor. </td>
-                                        <td class="text-center">
-                                        <button class="btn btn-success" 
-                                                data-toggle="modal" 
-                                                data-target="#commandModal"
-                                                onclick="runCommandConfirm('alma', 'Nem szabad almát dobni', 'runalma')">
-                                                <i class="fa fa-play fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mv-icon">
-                                            <i class="fa fa-database fa-2x"></i>
-                                        </td>
-                                        <td class="text-left">seed DB</td>
-                                        <td class="text-left">Feltölti az adatbázist azzal a tartalommal, ami a seederekben van beírva. Ha az adatbázis eldobása nélkül futtatjuk, akkor hibára fut, a unique mezők miatt. (Pl user esetén az email). </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-success" 
-                                                data-toggle="modal" 
-                                                data-target="#commandModal"
-                                                onclick="runCommandConfirm('alma', 'Nem szabad almát dobni', 'runalma')">
-                                                <i class="fa fa-play fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
