@@ -38,6 +38,7 @@
 
         </div>
     </div>
+
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
         <button type="submit" class="btn btn-primary" data-bs-dismiss>Mentés</button>
