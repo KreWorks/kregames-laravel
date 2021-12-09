@@ -43,6 +43,7 @@
 
         </div>
     </div>
+
     @if (isset($entity))
     <div class="modal-footer mt-3">
         <a href="{{route('admin.jams.index')}}"  class="btn btn-secondary">Vissza</a>
