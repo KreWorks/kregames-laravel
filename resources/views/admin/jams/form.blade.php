@@ -25,6 +25,7 @@
             <div class="form-group col-lg-12">
                 <label for="end_date" class="col-form-label">Vég</label>
                 <input class="form-control" type="datetime-local" value="" id="end_date" name="end_date">
+
             </div>
         </div>
         <div class="col-md-6">
@@ -44,3 +45,4 @@
         <button type="submit" class="btn btn-primary" data-bs-dismiss>Mentés</button>
     </div>
 </form>
+
