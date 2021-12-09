@@ -13,7 +13,7 @@
                         @if ($entity)
                         <form method="POST" action="{{ route($formAction, $entity->id) }}" enctype="multipart/form-data">
                             @method('PUT')
-                        @else 
+                        @else
                         <form method="POST" action="{{ route($formAction) }}" enctype="multipart/form-data">
                         @endif
                             @csrf
@@ -58,6 +58,14 @@
                             @endif
                         </div>
                         </form>
+                    </div>
+                </div>
+                <hr class="mr-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="header-title">Linkek</h4>
+                    </div>
+                    <div class="card-body d-flex">
                     </div>
                 </div>
             </div>
