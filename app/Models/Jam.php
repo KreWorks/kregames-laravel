@@ -22,6 +22,14 @@ class Jam extends Model
     }
 
     /**
+     * Get the jam's links
+     */
+    public function links()
+    {
+        return $this->morphMany('App\Models\Link', 'linkable');
+    }
+
+    /**
      * Get the jam's icon
      */
     public function icon()
@@ -30,7 +38,7 @@ class Jam extends Model
     }
 
 
-    /** 
+    /**
      * Return the path to the icon of the jam
      */
     public function getIconPathAttribute()
@@ -38,7 +46,7 @@ class Jam extends Model
         return $this->icon ? $this->icon->path : '';
     }
 
-    /** 
+    /**
      * Return jam length in days
      */
     public function getDurationAttribute()
@@ -49,7 +57,7 @@ class Jam extends Model
 
         return  $interval->format('%a nap');
     }
-    
+
     public function getDeleteStringAttribute()
     {
         return $this->name;
