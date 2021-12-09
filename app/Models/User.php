@@ -68,6 +68,14 @@ class User extends Authenticatable
         return $this->hasMany(Game::class);
     }
 
+    /**
+     * Get the user's links
+     */
+    public function links()
+    {
+        return $this->morphMany('App\Models\Link', 'linkable');
+    }
+
     public function getAvatarPathAttribute()
     {
         return $this->avatar ? $this->avatar->path : '';
