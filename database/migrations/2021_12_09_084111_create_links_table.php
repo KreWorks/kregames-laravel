@@ -19,6 +19,7 @@ class CreateLinksTable extends Migration
             $table->morphs('linkable');
             $table->foreignId('link_type_id')->nullable()->constrained();
             $table->string('link');
+            $table->string('display_text');
         });
     }
 
