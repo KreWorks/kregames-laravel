@@ -17,21 +17,21 @@ class ArtisanController extends BaseController
                     'fa-icon' => 'fa-file-code-o',
                     'command' => 'route',
                     'description' => 'Ismételten felolvassa a routes mappa tartalmát, és frissíti a routing-ot, egy route::clear, és egy route::cache történik.',
-                    'route' => 'routerefresh',
+                    'route' => 'route',
                     'warningMsg' => '',
                 ], 
                 [
                     'fa-icon' => 'fa-file-code-o',
                     'command' => 'view',
                     'description' => 'Frissíti a blade templatekből generált view-kat. Szintén clear és cache parancsok kerülnek futtatásra.',
-                    'route' => 'viewrefrest',
+                    'route' => 'view',
                     'warningMsg' => '',
                 ], 
                 [
                     'fa-icon' => 'fa-cog',
                     'command' => 'config',
                     'description' => 'Frissíti a config leírókat. Akkor szükséges, ha valamilyen változás történik a hozzáférésekben, elérési utakban.',
-                    'route' => 'configrefresh',
+                    'route' => 'config',
                     'warningMsg' => 'Esetleges problémát okozhat adatbázis elérésben vagy egyéb meghatározásokban.',
                 ], 
                 [
@@ -61,33 +61,36 @@ class ArtisanController extends BaseController
         return view('admin.artisan', $data);
     }   
 
-    public function routerefresh()
+    public function route()
     {
-        $refresh = Artisan::call('route:cache');
+        return Artisan::call('route:cache');
     }
 
-    public function viewrefrest()
+    public function view()
     {
-        $refresh = Artisan::call('view::cache');
+        return Artisan::call('view:cache');
     }
 
-    public function configrefresh()
+    public function config()
     {
-        $refresh = Artisan::call('config:cache');
+        return Artisan::call('config:cache');
     }
 
     public function migrate()
     {
-
+        return Artisan::call('migrate');
     }
 
     public function reloaddb()
     {
+        $return = Artisan::call('migrate:rollback');
+        $return .= Artisan::call('migrate');
 
+        return $return;
     }
 
     public function seed()
     {
-
+       return Artisan::call('db:seed');
     }
 }

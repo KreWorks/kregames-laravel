@@ -29,6 +29,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::post('register', [AdminController::class, 'register'])->name('register'); 
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('artisan', [ArtisanController::class, 'index'])->name('artisan');
+    Route::get('route', [ArtisanController::class, 'route'])->name('route');
+    Route::get('view', [ArtisanController::class, 'view'])->name('view');
+    Route::get('config', [ArtisanController::class, 'config'])->name('config');
+    Route::get('migrate', [ArtisanController::class, 'migrate'])->name('migrate');
+    Route::get('reloaddb', [ArtisanController::class, 'reloaddb'])->name('reloaddb');
+    Route::get('seed', [ArtisanController::class, 'seed'])->name('seed');
     Route::resource('jams', JamController::class);
     Route::resource('games', GameController::class);
     Route::resource('images', ImageController::class);
