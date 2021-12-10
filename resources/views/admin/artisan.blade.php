@@ -48,7 +48,7 @@
                         <div class="d-sm-flex ">
                             <h4 class="header-title mb-0" >Eredmény</h4>
                         </div>
-                        <div class="market-status-table mt-4">
+                        <div class="market-status-table mt-4" id="response">
                         </div>
                     </div>
                 </div>

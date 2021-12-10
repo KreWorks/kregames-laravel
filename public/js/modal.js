@@ -28,7 +28,16 @@ function runCommandConfirm(route, command, warningMsg)
 function runCommand(event)
 {
     event.preventDefault();
-    console.log('Fut a command');
-    console.log('action: ', event.target.getAttribute("action"));
-    console.log('action: ', document.getElementById('commandForm').action);
+    var action = document.getElementById('commandForm').action;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function ()
+    {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("response").innerHTML = this.responseText;
+            document.getElementById('commandModalCancel').click();
+        }
+    };
+    xhttp.open("GET", action, true);
+    xhttp.send();
 }

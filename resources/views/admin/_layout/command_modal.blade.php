@@ -9,7 +9,7 @@
                 <p>Biztos, hogy szeretnéd futtatni a(z) <span id="commandName">xx</span> commadot?</p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-dismiss="modal">Mégsem</button>
+                <button class="btn btn-primary" data-dismiss="modal" id="commandModalCancel">Mégsem</button>
                 <form method="POST" id="commandForm" action="">
                     @method('DELETE') 
                     @csrf
