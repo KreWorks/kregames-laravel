@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Output\StreamOutput;
 
 class ArtisanController extends BaseController
 {
@@ -46,14 +47,7 @@ class ArtisanController extends BaseController
                     'command' => 'reload DB',
                     'description' => 'Eldobja a jelenlegi adatbázist, és újra visszatölti a szerkezetét. Fontos, hogy csak a szerkezetét tölti vissza. Minden adat elvész ennek a futtatásakor.',
                     'route' => 'reloaddb',
-                    'warningMsg' => 'Töröl minden adatot az adatbázisból és egy üres struktúrát hoz létre.',
-                ], 
-                [
-                    'fa-icon' => 'fa-database',
-                    'command' => 'seed DB',
-                    'description' => 'Feltölti az adatbázist azzal a tartalommal, ami a seederekben van beírva. Ha az adatbázis eldobása nélkül futtatjuk, akkor hibára fut, a unique mezők miatt. (Pl user esetén az email).',
-                    'route' => 'seed',
-                    'warningMsg' => 'Hibára fut, ha nem üres állapotába van az adatbázis (egyedi kulcsok miatt).',
+                    'warningMsg' => 'Töröl minden adatot az adatbázisból és a struktúra létrehozása után feltölti a seedelt adatokkal.',
                 ], 
             ]
         ]; 
@@ -63,34 +57,36 @@ class ArtisanController extends BaseController
 
     public function route()
     {
-        return Artisan::call('route:cache');
+        return $this->runCommand('route:cache');
     }
 
     public function view()
     {
-        return Artisan::call('view:cache');
+        return $this->runCommand('view:cache');
     }
 
     public function config()
     {
-        return Artisan::call('config:cache');
+        return $this->runCommand('config:cache');
     }
 
     public function migrate()
     {
-        return Artisan::call('migrate');
+        return $this->runCommand('migrate');
     }
 
     public function reloaddb()
     {
-        $return = Artisan::call('migrate:rollback');
-        $return .= Artisan::call('migrate');
+        $return = $this->runCommand('migrate:reset');
+        $return .= $this->runCommand('migrate');
+        $return .= $this->runCommand('db:seed');
 
         return $return;
     }
 
-    public function seed()
+    protected function runCommand($command)
     {
-       return Artisan::call('db:seed');
+        Artisan::call($command); 
+        return (Artisan::output());
     }
 }

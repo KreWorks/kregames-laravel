@@ -8,7 +8,6 @@ function deleteConfirm(route, deleteString)
 function runCommandConfirm(route, command, warningMsg)
 {
     document.getElementById('commandForm').action = route;
-    // document.getElementById('warningMsg').innerText = warningMsg;
     document.getElementById('commandName').innerText = command;
     const modal = document.getElementById('modalBody');
     if (warningMsg !== '') {
@@ -34,7 +33,7 @@ function runCommand(event)
     xhttp.onreadystatechange = function ()
     {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("response").innerHTML = this.responseText;
+            document.getElementById("response").innerText = this.responseText;
             document.getElementById('commandModalCancel').click();
         }
     };
