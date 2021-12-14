@@ -37,6 +37,13 @@ class ArtisanController extends BaseController
                 ], 
                 [
                     'fa-icon' => 'fa-database',
+                    'command' => 'migrate-status',
+                    'description' => 'Visszaadja, hogy a migrácis scriptek milyen státuszban vannak.',
+                    'route' => 'migratestatus',
+                    'warningMsg' => '',
+                ], 
+                [
+                    'fa-icon' => 'fa-database',
                     'command' => 'migrate',
                     'description' => 'Futtatja azokat a migárciókat, amelyek még nem voltak futtatva. Mindezt a migrate táblában tárolja el. Ha frissül az adatbázis séma, akkor szükséges.',
                     'route' => 'migrate',
@@ -70,6 +77,11 @@ class ArtisanController extends BaseController
         return $this->runCommand('config:cache');
     }
 
+    public function migratestatus()
+    {
+        return $this->runCommand('migrate:status');
+    }
+    
     public function migrate()
     {
         return $this->runCommand('migrate');

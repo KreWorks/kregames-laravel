@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('view', [ArtisanController::class, 'view'])->name('view');
     Route::get('config', [ArtisanController::class, 'config'])->name('config');
     Route::get('migrate', [ArtisanController::class, 'migrate'])->name('migrate');
+    Route::get('migratestatus', [ArtisanController::class, 'migratestatus'])->name('migratestatus');
     Route::get('reloaddb', [ArtisanController::class, 'reloaddb'])->name('reloaddb');
     Route::resource('jams', JamController::class);
     Route::resource('games', GameController::class);

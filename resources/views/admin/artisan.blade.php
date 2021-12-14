@@ -5,7 +5,7 @@
     <div class="main-content-inner">
         <!-- market value area start -->
         <div class="row mt-5 mb-5">
-            <div class="col-8">
+            <div class="col-7">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
@@ -42,14 +42,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 " >
+            <div class="col-5 " >
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="d-sm-flex ">
                             <h4 class="header-title mb-0" >Eredmény</h4>
                         </div>
-                        <div class="market-status-table mt-4" id="response">
-                        </div>
+                        <code class="market-status-table mt-4" id="response">
+                        </code>
                     </div>
                 </div>
             </div>
