@@ -29,6 +29,13 @@ class ArtisanController extends BaseController
                     'warningMsg' => '',
                 ], 
                 [
+                    'fa-icon' => 'fa-file-code-o',
+                    'command' => 'storage',
+                    'description' => 'Létrehozza a storage linkeket a public oldalra.',
+                    'route' => 'storage',
+                    'warningMsg' => '',
+                ],
+                [
                     'fa-icon' => 'fa-cog',
                     'command' => 'config',
                     'description' => 'Frissíti a config leírókat. Akkor szükséges, ha valamilyen változás történik a hozzáférésekben, elérési utakban.',
@@ -70,6 +77,11 @@ class ArtisanController extends BaseController
     public function view()
     {
         return $this->runCommand('view:cache');
+    }
+
+    public function storage()
+    {
+        return $this->runCommand('storage:link');
     }
 
     public function config()

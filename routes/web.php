@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('artisan', [ArtisanController::class, 'index'])->name('artisan');
     Route::get('route', [ArtisanController::class, 'route'])->name('route');
     Route::get('view', [ArtisanController::class, 'view'])->name('view');
+    Route::get('storage', [ArtisanController::class, 'storage'])->name('storage');
     Route::get('config', [ArtisanController::class, 'config'])->name('config');
     Route::get('migrate', [ArtisanController::class, 'migrate'])->name('migrate');
     Route::get('migratestatus', [ArtisanController::class, 'migratestatus'])->name('migratestatus');
