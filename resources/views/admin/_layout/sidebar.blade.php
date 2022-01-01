@@ -57,6 +57,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="{{ $controller == 'Link típus' ? 'active' : ''}}">
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="ti-dashboard"></i><span>Kategóriák</span>
+                        </a>
+                        <ul class="collapse">
+                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
+                                <a href="{{ route('admin.linktypes.index') }}">Link kategóriák</a>
+                            </li>
+                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
+                                <a href="{{ route('admin.linktypes.create') }}">Új link kategória hozzáadása</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="{{ $controller == 'Artisan' ? 'active' : ''}}">
                         <a href="{{ route('admin.artisan') }}" >
                             <i class="ti-dashboard"></i><span>Artisan</span>

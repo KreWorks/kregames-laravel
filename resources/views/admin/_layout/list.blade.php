@@ -28,6 +28,8 @@
                                         <td class="align-middle">
                                             @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
                                             <img src="/{{ $entity->__get($key) }}" style="width:50px; height:50px;">
+                                            @elseif($key == 'fontawesome')
+                                            <i class="fa {{$entity->fontawesome}} fa-2x" style="color: {{$entity->color}}"></i>
                                             @else
                                             {{ $entity->__get($key) }}
                                             @endif
