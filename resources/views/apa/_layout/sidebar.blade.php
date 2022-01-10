@@ -1,36 +1,40 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="sidebar-sticky pt-3">
-        <ul class="nav flex-column">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" href="#">
-                    <span data-feather="home"></span>
-                    Jamek <span class="sr-only">(current)</span>
-                </a>
-                <div class="dropdown-menu">
-                    <a href="new.html" class="dropdown-item">New</a>
-                    <a href="index.html" class="dropdown-item">All Item</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" href="#">
-                    <span data-feather="home"></span>
-                    Játékok <span class="sr-only">(current)</span>
-                </a>
-                <div class="dropdown-menu">
-                    <a href="new.html" class="dropdown-item">New</a>
-                    <a href="index.html" class="dropdown-item">All Item</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" role="button" href="#">
-                    <span data-feather="home"></span>
-                    Felhasználók <span class="sr-only">(current)</span>
-                </a>
-                <div class="dropdown-menu">
-                    <a href="new.html" class="dropdown-item">New</a>
-                    <a href="index.html" class="dropdown-item">All Item</a>
-                </div>
-            </li>
-        </ul>
+<!-- sidebar starts -->
+<nav class="col-md-3 d-md-block sidebar">
+    <div class="list-group">
+        <a href="index.html" class="list-group-item list-group-item-action active" aria-current="true">
+            <span>
+                <svg class="card__icon--white"><use xlink:href="apa/img/icons.svg#icon-home"></use></svg>
+            </span>
+            Dashboard
+        </a>
+        <a href="jams.html" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="apa/img/icons.svg#icon-gift"></use></svg>
+            </span>
+            Jams
+            <span class="badge bg-secondary rounded-pill ms-2">4</span>
+        </a>
+        <a href="games.html" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="apa/img/icons.svg#icon-award"></use></svg>
+            </span>
+            Játékok
+            <span class="badge bg-secondary rounded-pill ms-2">4</span>
+        </a>
+        <a href="users.html" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="apa/img/icons.svg#icon-users"></use></svg>
+            </span>
+            Felhasználók
+            <span class="badge bg-secondary rounded-pill ms-2">2</span>
+        </a>
+        <a href="artisancos.html" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="apa/img/icons.svg#icon-settings"></use></svg>
+            </span>
+            Artisan
+            <span class="badge bg-secondary rounded-pill ms-2">12</span>
+        </a>
     </div>
 </nav>
+<!-- sidebar ends -->
