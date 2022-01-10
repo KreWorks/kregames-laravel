@@ -10,7 +10,7 @@
     <link href="apa/css/style.css" rel="stylesheet">
 </head>
 <body>
-@include('apa._layout.menu')
+@include('admin._layout.menu')
 
 <header id="header" class="mb-3">
     <div class="container-fluid">

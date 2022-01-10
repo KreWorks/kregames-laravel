@@ -13,8 +13,7 @@ class AdminController extends BaseController
 {
     //https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
 
-    //protected $page = 'admin';
-    protected $page = 'apa';
+    protected $page = 'admin';
 
     public function __construct()
     {

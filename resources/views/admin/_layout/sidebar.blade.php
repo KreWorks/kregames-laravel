@@ -1,65 +1,33 @@
-<!-- sidebar menu area start -->
-<div class="sidebar-menu">
-    <div class="sidebar-header">
-        <div class="text-center">
-            <a href="{{ route('admin') }}"><h2>KRÉ Games</h2></a>
-        </div>
+<!-- sidebar starts -->
+<nav class="col-md-3 d-md-block sidebar">
+    <div class="list-group">
+        <a href="{{route('admin')}}" class="list-group-item list-group-item-action active" aria-current="true">
+            <span>
+                <svg class="card__icon--white"><use xlink:href="/apa/img/icons.svg#icon-home"></use></svg>
+            </span>
+            Dashboard
+        </a>
+        <a href="{{route('admin.jams.index')}}" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="/apa/img/icons.svg#icon-gift"></use></svg>
+            </span>
+            Jams
+            <span class="badge bg-secondary rounded-pill ms-2">4</span>
+        </a>
+        <a href="{{route('admin.games.index')}}" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="/apa/img/icons.svg#icon-award"></use></svg>
+            </span>
+            Játékok
+            <span class="badge bg-secondary rounded-pill ms-2">4</span>
+        </a>
+        <a href="{{route('admin.users.index')}}" class="list-group-item list-group-item-action">
+            <span>
+                <svg class="card__icon--dark"><use xlink:href="/apa/img/icons.svg#icon-users"></use></svg>
+            </span>
+            Felhasználók
+            <span class="badge bg-secondary rounded-pill ms-2">2</span>
+        </a>
     </div>
-    <div class="main-menu">
-        <div class="menu-inner">
-            <nav>
-                <ul class="metismenu" id="menu">
-                    <li class="{{ $controller == 'Jam' ? 'active' : ''}}">
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Jamek</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
-                                <a href="{{ route('admin.jams.index') }}">Összes jam</a>
-                            </li>
-                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
-                                <a href="{{ route('admin.jams.create') }}">Új jam hozzáadása</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="{{ $controller == 'Játék' ? 'active' : ''}}">
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Játékok</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
-                                <a href="{{ route('admin.games.index') }}">Összes játék</a>
-                            </li>
-                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
-                                <a href="{{ route('admin.games.create') }}">Új játék hozzáadása</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--<li>
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Képek</span>
-                        </a>
-                        <ul class="collapse">
-                            <li><a href="{{ route('admin.images.index') }}">Összes kép</a></li>
-                            <li><a href="{{ route('admin.images.create') }}">Kép kategóriák</a></li>
-                        </ul>
-                    </li>-->
-                    <li class="{{ $controller == 'Felhasználó' ? 'active' : ''}}">
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Felhasználók</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
-                                <a href="{{ route('admin.users.index') }}">Összes felhasználó</a>
-                            </li>
-                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
-                                <a href="{{ route('admin.users.create') }}">Új felhasználó hozzáadása</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- sidebar menu area end -->
+</nav>
+<!-- sidebar ends -->
