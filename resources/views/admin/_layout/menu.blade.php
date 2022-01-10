@@ -7,15 +7,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{route('admin.jams.index')}}">Jams</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.games.index')}}">Játékok</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.users.index')}}">Felhasználók</a>
-                </li>
+                @foreach(get_menu() as $menuItem)
+                    @if ($menuItem['route'] != 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{$menuItem['isActive']}}" href="{{route($menuItem['route'])}}">{{$menuItem['name']}}</a>
+                    </li>
+                    @endif
+                @endforeach
             </ul>
             <ul class="navbar-nav  mb-2 mb-md-0 navbar-right">
                 <li class="nav-item">
