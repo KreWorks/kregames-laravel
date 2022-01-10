@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Admin Area | Dashboard</title>
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">KRÉ Games</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="jams.html">Jams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="games.html">Játékok</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="users.html">Felhasználók</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="artisan.html">Artisan</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav  mb-2 mb-md-0 navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Welcome, KRÉ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header id="header">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <h1> <svg class="card__icon--white">
+              <use xlink:href="img/icons.svg#icon-home"></use>
+            </svg>Dashboard <small>Manage Your Site</small></h1>
+        </div>
+        <div class="col-md-2">
+          <div class="dropdown create">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Create Content
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#addJam">Add Jam</a>
+              </li>
+              <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#addGame">Add Game</a>
+              </li>
+              <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#addUser">Add User</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section id="breadcumb" class="mt-3">
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="dashboard">Dashboard</li>
+      </ol>
+    </div>
+  </section>
+  <section id="main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="list-group">
+            <a href="index.html" class="list-group-item list-group-item-action active" aria-current="true">
+              <span>
+                <svg class="card__icon--white">
+                  <use xlink:href="img/icons.svg#icon-home"></use>
+                </svg>
+              </span>
+              Dashboard
+            </a>
+            <a href="jams.html" class="list-group-item list-group-item-action"><span>
+                <svg class="card__icon--dark">
+                  <use xlink:href="img/icons.svg#icon-gift"></use>
+                </svg>
+              </span> Jams<span class="badge bg-secondary rounded-pill ms-2">4</span> </a>
+            <a href="games.html" class="list-group-item list-group-item-action"><span>
+                <svg class="card__icon--dark">
+                  <use xlink:href="img/icons.svg#icon-award"></use>
+                </svg>
+              </span> Játékok <span class="badge bg-secondary rounded-pill ms-2">4</span> </a>
+            <a href="users.html" class="list-group-item list-group-item-action"><span>
+                <svg class="card__icon--dark">
+                  <use xlink:href="img/icons.svg#icon-users"></use>
+                </svg>
+              </span> Felhasználók <span class="badge bg-secondary rounded-pill ms-2">2</span> </a>
+            <a href="artisancos.html" class="list-group-item list-group-item-action"><span>
+                <svg class="card__icon--dark">
+                  <use xlink:href="img/icons.svg#icon-settings"></use>
+                </svg>
+              </span> Artisan <span class="badge bg-secondary rounded-pill ms-2">12</span></a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              Weblap áttekintés
+            </div>
+            <div class="card-body">
+              <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+                <div class="col">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-body py-4">
+                      <h1 class="card-title">
+                        <svg class="card__icon--dark">
+                          <use xlink:href="img/icons.svg#icon-users"></use>
+                        </svg>
+                        <small>2</small>
+                      </h1>
+                      <h4 class="card-subtitle">Felhasználók</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-body py-4">
+                      <h1 class="card-title">
+                        <svg class="card__icon--dark">
+                          <use xlink:href="img/icons.svg#icon-award"></use>
+                        </svg>
+                        <small>4</small>
+                      </h1>
+                      <h4 class="card-subtitle">Játékok</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-body py-4">
+                      <h1 class="card-title">
+                        <svg class="card__icon--dark">
+                          <use xlink:href="img/icons.svg#icon-gift"></use>
+                        </svg>
+                        <small>4</small>
+                      </h1>
+                      <h4 class="card-subtitle">Jams</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-body py-4">
+                      <h1 class="card-title">
+                        <svg class="card__icon--dark">
+                          <use xlink:href="img/icons.svg#icon-bar-chart"></use>
+                        </svg>
+                        <small>123</small>
+                      </h1>
+                      <h4 class="card-subtitle">Látogatók</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              Legutóbbi játékok
+            </div>
+            <div class="card-body">
+              <div class="row  mb-3 text-center">
+                <div class="col">
+                  <div class="card mb-2 rounded-3 shadow-sm">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Ikon</th>
+                          <th scope="col">Név</th>
+                          <th scope="col">Jam</th>
+                          <th scope="col">Kiadási dátum</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td><img src="img/OneTruePairicon.png" alt="" class="img-fluid jam-icon"></td>
+                          <td>One True Pair</td>
+                          <td>Jam 1</td>
+                          <td>2022.01.03.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td><img src="img/DarkLiquidCompanyicon.png" alt="" class="img-fluid jam-icon"></td>
+                          <td>Dark Liquid Company</td>
+                          <td>Jam 2</td>
+                          <td>2022.01.03.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td><img src="img/EscapeFromTheBankicon.png" alt="" class="img-fluid jam-icon"></td>
+                          <td>Escape From The Bank</td>
+                          <td>Jam 3</td>
+                          <td>2022.01.03.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4</th>
+                          <td><img src="img/PotholePanicicon.png" alt="" class="img-fluid jam-icon"></td>
+                          <td>Pothole Panic</td>
+                          <td>JAM 4</td>
+                          <td>2022.01.03.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              Legutóbbi JAM-ek
+            </div>
+            <div class="card-body">
+              <div class="row  mb-2 text-center">
+                <div class="col">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Ikon</th>
+                          <th scope="col">Név</th>
+                          <th scope="col">Téma</th>
+                          <th scope="col">Versenyzők</th>
+                          <th scope="col">Kezdési dátum</th>
+                          <th scope="col">Hossz</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td><img src="img/brackeys-2.png" alt="" class="img-fluid"></td>
+                          <td>Brackey's Game Jam #2</td>
+                          <td>Love is blind</td>
+                          <td>318</td>
+                          <td>2019-02-16</td>
+                          <td>7</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td><img src="img/pizza-jam.png" alt="" class="img-fluid"> </td>
+                          <td>Pizza Jam</td>
+                          <td>I am the strongest</td>
+                          <td>53</td>
+                          <td>2019-03-22</td>
+                          <td>2</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td><img src="img/ludum-dare-44.png" alt="" class="img-fluid jam-icon"></td>
+                          <td>Ludum Dare 44</td>
+                          <td>Your life is currency</td>
+                          <td>2538</td>
+                          <td>2019-04-27</td>
+                          <td>3</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4</th>
+                          <td><img src="img/brackeys-3.png" alt="" class="img-fluid"></td>
+                          <td>Brackey's Game Jam 2020.1</td>
+                          <td>Holes</td>
+                          <td>700</td>
+                          <td>2020-02-16</td>
+                          <td>7</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="footer" class="mt-4">
+    <p>Copyright KreGames, &copy; 2022</p>
+  </footer>
+  <!-- Modals -->
+
+  <!-- Add Game Modal-->
+
+  <div class="modal fade" id="addGame" tabindex="-1" aria-labelledby="addGameLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form action="">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addGameLabel">Add Game</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row row-cols-1 row-cols-md-2">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="name">Name: </label>
+                  <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="name">Slug: </label>
+                  <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="publishdate">Megjelenés dátuma </label>
+                  <input type="date" name="publishdate" id="publishdate" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="gamejam">Megjelenés dátuma </label>
+                  <select name="gamejam" id="gamejam" class="form-select">
+                    <option value="Nincs Jam">Nincs Jam</option>
+                    <option value="1">Brackey's Game Jam #2</option>
+                    <option value="2">Pizza Jam</option>
+                    <option value="3">Ludum Dare 44</option>
+                    <option value="4">Brackey's Game Jam 2020.1</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="gameicon" class="form-label">Ikon</label>
+                  <input type="file" name="gameicon" id="gameicon" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Jam Modal-->
+
+  <div class="modal fade" id="addJam" tabindex="-1" aria-labelledby="addJamLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form action="">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Jam</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="jamtitle" class="form-label">Név</label>
+              <input type="text" name="jamtitle" id="jamtitle" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="jamslug" class="form-label">Slug</label>
+              <input type="text" name="jamslug" id="jamslug" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="jammembers" class="form-label">Indulók</label>
+              <input type="number" name="jammembers" id="jammembers" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="jamtheme" class="form-label">Téma</label>
+              <input type="text" name="jamtheme" id="jamtheme" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="jamstart" class="form-label">Kezdés</label>
+              <input type="date" name="jamstart" id="jamstart" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="jamend" class="form-label">Befejezés</label>
+              <input type="date" name="jamend" id="jamend" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="jamicon" class="form-label">Ikon</label>
+              <input type="file" name="jamicon" id="jamicon" class="form-control">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Add User Modal-->
+
+  <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="#" method="POST">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="text" name="first_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" name="last_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="password2">Password</label>
+              <input type="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Confirm Password</label>
+              <input type="password" name="password2" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="useravatar" class="form-label">Avatar</label>
+              <input type="file" name="useravatar" id="useravatar" class="form-control">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="submit" value="Add User" class="btn btn-primary ">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
