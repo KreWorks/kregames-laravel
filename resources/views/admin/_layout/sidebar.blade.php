@@ -1,8 +1,8 @@
 <!-- sidebar menu area start -->
 <div class="sidebar-menu">
     <div class="sidebar-header">
-        <div class="logo">
-            <a href="{{ route('admin') }}"><img src="{{ asset('srtdash/assets/images/icon/logo.png') }}" alt="logo"></a>
+        <div class="text-center">
+            <a href="{{ route('admin') }}"><h2>KRÉ Games</h2></a>
         </div>
     </div>
     <div class="main-menu">

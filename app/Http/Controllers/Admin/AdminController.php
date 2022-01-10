@@ -18,7 +18,7 @@ class AdminController extends BaseController
     public function __construct()
     {
         $this->middleware('guest')->except(['index', 'logout']);
-        
+
         if (isset($_GET['apa']) && $_GET['apa'] == 1)
         {
             $this->page = 'apa';
@@ -30,17 +30,18 @@ class AdminController extends BaseController
         if(!Auth::check()) {
             return redirect("admin/login");
         }
-        
+
         $data = [
             'controller' => 'Admin',
             'action' => 'Főoldal',
         ];
 
-        return view($this->page.'.index', $data);
 
-    }  
-    
-    
+        //return view($this->page.'.index', $data);
+        return view('admin.bootstrap', $data);
+    }
+
+
     public function login()
     {
         return view($this->page.'.login');
@@ -52,13 +53,13 @@ class AdminController extends BaseController
             'email' => 'required',
             'password' => 'required',
         ]);
-   
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('admin')
                         ->withSuccess('Signed in');
         }
-  
+
         return redirect("admin/login")->withSuccess('Login details are not valid');
     }
 
@@ -68,19 +69,19 @@ class AdminController extends BaseController
     {
         return view('admin.auth.registration');
     }
-      
+
 
     public function register(Request $request)
-    {  
+    {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
-           
+
         $data = $request->all();
         $check = $this->create($data);
-         
+
         return redirect("admin")->withSuccess('You have signed-in');
     }
 
@@ -92,12 +93,12 @@ class AdminController extends BaseController
         'email' => $data['email'],
         'password' => Hash::make($data['password'])
       ]);
-    }      
+    }
 
     public function logout() {
         Session::flush();
         Auth::logout();
-  
+
         return Redirect('admin/login');
     }
 }
