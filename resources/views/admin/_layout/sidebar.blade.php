@@ -7,6 +7,9 @@
                     <svg class="{{$menuItem['iconColor']}}"><use xlink:href="/apa/img/icons.svg#{{$menuItem['icon']}}"></use></svg>
                 </span>
                 {{$menuItem['name']}}
+                @if ($menuItem['isActive'] != '')
+                    <span class="badge bg-secondary rounded-pill ms-2">{{ count($datas)}}</span>
+                @endif
             </a>
         @endforeach
         <a href="{{route('admin')}}" class="list-group-item list-group-item-action active" aria-current="true">

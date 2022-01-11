@@ -27,7 +27,7 @@ abstract class ResourceController extends BaseController
             'newBtnText' => 'Új '.$this->_name.' hozzáadása'
         ];
 
-        return view('admin.users.list', $data);
+        return view('admin.'.$this->_route.'.list', $data);
     }
 
     /**
