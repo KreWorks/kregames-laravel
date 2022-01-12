@@ -7,8 +7,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('admin.jams.create') }}" enctype="multipart/form-data">
-                @csrf
+                <form method="POST" action="{{ route('admin.jams.create') }}" enctype="multipart/form-data" name="jam-form" id="jam-form">
+                    @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group col-lg-12">

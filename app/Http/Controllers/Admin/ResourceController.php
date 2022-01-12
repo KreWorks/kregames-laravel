@@ -36,6 +36,19 @@ abstract class ResourceController extends BaseController
     }
 
     /**
+     * Return one entity
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $entity = $this->getEntity($id);
+
+        return $entity;
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
