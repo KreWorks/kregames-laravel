@@ -9,7 +9,8 @@ abstract class ResourceController extends BaseController
     protected $_controller;
     protected $_route;
     protected $_name;
-    protected $_table;
+    protected $_namePlural;
+    protected $_tableLabels;
 
     /**
      * Display a listing of the resource.
@@ -21,13 +22,14 @@ abstract class ResourceController extends BaseController
         $data = [
             'controller' => $this->_controller,
             'action' => 'Lista',
-            'table' => $this->_table,
+            'tableLabels' => $this->_tableLabels,
             'datas' => $this->getAll(),
-            'routeName' => $this->_route,
-            'newBtnText' => 'Új '.$this->_name.' hozzáadása'
+            'route' => $this->_route,
+            'name' => $this->_name,
+            'namePlural' => $this->_namePlural
         ];
 
-        return view('admin.'.$this->_route.'.list', $data);
+        return view('admin._layout.list', $data);
     }
 
     /**

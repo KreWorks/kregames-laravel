@@ -16,7 +16,7 @@ header .create {
   color: #aaa;
 }
 #main {
-    min-height: calc(100vh - 238px);
+    min-height: calc(100vh - 174px);
 }
 .card__icon--white {
   height: 2rem;
