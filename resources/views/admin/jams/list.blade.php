@@ -7,7 +7,7 @@
                 <div class="row">
                     <span class="col-md-8 my-auto">Jam lista</span>
                     <button class="btn btn-warning col-md-3 float-right" type="button" id="addJamButton"
-                            data-bs-toggle="modal" data-bs-target="#addJam" >
+                            data-bs-toggle="modal" data-bs-target="#jamForm" >
                         Új jam hozzáadása
                     </button>
                 </div>
@@ -17,5 +17,5 @@
             </div>
         </div>
     </div>
-@include('admin._modals.addjam')
+@include('admin.jams.modal')
 @endsection
