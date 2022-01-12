@@ -11,7 +11,7 @@
 </head>
 <body>
 @include('admin._layout.menu')
-
+<!--
 <header id="header" class="mb-3">
     <div class="container-fluid">
         <div class="row offset-md-3 col-md-9">
@@ -40,6 +40,7 @@
         </div>
     </div>
 </header>
+-->
 <section id="main">
     <div class="container-fluid">
         <div class="row">
