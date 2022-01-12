@@ -2,7 +2,7 @@
     <thead>
     <tr>
         @foreach($tableLabels as $column)
-            <th scope="col">{{ $column }}</th>
+            <th scope="col">{{ ucfirst($column) }}</th>
         @endforeach
         <th scope="col">Műveletek</th>
     </tr>

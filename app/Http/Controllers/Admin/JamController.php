@@ -14,6 +14,8 @@ class JamController extends ResourceWithIconController
         $this->_controller = 'Jam';
         $this->_route = 'jams';
         $this->_name = 'jam';
+        $this->_hunName = 'jam';
+        $this->_hunPluralName = 'jamek';
         $this->_tableLabels = [
             'iconPath' => 'icon',
             'id' => 'id',

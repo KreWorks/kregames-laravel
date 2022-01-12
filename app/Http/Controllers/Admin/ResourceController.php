@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 abstract class ResourceController extends BaseController
 {
     protected $_controller;
-    protected $_route;
-    protected $_name;
-    protected $_namePlural;
+    protected $_route; //plural english name
+    protected $_name; //single english name
+    protected $_hunName;
+    protected $_hunPluralName;
     protected $_tableLabels;
 
     /**
@@ -24,9 +25,11 @@ abstract class ResourceController extends BaseController
             'action' => 'Lista',
             'tableLabels' => $this->_tableLabels,
             'datas' => $this->getAll(),
+            'extraDatas' => $this->getExtraDatas(),
             'route' => $this->_route,
             'name' => $this->_name,
-            'namePlural' => $this->_namePlural
+            'hunName' => $this->_hunName,
+            'hunPluralName' => $this->_hunPluralName
         ];
 
         return view('admin._layout.list', $data);
@@ -82,6 +85,10 @@ abstract class ResourceController extends BaseController
         return redirect(route("admin.".$this->_route.".index"));
     }
 
+    protected function getExtraDatas()
+    {
+        return [];
+    }
     /**
      * Create a data array from the request. Need to remove image content
      *

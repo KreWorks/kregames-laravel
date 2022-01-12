@@ -13,9 +13,11 @@ class GameController extends ResourceWithIconController
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'Játék';
+        $this->_controller = 'játék';
         $this->_route = 'games';
-        $this->_name = 'játék';
+        $this->_name = 'game';
+        $this->_hunName = 'játék';
+        $this->_hunPluralName = "játékok";
         $this->_tableLabels = [
             'iconPath' => 'icon',
             'id' => 'id',
@@ -135,6 +137,12 @@ class GameController extends ResourceWithIconController
     {
         return Game::all();
     }
+
+    protected function getExtraDatas()
+    {
+        return ['jams' => Jam::all()];
+    }
+
     protected function getEntity($id)
     {
         return Game::find($id);
