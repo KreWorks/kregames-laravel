@@ -6,8 +6,10 @@
                 <h5 class="modal-title" id="gameFormTitlelabel">Játék létrehozása</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <input type="hidden" id="link-with-id" value="{{route('admin.'.$route.'.show', '###')}}">
+            <input type="hidden" id="link-without-id" value="{{route('admin.'.$route.'.store')}}">
             <div class="modal-body">
-                <form method="POST" action="{{ route('admin.games.create') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.games.create') }}" enctype="multipart/form-data" name="game-form" id="game-form">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -46,8 +48,8 @@
                         </div>
                     </div>
                     <div class="modal-footer mt-3">
+                        <button type="submit" class="btn btn-primary" onclick="saveBtnOnClick()">Mentés</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
-                        <button type="submit" class="btn btn-primary">Mentés</button>
                     </div>
                 </form>
             </div>

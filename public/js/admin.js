@@ -1,42 +1,37 @@
-console.log("be lesz hívva");
 //Used in game and jam title's slug generation
 function createSlug(name)
 {
-    var slug = name.toLowerCase();
+    let slug = name.toLowerCase();
     return slug.replace(' ', '-');
 }
 
-//Open modal with data
-function getJamData()
-{
-
-}
-function openEdit(type, entityUrl, id) {
+//Open the modal with datas
+function openEdit(type, entityUrl, updateUrl, id) {
     axios.get(entityUrl)
-        .then(data=>showModal(type, data.data))
+        .then(data=>showModal(type, updateUrl, data.data))
         .catch(err=>console.log(err));
-
-    /*
-    with parameter
-    const params = {
-        id: 1
-    }
-    axios.get(getEntityUrl, params)
-        .then(data=>console.log(data))
-        .catch(err=>console.log(err));
-    */
 }
 
-function showModal(type, data)
+function showModal(type, updateUrl, data)
 {
     const modal = new bootstrap.Modal(document.getElementById(type + 'Form'), {});
     const formElement = document.getElementById(type + '-form');
-    console.log(formElement.action);
-    /*
-    '<input type="hidden" name="_method" value="PUT">'
-    eElement.insertBefore(newFirstElement, eElement.firstChild);
-    */
-     */
+    const methodInput = document.createElement('input');
+    methodInput.type = 'hidden';
+    methodInput.name = '_method';
+    methodInput.value = 'PUT';
+    methodInput.id = 'methodInput';
+    //It will paste the item in the first position
+    formElement.prepend(methodInput);
+    formElement.action = updateUrl;
+
+    setFormElementValues(data);
+
+    modal.show();
+}
+//Set all the entity attributes to the form element
+function setFormElementValues(data)
+{
     for (let [key, value] of Object.entries(data)) {
         //the id, created_at, modify_at wont be found
         if (key == 'id') continue;
@@ -50,6 +45,9 @@ function showModal(type, data)
             element.value = value;
         }
     }
+}
 
-    modal.show();
+function saveBtnOnClick()
+{
+    console.log('We will save the form');
 }
