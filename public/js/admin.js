@@ -5,10 +5,26 @@ function createSlug(name)
     return slug.replace(' ', '-');
 }
 
+function openNewModal(type, createUrl)
+{
+    const modal = new bootstrap.Modal(document.getElementById(type + 'Form'), {});
+    const formElement = document.getElementById(type + '-form');
+    const methodInput = document.getElementById('methodInput');
+    if (methodInput != null) {
+        methodInput.remove();
+    }
+    console.log('form action before: ' + formElement.action);
+    formElement.action = createUrl;
+    console.log('form action  after: ' + formElement.action);
+
+    modal.show();
+}
+
 //Open the modal with datas
-function openEdit(type, entityUrl, updateUrl, id) {
+function openEditModal(type, entityUrl, id) {
+    console.log('entity: ' + entityUrl);
     axios.get(entityUrl)
-        .then(data=>showModal(type, updateUrl, data.data))
+        .then(data=>showModal(type, entityUrl, data.data))
         .catch(err=>console.log(err));
 }
 
@@ -47,7 +63,3 @@ function setFormElementValues(data)
     }
 }
 
-function saveBtnOnClick()
-{
-    console.log('We will save the form');
-}

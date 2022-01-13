@@ -20,8 +20,9 @@
                 </td>
             @endforeach
             <td>
-                <button type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}" onclick="openEdit('{{$name}}', '{{route('admin.'.$route.'.show', $entity->id)}}', '{{route('admin.'.$route.'.update', $entity->id)}}', 1)"
-                        data-toggle="tooltip" data-placement="left" title="Szerkesztés">
+                <button type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}"
+                        onclick="openEditModal('{{$name}}', '{{route('admin.'.$route.'.show', $entity->id)}}', '{{route('admin.'.$route.'.update', $entity->id)}}', 1)"
+                        >
                     <svg class="card__icon--delete">
                         <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
                     </svg>

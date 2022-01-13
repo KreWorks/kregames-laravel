@@ -6,8 +6,8 @@
             <div class="card-header bg-primary text-white">
                 <div class="row">
                     <span class="col-md-8 my-auto">{{ucfirst($hunName)}} lista</span>
-                    <button class="btn btn-warning col-md-3 float-right" type="button" id="add{{ucfirst($name)}}Button"
-                            data-bs-toggle="modal" data-bs-target="#{{$name}}Form" >
+                    <button type="button" class="btn btn-warning col-md-3 float-right" id="add{{ucfirst($name)}}Button"
+                            onclick="openNewModal('{{$name}}', '{{route('admin.'.$route.'.store')}}')">
                         Új {{$hunName}} hozzáadása
                     </button>
                 </div>

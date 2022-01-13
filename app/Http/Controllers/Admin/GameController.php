@@ -128,10 +128,10 @@ class GameController extends ResourceWithIconController
         return [
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date')
+            'publish_date' => $request->input('publish_date'),
+            'user_id' => auth()->user()->id
         ];
     }
-
 
     protected function getAll()
     {

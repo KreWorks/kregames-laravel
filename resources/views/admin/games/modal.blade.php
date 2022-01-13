@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="modal-footer mt-3">
-                        <button type="submit" class="btn btn-primary" onclick="saveBtnOnClick()">Mentés</button>
+                        <button type="submit" class="btn btn-primary" >Mentés</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
                     </div>
                 </form>
