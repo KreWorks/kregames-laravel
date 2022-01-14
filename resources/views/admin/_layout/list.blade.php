@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <!-- Add Jam Modal-->
+    <!-- Add / Edit Modal-->
     <div class="modal fade" id="{{$name}}Form" tabindex="-1" aria-labelledby="{{$name}}FormLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -31,4 +31,6 @@
             </div>
         </div>
     </div>
+    <!-- Delete Modal -->
+    @include('admin._modals.delete_modal')
 @endsection
