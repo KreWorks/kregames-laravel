@@ -8,9 +8,9 @@
     <!-- Bootstrap core CSS -->
     <link href="/apa/css/bootstrap.css" rel="stylesheet">
     <link href="/apa/css/style.css" rel="stylesheet">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    
     <script src="/js/admin.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
 <body>
 @include('admin._layout.menu')
