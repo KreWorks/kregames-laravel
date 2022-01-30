@@ -18,6 +18,11 @@ const MENUS = [
         'icon' => 'icon-compass'
     ],
     [
+        'name' => 'Link típusok',
+        'route' => 'admin.linktypes.index',
+        'icon' => 'icon-link'
+    ],
+    [
         'name' => 'Felhasználók',
         'route' => 'admin.users.index',
         'icon' => 'icon-user'
