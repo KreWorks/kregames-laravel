@@ -5,46 +5,44 @@ function createSlug(name)
     return slug.replace(' ', '-');
 }
 
-function openNewModal(type, createUrl)
+function openModal(entityType, entityName, actionType, formUrl, entityUrl = null)
 {
-    const modal = new bootstrap.Modal(document.getElementById(type + 'Form'), {});
-    const formElement = document.getElementById(type + '-form');
-    const methodInput = document.getElementById('methodInput');
-    if (methodInput != null) {
-        methodInput.remove();
+    const modal = new bootstrap.Modal(document.getElementById(entityType + 'Form'), {});
+    const modalLabel = document.getElementById(entityType + 'FormTitlelabel');
+    const formElement = document.getElementById(entityType + '-form');
+    formElement.action = formUrl;
+    if (actionType == 'create') {
+        modalLabel.innerText = entityName + ' létrehozása';
+        const methodInput = document.getElementById('methodInput');
+        if (methodInput != null) {
+            methodInput.remove();
+        }
+        resetForm(formElement);
     }
-    console.log('form action before: ' + formElement.action);
-    formElement.action = createUrl;
-    console.log('form action  after: ' + formElement.action);
+    else if (actionType == 'update') {
+        modalLabel.innerText = entityName + ' módosítása';
+        const methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'PUT';
+        methodInput.id = 'methodInput';
+        //It will paste the item in the first position
+        formElement.prepend(methodInput);
+        getDatasInModal(entityUrl);
+    }
 
     modal.show();
 }
+
 
 //Open the modal with datas
-function openEditModal(type, entityUrl, id) {
-    console.log('entity: ' + entityUrl);
-    axios.get(entityUrl)
-        .then(data=>showModal(type, entityUrl, data.data))
-        .catch(err=>console.log(err));
-}
-
-function showModal(type, updateUrl, data)
+function getDatasInModal(entityUrl)
 {
-    const modal = new bootstrap.Modal(document.getElementById(type + 'Form'), {});
-    const formElement = document.getElementById(type + '-form');
-    const methodInput = document.createElement('input');
-    methodInput.type = 'hidden';
-    methodInput.name = '_method';
-    methodInput.value = 'PUT';
-    methodInput.id = 'methodInput';
-    //It will paste the item in the first position
-    formElement.prepend(methodInput);
-    formElement.action = updateUrl;
-
-    setFormElementValues(data);
-
-    modal.show();
+    axios.get(entityUrl)
+        .then(data => setFormElementValues(data.data))
+        .catch(err => console.log(err));
 }
+
 //Set all the entity attributes to the form element
 function setFormElementValues(data)
 {
@@ -63,3 +61,19 @@ function setFormElementValues(data)
     }
 }
 
+function resetForm(formElement)
+{
+    const inputs = formElement.querySelectorAll('input');
+    inputs.forEach(element =>
+    {
+        if (element.name != "_token") {
+            element.value = null;
+        }
+    });
+}
+
+function deleteConfirm(route, deleteString)
+{
+    document.getElementById('deleteForm').action = route;
+    document.getElementById('deleteString').innerText = deleteString;
+}

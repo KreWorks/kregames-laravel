@@ -21,7 +21,7 @@
             @endforeach
             <td>
                 <button type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}"
-                        onclick="openEditModal('{{$name}}', '{{route('admin.'.$route.'.show', $entity->id)}}', '{{route('admin.'.$route.'.update', $entity->id)}}', 1)"
+                        onclick="openModal('{{$name}}', '{{ucfirst($hunName)}}', 'update', '{{route('admin.'.$route.'.update', $entity->id)}}','{{route('admin.'.$route.'.show', $entity->id)}}' )"
                         >
                     <svg class="card__icon--delete">
                         <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
@@ -29,7 +29,7 @@
                 </button>
 
                 <div class="btn btn-danger"
-                     data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $entity->id) }}', '{{ $entity->deleteString }}' )">
+                     data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('alma', 'alma' )">
                     <svg class="card__icon--delete">
                         <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
                     </svg>

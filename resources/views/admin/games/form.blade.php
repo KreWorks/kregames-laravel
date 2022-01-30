@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('admin.games.create') }}" enctype="multipart/form-data" name="game-form" id="game-form">
-    @csrf
+    @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
         <div class="col-md-6">
             <div class="form-group col-lg-12">

@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('admin.users.create') }}" enctype="multipart/form-data" id="user-form" name="user-form">
-    @csrf
+    @csrf <!-- {{ csrf_field() }} -->   
     <div class="row">
         <div class="col-md-6">
             <div class="form-group col-lg-12">

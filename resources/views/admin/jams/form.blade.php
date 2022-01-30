@@ -1,6 +1,5 @@
 <form method="POST" action="{{ route('admin.jams.create') }}" enctype="multipart/form-data" name="jam-form" id="jam-form">
-    @csrf
-    @method('PUT')
+    @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
         <div class="col-md-6">
             <div class="form-group col-lg-12">
@@ -41,6 +40,6 @@
     </div>
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
-        <button type="submit" class="btn btn-primary">Mentés</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss>Mentés</button>
     </div>
 </form>
