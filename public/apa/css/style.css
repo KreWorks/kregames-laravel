@@ -1,0 +1,60 @@
+body {
+  background: #f4f4f4;
+}
+header {
+  background: #333;
+  color: #eee;
+  padding: 0.5rem;
+}
+header .create {
+  padding-top: 15px;
+}
+
+#header h1 small {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: #aaa;
+}
+#main {
+    min-height: calc(100vh - 174px);
+}
+.card__icon--white {
+  height: 2rem;
+  width: 2rem;
+  fill: #fff;
+  /* padding-bottom: 0.5rem; */
+  padding-right: 0.5rem;
+}
+.card__icon--delete {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: #fff;
+}
+.card__icon--play {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: #fff;
+}
+.card__icon--dark {
+  height: 2rem;
+  width: 2rem;
+  fill: #333;
+  padding-bottom: 0.5rem;
+  padding-right: 0.5rem;
+}
+.jam-icon {
+  width: 100px;
+  height: 100px;
+}
+
+#footer {
+  background: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+}
+#footer p {
+  margin-bottom: 0;
+}

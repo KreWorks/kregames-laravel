@@ -13,13 +13,15 @@ class GameController extends ResourceWithIconController
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'Játék';
+        $this->_controller = 'játék';
         $this->_route = 'games';
-        $this->_name = 'játék';
-        $this->_table = [
-            'iconPath' => 'icon', 
-            'id' => 'id', 
-            'name' => 'név', 
+        $this->_name = 'game';
+        $this->_hunName = 'játék';
+        $this->_hunPluralName = "játékok";
+        $this->_tableLabels = [
+            'iconPath' => 'icon',
+            'id' => 'id',
+            'name' => 'név',
             'jamName' => "Jam",
             'publish_date' => 'kiadási dátum'
         ];
@@ -42,7 +44,7 @@ class GameController extends ResourceWithIconController
 
         return  view('admin.'.$this->_route.'.form', $data);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -95,7 +97,7 @@ class GameController extends ResourceWithIconController
     {
         try
         {
-            $game = Game::find($id); 
+            $game = Game::find($id);
             $game->update($this->getDataFromRequest($request));
 
             if ($request->input('jam_id') && $request->input('jam_id') != 0) {
@@ -107,7 +109,7 @@ class GameController extends ResourceWithIconController
             }
 
             $this->checkImage($request, $game);
-    
+
             return redirect(route("admin.games.index"));
 
         }catch(QueryException $ex) {
@@ -117,7 +119,7 @@ class GameController extends ResourceWithIconController
 
     /**
      * Create a data array from the request. Need to remove image content
-     * 
+     *
      * @param Request $request
      * @return Array $datas
      */
@@ -126,15 +128,21 @@ class GameController extends ResourceWithIconController
         return [
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date')
+            'publish_date' => $request->input('publish_date'),
+            'user_id' => auth()->user()->id
         ];
-    } 
-
+    }
 
     protected function getAll()
     {
         return Game::all();
     }
+
+    protected function getExtraDatas()
+    {
+        return ['jams' => Jam::all()];
+    }
+
     protected function getEntity($id)
     {
         return Game::find($id);
@@ -147,13 +155,13 @@ class GameController extends ResourceWithIconController
 
     protected function checkImage(Request $request, $game)
     {
-        
+
         $file = new Filesystem();
         $folder = '/images/games/'.$game->slug;
 
         if (!$file->isDirectory(storage_path($folder))) {
             $file->makeDirectory(storage_path($folder), 755, true, true);
-        } 
+        }
 
         if ($request->hasFile('icon')) {
             $filename = 'icon.' . $request->icon->extension();

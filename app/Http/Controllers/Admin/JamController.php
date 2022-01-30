@@ -14,14 +14,16 @@ class JamController extends ResourceWithIconController
         $this->_controller = 'Jam';
         $this->_route = 'jams';
         $this->_name = 'jam';
-        $this->_table = [
-            'iconPath' => 'icon', 
-            'id' => 'id', 
-            'name' => 'név', 
-            'theme' => 'téma', 
-            'entries' => 'versenyzők', 
-            'start_date' => 'kezdés', 
-            'end_date' => 'vég', 
+        $this->_hunName = 'jam';
+        $this->_hunPluralName = 'jamek';
+        $this->_tableLabels = [
+            'iconPath' => 'icon',
+            'id' => 'id',
+            'name' => 'név',
+            'theme' => 'téma',
+            'entries' => 'versenyzők',
+            'start_date' => 'kezdés',
+            'end_date' => 'vég',
             'duration' => 'hossz'
         ];
     }
@@ -51,11 +53,11 @@ class JamController extends ResourceWithIconController
     {
         try
         {
-            $jam = Jam::find($id); 
+            $jam = Jam::find($id);
             $jam->update($this->getDataFromRequest($request));
 
             $this->checkImage($request, $jam);
-    
+
             return redirect(route("admin.jams.index"));
 
         }catch(QueryException $ex) {
@@ -65,7 +67,7 @@ class JamController extends ResourceWithIconController
 
     /**
      * Create a data array from the request. Need to remove image content
-     * 
+     *
      * @param Request $request
      * @return Array $datas
      */
@@ -79,7 +81,7 @@ class JamController extends ResourceWithIconController
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date')
         ];
-    } 
+    }
 
     protected function getAll()
     {

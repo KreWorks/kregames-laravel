@@ -12,7 +12,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug','publish_date'];
+    protected $fillable = ['name', 'slug','publish_date', 'user_id'];
 
     /**
      * Get the jam of the game
@@ -43,7 +43,7 @@ class Game extends Model
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
-    /** 
+    /**
      * Return the path to the icon of the jam
      */
     public function getIconPathAttribute()

@@ -15,10 +15,12 @@ class UserController extends ResourceWithIconController
         parent::__construct();
         $this->_controller = 'Felhasználó';
         $this->_route = 'users';
-        $this->_name = 'felhasználó';
-        $this->_table = [
-            'avatarPath' => 'avatar', 
-            'id' => 'id', 
+        $this->_name = 'user';
+        $this->_hunName = 'felhasználó';
+        $this->_hunPluralName = "felhasználók";
+        $this->_tableLabels = [
+            'avatarPath' => 'avatar',
+            'id' => 'id',
             'name' => 'név',
             'username' => 'felhaszálónév',
             'email' => 'email'
@@ -51,11 +53,11 @@ class UserController extends ResourceWithIconController
     {
         try
         {
-            $user = User::find($id); 
+            $user = User::find($id);
             $user->update($this->getDataFromRequest($request));
 
             $this->checkImage($request, $user);
-    
+
             return redirect(route("admin.users.index"));
 
         }catch(QueryException $ex) {
@@ -65,7 +67,7 @@ class UserController extends ResourceWithIconController
 
     /**
      * Create a data array from the request. Need to remove image content
-     * 
+     *
      * @param Request $request
      * @return Array $datas
      */
@@ -82,7 +84,7 @@ class UserController extends ResourceWithIconController
         }
 
         return $data;
-    } 
+    }
 
 
     protected function getAll()
@@ -101,13 +103,13 @@ class UserController extends ResourceWithIconController
 
     protected function checkImage(Request $request, $user)
     {
-        
+
         $file = new Filesystem();
         $folder = '/images/avatars';
 
         if (!$file->isDirectory(storage_path($folder))) {
             $file->makeDirectory(storage_path($folder), 755, true, true);
-        } 
+        }
 
         if ($request->hasFile('avatar')) {
             $filename = 'avatar_'.$user->id.'.' . $request->avatar->extension();
@@ -120,7 +122,7 @@ class UserController extends ResourceWithIconController
         $path = $request->avatar->storeAs($folder, $filename);
 
         $imageData = [
-            'type' => Image::ICON, 
+            'type' => Image::ICON,
             'path' => $path
         ];
 
@@ -128,6 +130,6 @@ class UserController extends ResourceWithIconController
             $avatar = $parent->avatar()->create($imageData);
         } else {
             $avatar = Image::where('id', $parent->avatar->id)->update($imageData);
-        }   
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Image;
-use App\Models\Game; 
+use App\Models\Game;
 use App\Models\Jam;
 
 class ImageController extends ResourceController
@@ -15,10 +15,10 @@ class ImageController extends ResourceController
         $this->_controller = 'Kép';
         $this->_route = 'images';
         $this->_name = 'kép';
-        $this->_table = [ 
+        $this->_tableLabels = [
             'id' => 'id',
             'path' => 'Kép',
-            'type' => 'típus', 
+            'type' => 'típus',
             'parent' => "szülő",
         ];
     }
@@ -54,22 +54,22 @@ class ImageController extends ResourceController
     {
         try
         {
-            $image = Image::find($id); 
+            $image = Image::find($id);
             $folder = $image->path;
             $filename = $request->input('slug') . "." . $request->icon->extension();
             $path = $request->icon->storeAs($folder, $filename);
-    
+
             $imageData = [
-                'type' => Image::ICON, 
+                'type' => Image::ICON,
                 'path' => $path
             ];
-    
+
             if ($parent->icon == null) {
                 $icon = $parent->icon()->create($imageData);
             } else {
                 $icon = Image::where('id', $parent->icon->id)->update($imageData);
             }
-            $image = Image::find($id); 
+            $image = Image::find($id);
             $game->update($this->getDataFromRequest($request));
 
             if ($request->input('jam_id') && $request->input('jam_id') != 0) {
@@ -81,7 +81,7 @@ class ImageController extends ResourceController
             }
 
             $this->checkImage($request, $game);
-    
+
             return redirect(route("admin.games.index"));
 
         }catch(QueryException $ex) {
@@ -91,7 +91,7 @@ class ImageController extends ResourceController
 
     /**
      * Create a data array from the request. Need to remove image content
-     * 
+     *
      * @param Request $request
      * @return Array $datas
      */
@@ -101,7 +101,7 @@ class ImageController extends ResourceController
             'title' => $request->input('name'),
             'alt_title' => $request->input('slug'),
         ];
-    } 
+    }
 
 
     protected function getAll()

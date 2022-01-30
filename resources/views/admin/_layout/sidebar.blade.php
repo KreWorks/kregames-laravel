@@ -1,70 +1,17 @@
-<!-- sidebar menu area start -->
-<div class="sidebar-menu">
-    <div class="sidebar-header">
-        <div class="logo">
-            <a href="{{ route('admin') }}"><img src="{{ asset('srtdash/assets/images/icon/logo.png') }}" alt="logo"></a>
-        </div>
+<!-- sidebar starts -->
+<nav class="col-md-3 d-md-block sidebar">
+    <div class="list-group">
+        @foreach(get_menu() as $menuItem)
+            <a href="{{ route($menuItem['route'])}}" class="list-group-item list-group-item-action {{$menuItem['isActive']}}" aria-current="true">
+                <span>
+                    <svg class="{{$menuItem['iconColor']}}"><use xlink:href="/apa/img/icons.svg#{{$menuItem['icon']}}"></use></svg>
+                </span>
+                {{$menuItem['name']}}
+                @if ($menuItem['isActive'] != '' && $menuItem['route'] != 'admin')
+                    <span class="badge bg-secondary rounded-pill ms-2">{{ count($datas)}}</span>
+                @endif
+            </a>
+        @endforeach
     </div>
-    <div class="main-menu">
-        <div class="menu-inner">
-            <nav>
-                <ul class="metismenu" id="menu">
-                    <li class="{{ $controller == 'Jam' ? 'active' : ''}}">
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Jamek</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
-                                <a href="{{ route('admin.jams.index') }}">Összes jam</a>
-                            </li>
-                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
-                                <a href="{{ route('admin.jams.create') }}">Új jam hozzáadása</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="{{ $controller == 'Játék' ? 'active' : ''}}">
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Játékok</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
-                                <a href="{{ route('admin.games.index') }}">Összes játék</a>
-                            </li>
-                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
-                                <a href="{{ route('admin.games.create') }}">Új játék hozzáadása</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--<li>
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Képek</span>
-                        </a>
-                        <ul class="collapse">
-                            <li><a href="{{ route('admin.images.index') }}">Összes kép</a></li>
-                            <li><a href="{{ route('admin.images.create') }}">Kép kategóriák</a></li>
-                        </ul>
-                    </li>-->
-                    <li class="{{ $controller == 'Felhasználó' ? 'active' : ''}}">
-                        <a href="javascript:void(0)" aria-expanded="true">
-                            <i class="ti-dashboard"></i><span>Felhasználók</span>
-                        </a>
-                        <ul class="collapse">
-                            <li class="{{ $action == 'Lista' ? 'active' : ''}}">
-                                <a href="{{ route('admin.users.index') }}">Összes felhasználó</a>
-                            </li>
-                            <li class="{{ $action == 'Létrehozás' ? 'active' : ''}}">
-                                <a href="{{ route('admin.users.create') }}">Új felhasználó hozzáadása</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="{{ $controller == 'Artisan' ? 'active' : ''}}">
-                        <a href="{{ route('admin.artisan') }}" >
-                            <i class="ti-dashboard"></i><span>Artisan</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- sidebar menu area end -->
+</nav>
+<!-- sidebar ends -->

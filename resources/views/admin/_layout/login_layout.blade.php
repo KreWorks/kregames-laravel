@@ -1,262 +1,212 @@
 <!doctype html>
-<html class="no-js" lang="{{ app()->getLocale() }}">
-
+<html lang="hu">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>KRÉ Games</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="srtdash/assets/images/icon/favicon.ico">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/metisMenu.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/slicknav.min.css') }}">
-    <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <!-- others css -->
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/typography.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/default-css.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('srtdash/assets/css/responsive.css') }}">
-    <!-- modernizr css -->
-    <script src="{{ asset('srtdash/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
-    <script src="{{ asset('assets/js/kre.js') }}"></script>
+    <meta name="description" content="">
+    <title>KRÉ Games | Dashboard</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/apa/css/bootstrap.css" rel="stylesheet">
+    <link href="/apa/css/style.css" rel="stylesheet">
+    
+    <script src="/js/admin.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
 </head>
-
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- preloader area start -->
-    <div id="preloader">
-        <div class="loader"></div>
+@include('admin._layout.menu')
+<!--
+<header id="header" class="mb-3">
+    <div class="container-fluid">
+        <div class="row offset-md-3 col-md-9">
+            <div class="col-md-10">
+                <h1> <svg class="card__icon--white">
+                        <use xlink:href="/apa/img/icons.svg#icon-home"></use>
+                    </svg>
+                    {{$controller}} <small>{{$action}}</small></h1>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown create">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Create Content
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#addJam">Add Jam</a>
+                        </li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#addGame">Add Game</a>
+                        </li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#addUser">Add User</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
-    <div class="page-container">
-        @include('admin._layout.sidebar')
-        <!-- main content area start -->
-        <div class="main-content">
-            @include('admin._layout.page_header')
+</header>
+-->
+<section id="main">
+    <div class="container-fluid">
+        <div class="row">
+            @include('admin._layout.sidebar')
             @yield('content')
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
-        <footer>
-            <div class="footer-area">
-                <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
-            </div>
-        </footer>
-        <!-- footer area end-->
     </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
-    <div class="offset-area">
-        <div class="offset-close"><i class="ti-close"></i></div>
-        <ul class="nav offset-menu-tab">
-            <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
-            <li><a data-toggle="tab" href="#settings">Settings</a></li>
-        </ul>
-        <div class="offset-content tab-content">
-            <div id="activity" class="tab-pane fade in show active">
-                <div class="recent-activity">
-                    <div class="timeline-task">
-                        <div class="icon bg1">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa fa-check"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Added</h4>
-                            <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>You missed you Password!</h4>
-                            <span class="time"><i class="ti-time"></i>09:20 Am</span>
-                        </div>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="fa fa-bomb"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Member waiting for you Attention</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="ti-signal"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>You Added Kaji Patha few minutes ago</h4>
-                            <span class="time"><i class="ti-time"></i>01 minutes ago</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg1">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Ratul Hamba sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Hello sir , where are you, i am egerly waiting for you.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="fa fa-bomb"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="ti-signal"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
+</section>
+<footer id="footer" class="mt-4">
+    <p>Copyright KreGames, &copy; 2022</p>
+</footer>
+<!-- Modals -->
+
+<!-- Add Game Modal-->
+
+<div class="modal fade" id="addGame" tabindex="-1" aria-labelledby="addGameLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addGameLabel">Add Game</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            <div id="settings" class="tab-pane fade">
-                <div class="offset-settings">
-                    <h4>General Settings</h4>
-                    <div class="settings-list">
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Notifications</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch1" />
-                                    <label for="switch1">Toggle</label>
-                                </div>
+                <div class="modal-body">
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="name">Name: </label>
+                                <input type="text" name="name" id="name" class="form-control">
                             </div>
-                            <p>Keep it 'On' When you want to get all the notification.</p>
+                            <div class="mb-3">
+                                <label for="name">Slug: </label>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="publishdate">Megjelenés dátuma </label>
+                                <input type="date" name="publishdate" id="publishdate" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="gamejam">Megjelenés dátuma </label>
+                                <select name="gamejam" id="gamejam" class="form-select">
+                                    <option value="Nincs Jam">Nincs Jam</option>
+                                    <option value="1">Brackey's Game Jam #2</option>
+                                    <option value="2">Pizza Jam</option>
+                                    <option value="3">Ludum Dare 44</option>
+                                    <option value="4">Brackey's Game Jam 2020.1</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Show recent activity</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch2" />
-                                    <label for="switch2">Toggle</label>
-                                </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="gameicon" class="form-label">Ikon</label>
+                                <input type="file" name="gameicon" id="gameicon" class="form-control">
                             </div>
-                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Show your emails</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch3" />
-                                    <label for="switch3">Toggle</label>
-                                </div>
-                            </div>
-                            <p>Show email so that easily find you.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Show Task statistics</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch4" />
-                                    <label for="switch4">Toggle</label>
-                                </div>
-                            </div>
-                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Notifications</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch5" />
-                                    <label for="switch5">Toggle</label>
-                                </div>
-                            </div>
-                            <p>Use checkboxes when looking for yes or no answers.</p>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- offset area end -->
-    <!-- jquery latest version -->
-    <script src="/srtdash/assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap 4 js -->
-    <script src="/srtdash/assets/js/popper.min.js"></script>
-    <script src="/srtdash/assets/js/bootstrap.min.js"></script>
-    <script src="/srtdash/assets/js/owl.carousel.min.js"></script>
-    <script src="/srtdash/assets/js/metisMenu.min.js"></script>
-    <script src="/srtdash/assets/js/jquery.slimscroll.min.js"></script>
-    <script src="/srtdash/assets/js/jquery.slicknav.min.js"></script>
+</div>
 
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- start zingchart js -->
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-    </script>
-    <!-- all line chart activation -->
-    <script src="/srtdash/assets/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    <script src="/srtdash/assets/js/pie-chart.js"></script>
-    <!-- others plugins -->
-    <script src="/srtdash/assets/js/plugins.js"></script>
-    <script src="/srtdash/assets/js/scripts.js"></script>
+<!-- Add Jam Modal-->
+
+<div class="modal fade" id="addJam" tabindex="-1" aria-labelledby="addJamLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Jam</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="jamtitle" class="form-label">Név</label>
+                        <input type="text" name="jamtitle" id="jamtitle" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jamslug" class="form-label">Slug</label>
+                        <input type="text" name="jamslug" id="jamslug" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jammembers" class="form-label">Indulók</label>
+                        <input type="number" name="jammembers" id="jammembers" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jamtheme" class="form-label">Téma</label>
+                        <input type="text" name="jamtheme" id="jamtheme" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jamstart" class="form-label">Kezdés</label>
+                        <input type="date" name="jamstart" id="jamstart" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jamend" class="form-label">Befejezés</label>
+                        <input type="date" name="jamend" id="jamend" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jamicon" class="form-label">Ikon</label>
+                        <input type="file" name="jamicon" id="jamicon" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Add User Modal-->
+
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" method="POST">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password2">Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Confirm Password</label>
+                        <input type="password" name="password2" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="useravatar" class="form-label">Avatar</label>
+                        <input type="file" name="useravatar" id="useravatar" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" value="Add User" class="btn btn-primary ">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/apa/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

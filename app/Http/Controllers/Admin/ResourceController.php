@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 abstract class ResourceController extends BaseController
 {
-    protected $_controller; 
-    protected $_route; 
-    protected $_name;
-    protected $_table; 
+    protected $_controller;
+    protected $_route; //plural english name
+    protected $_name; //single english name
+    protected $_hunName;
+    protected $_hunPluralName;
+    protected $_tableLabels;
 
     /**
      * Display a listing of the resource.
@@ -21,19 +23,29 @@ abstract class ResourceController extends BaseController
         $data = [
             'controller' => $this->_controller,
             'action' => 'Lista',
-            'table' => $this->_table, 
+            'tableLabels' => $this->_tableLabels,
             'datas' => $this->getAll(),
-            'routeName' => $this->_route,
-            'newBtnText' => 'Új '.$this->_name.' hozzáadása'
+            'extraDatas' => $this->getExtraDatas(),
+            'route' => $this->_route,
+            'name' => $this->_name,
+            'hunName' => $this->_hunName,
+            'hunPluralName' => $this->_hunPluralName
         ];
 
-        if (isset($_GET['apa']) && $_GET['apa'] == 1)
-        {
-            return view('apa._layout.list', $data);
-        } else {
-            return view('admin._layout.list', $data);
-        }
-        
+        return view('admin._layout.list', $data);
+    }
+
+    /**
+     * Return one entity
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $entity = $this->getEntity($id);
+
+        return $entity;
     }
 
     /**
@@ -86,9 +98,13 @@ abstract class ResourceController extends BaseController
         return redirect(route("admin.".$this->_route.".index"));
     }
 
+    protected function getExtraDatas()
+    {
+        return [];
+    }
     /**
      * Create a data array from the request. Need to remove image content
-     * 
+     *
      * @param Request $request
      * @return Array $datas
      */
@@ -103,7 +119,7 @@ abstract class ResourceController extends BaseController
         $path = $request->icon->storeAs($folder, $filename);
 
         $imageData = [
-            'type' => Image::ICON, 
+            'type' => Image::ICON,
             'path' => $path
         ];
 
@@ -112,6 +128,6 @@ abstract class ResourceController extends BaseController
         } else {
             $icon = Image::where('id', $parent->icon->id)->update($imageData);
         }
-        
+
     }
 }
