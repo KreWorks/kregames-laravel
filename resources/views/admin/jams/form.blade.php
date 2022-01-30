@@ -26,6 +26,7 @@
                 <label for="end_date" class="col-form-label">Vég</label>
                 <input class="form-control" type="datetime-local" value="" id="end_date" name="end_date">
 
+
             </div>
         </div>
         <div class="col-md-6">
@@ -39,10 +40,8 @@
 
         </div>
     </div>
-
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
         <button type="submit" class="btn btn-primary" data-bs-dismiss>Mentés</button>
     </div>
 </form>
-
