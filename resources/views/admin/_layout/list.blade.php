@@ -14,7 +14,11 @@
                 </div>
             </div>
             <div class="card-body">
+            @if ($datas == null) 
+                <p>Nincsenek még {{$hunName}} adatok az adatbázisban.</p>
+            @else                
                 @include('admin._parts.table_list')
+            @endif
             </div>
         </div>
     </div>
