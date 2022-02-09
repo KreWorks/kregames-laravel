@@ -8,6 +8,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/apa/css/bootstrap.css" rel="stylesheet">
     <link href="/apa/css/style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     
     <script src="/js/admin.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    

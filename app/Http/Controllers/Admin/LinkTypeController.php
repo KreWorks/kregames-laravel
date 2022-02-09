@@ -12,8 +12,10 @@ class LinkTypeController extends ResourceController
         parent::__construct();
         $this->_controller = 'Link típus';
         $this->_route = 'linktypes';
-        $this->_name = 'link típus';
-        $this->_table = [
+        $this->_name = 'linktype';
+        $this->_hunName = 'link típus';
+        $this->_hunPluralName = 'link típusok';
+        $this->_tableLabels = [
             'id' => 'Id', 
             'name' => 'Név', 
             'hover_text' => 'Hovver szöveg', 
