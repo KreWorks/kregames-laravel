@@ -12,6 +12,17 @@ class Jam extends Model
 {
     use HasFactory;
 
+    public static $tableLabels = [
+        'iconPath' => 'icon',
+        'id' => 'id',
+        'name' => 'név',
+        'theme' => 'téma',
+        'entries' => 'versenyzők',
+        'start_date' => 'kezdés',
+        'end_date' => 'vég',
+        'duration' => 'hossz'
+    ];
+
     protected $fillable = ['name', 'slug','entries', 'theme', 'start_date', 'end_date'];
     /**
      * The games related to this jam
