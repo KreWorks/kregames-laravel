@@ -15,16 +15,6 @@ class UserController extends ResourceWithIconController
         parent::__construct();
         $this->_controller = 'Felhasználó';
         $this->_route = 'users';
-        $this->_name = 'user';
-        $this->_hunName = 'felhasználó';
-        $this->_hunPluralName = "felhasználók";
-        $this->_tableLabels = [
-            'avatarPath' => 'avatar',
-            'id' => 'id',
-            'name' => 'név',
-            'username' => 'felhaszálónév',
-            'email' => 'email'
-        ];
     }
 
     /**

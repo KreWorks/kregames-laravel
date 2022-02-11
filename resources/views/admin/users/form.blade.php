@@ -4,15 +4,15 @@
         <div class="col-md-6">
             <div class="form-group col-lg-12">
                 <label for="name" class="col-form-label">Név</label>
-                <input class="form-control" type="text" value="" id="name" name="name">
+                <input class="form-control" type="text" value="{{ isset($entity) ? $entity->name : '' }}" id="name" name="name">
             </div>
             <div class="form-group col-lg-12">
                 <label for="username" class="col-form-label">Felhaszánlónév</label>
-                <input class="form-control" type="text" value="" id="username" name="username">
+                <input class="form-control" type="text" value="{{ isset($entity) ? $entity->username : '' }}" id="username" name="username">
             </div>
             <div class="form-group col-lg-12">
                 <label for="email" class="col-form-label">Email</label>
-                <input class="form-control" type="email" value="" id="email" name="email">
+                <input class="form-control" type="email" value="{{ isset($entity) ? $entity->email : '' }}" id="email" name="email">
             </div>
             <div class="form-group col-lg-12">
                 <label for="password" class="col-form-label">Jelszó</label>
@@ -29,7 +29,7 @@
                 <input class="form-control" type="file" id="icon" name="icon">
             </div>
             <div class="col-lg-12">
-                <img class="col-lg-3" src="/">
+                <img class="col-lg-3" src="/{{ isset($entity) ? $entity->avatarPath : '' }}">
             </div>
 
         </div>

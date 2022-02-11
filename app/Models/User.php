@@ -13,6 +13,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public static $tableLabels = [
+        'avatarPath' => 'avatar',
+        'id' => 'id',
+        'name' => 'név',
+        'username' => 'felhaszálónév',
+        'email' => 'email'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
