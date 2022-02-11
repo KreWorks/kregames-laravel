@@ -4,22 +4,22 @@
         <div class="col-md-6">
             <div class="form-group col-lg-12">
                 <label for="name" class="col-form-label">Név</label>
-                <input class="form-control" type="text" value="" id="name" name="name" onkeyup="document.getElementById('slug').value = createSlug(value)">
+                <input class="form-control" type="text" value="{{ isset($entity) ? $entity->name : '' }}" id="name" name="name" onkeyup="document.getElementById('slug').value = createSlug(value)">
             </div>
             <div class="form-group col-lg-12">
                 <label for="slug" class="col-form-label">Slug</label>
-                <input class="form-control" type="text" value="" id="slug" name="slug">
+                <input class="form-control" type="text" value="{{ isset($entity) ? $entity->slug : ''}}" id="slug" name="slug">
             </div>
             <div class="form-group col-lg-12">
                 <label for="publish_date" class="col-form-label">Megjelenés dátuma</label>
-                <input class="form-control" type="datetime-local" value="{{ time() }}" id="publish_date" name="publish_date">
+                <input class="form-control" type="datetime-local" value="{{ isset($entity) ? str_replace(' ', 'T', $entity->publish_date) : time() }}" id="publish_date" name="publish_date">
             </div>
             <div class="form-group col-lg-12">
                 <label for="jam_id" class="col-form-label">Jam</label>
                 <select class="form-control" id="jam_id" name="jam_id">
-                    <option value="0" selected>Nincs jam</option>
+                    <option value="0" {{ isset($entity) && $entity->jam_id == '' ? 'selected' : ''}}>Nincs jam</option>
                     @foreach($extraDatas['jams'] as $jam)
-                        <option value="{{$jam->id}}">{{$jam->name}}</option>
+                        <option value="{{$jam->id}}" {{isset($entity) && $entity->jam_id == $jam->id ? 'selected' : ''}}>{{$jam->name}}</option>
 
                     @endforeach
                     <select>
@@ -31,7 +31,7 @@
                 <input class="form-control" type="file" id="icon" name="icon">
             </div>
             <div class="col-lg-12">
-                <img class="col-lg-3" src="/">
+                <img class="col-lg-3" src="/{{ isset($entity) ? $entity->iconPath : '' }} ">
             </div>
 
         </div>
