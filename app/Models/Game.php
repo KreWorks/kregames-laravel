@@ -13,11 +13,11 @@ class Game extends Model
     use HasFactory;
 
     public static $tableLabels = [
-        'iconPath' => 'Icon',
-        'id' => 'Id',
-        'name' => 'Név',
-        'jamName' => "Jam",
-        'publish_date' => 'Kiadási dátum'
+        'iconPath' => 'icon',
+        'id' => 'id',
+        'name' => 'név',
+        'jamName' => "jam",
+        'publish_date' => 'kiadási dátum'
     ];
 
     protected $fillable = ['name', 'slug','publish_date', 'user_id'];
