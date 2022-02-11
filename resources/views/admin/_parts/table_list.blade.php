@@ -23,7 +23,7 @@
             @endforeach
             <td>
                 <button type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}"
-                        onclick="openModal('{{$name}}', '{{ucfirst($hunName)}}', 'update', '{{route('admin.'.$route.'.update', $entity->id)}}','{{route('admin.'.$route.'.show', $entity->id)}}' )"
+                        onclick="window.location.href = ('{{route('admin.'.$route.'.edit', $entity->id)}}')"
                         >
                     <svg class="card__icon--delete">
                         <use xlink:href="/apa/img/icons.svg#icon-edit"></use>

@@ -8,16 +8,16 @@ use App\Models\Game;
 use App\Models\Image;
 use App\Models\Jam;
 
-class GameController extends ResourceWithIconController
+class LinkController extends ResourceController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'játék';
-        $this->_route = 'games';
-        $this->_name = 'game';
-        $this->_hunName = 'játék';
-        $this->_hunPluralName = "játékok";
+        $this->_controller = 'Link';
+        $this->_route = 'links';
+        $this->_name = 'link';
+        $this->_hunName = 'link';
+        $this->_hunPluralName = "linkek";
         $this->_tableLabels = [
             'iconPath' => 'icon',
             'id' => 'id',
