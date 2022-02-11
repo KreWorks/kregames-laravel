@@ -13,19 +13,6 @@ class JamController extends ResourceWithIconController
         parent::__construct();
         $this->_controller = 'Jam';
         $this->_route = 'jams';
-        $this->_name = 'jam';
-        $this->_hunName = 'jam';
-        $this->_hunPluralName = 'jamek';
-        $this->_tableLabels = [
-            'iconPath' => 'icon',
-            'id' => 'id',
-            'name' => 'név',
-            'theme' => 'téma',
-            'entries' => 'versenyzők',
-            'start_date' => 'kezdés',
-            'end_date' => 'vég',
-            'duration' => 'hossz'
-        ];
     }
 
     /**
