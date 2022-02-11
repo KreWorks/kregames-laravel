@@ -23,16 +23,12 @@ abstract class ResourceController extends BaseController
         $data = [
             'controller' => $this->_controller,
             'action' => 'Lista',
-            'tableLabels' => $this->_tableLabels,
             'datas' => $this->getAll(),
             'extraDatas' => $this->getExtraDatas(),
             'route' => $this->_route,
-            'name' => $this->_name,
-            'hunName' => $this->_hunName,
-            'hunPluralName' => $this->_hunPluralName
         ];
 
-        return view('admin._layout.list', $data);
+        return view('admin.'.$this->_route.'.list', $data);
     }
 
     /**
@@ -79,10 +75,11 @@ abstract class ResourceController extends BaseController
             'controller' => 'Jam',
             'action' => 'Szerkesztés',
             'entity' => $entity,
+            'extraDatas' => $this->getExtraDatas(),
             'formAction' => 'admin.'.$this->_route.'.update'
         ];
 
-        return  view('admin.'.$this->_route.'.form', $data);
+        return  view('admin.'.$this->_route.'.edit', $data);
     }
 
     /**

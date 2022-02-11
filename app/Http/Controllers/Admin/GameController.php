@@ -65,26 +65,6 @@ class GameController extends ResourceWithIconController
         return redirect(route("admin.games.index"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $entity = $this->getEntity($id);
-
-        $data = [
-            'controller' => 'Jam',
-            'action' => 'Szerkesztés',
-            'entity' => $entity,
-            'formAction' => 'admin.'.$this->_route.'.update',
-            'jams' => Jam::all(),
-        ];
-
-        return  view('admin.'.$this->_route.'.form', $data);
-    }
 
     /**
      * Update the specified resource in storage.
