@@ -20,13 +20,11 @@
                 </td>
             @endforeach
             <td>
-                <button type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}"
-                        onclick="openModal('{{$name}}', '{{ucfirst($hunName)}}', 'update', '{{route('admin.'.$route.'.update', $entity->id)}}','{{route('admin.'.$route.'.show', $entity->id)}}' )"
-                        >
+                <a type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}">
                     <svg class="card__icon--delete">
                         <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
                     </svg>
-                </button>
+                </a>
 
                 <div class="btn btn-danger"
                      data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('alma', 'alma' )">
