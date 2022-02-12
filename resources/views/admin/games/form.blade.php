@@ -41,8 +41,13 @@
 
         </div>
     </div>
+    @if (isset($entity))
+    <div class="card-footer mt-3">
+        <a href="{{route('admin.games.index')}}"  class="btn btn-secondary">Vissza</a>
+    @else
     <div class="modal-footer mt-3">
-        <button type="submit" class="btn btn-primary" >Mentés</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+    @endif
+        <button type="submit" class="btn btn-primary" >Mentés</button>
     </div>
 </form>

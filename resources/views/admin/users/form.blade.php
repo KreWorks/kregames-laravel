@@ -39,8 +39,13 @@
 
         </div>
     </div>
+    @if (isset($entity))
+    <div class="card-footer mt-3">
+        <a href="{{route('admin.users.index')}}"  class="btn btn-secondary">Vissza</a>
+    @else
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+    @endif
         <button type="submit" class="btn btn-primary">Mentés</button>
     </div>
 </form>
