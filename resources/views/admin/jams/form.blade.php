@@ -1,4 +1,9 @@
-<form method="POST" action="{{ route('admin.jams.create') }}" enctype="multipart/form-data" name="jam-form" id="jam-form">
+@if (isset($entity))
+<form method="POST" action="{{ route('admin.jams.update', $entity->id) }}" enctype="multipart/form-data" name="jam-form" id="jam-form">
+    @method('PUT')
+@else 
+<form method="POST" action="{{ route('admin.jams.create')}}" enctype="multipart/form-data" name="jam-form" id="jam-form">
+@endif
     @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
         <div class="col-md-6">
@@ -38,8 +43,13 @@
 
         </div>
     </div>
+    @if (isset($entity))
+    <div class="card-footer mt-3">
+        <a href="{{route('admin.jams.index')}}"  class="btn btn-secondary">Vissza</a>
+    @else
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+    @endif
         <button type="submit" class="btn btn-primary" data-bs-dismiss>Mentés</button>
     </div>
 </form>
