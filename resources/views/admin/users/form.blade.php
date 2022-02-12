@@ -40,7 +40,7 @@
         </div>
     </div>
     @if (isset($entity))
-    <div class="card-footer mt-3">
+    <div class="modal-footer mt-3">
         <a href="{{route('admin.users.index')}}"  class="btn btn-secondary">Vissza</a>
     @else
     <div class="modal-footer mt-3">
