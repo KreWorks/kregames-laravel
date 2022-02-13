@@ -15,16 +15,6 @@ class LinkController extends ResourceController
         parent::__construct();
         $this->_controller = 'Link';
         $this->_route = 'links';
-        $this->_name = 'link';
-        $this->_hunName = 'link';
-        $this->_hunPluralName = "linkek";
-        $this->_tableLabels = [
-            'iconPath' => 'icon',
-            'id' => 'id',
-            'name' => 'név',
-            'jamName' => "Jam",
-            'publish_date' => 'kiadási dátum'
-        ];
     }
 
     /**
