@@ -7,7 +7,7 @@
                 <div class="row">
                     <span class="col-md-8 my-auto">Jamek lista</span>
                     <button type="button" class="btn btn-warning col-md-3 float-right" id="addJamButton"
-                            onclick="openModal('jam', 'Jam', 'create', '{{route('admin.jams.store')}}')">
+                            onclick="openModal('jamForm')">
                         Új jam hozzáadása
                     </button>
                 </div>

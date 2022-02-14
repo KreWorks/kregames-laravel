@@ -7,7 +7,7 @@
                 <div class="row">
                     <span class="col-md-8 my-auto">Játékok lista</span>
                     <button type="button" class="btn btn-warning col-md-3 float-right" id="addGameButton"
-                            onclick="openModal('game', 'Játék', 'create', '{{route('admin.games.store')}}')">
+                            onclick="openModal('gameForm')">
                         Új játék hozzáadása
                     </button>
                 </div>

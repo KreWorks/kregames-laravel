@@ -5,32 +5,9 @@ function createSlug(name)
     return slug.replace(' ', '-');
 }
 
-function openModal(entityType, entityName, actionType, formUrl, entityUrl = null)
+function openModal(modalId, entityName, actionType, formUrl, entityUrl = null)
 {
-    const modal = new bootstrap.Modal(document.getElementById(entityType + 'Form'), {});
-    const modalLabel = document.getElementById(entityType + 'FormTitlelabel');
-    const formElement = document.getElementById(entityType + '-form');
-    formElement.action = formUrl;
-    if (actionType == 'create') {
-        modalLabel.innerText = entityName + ' létrehozása';
-        const methodInput = document.getElementById('methodInput');
-        if (methodInput != null) {
-            methodInput.remove();
-        }
-        resetForm(formElement);
-    }
-    else if (actionType == 'update') {
-        modalLabel.innerText = entityName + ' módosítása';
-        const methodInput = document.createElement('input');
-        methodInput.type = 'hidden';
-        methodInput.name = '_method';
-        methodInput.value = 'PUT';
-        methodInput.id = 'methodInput';
-        //It will paste the item in the first position
-        formElement.prepend(methodInput);
-        getDatasInModal(entityUrl);
-    }
-
+    const modal = new bootstrap.Modal(document.getElementById(modalId), {});
     modal.show();
 }
 

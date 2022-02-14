@@ -7,7 +7,7 @@
                 <div class="row">
                     <span class="col-md-8 my-auto">Felhasználók lista</span>
                     <button type="button" class="btn btn-warning col-md-3 float-right" id="addUserButton"
-                            onclick="openModal('user', 'Felhasználó', 'create', '{{route('admin.users.store')}}')">
+                        onclick="openModal('userForm')">
                         Új felhasználó hozzáadása
                     </button>
                 </div>
