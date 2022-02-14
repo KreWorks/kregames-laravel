@@ -23,6 +23,11 @@ const MENUS = [
         'icon' => 'icon-link'
     ],
     [
+        'name' => 'Linkek',
+        'route' => 'admin.links.index',
+        'icon' => 'icon-link'
+    ],
+    [
         'name' => 'Felhasználók',
         'route' => 'admin.users.index',
         'icon' => 'icon-user'

@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
-use App\Models\Game;
-use App\Models\Image;
-use App\Models\Jam;
+use App\Models\Link;
+use App\Models\LinkType;
 
 class LinkController extends ResourceController
 {
@@ -29,7 +28,8 @@ class LinkController extends ResourceController
             'action' => 'Létrehozás',
             'entity' => null,
             'formAction' => 'admin.'.$this->_route.'.store',
-            'jams' => Jam::all()
+            'linktypes' => LinkType::all(),
+            'extraDatas' => $this->getExtraDatas()
         ];
 
         return  view('admin.'.$this->_route.'.form', $data);
@@ -43,16 +43,15 @@ class LinkController extends ResourceController
      */
     public function store(Request $request)
     {
-        $game = Game::create($this->getDataFromRequest($request));
+        $link = Link::create($this->getDataFromRequest($request));
 
-        if ($request->input('jam_id')) {
-            $jam = Jam::find($request->input('jam_id'));
-            $jam->games()->save($game);
-        }
+        /*if ($request->input('linktype_id')) {
+            $linkType = LinkType::find($request->input('linktype_id'));
+            $linkType->games()->save($game);
+        }*/
 
-        $this->checkImage($request, $game);
 
-        return redirect(route("admin.games.index"));
+        return redirect(route("admin.links.index"));
     }
 
     /**
@@ -118,45 +117,27 @@ class LinkController extends ResourceController
     {
         return [
             'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date'),
-            'user_id' => auth()->user()->id
+            'link' => $request->input('slug'),
+            'linktype_id' => auth()->user()->id
         ];
     }
 
     protected function getAll()
     {
-        return Game::all();
+        return Link::all();
     }
 
     protected function getExtraDatas()
     {
-        return ['jams' => Jam::all()];
+        return ['linktypes' => LinkType::all()];
     }
 
     protected function getEntity($id)
     {
-        return Game::find($id);
+        return Link::find($id);
     }
     protected function delete($id)
     {
-        $deletedIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
-        Game::destroy($id);
-    }
-
-    protected function checkImage(Request $request, $game)
-    {
-
-        $file = new Filesystem();
-        $folder = '/images/games/'.$game->slug;
-
-        if (!$file->isDirectory(storage_path($folder))) {
-            $file->makeDirectory(storage_path($folder), 755, true, true);
-        }
-
-        if ($request->hasFile('icon')) {
-            $filename = 'icon.' . $request->icon->extension();
-            $this->storeIcon($request, $game, $folder, $filename);
-        }
+        Link::destroy($id);
     }
 }
