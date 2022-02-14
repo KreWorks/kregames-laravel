@@ -9,9 +9,6 @@
                 </div>
             </div>
             <div class="card-body">
-            <?php 
-            $tableLabels = App\Models\User::$tableLabels;
-            ?>
                 @include('admin.users.form')
             </div>
         </div>

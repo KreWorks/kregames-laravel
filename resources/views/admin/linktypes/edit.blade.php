@@ -5,11 +5,11 @@
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <div class="row">
-                    <span class="col-md-8 my-auto">Link szerkesztése: {{ $entity->name }}</span>
+                    <span class="col-md-8 my-auto">Link típus szerkesztése: {{ $entity->name }}</span>
                 </div>
             </div>
             <div class="card-body">
-                @include('admin.links.form')
+                @include('admin.linktypes.form')
             </div>
         </div>
     </div>

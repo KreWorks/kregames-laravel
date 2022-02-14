@@ -9,9 +9,6 @@
                 </div>
             </div>
             <div class="card-body">
-            <?php 
-            $tableLabels = App\Models\Game::$tableLabels;
-            ?>
                 @include('admin.games.form')
             </div>
         </div>

@@ -9,9 +9,6 @@
                 </div>
             </div>
             <div class="card-body">
-            <?php 
-            $tableLabels = App\Models\Jam::$tableLabels;
-            ?>
                 @include('admin.jams.form')
             </div>
         </div>
