@@ -15,6 +15,13 @@ class Link extends Model
         'linkType' => "típus",
     ];
 
+    public static $morphsToClasses = [
+        'User', 
+        'Game',
+        'Jam'
+    ];
+
+    protected $morphClass = 'Link';
     protected $fillable = ['link', 'display_text'];
 
     /**

@@ -129,7 +129,10 @@ class LinkController extends ResourceController
 
     protected function getExtraDatas()
     {
-        return ['linktypes' => LinkType::all()];
+        return [
+            'linktypes' => LinkType::all(),
+            'morphTos' => Link::$morphsToClasses
+        ];
     }
 
     protected function getEntity($id)
