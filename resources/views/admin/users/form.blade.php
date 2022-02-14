@@ -2,7 +2,7 @@
 <form method="POST" action="{{ route('admin.users.update', $entity->id) }}" enctype="multipart/form-data" name="user-form" id="user-form">
     @method('PUT')
 @else 
-<form method="POST" action="{{ route('admin.users.create')}}" enctype="multipart/form-data" name="user-form" id="user-form">
+<form method="POST" action="{{ route('admin.users.store')}}" enctype="multipart/form-data" name="user-form" id="user-form">
 @endif
     @csrf <!-- {{ csrf_field() }} -->   
     <div class="row">

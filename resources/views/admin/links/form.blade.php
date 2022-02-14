@@ -2,7 +2,7 @@
 <form method="POST" action="{{ route('admin.links.update', $entity->id) }}" enctype="multipart/form-data" name="link-form" id="link-form">
     @method('PUT')
 @else 
-<form method="POST" action="{{ route('admin.links.create')}}" enctype="multipart/form-data" name="link-form" id="link-form">
+<form method="POST" action="{{ route('admin.links.store')}}" enctype="multipart/form-data" name="link-form" id="link-form">
 @endif
     @csrf <!-- {{ csrf_field() }} -->
     <div class="row">

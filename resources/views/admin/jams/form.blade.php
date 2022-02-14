@@ -2,7 +2,7 @@
 <form method="POST" action="{{ route('admin.jams.update', $entity->id) }}" enctype="multipart/form-data" name="jam-form" id="jam-form">
     @method('PUT')
 @else 
-<form method="POST" action="{{ route('admin.jams.create')}}" enctype="multipart/form-data" name="jam-form" id="jam-form">
+<form method="POST" action="{{ route('admin.jams.store')}}" enctype="multipart/form-data" name="jam-form" id="jam-form">
 @endif
     @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
