@@ -10,11 +10,9 @@ class Link extends Model
     use HasFactory;
 
     public static $tableLabels = [
-        'iconPath' => 'icon',
         'id' => 'id',
-        'name' => 'név',
-        'jamName' => "Jam",
-        'publish_date' => 'kiadási dátum'
+        'link' => 'link',
+        'linkType' => "típus",
     ];
 
     protected $fillable = ['link', 'display_text'];
@@ -35,5 +33,15 @@ class Link extends Model
     public function getParentAttribute()
     {
         return $this->linkable_type;
+    }
+
+    /**
+     * Return the path to the icon of the jam
+     */
+    public function getLinkTypeAttribute()
+    {
+        $icon = $this->linkType->fontawesome; 
+        $color = $this->linkType->color;
+        return '<i class="fa-solid '.$icon.'" style="color:'.$color.'"></i>';
     }
 }
