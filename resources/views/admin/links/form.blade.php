@@ -15,16 +15,8 @@
                 <label for="display_text" class="col-form-label">Megjelenő szöveg</label>
                 <input class="form-control" type="text" value="{{ isset($entity) ? $entity->display_text : ''}}" id="display_text" name="display_text">
             </div>
-            <div class="form-group col-lg-12">
-                <label for="linkable_type" class="col-form-label">Kapcsaolódó tartalom</label>
-                <select name="linkable_type" id="linkable_type" class="form-control">
-                    <option value="">Nincs kapcsolódó</option>
-                    @foreach($extraDatas['morphTos'] as $morph)
-                        <option value="{{$morph}}" {{isset($entity) && $entity->linkable_type == $morph ? 'selected' : ''}}>{{$morph}}</option>
-
-                    @endforeach
-                </select>
-            </div>
+            <input type="text" id="linkable_type" name="linkable_type" value="{{$linkable_type}}" >
+            <input type="text" id="linkable_id" name="linkable_id" value="{{$linkable_id}}" >
             <div class="form-group col-lg-12">
                 <label for="linktype_id" class="col-form-label">Linktípus</label>
                 <select class="form-control" id="linktype_id" name="linktype_id">

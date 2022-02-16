@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <!-- Add / Edit Modal-->
+    <!-- Add Modal-->
     <div class="modal fade" id="linkForm" tabindex="-1" aria-labelledby="linkFormLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">

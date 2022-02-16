@@ -18,7 +18,7 @@
                 <div class="row">
                     <span class="col-md-8 my-auto">Link lista</span>
                     <button type="button" class="btn btn-warning col-md-3 float-right" id="addLinkButton"
-                            onclick="openModal('links', 'link', 'create', '{{route('admin.links.store')}}')">
+                            onclick="openModal('linkForm')">
                         Új link hozzáadása
                     </button>
                 </div>
@@ -27,11 +27,23 @@
                 <?php 
                 $tableLabels = App\Models\Link::$tableLabels;
                 $datas = $entity->links;
+                $linkable_type = "\App\Models\Game"; 
+                $linkable_id = $entity->id;
                 ?>
                 @include('admin._parts.table_list')
 
             </div>
         </div>
     </div>
+
+
+     <!-- Add Modal Link-->
+     <?php 
+    $name = 'link'; 
+    $displayName = 'Link';
+    $route = 'links';
+    $extraDatas['linktypes'] = \App\Models\LinkType::all();
+    ?>
+    @include('admin._modals.add_modal');
 
 @endsection

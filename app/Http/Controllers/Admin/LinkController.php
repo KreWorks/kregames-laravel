@@ -118,6 +118,8 @@ class LinkController extends ResourceController
         return [
             'name' => $request->input('name'),
             'link' => $request->input('slug'),
+            'linkable_type' => $request->input('linkable_type'),
+            'linkable_id' => $reuqest->input('linkable_id'),
             'linktype_id' => auth()->user()->id
         ];
     }
@@ -130,8 +132,7 @@ class LinkController extends ResourceController
     protected function getExtraDatas()
     {
         return [
-            'linktypes' => LinkType::all(),
-            'morphTos' => Link::$morphsToClasses
+            'linktypes' => LinkType::all()
         ];
     }
 

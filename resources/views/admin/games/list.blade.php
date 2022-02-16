@@ -20,20 +20,13 @@
             </div>
         </div>
     </div>
-    <!-- Add / Edit Modal-->
-    <div class="modal fade" id="gameForm" tabindex="-1" aria-labelledby="gameFormLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header bg-secondary">
-                    <h5 class="modal-title" id="gameFormTitlelabel">Játék létrehozása</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                @include('admin.games.form')
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Add Modal-->
+    <?php 
+    $name = 'game'; 
+    $displayName = 'Játék';
+    $route = 'games';
+    ?>
+    @include('admin._modals.add_modal');
     <!-- Delete Modal -->
-    @include('admin._modals.delete_modal')
+    @include('admin._modals.delete_modal');
 @endsection
