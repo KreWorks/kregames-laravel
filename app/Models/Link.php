@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Linktype;
+
 class Link extends Model
 {
     use HasFactory;
@@ -12,10 +14,14 @@ class Link extends Model
     public static $tableLabels = [
         'id' => 'id',
         'link' => 'link',
-        'linkType' => "típus",
+        'linktypeicon' => "típus",
     ];
 
-    protected $fillable = ['link', 'display_text'];
+    public static $morphs = [
+        'Game' => 'App\Models\Game'
+    ];
+
+    protected $fillable = ['link', 'display_text', 'linktype_id,', 'linkable_type', 'linkable_id'];
 
     /**
      * Get the parent linkable model (user, game, jam).
@@ -25,9 +31,9 @@ class Link extends Model
         return $this->morphTo();
     }
 
-    public function linkType()
+    public function linktype()
     {
-        return $this->belongsTo(LinkType::class);
+        return $this->belongsTo(Linktype::class);
     }
 
     public function getParentAttribute()
@@ -38,10 +44,8 @@ class Link extends Model
     /**
      * Return the path to the icon of the jam
      */
-    public function getLinkTypeAttribute()
+    public function getLinktypeiconAttribute()
     {
-        $icon = $this->linkType->fontawesome; 
-        $color = $this->linkType->color;
-        return '<i class="fa-solid '.$icon.'" style="color:'.$color.'"></i>';
+        return  $this->linktype ? $this->linktype->linkTypeIcon : ''; 
     }
 }

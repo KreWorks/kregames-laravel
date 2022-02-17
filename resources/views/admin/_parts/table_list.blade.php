@@ -29,7 +29,7 @@
                 </a>
 
                 <div class="btn btn-danger"
-                     data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('alma', 'alma' )">
+                     data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $entity->id) }}', '{{$entity->name}}' )">
                     <svg class="card__icon--delete">
                         <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
                     </svg>

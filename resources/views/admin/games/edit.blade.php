@@ -26,9 +26,10 @@
             <div class="card-body">
                 <?php 
                 $tableLabels = App\Models\Link::$tableLabels;
-                $datas = $entity->links;
-                $linkable_type = "\App\Models\Game"; 
+                $datas = $entity->links;               
+                $linkable_type = "App\Models\Game"; 
                 $linkable_id = $entity->id;
+                $route = 'links';
                 ?>
                 @include('admin._parts.table_list')
 
@@ -42,8 +43,11 @@
     $name = 'link'; 
     $displayName = 'Link';
     $route = 'links';
-    $extraDatas['linktypes'] = \App\Models\LinkType::all();
+    $redirectRoute  = route('admin.games.edit', $entity->id);
+    $extraDatas['linktypes'] = \App\Models\Linktype::all();
+    unset($entity);
     ?>
     @include('admin._modals.add_modal');
 
+    @include('admin._modals.delete_modal');
 @endsection

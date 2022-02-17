@@ -17,7 +17,7 @@ class CreateLinksTable extends Migration
             $table->id();
             $table->timestamps();
             $table->morphs('linkable');
-            $table->foreignId('link_type_id')->nullable()->constrained();
+            $table->foreignId('linktype_id')->nullable()->constrained();
             $table->string('link');
             $table->string('display_text');
         });

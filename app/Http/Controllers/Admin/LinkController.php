@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
 use App\Models\Link;
-use App\Models\LinkType;
+use App\Models\Linktype;
+use App\Models\Game;
+use App\Models\Jam;
 
 class LinkController extends ResourceController
 {
@@ -28,7 +30,7 @@ class LinkController extends ResourceController
             'action' => 'Létrehozás',
             'entity' => null,
             'formAction' => 'admin.'.$this->_route.'.store',
-            'linktypes' => LinkType::all(),
+            'linktypes' => Linktype::all(),
             'extraDatas' => $this->getExtraDatas()
         ];
 
@@ -45,13 +47,14 @@ class LinkController extends ResourceController
     {
         $link = Link::create($this->getDataFromRequest($request));
 
-        /*if ($request->input('linktype_id')) {
-            $linkType = LinkType::find($request->input('linktype_id'));
-            $linkType->games()->save($game);
-        }*/
+        if ($request->input('linktype_id')) {
+            $linkType = Linktype::find($request->input('linktype_id'));
+            $linkType->links()->save($link);
+        }
 
-
-        return redirect(route("admin.links.index"));
+        $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.links.index");
+        
+        return redirect($redirectRoute);
     }
 
     /**
@@ -87,7 +90,7 @@ class LinkController extends ResourceController
     {
         try
         {
-            $game = Game::find($id);
+            $game = Link::find($id);
             $game->update($this->getDataFromRequest($request));
 
             if ($request->input('jam_id') && $request->input('jam_id') != 0) {
@@ -100,7 +103,9 @@ class LinkController extends ResourceController
 
             $this->checkImage($request, $game);
 
-            return redirect(route("admin.games.index"));
+            $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.links.index");
+        
+            return redirect($redirectRoute);
 
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
@@ -116,11 +121,11 @@ class LinkController extends ResourceController
     protected function getDataFromRequest(Request $request)
     {
         return [
-            'name' => $request->input('name'),
-            'link' => $request->input('slug'),
+            'display_text' => $request->input('display_text'),
+            'link' => $request->input('link'),
             'linkable_type' => $request->input('linkable_type'),
-            'linkable_id' => $reuqest->input('linkable_id'),
-            'linktype_id' => auth()->user()->id
+            'linkable_id' => $request->input('linkable_id'),
+            'linktype_id' => $request->input('linktype_id')
         ];
     }
 
@@ -132,7 +137,8 @@ class LinkController extends ResourceController
     protected function getExtraDatas()
     {
         return [
-            'linktypes' => LinkType::all()
+            'linktypes' => Linktype::all(), 
+            'morphs' => Link::$morphs
         ];
     }
 

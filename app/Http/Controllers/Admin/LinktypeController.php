@@ -3,25 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\LinkType;
+use App\Models\Linktype;
 
-class LinkTypeController extends ResourceController
+class LinktypeController extends ResourceController
 {
     public function __construct()
     {
         parent::__construct();
         $this->_controller = 'Link típus';
         $this->_route = 'linktypes';
-        $this->_name = 'linktype';
-        $this->_hunName = 'link típus';
-        $this->_hunPluralName = 'link típusok';
-        $this->_tableLabels = [
-            'id' => 'Id', 
-            'name' => 'Név', 
-            'hover_text' => 'Hovver szöveg', 
-            'fontawesome' => "FontAwesome",
-            'color' => 'Szín'
-        ];
     }
     
     /**

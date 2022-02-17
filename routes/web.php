@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\JamController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\LinkTypeController;
+use App\Http\Controllers\Admin\LinktypeController;
 use App\Http\Controllers\Admin\LinkController;
 
 
@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('games', GameController::class);
     Route::resource('images', ImageController::class);
     Route::resource('users', UserController::class);
-    Route::resource('linktypes', LinkTypeController::class);
+    Route::resource('linktypes', LinktypeController::class);
     Route::resource('links', LinkController::class);
 });
 

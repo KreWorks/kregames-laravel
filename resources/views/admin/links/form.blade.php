@@ -15,8 +15,14 @@
                 <label for="display_text" class="col-form-label">Megjelenő szöveg</label>
                 <input class="form-control" type="text" value="{{ isset($entity) ? $entity->display_text : ''}}" id="display_text" name="display_text">
             </div>
-            <input type="text" id="linkable_type" name="linkable_type" value="{{$linkable_type}}" >
-            <input type="text" id="linkable_id" name="linkable_id" value="{{$linkable_id}}" >
+            <div class="form-group col-lg-12">
+                <label for="linkable_type" class="col-form-label">Link szülő kategória</label>
+                <select class="form-control" id="linkable_type" name="linkable_type">
+                    @foreach($extraDatas['morphs'] as $name => $morph)
+                        <option value="{{$morph}}" {{isset($entity) && $entity->linkable_type == $morph ? 'selected' : ''}}>{{$name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-group col-lg-12">
                 <label for="linktype_id" class="col-form-label">Linktípus</label>
                 <select class="form-control" id="linktype_id" name="linktype_id">
@@ -38,4 +44,5 @@
     @endif
         <button type="submit" class="btn btn-primary" >Mentés</button>
     </div>
+    <input type="hidden" id="redirect_route" name="redirect_route" value="{{isset($redirectRoute) ? $redirectRoute : ''}}">
 </form>
