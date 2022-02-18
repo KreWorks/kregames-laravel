@@ -48,7 +48,8 @@
     </div>
     @if (isset($entity))
     <div class="modal-footer mt-3">
-        <a href="{{route('admin.links.index')}}"  class="btn btn-secondary">Vissza</a>
+        <a href="{{route('admin.links.index')}}"  class="btn btn-secondary">Vissza a listához</a>
+        <a href="{{$entity->parent_edit_route}}"  class="btn btn-secondary">Vissza a szülő oldalára</a>
     @else
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>

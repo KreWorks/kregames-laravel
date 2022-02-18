@@ -66,6 +66,14 @@ class Link extends Model
         return $owner->name . " (".$type.")";
     }
 
+    public function getParentEditRouteAttribute()
+    {
+        $owner = $this->linkable_type::find($this->linkable_id);
+        $route = strToLower(array_search($this->linkable_type, self::$morphs)."s");
+
+        return route('admin.'.$route.'.edit', $owner->id);
+    }
+
     /**
      * Return the path to the icon of the jam
      */
