@@ -90,21 +90,16 @@ class LinkController extends ResourceController
     {
         try
         {
-            $game = Link::find($id);
-            $game->update($this->getDataFromRequest($request));
+            $link = Link::find($id);
+            $link->update($this->getDataFromRequest($request));
 
-            if ($request->input('jam_id') && $request->input('jam_id') != 0) {
-                $jam = Jam::find($request->input('jam_id'));
-                $jam->games()->save($game);
-            } else {
-                $game->jam_id = null;
-                $game->save();
+            if ($request->input('linktype_id')) {
+                $linkType = Linktype::find($request->input('linktype_id'));
+                $linkType->links()->save($link);
             }
-
-            $this->checkImage($request, $game);
-
+    
             $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.links.index");
-        
+
             return redirect($redirectRoute);
 
         }catch(QueryException $ex) {
