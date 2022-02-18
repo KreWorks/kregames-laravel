@@ -37,8 +37,7 @@
         </div>
     </div>
 
-
-     <!-- Add Modal Link-->
+    <!-- Add Modal Link-->
      <?php 
     $name = 'link'; 
     $displayName = 'Link';
