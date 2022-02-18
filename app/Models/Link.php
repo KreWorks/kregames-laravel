@@ -18,7 +18,8 @@ class Link extends Model
     ];
 
     public static $morphs = [
-        'Game' => 'App\Models\Game'
+        'Game' => 'App\Models\Game',
+        'Jam' => 'App\Models\Jam'
     ];
 
     protected $fillable = ['link', 'display_text', 'linktype_id,', 'linkable_type', 'linkable_id'];
