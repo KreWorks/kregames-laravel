@@ -14,13 +14,29 @@ class Link extends Model
     public static $tableLabels = [
         'id' => 'id',
         'link' => 'link',
-        'linktypeicon' => "típus",
+        'link_owner' => 'Szülő',
+        'fontawesome' => "típus",
     ];
 
     public static $morphs = [
         'Game' => 'App\Models\Game',
         'Jam' => 'App\Models\Jam'
     ];
+
+    public static function getLinkables()
+    {
+        $linakbles = []; 
+        foreach(Link::$morphs as $key => $class)
+        {
+            $linakbles[$key] = [
+                'css-class' => strtolower($key), 
+                'model' => $class,
+                'items' => $class::all()
+            ];
+        }
+
+        return $linakbles;
+    }
 
     protected $fillable = ['link', 'display_text', 'linktype_id,', 'linkable_type', 'linkable_id'];
 
@@ -42,11 +58,24 @@ class Link extends Model
         return $this->linkable_type;
     }
 
+    public function getLinkOwnerAttribute()
+    {
+        $owner = $this->linkable_type::find($this->linkable_id);
+        $type = str_replace("App\\Models\\", '', $this->linkable_type);
+
+        return $owner->name . " (".$type.")";
+    }
+
     /**
      * Return the path to the icon of the jam
      */
-    public function getLinktypeiconAttribute()
+    public function getFontawesomeIconAttribute()
     {
-        return  $this->linktype ? $this->linktype->linkTypeIcon : ''; 
+        return $this->linktype ? $this->linktype->fontawesome : ''; 
+    }
+
+    public function getFontawesomeColorAttribute()
+    {
+        return $this->linktype ? $this->linktype->color: '#000000';
     }
 }

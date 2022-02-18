@@ -15,7 +15,7 @@ class Linktype extends Model
         'id' => 'id',
         'name' => 'név',
         'hover_text' => "szöveg",
-        'linkTypeIcon' => "ikon",
+        'fontawesome' => "ikon",
     ];
 
     protected $fillable = ['name', 'hover_text', 'fontawesome', 'color'];
@@ -25,11 +25,13 @@ class Linktype extends Model
         return $this->hasMany(Link::class);
     }
 
-    /**
-     * Return the path to the icon of the jam
-     */
-    public function getLinkTypeIconAttribute()
+    public function getFontawesomeIconAttribute()
     {
-        return '<i class="fa-solid '.$this->fontawesome.'" style="color:'.$this->color.'"></i>';
+        return $this->fontawesome;
+    }
+
+    public function getFontawesomeColorAttribute()
+    {
+        return $this->color;
     }
 }

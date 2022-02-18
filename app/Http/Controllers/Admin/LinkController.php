@@ -131,20 +131,10 @@ class LinkController extends ResourceController
 
     protected function getExtraDatas()
     {
-        $linakbles = []; 
-        foreach(Link::$morphs as $key => $class)
-        {
-            $linakbles[$key] = [
-                'css-class' => strtolower($key), 
-                'model' => $class,
-                'items' => $class::all()
-            ];
-        }
-
         return [
             'linktypes' => Linktype::all(), 
             'morphs' => Link::$morphs, 
-            'linkables' => $linakbles
+            'linkables' => Link::getLinkables()
         ];
     }
 

@@ -45,6 +45,8 @@
     $route = 'links';
     $redirectRoute  = route('admin.games.edit', $entity->id);
     $extraDatas['linktypes'] = \App\Models\Linktype::all();
+    $extraDatas['morphs'] = \App\Models\Link::$morphs;
+    $extraDatas['linkables'] = \App\Models\Link::getLinkables();
     unset($entity);
     ?>
     @include('admin._modals.add_modal');
