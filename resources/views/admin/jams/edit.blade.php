@@ -48,7 +48,7 @@
     $extraDatas['linkables'] = \App\Models\Link::getLinkables();
     unset($entity);
     ?>
-    @include('admin._modals.add_modal');
+    @include('admin._modals.add_modal')
 
-    @include('admin._modals.delete_modal');
+    @include('admin._modals.delete_modal')
 @endsection

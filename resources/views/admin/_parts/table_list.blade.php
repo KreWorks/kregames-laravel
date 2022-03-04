@@ -22,12 +22,14 @@
                 </td>
             @endforeach
             <td>
-                <a type="button" class="btn btn-primary"  href="{{route('admin.'.$route.'.edit', $entity->id) }}">
-                    <svg class="card__icon--delete">
-                        <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
-                    </svg>
-                </a>
-
+                <form action="{{route('admin.'.$route.'.edit', $entity->id) }}" method="GET">
+                    <input type="hidden" id="redirectRoute" name="redirectRoute" value="{{ route('admin.'.$route.'.edit', $entity->id) }}">
+                    <button type="button" class="btn btn-primary" >
+                        <svg class="card__icon--delete">
+                            <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
+                        </svg>
+                    </button>
+                </form>
                 <div class="btn btn-danger"
                      data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $entity->id) }}', '{{$entity->name}}' )">
                     <svg class="card__icon--delete">

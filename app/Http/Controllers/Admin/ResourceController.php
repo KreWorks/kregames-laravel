@@ -65,9 +65,10 @@ abstract class ResourceController extends BaseController
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $entity = $this->getEntity($id);
 
@@ -76,10 +77,18 @@ abstract class ResourceController extends BaseController
             'action' => 'Szerkesztés',
             'entity' => $entity,
             'extraDatas' => $this->getExtraDatas(),
+            'redirectUrl' => $request->input('redirectRoute'),
             'formAction' => 'admin.'.$this->_route.'.update'
         ];
 
-        return  view('admin.'.$this->_route.'.edit', $data);
+        if ($request->input('redirectRoute'))
+        {
+            return redirect($request->input('redirectRoute'));
+        }
+        else 
+        {
+            return  view('admin.'.$this->_route.'.edit', $data);
+        }
     }
 
     /**

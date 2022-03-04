@@ -20,7 +20,8 @@ class Link extends Model
 
     public static $morphs = [
         'Game' => 'App\Models\Game',
-        'Jam' => 'App\Models\Jam'
+        'Jam' => 'App\Models\Jam',
+        'User' => 'App\Models\User'
     ];
 
     public static function getLinkables()

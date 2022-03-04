@@ -61,9 +61,10 @@ class LinkController extends ResourceController
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $entity = $this->getEntity($id);
 
