@@ -21,21 +21,27 @@
                     @endif
                 </td>
             @endforeach
-            <td>
-                <form action="{{route('admin.'.$route.'.edit', $entity->id) }}" method="GET">
-                    <input type="hidden" id="redirectRoute" name="redirectRoute" value="{{ route('admin.'.$route.'.edit', $entity->id) }}">
-                    <button type="button" class="btn btn-primary" >
-                        <svg class="card__icon--delete">
-                            <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
-                        </svg>
-                    </button>
-                </form>
-                <div class="btn btn-danger"
-                     data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $entity->id) }}', '{{$entity->name}}' )">
-                    <svg class="card__icon--delete">
-                        <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
-                    </svg>
-                </div>
+            <td class="align-middle">
+                <ul class="list-inline" style="margin-bottom:0px;">
+                    <li class="list-inline-item">
+                        <form action="{{route('admin.'.$route.'.edit', $entity->id) }}" method="GET">
+                            <input type="hidden" id="redirectRoute" name="redirectRoute" value="{{ route('admin.'.$route.'.edit', $entity->id) }}">
+                            <button type="submit" class="btn btn-primary" >
+                                <svg class="card__icon--delete">
+                                    <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </li>
+                    <li class="list-inline-item">
+                        <div class="btn btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $entity->id) }}', '{{$entity->name}}' )">
+                            <svg class="card__icon--delete">
+                                <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
+                            </svg>
+                        </div>
+                    </li>
+                </ul>
             </td>
         </tr>
     @endforeach

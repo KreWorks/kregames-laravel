@@ -8,10 +8,6 @@ abstract class ResourceController extends BaseController
 {
     protected $_controller;
     protected $_route; //plural english name
-    protected $_name; //single english name
-    protected $_hunName;
-    protected $_hunPluralName;
-    protected $_tableLabels;
 
     /**
      * Display a listing of the resource.
@@ -24,7 +20,7 @@ abstract class ResourceController extends BaseController
             'controller' => $this->_controller,
             'action' => 'Lista',
             'datas' => $this->getAll(),
-            'extraDatas' => $this->getExtraDatas(),
+            'extraDatas' => $this->getExtraDatasForCreate(),
             'route' => $this->_route,
         ];
 
@@ -47,15 +43,17 @@ abstract class ResourceController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $data = [
             'controller' => $this->_controller,
             'action' => 'Létrehozás',
             'entity' => null,
-            'formAction' => 'admin.'.$this->_route.'.store'
+            'extraDatas' => $this->getExtraDatasForCreate(),
+            'redirectUrl' => $request->input('redirectRoute'),
         ];
 
         return  view('admin.'.$this->_route.'.form', $data);
@@ -76,9 +74,8 @@ abstract class ResourceController extends BaseController
             'controller' => 'Jam',
             'action' => 'Szerkesztés',
             'entity' => $entity,
-            'extraDatas' => $this->getExtraDatas(),
+            'extraDatas' => $this->getExtraDatasForUpdate(),
             'redirectUrl' => $request->input('redirectRoute'),
-            'formAction' => 'admin.'.$this->_route.'.update'
         ];
 
         if ($request->input('redirectRoute'))
@@ -95,16 +92,22 @@ abstract class ResourceController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $this->delete($id);
 
         return redirect(route("admin.".$this->_route.".index"));
     }
 
-    protected function getExtraDatas()
+    protected function getExtraDatasForCreate()
+    {
+        return [];
+    }
+
+    protected function getExtraDatasForUpdate()
     {
         return [];
     }
