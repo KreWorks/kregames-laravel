@@ -51,9 +51,10 @@ function resetForm(formElement)
 
 function deleteConfirm(route, deleteString, redirectRoute)
 {
+    console.log("redirectRoute: " + redirectRoute);
     const modal = new bootstrap.Modal(document.getElementById("deleteModal"), {});
     modal.show();
     document.getElementById('deleteForm').action = route;
     document.getElementById('deleteString').innerText = deleteString;
-    document.getElementById('redirectRoute').value = redirectRoute;
+    document.getElementById('redirect_route_on_delete').value = redirectRoute;
 }

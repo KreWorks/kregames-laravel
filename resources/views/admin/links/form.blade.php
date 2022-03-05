@@ -18,8 +18,8 @@
             <div class="form-group col-lg-12">
                 <label for="linkable_type" class="col-form-label">Link szülő kategória</label>
                 <select class="form-control" id="linkable_type" name="linkable_type" onchange="onChangeLinkable(value)">
-                    @foreach($extraDatas['morphs'] as $name => $morph)
-                        <option value="{{$morph}}" {{isset($entity) && $entity->linkable_type == $morph ? 'selected' : ''}}>{{$name}}</option>
+                    @foreach($extraDatas['linkables'] as $name => $morph)
+                        <option value="{{$morph['model']}}" {{ (isset($entity) && $entity->linkable_type == $morph['model']) || (isset($linkable_type) && $linkable_type == $morph['model']) ? 'selected' : ''}}>{{$name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -29,7 +29,7 @@
                     <option value="0" {{ isset($entity) && $entity->linktype_id == '' ? 'selected' : ''}}>Nincs szülő</option>
                     @foreach($extraDatas['linkables'] as $group)
                         @foreach($group['items'] as $linkable)
-                        <option value="{{$linkable->id}}" {{isset($entity) && $entity->linkable_id == $linkable->id && $entity->linkable_type == $group['model'] ? 'selected' : ''}} class="linkable {{$group['css-class']}}">{{$linkable->name}}</option>
+                        <option value="{{$linkable->id}}" {{ (isset($entity) && $entity->linkable_id == $linkable->id && $entity->linkable_type == $group['model']) || (isset($linkable_id) && $linkable_id == $linkable->id && $linkable_type == $group['model']) ? 'selected' : ''}} class="linkable {{$group['css-class']}}">{{$linkable->name}} </option>
                         @endforeach
                     @endforeach
                 </select>
@@ -56,7 +56,7 @@
     @endif
         <button type="submit" class="btn btn-primary" >Mentés</button>
     </div>
-    <input type="hidden" id="redirect_route" name="redirect_route" value="{{isset($redirectRoute) ? $redirectRoute : ''}}">
+    <input type="hidden" id="redirect_route" name="redirect_route" value="{{isset($redirectUrl) ? $redirectUrl : ''}}">
 </form>
 <script>
     const linkableType = document.getElementById("linkable_type");

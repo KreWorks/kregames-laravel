@@ -24,26 +24,27 @@
             </div>
             <div class="card-body">
                 <?php 
+                // Datas for link table
                 $tableLabels = App\Models\Link::$tableLabels;
                 $datas = $entity->links;               
-                $linkable_type = "App\Models\User"; 
-                $linkable_id = $entity->id;
                 $route = 'links';
+                $redirectUrl  = route('admin.users.edit', $entity->id);
                 ?>
                 @include('admin._parts.table_list')
 
             </div>
         </div>
     </div>
-
     <!-- Add Modal Link-->
-     <?php 
+    <?php 
+    // Dataas for add new link
     $name = 'link'; 
     $displayName = 'Link';
     $route = 'links';
-    $redirectRoute  = route('admin.users.edit', $entity->id);
+    $linkable_type = App\Models\Link::$morphs['User']; 
+    $linkable_id = $entity->id;
+    $redirectUrl  = route('admin.users.edit', $entity->id);
     $extraDatas['linktypes'] = \App\Models\Linktype::all();
-    $extraDatas['morphs'] = \App\Models\Link::$morphs;
     $extraDatas['linkables'] = \App\Models\Link::getLinkables();
     unset($entity);
     ?>

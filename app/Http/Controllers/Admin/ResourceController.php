@@ -53,7 +53,7 @@ abstract class ResourceController extends BaseController
             'action' => 'Létrehozás',
             'entity' => null,
             'extraDatas' => $this->getExtraDatasForCreate(),
-            'redirectUrl' => $request->input('redirectRoute'),
+            'redirectUrl' => $request->input('redirect_route'),
         ];
 
         return  view('admin.'.$this->_route.'.form', $data);
@@ -75,7 +75,7 @@ abstract class ResourceController extends BaseController
             'action' => 'Szerkesztés',
             'entity' => $entity,
             'extraDatas' => $this->getExtraDatasForUpdate(),
-            'redirectUrl' => $request->input('redirectRoute'),
+            'redirectUrl' => $request->input('redirect_route'),
         ];
 
         if ($request->input('redirectRoute'))
@@ -99,7 +99,13 @@ abstract class ResourceController extends BaseController
     {
         $this->delete($id);
 
-        return redirect(route("admin.".$this->_route.".index"));
+        $redirect = route("admin.".$this->_route.".index");
+        if($request->input('redirect_route_on_delete'))
+        {
+            $redirect = $request->input("redirect_route_on_delete");
+        }
+
+        return redirect($redirect);
     }
 
     protected function getExtraDatasForCreate()

@@ -64,7 +64,7 @@ class Link extends Model
         $owner = $this->linkable_type::find($this->linkable_id);
         $type = str_replace("App\\Models\\", '', $this->linkable_type);
 
-        return $owner->name . " (".$type.")";
+        return (isset($owner) ? $owner->name : 'MI VAN'). " (".$type.")";
     }
 
     public function getParentEditRouteAttribute()

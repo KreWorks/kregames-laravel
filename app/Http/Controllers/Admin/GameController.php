@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use App\Models\Game;
 use App\Models\Image;
 use App\Models\Jam;
+use App\Models\Link;
 
 class GameController extends ResourceWithIconController
 {
@@ -15,34 +16,6 @@ class GameController extends ResourceWithIconController
         parent::__construct();
         $this->_controller = 'játék';
         $this->_route = 'games';
-        $this->_name = 'game';
-        $this->_hunName = 'játék';
-        $this->_hunPluralName = "játékok";
-        $this->_tableLabels = [
-            'iconPath' => 'icon',
-            'id' => 'id',
-            'name' => 'név',
-            'jamName' => "Jam",
-            'publish_date' => 'kiadási dátum'
-        ];
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $data = [
-            'controller' => $this->_controller,
-            'action' => 'Létrehozás',
-            'entity' => null,
-            'formAction' => 'admin.'.$this->_route.'.store',
-            'jams' => Jam::all()
-        ];
-
-        return  view('admin.'.$this->_route.'.form', $data);
     }
 
     /**
@@ -118,24 +91,32 @@ class GameController extends ResourceWithIconController
         return Game::all();
     }
 
-    protected function getExtraDatas()
+    protected function getExtraDatasForCreate()
     {
         return ['jams' => Jam::all()];
+    }
+
+    protected function getExtraDatasForUpdate()
+    {
+        return [
+            'jams' => Jam::all(),
+        ];
     }
 
     protected function getEntity($id)
     {
         return Game::find($id);
     }
+
     protected function delete($id)
     {
-        $deletedIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
+        $deletedImageIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
+        $deleteLinkids = Link::where(['linkable_type' => Game::class, 'linkable_id' => $id])->delete();
         Game::destroy($id);
     }
 
     protected function checkImage(Request $request, $game)
     {
-
         $file = new Filesystem();
         $folder = '/images/games/'.$game->slug;
 

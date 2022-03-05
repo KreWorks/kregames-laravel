@@ -18,24 +18,6 @@ class LinkController extends ResourceController
         $this->_route = 'links';
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $data = [
-            'controller' => $this->_controller,
-            'action' => 'Létrehozás',
-            'entity' => null,
-            'formAction' => 'admin.'.$this->_route.'.store',
-            'linktypes' => Linktype::all(),
-            'extraDatas' => $this->getExtraDatas()
-        ];
-
-        return  view('admin.'.$this->_route.'.form', $data);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,29 +37,6 @@ class LinkController extends ResourceController
         $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.links.index");
         
         return redirect($redirectRoute);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id, Request $request)
-    {
-        $entity = $this->getEntity($id);
-
-        $data = [
-            'controller' => 'Games',
-            'action' => 'Szerkesztés',
-            'entity' => $entity,
-            'formAction' => 'admin.'.$this->_route.'.update',
-            'jams' => Jam::all(),
-            'extraDatas' => $this->getExtraDatas()
-        ];
-
-        return  view('admin.'.$this->_route.'.edit', $data);
     }
 
     /**
@@ -130,12 +89,20 @@ class LinkController extends ResourceController
         return Link::all();
     }
 
-    protected function getExtraDatas()
+    protected function getExtraDatasForCreate()
     {
         return [
             'linktypes' => Linktype::all(), 
             'morphs' => Link::$morphs, 
             'linkables' => Link::getLinkables()
+        ];
+    }
+
+    protected function getExtraDatasForUpdate()
+    {
+        return [
+            'linktypes' => Linktype::all(),
+            'linkables' => Link::getLinkables(),
         ];
     }
 
