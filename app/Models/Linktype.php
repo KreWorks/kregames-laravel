@@ -34,4 +34,9 @@ class Linktype extends Model
     {
         return $this->color;
     }
+
+    public function getDeleteStringAttribute()
+    {
+        return $this->name . " (ID: ".$this->id.")";
+    }
 }

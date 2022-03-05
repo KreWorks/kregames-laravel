@@ -71,6 +71,6 @@ class Jam extends Model
 
     public function getDeleteStringAttribute()
     {
-        return $this->name;
+        return $this->name . " (ID: ".$this->id.")";
     }
 }

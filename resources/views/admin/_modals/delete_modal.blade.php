@@ -13,6 +13,7 @@
                 <form method="POST" id="deleteForm" action="">
                     @method('DELETE') 
                     @csrf
+                    <input type="hidden" id="redirectRoute" name="redirectRoute" value="" >
                     <button class="btn btn-danger">Törlés</button>
                 </form>
             </div>

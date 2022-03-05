@@ -43,7 +43,7 @@ class Image extends Model
 
     public function getDeleteStringAttribute()
     {
-        return $this->path;
+        return $this->path . " (ID: ".$this->id.")";
     }
 
     public function getParentAttribute()

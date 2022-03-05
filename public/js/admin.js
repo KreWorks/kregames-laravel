@@ -49,11 +49,11 @@ function resetForm(formElement)
     });
 }
 
-function deleteConfirm(route, deleteString)
+function deleteConfirm(route, deleteString, redirectRoute)
 {
     const modal = new bootstrap.Modal(document.getElementById("deleteModal"), {});
     modal.show();
-    console.log('törlés van');
     document.getElementById('deleteForm').action = route;
     document.getElementById('deleteString').innerText = deleteString;
+    document.getElementById('redirectRoute').value = redirectRoute;
 }

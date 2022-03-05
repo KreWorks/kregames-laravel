@@ -15,6 +15,7 @@
             <div class="card-body">
             <?php 
             $tableLabels = App\Models\LinkType::$tableLabels;
+            $redirectUrl = route('admin.linktypes.index');
             ?>
                 @include('admin._parts.table_list')
             </div>

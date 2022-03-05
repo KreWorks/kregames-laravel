@@ -87,4 +87,9 @@ class Link extends Model
     {
         return $this->linktype ? $this->linktype->color: '#000000';
     }
+
+    public function getDeleteStringAttribute()
+    {
+        return $this->link . " (ID: ".$this->id.")";
+    }
 }

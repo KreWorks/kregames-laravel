@@ -15,16 +15,17 @@
             <div class="card-body">
             <?php 
             $tableLabels = App\Models\Game::$tableLabels;
+            $redirectUrl = route('admin.games.index');
             ?>
                 @include('admin._parts.table_list')
             </div>
         </div>
     </div>
     <!-- Add Modal-->
-    <?php 
+    <?php
+    // Datas for adding game
     $name = 'game'; 
     $displayName = 'Játék';
-    $route = 'games';
     ?>
     @include('admin._modals.add_modal');
     <!-- Delete Modal -->

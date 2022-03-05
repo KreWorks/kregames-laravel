@@ -15,6 +15,7 @@
             <div class="card-body">
             <?php 
             $tableLabels = App\Models\Jam::$tableLabels;
+            $redirectUrl = route('admin.jams.index');
             ?>
                 @include('admin._parts.table_list')
             </div>

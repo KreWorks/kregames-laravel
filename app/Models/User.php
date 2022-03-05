@@ -83,6 +83,6 @@ class User extends Authenticatable
 
     public function getDeleteStringAttribute()
     {
-        return $this->name;
+        return $this->name . " (ID: ".$this->id.")";
     }
 }

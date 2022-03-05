@@ -15,6 +15,7 @@
             <div class="card-body">
             <?php 
             $tableLabels = App\Models\User::$tableLabels;
+            $redirectUrl = route('admin.users.index');
             ?>
                 @include('admin._parts.table_list')
             </div>
