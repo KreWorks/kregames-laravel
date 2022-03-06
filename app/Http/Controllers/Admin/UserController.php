@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Image;
+use App\Models\Link;
 
 class UserController extends ResourceWithIconController
 {
@@ -87,7 +88,8 @@ class UserController extends ResourceWithIconController
     }
     protected function delete($id)
     {
-        $deletedIds = Image::where(['imageable_type' => User::class, 'imageable_id' => $id])->delete();
+        $deletedImageIds = Image::where(['imageable_type' => User::class, 'imageable_id' => $id])->delete();
+        $deletedLinkIds = Link::where(['linkable_type' => User::class, 'linkable_id' => $id])->delete();
         User::destroy($id);
     }
 

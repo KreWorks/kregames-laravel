@@ -76,6 +76,8 @@ class LinktypeController extends ResourceController
     }
     protected function delete($id)
     {
+        $deletedLinkIds = Link::where(['linktype_id' => $id])->delete();
+        Jam::destroy($id);
         LinkType::destroy($id);
     }
 }

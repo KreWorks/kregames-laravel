@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Jam;
 use App\Models\Image;
+use App\Models\Link;
 
 class JamController extends ResourceWithIconController
 {
@@ -80,7 +81,8 @@ class JamController extends ResourceWithIconController
     }
     protected function delete($id)
     {
-        $deletedIds = Image::where(['imageable_type' => Jam::class, 'imageable_id' => $id])->delete();
+        $deletedImageIds = Image::where(['imageable_type' => Jam::class, 'imageable_id' => $id])->delete();
+        $deletedLinkIds = Link::where(['linkable_type' => Jam::class, 'linkable_id' => $id])->delete();
         Jam::destroy($id);
     }
 
