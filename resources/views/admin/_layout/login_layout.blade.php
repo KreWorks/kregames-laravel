@@ -6,9 +6,11 @@
     <meta name="description" content="">
     <title>KRÉ Games | Dashboard</title>
     <!-- Bootstrap core CSS -->
-    <link href="/apa/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="/apa/css/bootstrap.css" rel="stylesheet">-->
+    <link href="/assets/bootstrap-5.1.3/css/bootstrap.css" rel="stylesheet">
     <link href="/apa/css/style.css" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/all.min.css" rel="stylesheet">
+    
     
     <script src="/js/admin.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
@@ -207,7 +209,7 @@
         </div>
     </div>
 </div>
-<script src="/apa/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
