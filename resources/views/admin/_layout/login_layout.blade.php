@@ -7,7 +7,7 @@
     <title>KRÉ Games | Dashboard</title>
     <!-- Bootstrap core CSS -->
     <!--<link href="/apa/css/bootstrap.css" rel="stylesheet">-->
-    <link href="/assets/bootstrap-5.1.3/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/apa/css/style.css" rel="stylesheet">
     <link href="/assets/font-awesome/css/all.min.css" rel="stylesheet">
     
@@ -209,7 +209,7 @@
         </div>
     </div>
 </div>
-<script src="/assets/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

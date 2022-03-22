@@ -1,4 +1,4 @@
-@extends('admin._layout.logout_layout')
+    @extends('admin._layout.logout_layout')
 
 @section('content')
 <div class="login-area">
