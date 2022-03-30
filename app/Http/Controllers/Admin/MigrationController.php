@@ -14,6 +14,25 @@ class MigrationController extends ResourceController
         $this->_route = 'migrations';
     }
     
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data = [
+            'controller' => $this->_controller,
+            'action' => 'Lista',
+            'datas' => $this->getAll(),
+            'extraDatas' => $this->getExtraDatasForCreate(),
+            'route' => $this->_route,
+            'files' => $this->getMigrationFiles()
+        ];
+
+        return view('admin.'.$this->_route.'.list', $data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,8 +54,7 @@ class MigrationController extends ResourceController
             }   
             $batch++;
             for($i = count($migrations); $i < count($files); $i++){
-                $name = substr($files[$i+2], 0 ,-4);
-                $className = str_replace('_', '',ucwords(substr($files[$i+2], 18), "_"));
+                $className = Migration::GenerateHelperClassName($files[$i+2]);
 
                 //$migrationFile = new $className();
                 $alma = new \Database\Migrations\CreateLinktypesTable();
@@ -75,6 +93,26 @@ class MigrationController extends ResourceController
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id, Request $request)
+    {
+        $this->delete($id);
+
+        $redirect = route("admin.".$this->_route.".index");
+        if($request->input('redirect_route_on_delete'))
+        {
+            $redirect = $request->input("redirect_route_on_delete");
+        }
+
+        return redirect($redirect);
+    }
+
+    /**
      * Create a data array from the request. Need to remove image content
      * 
      * @param Request $request
@@ -100,5 +138,21 @@ class MigrationController extends ResourceController
     protected function delete($id)
     {
         Migration::destroy($id);
+    }
+
+    private function getMigrationFiles()
+    {
+        $migrationFolder = base_path()."/database/migrations";
+        $allFiles = scandir($migrationFolder);
+        $files = [];
+        foreach($allFiles as $file) {
+            if ($file == '.' || $file == '..'){
+                continue; 
+            }
+            $files[] = $file;
+        }
+        //$files = array_diff(scandir($migrationFolder), array('.', '..')); 
+
+        return $files;
     }
 }

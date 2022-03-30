@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LinktypeController;
 use App\Http\Controllers\Admin\LinkController;
-
+use App\Http\Controllers\Admin\MigrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('users', UserController::class);
     Route::resource('linktypes', LinktypeController::class);
     Route::resource('links', LinkController::class);
+    Route::resource('migrations', MigrationController::class);
 });
 
 /*
