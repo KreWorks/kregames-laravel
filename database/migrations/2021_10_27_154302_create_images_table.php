@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use Database\MigrationClasses\CreateImage;
+use Database\MigrationHelpers\ImageMigrationHelper;
 
 class CreateImagesTable extends Migration
 {
@@ -14,7 +12,7 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        CreateImages::createSchema();
+        ImagesMigrationHelper::createSchema();
     }
 
     /**
@@ -24,6 +22,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        CreateImages::dropIfExists();
+        ImagesMigrationHelper::dropIfExists();
     }
 }

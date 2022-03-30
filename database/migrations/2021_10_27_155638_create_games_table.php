@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationClasses\CreateGames;
+use Database\MigrationHelpers\GamesMigrationHelper;
 
 class CreateGamesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        CreateGames::createSchema();
+        GamesMigrationHelper::createSchema();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        CreateGames::dropIfExists();
+        GamesMigrationHelper::dropIfExists();
     }
 }

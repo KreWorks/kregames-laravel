@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationClasses\CreateLinktypes;
+use Database\MigrationHelpers\LinktypesMigrationHelper;
 
 class CreateLinktypesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateLinktypesTable extends Migration
      */
     public function up()
     {
-        CreateLinktypes::createSchema();
+        LinktypesMigrationHelper::createSchema();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreateLinktypesTable extends Migration
      */
     public function down()
     {
-        CreateLinktypes::dropIfExists();
+        LinktypesMigrationHelper::dropIfExists();
     }
 }

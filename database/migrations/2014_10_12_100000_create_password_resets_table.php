@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationClasses\CreatePasswordResets;
+use Database\MigrationHelpers\PasswordResetsMigrationHelper;
 
 class CreatePasswordResetsTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        CreatePasswordResets::createSchema();
+        PasswordResetsMigrationHelper::createSchema();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        CreatePasswordResets::dropIfExists();
+        PasswordResetsMigrationHelper::dropIfExists();
     }
 }

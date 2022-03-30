@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-
-use Database\MigrationClasses\CreateJams;
+use Database\MigrationHelpers\JamsMigrationHelper;
 
 class CreateJamsTable extends Migration
 {
@@ -13,7 +12,7 @@ class CreateJamsTable extends Migration
      */
     public function up()
     {
-        CreateJams::createSchema();
+        JamsMigrationHelper::createSchema();
     }
 
     /**
@@ -23,6 +22,6 @@ class CreateJamsTable extends Migration
      */
     public function down()
     {
-        CreateJams::dropIfExists();
+        JamsMigrationHelper::dropIfExists();
     }
 }

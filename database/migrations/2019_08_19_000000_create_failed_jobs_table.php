@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationClasses\CreateFailedJobs;
+use Database\MigrationHelpers\FailedJobsMigrationHelper;
 
 class CreateFailedJobsTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateFailedJobsTable extends Migration
      */
     public function up()
     {
-        CreateFailedJobs::createSchema();
+        FailedJobsMigrationHelper::createSchema();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreateFailedJobsTable extends Migration
      */
     public function down()
     {
-        CreateFailedJobs::dropIfExists();
+        FailedJobsMigrationHelper::dropIfExists();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationClasses\CreateUsers;
+use Database\MigrationHelpers\UsersMigrationHelper;
 
 class CreateUsersTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        CreateUsers::createSchema();
+        UsersMigrationHelper::createSchema();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        CreateUsers::dropIfExists();
+        UsersMigrationHelper::dropIfExists();
     }
 }

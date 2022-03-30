@@ -5,7 +5,7 @@ namespace Database\MigrationHelpers;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImages
+class ImagesMigrationHelper
 {
     public static function createSchema()
     {

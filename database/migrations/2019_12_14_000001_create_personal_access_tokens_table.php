@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationClasses\CreatePersonalAccessTokens;
+use Database\MigrationHelpers\PersonalAccessTokensMigrationHelper;
 
 class CreatePersonalAccessTokensTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreatePersonalAccessTokensTable extends Migration
      */
     public function up()
     {
-        CreatePersonalAccessTokens::createSchema();
+        PersonalAccessTokensMigrationHelper::createSchema();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreatePersonalAccessTokensTable extends Migration
      */
     public function down()
     {
-        CreatePersonalAccessTokens::dropIfExists();
+        PersonalAccessTokensMigrationHelper::dropIfExists();
     }
 }

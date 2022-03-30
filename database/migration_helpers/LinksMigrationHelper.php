@@ -1,11 +1,11 @@
 <?php 
 
-namespace Database\MigrationClasses;
+namespace Database\MigrationHelpers;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLinks
+class LinksMigrationHelper
 {
     public static function createSchema()
     {
