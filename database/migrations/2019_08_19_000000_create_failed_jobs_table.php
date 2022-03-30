@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 use Database\MigrationClasses\CreateFailedJobs;
 
 class CreateFailedJobsTable extends Migration
@@ -23,6 +22,6 @@ class CreateFailedJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        CreateFailedJobs::dropIfExists();
     }
 }

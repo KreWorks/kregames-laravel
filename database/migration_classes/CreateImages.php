@@ -1,27 +1,28 @@
 <?php 
 
-namespace Database\MigrationClasses;
+namespace Database\MigrationHelpers;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Database\MigrationClasses\Base as BaseMigrationClass;
 
-class CreateUsers extends BaseMigrationClass
+class CreateImages
 {
     public static function createSchema()
     {
-        Schema::create("password_resets", function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->timestamps();
+            $table->string('type');
+            $table->morphs('imageable');
+            $table->string('path');
+            $table->string('title');
         });
     }
 
     public static function dropIfExists()
     {
-        Schema::dropIfExists("password_resets");
+        Schema::dropIfExists('images',  function (Blueprint $table) {
+            $table->dropIndex('idx_image_game_type');
+        });
     } 
 }

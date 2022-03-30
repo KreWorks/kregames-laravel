@@ -20,6 +20,7 @@ class CreateLinks
 
     public static function dropIfExists()
     {
-        Schema::dropIfExists("links");
-    } 
+        Schema::dropIfExists('linktypes');
+    }
+
 }

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+
+use Database\MigrationClasses\CreateJams;
 
 class CreateJamsTable extends Migration
 {
@@ -13,16 +13,7 @@ class CreateJamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jams', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('name');
-            $table->string('slug')->index('idx_jams_slug');
-            $table->integer('entries');
-            $table->string('theme');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-        });
+        CreateJams::createSchema();
     }
 
     /**
@@ -32,8 +23,6 @@ class CreateJamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jams', function (Blueprint $table) {
-            $table->dropIndex('idx_jams_slug');
-        });
+        CreateJams::dropIfExists();
     }
 }

@@ -4,24 +4,27 @@ namespace Database\MigrationClasses;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Database\MigrationClasses\Base as BaseMigrationClass;
 
-class CreateJams extends BaseMigrationClass
+class CreateJams
 {
     public static function createSchema()
     {
-        Schema::create("password_resets", function (Blueprint $table) {
+        Schema::create('jams', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->timestamps();
+            $table->string('name');
+            $table->string('slug')->index('idx_jams_slug');
+            $table->integer('entries');
+            $table->string('theme');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
         });
     }
-
+    
     public static function dropIfExists()
     {
-        Schema::dropIfExists("password_resets");
+        Schema::dropIfExists('jams', function (Blueprint $table) {
+            $table->dropIndex('idx_jams_slug');
+        });
     } 
 }

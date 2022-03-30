@@ -4,24 +4,27 @@ namespace Database\MigrationClasses;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Database\MigrationClasses\Base as BaseMigrationClass;
 
-class CreateUsers extends BaseMigrationClass
+class CreateGames 
 {
     public static function createSchema()
     {
-        Schema::create("password_resets", function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->timestamps();
+            $table->string('name');
+            $table->string('slug')->index('idx_games_slug');
+            $table->dateTime('publish_date');
+            $table->foreignId('user_id');
+            $table->foreignId('jam_id')->nullable()->constrained();   
         });
     }
 
     public static function dropIfExists()
     {
-        Schema::dropIfExists("password_resets");
+        Schema::dropIfExists('games', function (Blueprint $table) {
+            $table->dropForeign('games_jam_id_foreign');
+            $table->dropIndex('idx_games_slug');
+        });
     } 
 }

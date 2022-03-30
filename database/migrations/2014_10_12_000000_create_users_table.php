@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 use Database\MigrationClasses\CreateUsers;
 
 class CreateUsersTable extends Migration
@@ -23,6 +22,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        CreateUsers::dropIfExists();
     }
 }

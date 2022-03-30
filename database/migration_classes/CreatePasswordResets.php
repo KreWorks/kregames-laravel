@@ -4,9 +4,8 @@ namespace Database\MigrationClasses;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Database\MigrationClasses\Base as BaseMigrationClass;
 
-class CreatePasswordResets extends BaseMigrationClass
+class CreatePasswordResets
 {
     public static function createSchema()
     {

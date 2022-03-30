@@ -4,9 +4,8 @@ namespace Database\MigrationClasses;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Database\MigrationClasses\Base as BaseMigrationClass;
 
-class CreateFailedJobs extends BaseMigrationClass
+class CreateFailedJobs
 {
     public static function createSchema()
     {
