@@ -27,31 +27,36 @@
                         $redirectUrl = "";
                         ?>
                     @for($index = 0; $index < count($files); $index++)
-                        <tr>
+                        @if(count($datas) > $index)
+                        <tr class="table-success">
                             <td class="align-middle">{{$datas[$index]->id}}</td>
                             <td class="align-middle">{{$datas[$index]->migration}}</td>
                             <td class="align-middle">{{$datas[$index]->helperClassName}}</td>
                             <td class="align-middle">{{$datas[$index]->batch}}</td>
-
+                        @else
+                        <tr class="table-danger">
+                            <td class="align-middle">##</td>
+                            <td class="align-middle">{{$files[$index]}}</td>
+                            <td class="align-middle">{{ App\Models\Migration::GenerateHelperClassName($files[$index])}}</td>
+                            <td class="align-middle"></td>
+                        @endif
                             <td class="align-middle">
                                 <ul class="list-inline" style="margin-bottom:0px;">
                                     <li class="list-inline-item">
-                                        <form action="{{route('admin.'.$route.'.edit', $datas[$index]->id) }}" method="GET">
+                                        <form action="{{route('admin.migrations.create') }}" method="POST">
                                             <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
-                                            <button type="submit" class="btn btn-primary" >
-                                                <svg class="card__icon--delete">
-                                                    <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
-                                                </svg>
+                                            <button type="submit" class="btn btn-success" >
+                                                <i class="fa fa-arrow-up fa-lg"></i>
                                             </button>
                                         </form>
                                     </li>
                                     <li class="list-inline-item">
-                                        <div class="btn btn-danger"
-                                            data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $datas[$index]->id) }}', '{{$datas[$index]->deleteString}}', '{{$redirectUrl}}')">
-                                            <svg class="card__icon--delete">
-                                                <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
-                                            </svg>
-                                        </div>
+                                        <form action="{{route('admin.migrations.create') }}" method="POST">
+                                            <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
+                                            <button type="submit" class="btn btn-danger" >
+                                                <i class="fa fa-arrow-down fa-lg"></i>
+                                            </button>
+                                        </form>
                                     </li>
                                 </ul>
                             </td>
