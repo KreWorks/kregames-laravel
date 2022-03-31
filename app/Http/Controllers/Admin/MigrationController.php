@@ -53,7 +53,7 @@ class MigrationController extends ResourceController
                 }
             }
         }
-        else if ($request->input("migrtion_file")) {
+        else if ($request->input("migration_file")) {
             $fileName = $request->input("migration_file");
             $fileName = substr($fileName, 0, -4);
             

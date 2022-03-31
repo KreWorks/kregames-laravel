@@ -51,7 +51,6 @@
                                 ?>
                                     <li class="list-inline-item">
                                         <form action="{{route('admin.migrations.store') }}" method="POST">
-                                            @method('PUT')
                                             @csrf
                                             <input type="hidden" id="migration_file" name="migration_file" value="{{$files[$index]}}">
                                             <button type="submit" class="btn btn-success {{$id != 0 ? 'disabled' : ''}}" >
