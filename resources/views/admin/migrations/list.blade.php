@@ -4,13 +4,14 @@
     <div class="col-md-9">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                <div class="row">
+
+                <div class="row"> 
                     <span class="col-md-8 my-auto">Migrations lista</span>
-                    <form action="{{route('admin.migrations.store')}}" method="POST">
-                        @csrf
+                    <form class="col-md-3 float-right" action="{{route('admin.migrations.store')}}" method="POST">
+                        @csrf <!-- {{ csrf_field() }} -->
                         <input type="hidden" id="unstored" name="unstored" value="all">
-                        <button type="submit" class="btn btn-warning col-md-3 float-right">
-                            Hiányzó migration-ök futtatása
+                        <button type="submit" class="btn btn-warning" >
+                            Új migrációk futtatása
                         </button>
                     </form>
                 </div>
@@ -59,7 +60,6 @@
                                         </form>
                                     </li>
                                     <li class="list-inline-item">
-                                        
                                         <form action="{{route('admin.migrations.destroy', $id) }}" method="POST">
                                             @method('DELETE') 
                                             @csrf
@@ -83,11 +83,9 @@
                     @endfor
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
     <!-- Add Modal-->
-    <!-- Delete Modal -->
-    @include('admin._modals.delete_modal');
+
 @endsection
