@@ -4,7 +4,6 @@
     <div class="col-md-9">
         <div class="card">
             <div class="card-header bg-primary text-white">
-
                 <div class="row"> 
                     <span class="col-md-8 my-auto">Migrations lista</span>
                     <form class="col-md-3 float-right" action="{{route('admin.migrations.store')}}" method="POST">
@@ -23,6 +22,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Migration</th>
                         <th scope="col">HelperClassName</th>
+
                         <th scope="col">Batch</th>
                         <th scope="col">Műveletek</th>
                     </tr>
@@ -87,5 +87,4 @@
         </div>
     </div>
     <!-- Add Modal-->
-
 @endsection
