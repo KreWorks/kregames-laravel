@@ -17,7 +17,29 @@ class Migration extends Model
         return self::GenerateHelperClassName($this->migration);
     }
 
+    public function hasSeeder()
+    {
+        return class_exists($this->getSeederClass());
+    }
+
+    protected function getSeederClass()
+    {
+        $className = substr(self::GetTableName($this->migration), 0, -1);
+        $className .= "Seeder";
+
+        return "Database\\Seeders\\".$className;
+    }
+
     public static function GenerateHelperClassName($migration)
+    {
+        $className = self::GetTableName($migration);
+        //Append MigrationHelper to get final className 
+        $className .= "MigrationHelper";
+
+        return $className;
+    }
+
+    public static function GetTableName($migration)
     {
         //Remove timestamp params at start 
         $className = substr($migration, 18);
@@ -27,8 +49,6 @@ class Migration extends Model
         $className = str_replace(['Create', 'Table','Add', 'Field'], ['','','',''], $className); //Replace not needed parts
         //Replace underscrore
         $className = str_replace('_', '', $className);
-        //Append MigrationHelper to get final className 
-        $className .= "MigrationHelper";
 
         return $className;
     }

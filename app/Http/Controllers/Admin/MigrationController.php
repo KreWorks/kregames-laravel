@@ -34,29 +34,37 @@ class MigrationController extends ResourceController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store migration and run that all or just one.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $files = $this->getMigrationFiles();
+        if ($request->input("unstored")) {
+            $files = $this->getMigrationFiles();
         
-        $migrations = $this->getAll();
-        $batch = $this->getMaxBatch();
-        if (count($migrations) < count($files)) {
-            for ($i = count($migrations); $i < count($files); $i++) {
-                $fileName = substr($files[$i], 0, -4);
-                $this->runMigrationByFileName($fileName, $batch+1);
+            $migrations = $this->getAll();
+            $batch = $this->getMaxBatch();
+            if (count($migrations) < count($files)) {
+                for ($i = count($migrations); $i < count($files); $i++) {
+                    $fileName = substr($files[$i], 0, -4);
+                    $this->runMigrationByFileName($fileName, $batch+1);
+                }
             }
+        }
+        else if ($request->input("migrtion_file")) {
+            $fileName = $request->input("migration_file");
+            $fileName = substr($fileName, 0, -4);
+            
+            $this->runMigrationByFileName($fileName);
         }
 
         return redirect(route("admin.migrations.index"));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Handles the seeding for dtabases
      *
      * @param  int  $id
      * @param  \Illuminate\Http\Request  $request

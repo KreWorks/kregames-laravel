@@ -8,6 +8,7 @@
                     <span class="col-md-8 my-auto">Migrations lista</span>
                     <form action="{{route('admin.migrations.store')}}" method="POST">
                         @csrf
+                        <input type="hidden" id="unstored" name="unstored" value="all">
                         <button type="submit" class="btn btn-warning col-md-3 float-right">
                             Hiányzó migration-ök futtatása
                         </button>
@@ -49,7 +50,7 @@
                                 $id = count($datas) > $index ? $datas[$index]->id : 0;
                                 ?>
                                     <li class="list-inline-item">
-                                        <form action="{{route('admin.migrations.update', 0) }}" method="POST">
+                                        <form action="{{route('admin.migrations.store') }}" method="POST">
                                             @method('PUT')
                                             @csrf
                                             <input type="hidden" id="migration_file" name="migration_file" value="{{$files[$index]}}">
@@ -68,6 +69,15 @@
                                             </button>
                                         </form>
                                     </li>
+                                @if($id != 0 && $datas[$index]->hasSeeder())
+                                    <li class="list-inline-item">|</li>
+                                    <li class="list-inline-item">
+                                        <button type="submit" class="btn btn-warning {{$id == 0 ? 'disabled' : ''}}" >
+                                            <i class="fa-solid fa-seedling fa-lg"></i>
+                                        </button>    
+                                    
+                                    </li>
+                                @endif
                                 </ul>
                             </td>
                         </tr>
