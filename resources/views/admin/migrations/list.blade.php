@@ -6,9 +6,12 @@
             <div class="card-header bg-primary text-white">
                 <div class="row">
                     <span class="col-md-8 my-auto">Migrations lista</span>
-                    <button type="button" class="btn btn-warning col-md-3 float-right" id="addGameButton">
-                        Hiányzó migration-ök futtatása
-                    </button>
+                    <form action="{{route('admin.migrations.store')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-warning col-md-3 float-right">
+                            Hiányzó migration-ök futtatása
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="card-body">
@@ -42,18 +45,25 @@
                         @endif
                             <td class="align-middle">
                                 <ul class="list-inline" style="margin-bottom:0px;">
+                                <?php 
+                                $id = count($datas) > $index ? $datas[$index]->id : 0;
+                                ?>
                                     <li class="list-inline-item">
-                                        <form action="{{route('admin.migrations.create') }}" method="POST">
-                                            <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
-                                            <button type="submit" class="btn btn-success" >
+                                        <form action="{{route('admin.migrations.update', 0) }}" method="POST">
+                                            @method('PUT')
+                                            @csrf
+                                            <input type="hidden" id="migration_file" name="migration_file" value="{{$files[$index]}}">
+                                            <button type="submit" class="btn btn-success {{$id != 0 ? 'disabled' : ''}}" >
                                                 <i class="fa fa-arrow-up fa-lg"></i>
                                             </button>
                                         </form>
                                     </li>
                                     <li class="list-inline-item">
-                                        <form action="{{route('admin.migrations.create') }}" method="POST">
-                                            <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
-                                            <button type="submit" class="btn btn-danger" >
+                                        
+                                        <form action="{{route('admin.migrations.destroy', $id) }}" method="POST">
+                                            @method('DELETE') 
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger {{$id == 0 ? 'disabled' : ''}}" >
                                                 <i class="fa fa-arrow-down fa-lg"></i>
                                             </button>
                                         </form>

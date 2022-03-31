@@ -41,29 +41,14 @@ class MigrationController extends ResourceController
      */
     public function store(Request $request)
     {
-        $migrationFolder = base_path()."/database/migrations";
-        $files = scandir($migrationFolder);
-        $files = array_diff(scandir($migrationFolder), array('.', '..')); 
-
+        $files = $this->getMigrationFiles();
+        
         $migrations = $this->getAll();
-        $batch = 1;
-        if (count($migrations) < count($files)){
-            foreach($migrations as $migration)
-            {
-                $batch = $migration->batch > $batch ? $migration->batch : $batch;
-            }   
-            $batch++;
-            for($i = count($migrations); $i < count($files); $i++){
-                $className = Migration::GenerateHelperClassName($files[$i+2]);
-
-                //$migrationFile = new $className();
-                $alma = new \Database\Migrations\CreateLinktypesTable();
-                $migration->up();
-                /*$migration = Migration::create([
-                    'migration' => $name,
-                    'batch' => $batch
-                ]);*/
-
+        $batch = $this->getMaxBatch();
+        if (count($migrations) < count($files)) {
+            for ($i = count($migrations); $i < count($files); $i++) {
+                $fileName = substr($files[$i], 0, -4);
+                $this->runMigrationByFileName($fileName, $batch+1);
             }
         }
 
@@ -73,23 +58,18 @@ class MigrationController extends ResourceController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        try
-        {
-            $linktype = LinkType::find($id); 
-            $linktype->update($this->getDataFromRequest($request));
-            $linktype->save();
-    
-            return redirect(route("admin.linktypes.index"));
-
-        }catch(QueryException $ex) {
-            return ['success'=>false, 'error'=>$ex->getMessage()];
-        }
+        $fileName = $request->input("migration_file");
+        $fileName = substr($fileName, 0, -4);
+        
+        $this->runMigrationByFileName($fileName);
+        
+        return redirect(route("admin.migrations.index"));
     }
 
     /**
@@ -101,15 +81,37 @@ class MigrationController extends ResourceController
      */
     public function destroy($id, Request $request)
     {
-        $this->delete($id);
+        $migration = Migration::find($id);
+        
+        $className = $migration->helperClassName;
+        $className = "Database\\MigrationHelpers\\".$className;
+        
+        $className::dropIfExists();
+        
+        $migration->delete();
+        
+        return redirect(route("admin.".$this->_route.".index"));
+    }
 
-        $redirect = route("admin.".$this->_route.".index");
-        if($request->input('redirect_route_on_delete'))
-        {
-            $redirect = $request->input("redirect_route_on_delete");
-        }
+    protected function getMaxBatch()
+    {
+        return Migration::max('batch');
+    }
 
-        return redirect($redirect);
+    protected function runMigrationByFileName($fileName, $batch = null)
+    {
+        $migrationClass = Migration::GenerateHelperClassName($fileName);
+
+        $migrationClass = "Database\\MigrationHelpers\\".$migrationClass;
+        $migrationClass::createSchema();
+
+        $batch = $batch == null ? $this->getMaxBatch() + 1 : $batch;
+        
+        $migration = Migration::create([
+            'migration' => $fileName,
+            'batch' => $batch
+        ]);
+        
     }
 
     /**
@@ -125,7 +127,6 @@ class MigrationController extends ResourceController
             'batch' => $request->input('batch')
         ];
     } 
-
 
     protected function getAll()
     {

@@ -20,7 +20,7 @@ class LinksMigrationHelper
 
     public static function dropIfExists()
     {
-        Schema::dropIfExists('linktypes');
+        Schema::dropIfExists('links');
     }
 
 }
