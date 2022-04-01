@@ -22,7 +22,7 @@ class Migration extends Model
         return class_exists($this->getSeederClass());
     }
 
-    protected function getSeederClass()
+    public function getSeederClass()
     {
         $className = substr(self::GetTableName($this->migration), 0, -1);
         $className .= "Seeder";

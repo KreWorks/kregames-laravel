@@ -71,10 +71,11 @@
                                 @if($id != 0 && $datas[$index]->hasSeeder())
                                     <li class="list-inline-item">|</li>
                                     <li class="list-inline-item">
-                                        <button type="submit" class="btn btn-warning {{$id == 0 ? 'disabled' : ''}}" >
-                                            <i class="fa-solid fa-seedling fa-lg"></i>
-                                        </button>    
-                                    
+                                        <form action="{{route('admin.migrations.edit', $id)}}" method="GET">
+                                            <button type="submit" class="btn btn-warning {{$id == 0 ? 'disabled' : ''}}" >
+                                                <i class="fa-solid fa-seedling fa-lg"></i>
+                                            </button>    
+                                        </form>
                                     </li>
                                 @endif
                                 </ul>

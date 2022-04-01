@@ -16,18 +16,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'username' => "kre",
-            'name' => 'Réka',
-            'email' => "kre@kre.hu",
-            'password' => Hash::make("alma123"),
-        ]);
+        $jsonData = file_get_contents(base_path()."/database/seeds/users.json");
+        $datas = json_decode($jsonData, true);
 
-        $user->avatar()->create([
-            'type' => Image::ICON, 
-            'path' => 'noimage',
-            'title' => 'kre avatar',
-            'alt_title' => 'kre avatar'
-        ]);
+        foreach($datas as $data)
+        {
+            $avatar = $data['avatar'];
+            unset($data['avatar']);
+
+            $user = User::create($data);
+            $user->avatar()->create($avatar);
+        }
     }
 }

@@ -81,6 +81,29 @@ class MigrationController extends ResourceController
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id, Request $request)
+    {
+        echo $id."<br>";
+        $entity = $this->getEntity($id);
+        echo $entity->migration."<br>";
+        if ($entity->hasSeeder())
+        {
+            $className = $entity->getSeederClass();
+            echo $className;
+            $seeder = new $className();
+            $seeder->run();
+        }
+        
+        //return  redirect(route('admin.migrations.index'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

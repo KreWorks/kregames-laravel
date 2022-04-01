@@ -11,11 +11,10 @@ class LinktypesMigrationHelper
     {
         Schema::create("linktypes", function (Blueprint $table){
             $table->id();
-            $table->string('username')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->timestamps();
+            $table->string('name')->unique();
+            $table->string('fontawesome');
+            $table->string('color');
         });
     }
 
