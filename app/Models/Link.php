@@ -85,7 +85,7 @@ class Link extends Model
 
     public function getFontawesomeColorAttribute()
     {
-        return $this->linktype ? $this->linktype->color: '#000000';
+        return $this->linktype ? $this->linktype->color: '000000';
     }
 
     public function getDeleteStringAttribute()

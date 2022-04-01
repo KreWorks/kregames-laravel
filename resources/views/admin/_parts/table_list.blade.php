@@ -15,7 +15,7 @@
                     @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
                         <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
                     @elseif ($key == 'fontawesome')
-                        <i class="fa fa-3x {{$data->__get('fontawesome_icon')}}" style="color: {{$data->fontawesome_color}}">
+                        <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: #{{$data->fontawesome_color}}">
                     @else
                         {{ $data->__get($key) }}
                     @endif

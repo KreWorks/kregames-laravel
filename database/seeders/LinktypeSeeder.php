@@ -19,7 +19,18 @@ class LinktypeSeeder extends Seeder
 
         foreach($datas as $data)
         {
-            $linktype = Linktype::create($data);
+            $this->createOrUpdate($data);
         }
+    }
+
+    protected function createOrUpdate($data)
+    {
+        $id = $data['id'];
+        unset($data['id']);
+
+        $user = Linktype::updateOrCreate(
+            ['id' =>  $id],
+            $data
+        );
     }
 }

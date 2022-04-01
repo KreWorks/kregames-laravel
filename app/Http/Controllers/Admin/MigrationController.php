@@ -89,18 +89,15 @@ class MigrationController extends ResourceController
      */
     public function edit($id, Request $request)
     {
-        echo $id."<br>";
         $entity = $this->getEntity($id);
-        echo $entity->migration."<br>";
         if ($entity->hasSeeder())
         {
             $className = $entity->getSeederClass();
-            echo $className;
             $seeder = new $className();
             $seeder->run();
         }
         
-        //return  redirect(route('admin.migrations.index'));
+        return  redirect(route('admin.migrations.index'));
     }
 
     /**
