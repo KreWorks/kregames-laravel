@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
         $links = $data['links'] ? $data['links'] : [];
         unset($data['links']);
 
+        $data['password'] = Hash::make($data['password']);
         $user = User::updateOrCreate(
             ['id' =>  $id],
             $data
