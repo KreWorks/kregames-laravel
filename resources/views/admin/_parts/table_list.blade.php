@@ -26,7 +26,7 @@
                     <li class="list-inline-item">
                         <form action="{{route('admin.'.$route.'.edit', $data->id) }}" method="GET">
                             <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
-                            <button type="submit" class="btn btn-primary" >
+                            <button type="submit" class="btn btn-info" >
                                 <svg class="card__icon--delete">
                                     <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
                                 </svg>
