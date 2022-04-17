@@ -21,13 +21,30 @@ class MigrationController extends ResourceController
      */
     public function index()
     {
+        $files = $this->getMigrationFiles(); 
+        $migrations = $this->getAll();
+
+        $datas = []; 
+        foreach($migrations as $migration) {
+            if (in_array($migration->migration, $files)){
+                $datas[$migration->migration] = $migration;
+            }
+        }
+
+        foreach($files as $file) {
+            if (!array_key_exists($file, $datas)) {
+                $datas[$file] = null;
+            }
+        }
+
+        ksort($datas);
+
         $data = [
             'controller' => $this->_controller,
             'action' => 'Lista',
-            'datas' => $this->getAll(),
+            'datas' => $datas,
             'extraDatas' => $this->getExtraDatasForCreate(),
-            'route' => $this->_route,
-            'files' => $this->getMigrationFiles()
+            'route' => $this->_route
         ];
 
         return view('admin.'.$this->_route.'.list', $data);

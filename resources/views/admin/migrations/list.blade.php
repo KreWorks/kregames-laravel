@@ -32,27 +32,28 @@
                         <?php 
                         $redirectUrl = "";
                         ?>
-                    @for($index = 0; $index < count($files); $index++)
-                        @if(count($datas) > $index)
+                    @foreach($datas as $fileName => $data)
+                        @if($data != null)
                         <tr class="table-success">
-                            <td class="align-middle">{{$datas[$index]->id}}</td>
-                            <td class="align-middle">{{$datas[$index]->migration}}</td>
-                            <td class="align-middle">{{$datas[$index]->tableName}}</td>
-                            <td class="align-middle">{{$datas[$index]->helperClassName}}</td>
-                            <td class="align-middle">{{$datas[$index]->batch}}</td>
+                            <td class="align-middle">{{$data->id}}</td>
+                            <td class="align-middle">{{$data->migration}}</td>
+                            <td class="align-middle">{{$data->tableName}}</td>
+                            <td class="align-middle">{{$data->helperClassName}}</td>
+                            <td class="align-middle">{{$data->batch}}</td>
                         @else
                         <tr class="table-danger">
                             <td class="align-middle">##</td>
-                            <td class="align-middle">{{$files[$index]}}</td>
-                            <td class="align-middle">{{ App\Models\Migration::GenerateHelperClassName($files[$index])}}</td>
+                            <td class="align-middle">{{$fileName}}</td>
+                            <td class="align-middle">{{ App\Models\Migration::GetTableName($fileName)}}</td>
+                            <td class="align-middle">{{ App\Models\Migration::GenerateHelperClassName($fileName)}}</td>
                             <td class="align-middle"></td>
                         @endif
                             <td class="align-middle">
                                 <ul class="list-inline" style="margin-bottom:0px;">
                                 <?php 
-                                $id = count($datas) > $index ? $datas[$index]->id : 0;
+                                $id = $data != null ? $data->id : 0;
                                 ?>
-                                @if($datas[$index]->tableName == 'users')
+                                @if($data != null && $data->tableName == 'users')
                                     <li class="list-inline-item ">
                                         <form action="{{route('admin.migrations.userrebuild') }}" method="POST">
                                             @csrf
@@ -61,11 +62,11 @@
                                             </button>
                                         </form>
                                     </li>
-                                    @if($id != 0 && $datas[$index]->hasSeeder())
+                                    @if($data != null && $data->hasSeeder())
                                     <li class="list-inline-item ms-5">|</li>
                                     <li class="list-inline-item">
                                         <form action="{{route('admin.migrations.edit', $id)}}" method="GET">
-                                            <button type="submit" class="btn btn-warning {{$id == 0 ? 'disabled' : ''}}" >
+                                            <button type="submit" class="btn btn-warning {{$data == null ? 'disabled' : ''}}" >
                                                 <i class="fa-solid fa-seedling fa-lg"></i>
                                             </button>    
                                         </form>
@@ -75,8 +76,8 @@
                                     <li class="list-inline-item">
                                         <form action="{{route('admin.migrations.store') }}" method="POST">
                                             @csrf
-                                            <input type="hidden" id="migration_file" name="migration_file" value="{{$files[$index]}}">
-                                            <button type="submit" class="btn btn-success {{$id != 0 ? 'disabled' : ''}}" >
+                                            <input type="hidden" id="migration_file" name="migration_file" value="{{$fileName}}">
+                                            <button type="submit" class="btn btn-success {{$data != null ? 'disabled' : ''}}" >
                                                 <i class="fa fa-arrow-up fa-lg"></i>
                                             </button>
                                         </form>
@@ -85,16 +86,16 @@
                                         <form action="{{route('admin.migrations.destroy', $id) }}" method="POST">
                                             @method('DELETE') 
                                             @csrf
-                                            <button type="submit" class="btn btn-danger {{$id == 0 ? 'disabled' : ''}}" >
+                                            <button type="submit" class="btn btn-danger {{$data == null ? 'disabled' : ''}}" >
                                                 <i class="fa fa-arrow-down fa-lg"></i>
                                             </button>
                                         </form>
                                     </li>
-                                    @if($id != 0 && $datas[$index]->hasSeeder())
+                                    @if($data != null && $data->hasSeeder())
                                     <li class="list-inline-item">|</li>
                                     <li class="list-inline-item">
                                         <form action="{{route('admin.migrations.edit', $id)}}" method="GET">
-                                            <button type="submit" class="btn btn-warning {{$id == 0 ? 'disabled' : ''}}" >
+                                            <button type="submit" class="btn btn-warning {{$data == null ? 'disabled' : ''}}" >
                                                 <i class="fa-solid fa-seedling fa-lg"></i>
                                             </button>    
                                         </form>
@@ -104,7 +105,7 @@
                                 </ul>
                             </td>
                         </tr>
-                    @endfor
+                    @endforeach
                     </tbody>
                 </table>
             </div>
