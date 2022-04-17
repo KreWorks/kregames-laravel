@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('linktypes', LinktypeController::class);
     Route::resource('links', LinkController::class);
     Route::resource('migrations', MigrationController::class);
+    Route::post('migration', [MigrationController::class, 'userrebuild'])->name('migrations.userrebuild');
 });
 
 /*

@@ -30,6 +30,15 @@ class Migration extends Model
         return "Database\\Seeders\\".$className;
     }
 
+    public function getTableNameAttribute()
+    {
+        $tableName = self::GetTableName($this->migration);
+        $tableName = preg_replace('/([A-Z])/', '_$1', $tableName);
+        $tableName = substr(strtolower($tableName), 1);
+
+        return $tableName; 
+    }
+
     public static function GenerateHelperClassName($migration)
     {
         $className = self::GetTableName($migration);
@@ -51,6 +60,5 @@ class Migration extends Model
         $className = str_replace('_', '', $className);
 
         return $className;
-    }
-    
+    }    
 }

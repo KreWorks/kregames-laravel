@@ -21,6 +21,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Migration</th>
+                        <th scope="col">Table</th>
                         <th scope="col">HelperClassName</th>
 
                         <th scope="col">Batch</th>
@@ -36,6 +37,7 @@
                         <tr class="table-success">
                             <td class="align-middle">{{$datas[$index]->id}}</td>
                             <td class="align-middle">{{$datas[$index]->migration}}</td>
+                            <td class="align-middle">{{$datas[$index]->tableName}}</td>
                             <td class="align-middle">{{$datas[$index]->helperClassName}}</td>
                             <td class="align-middle">{{$datas[$index]->batch}}</td>
                         @else
@@ -50,6 +52,26 @@
                                 <?php 
                                 $id = count($datas) > $index ? $datas[$index]->id : 0;
                                 ?>
+                                @if($datas[$index]->tableName == 'users')
+                                    <li class="list-inline-item ">
+                                        <form action="{{route('admin.migrations.userrebuild') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-info" >
+                                                <i class="fa fa-recycle fa-lg"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    @if($id != 0 && $datas[$index]->hasSeeder())
+                                    <li class="list-inline-item ms-5">|</li>
+                                    <li class="list-inline-item">
+                                        <form action="{{route('admin.migrations.edit', $id)}}" method="GET">
+                                            <button type="submit" class="btn btn-warning {{$id == 0 ? 'disabled' : ''}}" >
+                                                <i class="fa-solid fa-seedling fa-lg"></i>
+                                            </button>    
+                                        </form>
+                                    </li>
+                                    @endif
+                                @else
                                     <li class="list-inline-item">
                                         <form action="{{route('admin.migrations.store') }}" method="POST">
                                             @csrf
@@ -68,7 +90,7 @@
                                             </button>
                                         </form>
                                     </li>
-                                @if($id != 0 && $datas[$index]->hasSeeder())
+                                    @if($id != 0 && $datas[$index]->hasSeeder())
                                     <li class="list-inline-item">|</li>
                                     <li class="list-inline-item">
                                         <form action="{{route('admin.migrations.edit', $id)}}" method="GET">
@@ -77,6 +99,7 @@
                                             </button>    
                                         </form>
                                     </li>
+                                    @endif
                                 @endif
                                 </ul>
                             </td>

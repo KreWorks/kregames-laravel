@@ -34,7 +34,7 @@ class MigrationController extends ResourceController
     }
 
     /**
-     * Store migration and run that all or just one.
+     * It runs the migration up 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -64,7 +64,7 @@ class MigrationController extends ResourceController
     }
 
     /**
-     * Handles the seeding for dtabases
+     * It runs all the migrations needed to run
      *
      * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
@@ -81,7 +81,7 @@ class MigrationController extends ResourceController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * It runs the seeder of a table (if exists)
      *
      * @param  int  $id
      * @param Request $request
@@ -101,7 +101,7 @@ class MigrationController extends ResourceController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * It removes the migration
      *
      * @param  int  $id
      * @param  Request  $request
@@ -119,6 +119,12 @@ class MigrationController extends ResourceController
         $migration->delete();
         
         return redirect(route("admin.".$this->_route.".index"));
+    }
+
+    public function userrebuild()
+    {
+        
+        die("itt user action van");
     }
 
     protected function getMaxBatch()
