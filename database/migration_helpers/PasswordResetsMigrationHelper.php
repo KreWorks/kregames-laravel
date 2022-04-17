@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class PasswordResetsMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create("password_resets", function (Blueprint $table) {
             $table->string('email')->index();

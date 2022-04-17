@@ -12,7 +12,7 @@ class CreatePersonalAccessTokensTable extends Migration
      */
     public function up()
     {
-        PersonalAccessTokensMigrationHelper::createSchema();
+        PersonalAccessTokensMigrationHelper::runMigration();
     }
 
     /**

@@ -12,7 +12,7 @@ class CreateLinksTable extends Migration
      */
     public function up()
     {
-        LinksMigrationHelper::createSchema();
+        LinksMigrationHelper::runMigration();
     }
 
     /**

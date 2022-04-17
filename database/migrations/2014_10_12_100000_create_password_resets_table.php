@@ -12,7 +12,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        PasswordResetsMigrationHelper::createSchema();
+        PasswordResetsMigrationHelper::runMigration();
     }
 
     /**

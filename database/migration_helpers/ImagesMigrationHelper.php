@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class ImagesMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();

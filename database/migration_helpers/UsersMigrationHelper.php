@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class UsersMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create("users", function (Blueprint $table) {
             $table->id();

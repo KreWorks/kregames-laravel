@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class LinktypesMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create("linktypes", function (Blueprint $table){
             $table->id();

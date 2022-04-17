@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class GamesMigrationHelper 
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();

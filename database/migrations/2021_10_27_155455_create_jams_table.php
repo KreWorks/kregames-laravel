@@ -12,7 +12,7 @@ class CreateJamsTable extends Migration
      */
     public function up()
     {
-        JamsMigrationHelper::createSchema();
+        JamsMigrationHelper::runMigration();
     }
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class JamsMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create('jams', function (Blueprint $table) {
             $table->id();

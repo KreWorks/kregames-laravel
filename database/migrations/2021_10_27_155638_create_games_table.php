@@ -12,7 +12,7 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        GamesMigrationHelper::createSchema();
+        GamesMigrationHelper::runMigration();
     }
 
     /**

@@ -12,7 +12,7 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        ImagesMigrationHelper::createSchema();
+        ImagesMigrationHelper::runMigration();
     }
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class PersonalAccessTokensMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();

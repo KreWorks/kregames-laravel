@@ -12,7 +12,7 @@ class CreateFailedJobsTable extends Migration
      */
     public function up()
     {
-        FailedJobsMigrationHelper::createSchema();
+        FailedJobsMigrationHelper::runMigration();
     }
 
     /**

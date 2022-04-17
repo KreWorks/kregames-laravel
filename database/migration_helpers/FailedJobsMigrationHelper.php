@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 class FailedJobsMigrationHelper
 {
-    public static function createSchema()
+    public static function runMigration()
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();

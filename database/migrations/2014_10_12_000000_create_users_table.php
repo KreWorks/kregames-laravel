@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        UsersMigrationHelper::createSchema();
+        UsersMigrationHelper::runMigration();
     }
 
     /**
