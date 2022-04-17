@@ -31,6 +31,11 @@ const MENUS = [
         'name' => 'Felhasználók',
         'route' => 'admin.users.index',
         'icon' => 'icon-user'
+    ],
+    [
+        'name' => 'Migartions',
+        'route' => 'admin.migrations.index',
+        'icon' => 'icon-database'
     ]
 ];
 
