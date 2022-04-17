@@ -48,14 +48,13 @@ class MigrationController extends ResourceController
             $batch = $this->getMaxBatch();
             if (count($migrations) < count($files)) {
                 for ($i = count($migrations); $i < count($files); $i++) {
-                    $fileName = substr($files[$i], 0, -4);
+                    $fileName = $files[$i];
                     $this->runMigrationByFileName($fileName, $batch+1);
                 }
             }
         }
         else if ($request->input("migration_file")) {
             $fileName = $request->input("migration_file");
-            $fileName = substr($fileName, 0, -4);
             
             $this->runMigrationByFileName($fileName);
         }
@@ -73,7 +72,6 @@ class MigrationController extends ResourceController
     public function update($id, Request $request)
     {
         $fileName = $request->input("migration_file");
-        $fileName = substr($fileName, 0, -4);
         
         $this->runMigrationByFileName($fileName);
         
@@ -89,13 +87,7 @@ class MigrationController extends ResourceController
      */
     public function edit($id, Request $request)
     {
-        $entity = $this->getEntity($id);
-        if ($entity->hasSeeder())
-        {
-            $className = $entity->getSeederClass();
-            $seeder = new $className();
-            $seeder->run();
-        }
+        $this->seedMigrationTableById($id);
         
         return  redirect(route('admin.migrations.index'));
     }
@@ -109,22 +101,44 @@ class MigrationController extends ResourceController
      */
     public function destroy($id, Request $request)
     {
-        $migration = Migration::find($id);
-        
-        $className = $migration->helperClassName;
-        $className = "Database\\MigrationHelpers\\".$className;
-        
-        $className::dropIfExists();
-        
-        $migration->delete();
+        $this->dropMigrationById($id);
         
         return redirect(route("admin.".$this->_route.".index"));
     }
 
+    /** 
+     * It run the user migration script but with the seeder, 
+     * because admin could not be used without any use
+     */
     public function userrebuild()
     {
+        $files = $this->getMigrationFiles();
+        $userMigrationFiles = [];
+        foreach($files as $file) {
+            if(preg_match('/users/', $file)) {
+                $type = Migration::GetType($file);
+                $userMigrationFiles[$type][] = $file;
+                $migration = Migration::where('migration', '=', $file)->first();
+                if ($migration)
+                {
+                    $this->dropMigrationById($migration->id);
+                }
+            }
+        }
+
+        $this->runMigrationByFileName($userMigrationFiles['create'][0]);
         
-        die("itt user action van");
+        if (array_key_exists('update', $userMigrationFiles)) {
+            foreach($userMigrationFiles['update'] as $file) {
+                $this->runMigrationByFileName($file);
+            }
+        }
+
+        $createMigration = Migration::where('migration', '=', $userMigrationFiles['create'][0])->first();
+
+        $this->seedMigrationTableById($createMigration->id);
+        
+        return redirect(route("admin.".$this->_route.".index"));
     }
 
     protected function getMaxBatch()
@@ -136,7 +150,7 @@ class MigrationController extends ResourceController
     {
         $migrationClass = Migration::GenerateHelperClassName($fileName);
 
-        $migrationClass = "Database\\MigrationHelpers\\".$migrationClass;
+        $migrationClass =   $migrationClass;
         $migrationClass::createSchema();
 
         $batch = $batch == null ? $this->getMaxBatch() + 1 : $batch;
@@ -146,6 +160,28 @@ class MigrationController extends ResourceController
             'batch' => $batch
         ]);
         
+    }
+
+    protected function dropMigrationById($id)
+    {
+        $migration = Migration::find($id);
+        
+        $className = $migration->helperClassName;
+        
+        $className::dropIfExists();
+        
+        $migration->delete();
+    }
+
+    protected function seedMigrationTableById($id)
+    {
+        $entity = $this->getEntity($id);
+        if ($entity->hasSeeder())
+        {
+            $className = $entity->getSeederClass();
+            $seeder = new $className();
+            $seeder->run();
+        }
     }
 
     /**
@@ -184,9 +220,9 @@ class MigrationController extends ResourceController
             if ($file == '.' || $file == '..'){
                 continue; 
             }
-            $files[] = $file;
+            //Removes extension
+            $files[] = substr($file, 0, -4);
         }
-        //$files = array_diff(scandir($migrationFolder), array('.', '..')); 
 
         return $files;
     }
