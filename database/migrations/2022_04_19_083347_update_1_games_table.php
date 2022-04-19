@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Database\MigrationHelpers\GamesMigrationHelper;
 
-class UpdateGamesTable extends Migration
+class Update1GamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +12,7 @@ class UpdateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::table('games', function($table) {
-            $table->boolean('display');
-        });
+        GamesMigrationHelper::update(1);
     }
 
     /**
@@ -25,8 +22,6 @@ class UpdateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::table('games', function($table) {
-            $table->dropColumn('display');
-        });
+        GamesMigrationHelper::downGrade(1);
     }
 }

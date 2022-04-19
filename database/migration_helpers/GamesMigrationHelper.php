@@ -28,21 +28,24 @@ class GamesMigrationHelper
         });
     }
 
+    /**
+     * Handles the update of the table with the display field
+     */
     public static function update($index)
     {
-        switch($index)
-        {
-            case 1: 
-                Schema::table('games', function($table) {
-                    $table->boolean('display');
-                });
-                break;
+        if ($index == 1) {
+            Schema::table('games', function($table) {
+                $table->boolean('display');
+            });
         }
     }
-
     public static function downGrade($index)
     {
-        
+        if ($index == 1) {
+            Schema::table('games', function($table) {
+                $table->dropColumn('display');
+            });
+        }
     }
 
 

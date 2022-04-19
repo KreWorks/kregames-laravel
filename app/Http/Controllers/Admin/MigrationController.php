@@ -169,8 +169,16 @@ class MigrationController extends ResourceController
 
         $migrationClass =   $migrationClass;
         $type = Migration::GetType($fileName);
-        $action = $type == 'create' ? 'runMigration' : 'update';
-        $migrationClass::runMigration();
+
+        if ($type == 'create') 
+        {
+            $migrationClass::runMigration();
+        } 
+        else 
+        {
+            $index = Migration::GetUpdateNumber($fileName);
+            $migrationClass::update($index);
+        }
 
         $batch = $batch == null ? $this->getMaxBatch() + 1 : $batch;
         
@@ -185,9 +193,20 @@ class MigrationController extends ResourceController
     {
         $migration = Migration::find($id);
         
-        $className = $migration->helperClassName;
-        
-        $className::dropIfExists();
+        $migrationClass = $migration->helperClassName;
+        $fileName = $migration->migration;
+
+        $type = Migration::GetType($fileName);
+
+        if ($type == 'create') 
+        {
+            $migrationClass::dropIfExists();
+        } 
+        else 
+        {
+            $index = Migration::GetUpdateNumber($fileName);
+            $migrationClass::downGrade($index);
+        }
         
         $migration->delete();
     }

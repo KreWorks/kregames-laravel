@@ -59,11 +59,10 @@ class Migration extends Model
             return 'dropIfExists';
         }
         else if ($type == 'update') {
-            $number = Migration::GetUpdateNumber($fileName);
             if ($isUp) {
-                return 'update'.$number;
+                return 'update';
             } else {
-                return 'downGrade'.$number;
+                return 'downGrade';
             }
         }
 
@@ -75,7 +74,9 @@ class Migration extends Model
         $helper = self::GenerateHelperClassName($fileName);
         $helper = str_replace("Database\\MigrationHelpers\\", '', $helper);
 
-        return $helper."::".self::GetActionName($fileName);
+        $index = self::GetUpdateNumber($fileName);
+
+        return $helper."::".self::GetActionName($fileName)."(".($index == 0 ? '' : $index).")";
     }
 
     /**

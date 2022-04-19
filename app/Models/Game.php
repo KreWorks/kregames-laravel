@@ -20,7 +20,7 @@ class Game extends Model
         'publish_date' => 'kiadási dátum'
     ];
 
-    protected $fillable = ['name', 'slug','publish_date', 'user_id'];
+    protected $fillable = ['name', 'slug','publish_date', 'user_id','display'];
 
     /**
      * Get the jam of the game
