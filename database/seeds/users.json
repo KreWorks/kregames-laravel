@@ -1,0 +1,55 @@
+[
+    {
+        "id": 1,
+        "username": "kre",
+        "name": "Réka",
+        "email": "kre@kre.hu",
+        "password": "alma123",
+        "avatar": {
+            "type": "icon",
+            "path": "noimage",
+            "title": "Kre avatar",
+            "alt_title": "Kre avatar"
+        },
+        "links": [
+            {
+                "linktype_id": 1,
+                "link": "http://kreworks.hu"
+            },
+            {
+                "linktype_id": 2,
+                "link": "http://youtube.com/krecode"
+            },
+            {
+                "linktype_id": 3,
+                "link": "https://github.com/kreworks"
+            },
+            {
+                "linktype_id": 4,
+                "link": "https://twitter.com/KreVagyok"
+            },
+            {
+                "linktype_id": 5,
+                "link": "https://itch.com/KreVagyok"
+            },
+            {
+                "linktype_id": 8,
+                "link": "https://linkedin.com/KreVagyok"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "username": "apa",
+        "name": "Béla",
+        "email": "bela@kre.hu",
+        "password": "ApaV4gy0k",
+        "avatar": {
+            "type": "icon",
+            "path": "noimage",
+            "title": "Bela avatar",
+            "alt_title": "Bela avatar"
+        },
+        "links": []
+    }
+]

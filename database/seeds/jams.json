@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Brackeys Game Jam #2",
+        "slug": "brackeys-2",
+        "entries": "317",
+        "theme": "Love is Blind",
+        "start_date": "2019-02-16 09:00:00",
+        "end_date": "2019-02-23 09:00:00",
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://itch.io/jam/brackeys-2"
+            }
+        ]
+    },
+    {
+        "name": "Pizza Jam",
+        "slug": "pizzajam2019",
+        "entries": "53",
+        "theme": "I am the strongest!",
+        "start_date": "2019-03-22 19:00:00",
+        "end_date": "2019-03-24 19:00:00",
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://itch.io/jam/pizzajam2019"
+            }
+        ]
+    },
+    {
+        "name": "Ludum Dare 44",
+        "slug": "ludum-dare-44",
+        "entries": "2538",
+        "theme": "Your life is currency",
+        "start_date": "2019-04-27 03:00:00",
+        "end_date": "2019-04-30 03:00:00",
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://ldjam.com/events/ludum-dare/44/"
+            }
+        ]
+    },
+    {
+        "name": "Brackeys Game Jam 2020.1",
+        "slug": "brackeys-3",
+        "entries": "698",
+        "theme": "Holes",
+        "start_date": "2020-02-16 09:00:00",
+        "end_date": "2020-02-23 09:00:00",
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://itch.io/jam/brackeys-3"
+            }
+        ]
+    }
+]

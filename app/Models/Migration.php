@@ -32,10 +32,8 @@ class Migration extends Model
 
     public function getTableNameAttribute()
     {
-        $tableName = self::GetTableName($this->migration, true);
-        $tableName = preg_replace('/([A-Z])/', '_$1', $tableName);
-        $tableName = substr(strtolower($tableName), 1);
-
+        $tableName = self::GetTableName($this->migration);
+    
         return $tableName; 
     }
 
@@ -51,25 +49,61 @@ class Migration extends Model
         return "Database\\MigrationHelpers\\".$className;
     }
 
+    public static function GetActionName($fileName, $isUp = true)
+    {
+        $type = Migration::GetType($fileName);
+        if ($type == 'create' && $isUp) {
+            return 'runMigration';
+        } 
+        else if ($type == 'create' && !$isUp) {
+            return 'dropIfExists';
+        }
+        else if ($type == 'update') {
+            $number = Migration::GetUpdateNumber($fileName);
+            if ($isUp) {
+                return 'update'.$number;
+            } else {
+                return 'downGrade'.$number;
+            }
+        }
+
+        return 'error';
+    }
+
+    public static function DisplayHelperAndAction($fileName) 
+    {
+        $helper = self::GenerateHelperClassName($fileName);
+        $helper = str_replace("Database\\MigrationHelpers\\", '', $helper);
+
+        return $helper."::".self::GetActionName($fileName);
+    }
+
     /**
-     * migration could be a filename as well
+     * Return the table name of the migration
+     * defatult is with underscore 
+     * isPascalCase return no underscore, but pascalCase answer
      */
     public static function GetTableName($migration, $isPascalCase = false)
     {
         //Remove parts 
-        $className = self::RemoveTimestampAndExtension($migration);
-        
+        $className = self::RemoveTimestamp($migration);
         //ReplaceWords
-        $replaceWords = ['create', 'table','update'];
+        $replaceWords = ['/Create/', '/Table/','/Update/', '/[0-9]/'];
         //Make it PascalCase 
-        if($isPascalCase) {
-            $className = ucwords($className,'_'); 
-            $replaceWords = ['Create', 'Table','Update'];
-        } 
+        $className = ucwords($className,'_'); 
         //Replace migration key words
-        $className = str_replace($replaceWords, '', $className); //Replace not needed parts
+        $className = preg_replace($replaceWords, '', $className); 
         //Replace underscrore
         $className = str_replace('_', '', $className);
+
+        if ($isPascalCase) {
+            return $className;
+        }
+
+        //Replace uppercase letter with _
+        $className = preg_replace('/([A-Z])/', '_$1', $className);
+        //lower string and cut start _
+        $className = substr(strtolower($className), 1);
 
         return $className;
     }
@@ -77,18 +111,35 @@ class Migration extends Model
     public static function GetType($migration)
     {
         //Remove parts 
-        $type = self::RemoveTimestampAndExtension($migration);
+        $type = self::RemoveTimestamp($migration);
         //Get the table name 
         $tableName = self::GetTableName($migration); 
+
         //Replace needed words
-        $type = str_replace(['table', $tableName], '', $type); 
+        $type = preg_replace(['/table/', '/[0-9]/', '/'.$tableName.'/'], '', $type); 
         //Replace underscrore
         $type = str_replace('_', '', $type);
 
         return $type;
     }
 
-    public static function RemoveTimestampAndExtension($migration)
+    public static function GetUpdateNumber($migration)
+    {
+        $type = self::GetType($migration);
+        if ($type == 'update')
+        {
+            $number = self::RemoveTimestamp($migration);
+            $tableName = self::GetTableName($migration); 
+            $number = str_replace(['create', 'update', 'table', $tableName], '', $number);
+            $number = str_replace('_','', $number);
+
+            return $number;
+        }
+
+        return 0;
+    }
+
+    public static function RemoveTimestamp($migration)
     {
         //Remove timestamp params at start 
         $returnString = substr($migration, 18);

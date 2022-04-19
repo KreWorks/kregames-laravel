@@ -28,5 +28,22 @@ class GamesMigrationHelper
         });
     }
 
-    
+    public static function update($index)
+    {
+        switch($index)
+        {
+            case 1: 
+                Schema::table('games', function($table) {
+                    $table->boolean('display');
+                });
+                break;
+        }
+    }
+
+    public static function downGrade($index)
+    {
+        
+    }
+
+
 }

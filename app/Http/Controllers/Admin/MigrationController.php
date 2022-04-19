@@ -168,6 +168,8 @@ class MigrationController extends ResourceController
         $migrationClass = Migration::GenerateHelperClassName($fileName);
 
         $migrationClass =   $migrationClass;
+        $type = Migration::GetType($fileName);
+        $action = $type == 'create' ? 'runMigration' : 'update';
         $migrationClass::runMigration();
 
         $batch = $batch == null ? $this->getMaxBatch() + 1 : $batch;
