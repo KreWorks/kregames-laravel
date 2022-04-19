@@ -26,5 +26,7 @@ class GamesMigrationHelper
             $table->dropForeign('games_jam_id_foreign');
             $table->dropIndex('idx_games_slug');
         });
-    } 
+    }
+
+    
 }
