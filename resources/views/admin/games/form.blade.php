@@ -29,6 +29,20 @@
                     @endforeach
                     <select>
             </div>
+            <div class="form-group col-lg-12">
+                <label for="publish_date" class="col-form-label">Láthatóság</label>  
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="display" name="display" value="1" {{ isset($entity) && $entity->display ? 'checked' : '' }} onchange="onChange(this)">
+                    <label class="form-check-label" for="display">
+                        <div class="btn btn-success {{ isset($entity) && $entity->display ? '' : 'd-none' }}" id="display_true">
+                            <i class="fa fa-eye fa-lg"></i>
+                        </div>
+                        <div class="btn btn-danger {{ isset($entity) && $entity->display ? 'd-none' : '' }}" id="display_false">
+                            <i class="fa fa-eye-slash fa-lg"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group col-lg-12">
@@ -51,3 +65,20 @@
         <button type="submit" class="btn btn-primary" >Mentés</button>
     </div>
 </form>
+<script >
+function onChange(field)
+{
+    var displayTrueIcon = document.getElementById("display_true");
+    var displayFalseIcon = document.getElementById("display_false");
+
+    if (field.checked) {
+        displayFalseIcon.classList.add('d-none');
+        displayTrueIcon.classList.remove('d-none');
+    }
+    else {
+        displayFalseIcon.classList.remove('d-none');
+        displayTrueIcon.classList.add('d-none');
+    }
+}
+
+</script>

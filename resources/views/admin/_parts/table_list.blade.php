@@ -16,6 +16,16 @@
                         <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
                     @elseif ($key == 'fontawesome')
                         <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: #{{$data->fontawesome_color}}">
+                    @elseif ($key == 'display') 
+                        @if($data->display)
+                            <div class="btn btn-success disabled" >
+                                <i class="fa fa-eye fa-lg"></i>
+                            </div>
+                        @else
+                            <div class="btn btn-danger disabled">
+                                <i class="fa fa-eye-slash fa-lg"></i>
+                            </div>
+                        @endif
                     @else
                         {{ $data->__get($key) }}
                     @endif

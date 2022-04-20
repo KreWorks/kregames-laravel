@@ -17,7 +17,8 @@ class Game extends Model
         'id' => 'id',
         'name' => 'név',
         'jamName' => "jam",
-        'publish_date' => 'kiadási dátum'
+        'publish_date' => 'kiadási dátum', 
+        'display' => 'látható'
     ];
 
     protected $fillable = ['name', 'slug','publish_date', 'user_id','display'];
