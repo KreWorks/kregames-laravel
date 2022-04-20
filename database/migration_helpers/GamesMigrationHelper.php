@@ -35,7 +35,7 @@ class GamesMigrationHelper
     {
         if ($index == 1) {
             Schema::table('games', function($table) {
-                $table->boolean('display');
+                $table->boolean('display')->default(true);
             });
         }
     }
