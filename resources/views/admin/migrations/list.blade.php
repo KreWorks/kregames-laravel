@@ -38,14 +38,14 @@
                             <td class="align-middle">{{ $data->id }}</td>
                             <td class="align-middle">{{ $data->migration }}</td>
                             <td class="align-middle">{{ $data->tableName }}</td>
-                            <td class="align-middle">{{ App\Models\Migration::DisplayHelperAndAction($fileName) }}</td>
+                            <td class="align-middle">{{ $data->DisplayHelperAndAction($fileName) }}</td>
                             <td class="align-middle">{{ $data->batch }}</td>
                         @else
                         <tr class="table-danger">
                             <td class="align-middle">##</td>
                             <td class="align-middle">{{ $fileName }}</td>
-                            <td class="align-middle">{{ App\Models\Migration::GetTableName($fileName) }}</td>
-                            <td class="align-middle">{{ App\Models\Migration::DisplayHelperAndAction($fileName) }}</td>
+                            <td class="align-middle">{{ $helper->GetTableName($fileName) }}</td>
+                            <td class="align-middle">{{ $helper->DisplayHelperAndAction($fileName) }}</td>
                             <td class="align-middle"></td>
                         @endif
                             <td class="align-middle">

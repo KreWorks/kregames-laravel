@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Traits\MigrationTrait;
 use App\Models\Migration;
 
 class MigrationController extends ResourceController
 {
+    use MigrationTrait;
+
     public function __construct()
     {
         parent::__construct();
@@ -44,7 +47,8 @@ class MigrationController extends ResourceController
             'action' => 'Lista',
             'datas' => $datas,
             'extraDatas' => $this->getExtraDatasForCreate(),
-            'route' => $this->_route
+            'route' => $this->_route, 
+            'helper' => $this
         ];
 
         return view('admin.'.$this->_route.'.list', $data);
@@ -133,7 +137,7 @@ class MigrationController extends ResourceController
         $userMigrationFiles = [];
         foreach($files as $file) {
             if(preg_match('/users/', $file)) {
-                $type = Migration::GetType($file);
+                $type = $this->GetType($file);
                 $userMigrationFiles[$type][] = $file;
                 $migration = Migration::where('migration', '=', $file)->first();
                 if ($migration)
@@ -165,10 +169,10 @@ class MigrationController extends ResourceController
 
     protected function runMigrationByFileName($fileName, $batch = null)
     {
-        $migrationClass = Migration::GenerateHelperClassName($fileName);
+        $migrationClass = $this->GenerateHelperClassName($fileName);
 
         $migrationClass =   $migrationClass;
-        $type = Migration::GetType($fileName);
+        $type = $this->GetType($fileName);
 
         if ($type == 'create') 
         {
@@ -176,7 +180,7 @@ class MigrationController extends ResourceController
         } 
         else 
         {
-            $index = Migration::GetUpdateNumber($fileName);
+            $index = $this->GetUpdateNumber($fileName);
             $migrationClass::update($index);
         }
 
@@ -196,7 +200,7 @@ class MigrationController extends ResourceController
         $migrationClass = $migration->helperClassName;
         $fileName = $migration->migration;
 
-        $type = Migration::GetType($fileName);
+        $type = $this->GetType($fileName);
 
         if ($type == 'create') 
         {
@@ -204,7 +208,7 @@ class MigrationController extends ResourceController
         } 
         else 
         {
-            $index = Migration::GetUpdateNumber($fileName);
+            $index = $this->GetUpdateNumber($fileName);
             $migrationClass::downGrade($index);
         }
         
