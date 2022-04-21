@@ -83,7 +83,7 @@ class GameController extends ResourceWithIconController
             'slug' => $request->input('slug'),
             'publish_date' => $request->input('publish_date'),
             'user_id' => auth()->user()->id, 
-            'display' => $request->input('display') == null ? false : true
+            'visible' => $request->input('visible') == null ? false : true
         ];
     }
 

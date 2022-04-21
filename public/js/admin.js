@@ -58,3 +58,18 @@ function deleteConfirm(route, deleteString, redirectRoute)
     document.getElementById('deleteString').innerText = deleteString;
     document.getElementById('redirect_route_on_delete').value = redirectRoute;
 }
+
+function onChange(field)
+{
+    var visibleTrueIcon = document.getElementById("visible_true");
+    var visibleFalseIcon = document.getElementById("visible_false");
+
+    if (field.checked) {
+        visibleFalseIcon.classList.add('d-none');
+        visibleTrueIcon.classList.remove('d-none');
+    }
+    else {
+        visibleFalseIcon.classList.remove('d-none');
+        visibleTrueIcon.classList.add('d-none');
+    }
+}

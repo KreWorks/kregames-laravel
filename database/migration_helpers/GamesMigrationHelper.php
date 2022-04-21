@@ -35,7 +35,7 @@ class GamesMigrationHelper
     {
         if ($index == 1) {
             Schema::table('games', function($table) {
-                $table->boolean('display')->default(true);
+                $table->boolean('visible')->default(true);
             });
         }
     }
@@ -43,7 +43,7 @@ class GamesMigrationHelper
     {
         if ($index == 1) {
             Schema::table('games', function($table) {
-                $table->dropColumn('display');
+                $table->dropColumn('visible');
             });
         }
     }
