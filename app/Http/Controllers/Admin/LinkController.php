@@ -80,7 +80,8 @@ class LinkController extends ResourceController
             'link' => $request->input('link'),
             'linkable_type' => $request->input('linkable_type'),
             'linkable_id' => $request->input('linkable_id'),
-            'linktype_id' => $request->input('linktype_id')
+            'linktype_id' => $request->input('linktype_id'),
+            'visible' => $request->input('visible')
         ];
     }
 

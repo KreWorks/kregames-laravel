@@ -12,10 +12,6 @@
                 <input class="form-control" type="text" value="{{ isset($entity) ? $entity->name : ''}}" id="name" name="name" >
             </div>
             <div class="form-group col-lg-12">
-                <label for="hover_text" class="col-form-label">Hover szöveg</label>
-                <input class="form-control" type="text" value="{{ isset($entity) ? $entity->hover_text : ''}}" id="hover_text" name="hover_text">
-            </div>
-            <div class="form-group col-lg-12">
                 <label for="fontawesome" class="col-form-label">Font Awesome</label>
                 <input class="form-control" type="text" value="{{ isset($entity) ? $entity->fontawesome : ''}}" id="fontawesome" name="fontawesome">
             </div>

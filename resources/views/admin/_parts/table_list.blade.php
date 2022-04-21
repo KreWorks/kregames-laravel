@@ -15,9 +15,9 @@
                     @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
                         <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
                     @elseif ($key == 'fontawesome')
-                        <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: #{{$data->fontawesome_color}}">
-                    @elseif ($key == 'display') 
-                        @if($data->display)
+                        <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: {{$data->fontawesome_color}}">
+                    @elseif ($key == 'visible') 
+                        @if($data->visible)
                             <div class="btn btn-success disabled" >
                                 <i class="fa fa-eye fa-lg"></i>
                             </div>

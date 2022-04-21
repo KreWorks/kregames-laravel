@@ -14,11 +14,10 @@ class Linktype extends Model
     public static $tableLabels = [
         'id' => 'id',
         'name' => 'név',
-        'hover_text' => "szöveg",
         'fontawesome' => "ikon",
     ];
 
-    protected $fillable = ['name', 'hover_text', 'fontawesome', 'color'];
+    protected $fillable = ['name', 'fontawesome', 'color'];
 
     public function links()
     {

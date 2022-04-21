@@ -15,7 +15,10 @@ class Link extends Model
         'id' => 'id',
         'link' => 'link',
         'link_owner' => 'Szülő',
+        'display_text' => 'Megjelenő szöveg',
         'fontawesome' => "típus",
+        'visible' => "láthatóság"
+
     ];
 
     public static $morphs = [
@@ -39,7 +42,7 @@ class Link extends Model
         return $linakbles;
     }
 
-    protected $fillable = ['link', 'display_text', 'linktype_id,', 'linkable_type', 'linkable_id'];
+    protected $fillable = ['link', 'display_text', 'linktype_id,', 'linkable_type', 'linkable_id', 'visible'];
 
     /**
      * Get the parent linkable model (user, game, jam).

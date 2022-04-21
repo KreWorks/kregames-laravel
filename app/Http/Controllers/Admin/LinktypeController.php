@@ -59,12 +59,10 @@ class LinktypeController extends ResourceController
     {
         return [
             'name' => $request->input('name'),
-            'hover_text' => $request->input('hover_text'),
             'fontawesome' => $request->input('fontawesome'),
             'color' => $request->input('color')
         ];
     } 
-
 
     protected function getAll()
     {
