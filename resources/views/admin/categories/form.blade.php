@@ -1,8 +1,8 @@
 @if (isset($entity))
-<form method="POST" action="{{ route('admin.rating_categories.update', $entity->id) }}" enctype="multipart/form-data" name="rating_category-form" id="rating_category-form">
+<form method="POST" action="{{ route('admin.categories.update', $entity->id) }}" enctype="multipart/form-data" name="category-form" id="category-form">
     @method('PUT')
 @else 
-<form method="POST" action="{{ route('admin.rating_categories.store')}}" enctype="multipart/form-data" name="rating_category-form" id="rating_category-form">
+<form method="POST" action="{{ route('admin.categories.store')}}" enctype="multipart/form-data" name="category-form" id="category-form">
 @endif
     @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
@@ -23,7 +23,7 @@
     </div>
     @if (isset($entity))
     <div class="modal-footer mt-3">
-        <a href="{{route('admin.rating_categories.index')}}"  class="btn btn-secondary">Vissza</a>
+        <a href="{{route('admin.categories.index')}}"  class="btn btn-secondary">Vissza</a>
     @else
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>

@@ -13,14 +13,24 @@ const MENUS = [
         'icon' => 'icon-award'
     ],
     [
+        'name' => 'Jam értékelési kategóriák',
+        'route' => 'admin.category_jam.index',
+        'icon' => 'icon-award'
+    ],
+    [
         'name' => 'Értékelés kategóriák',
-        'route' => 'admin.rating_categories.index',
+        'route' => 'admin.categories.index',
         'icon' => 'icon-award'
     ],
     [
         'name' => 'Játékok',
         'route' => 'admin.games.index',
         'icon' => 'icon-compass'
+    ],
+    [
+        'name' => 'Értékelések',
+        'route' => 'admin.ratings.index',
+        'icon' => 'icon-award'
     ],
     [
         'name' => 'Link típusok',

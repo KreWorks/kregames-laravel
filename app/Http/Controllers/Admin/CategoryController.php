@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\RatingCategory;
-use App\Models\JamRatingCategory;
+use App\Models\Category;
 use App\Models\Rating;
 use App\Models\Jam;
 
-class RatingCategoryController extends ResourceController
+class CategoryController extends ResourceController
 {
     public function __construct()
     {
         parent::__construct();
         $this->_controller = 'Értékelési kategóriák';
-        $this->_route = 'rating_categories';
+        $this->_route = 'categories';
     }
 
     /**
@@ -25,9 +24,9 @@ class RatingCategoryController extends ResourceController
      */
     public function store(Request $request)
     {
-        $rc = RatingCategory::create($this->getDataFromRequest($request));
+        $rc = Category::create($this->getDataFromRequest($request));
 
-        return redirect(route("admin.rating_categories.index"));
+        return redirect(route("admin.categories.index"));
     }
 
     /**
@@ -41,10 +40,10 @@ class RatingCategoryController extends ResourceController
     {
         try
         {
-            $ratingCategory = RatingCategory::find($id);
+            $ratingCategory = Category::find($id);
             $ratingCategory->update($this->getDataFromRequest($request));
 
-            return redirect(route("admin.rating_categories.index"));
+            return redirect(route("admin.categories.index"));
 
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
@@ -74,20 +73,21 @@ class RatingCategoryController extends ResourceController
 
     protected function getAll()
     {
-        return RatingCategory::all();
+        return Category::all();
     }
 
     protected function getEntity($id)
     {
-        return RatingCategory::find($id);
+        return Category::find($id);
     }
 
     protected function delete($id)
     {
         //Delete all the Ratings belong to this category
-        $ratingIds = Rating::where(['rating_category_id' => $id])->delete();
+        $ratingIds = Rating::where(['category_id' => $id])->delete();
         //Delete all the Jam connections
-        $jamRatingIds = JamRatingCategory::where(['rating_category_id' => $id])->delete();
+        /*$jamRatingIds = Category::belongsToMany(Role::class)
+        ->wherePivot('approved', 1); CategoryJam::where(['category_id' => $id])->delete();*/
         
         RatingCategory::destroy($id);
     }

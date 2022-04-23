@@ -12,8 +12,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LinktypeController;
 use App\Http\Controllers\Admin\LinkController;
 use App\Http\Controllers\Admin\MigrationController;
-use App\Http\Controllers\Admin\RatingCategoryController;
-use App\Http\Controllers\Admin\JamRatingCategoryController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryJamController;
 use App\Http\Controllers\Admin\RatingController;
 
 /*
@@ -49,8 +49,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('links', LinkController::class);
     Route::resource('migrations', MigrationController::class);
     Route::post('migration', [MigrationController::class, 'userrebuild'])->name('migrations.userrebuild');
-    Route::resource('rating_categories', RatingCategoryController::class);
-    Route::resource('jam_rating_categories', JamRatingCategoryController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('category_jam', CategoryJamController::class);
     Route::resource('ratings', RatingController::class);
 });
 

@@ -7,15 +7,15 @@
                 <div class="row">
                     <span class="col-md-8 my-auto">Értékelési kategóriák lista</span>
                     <button type="button" class="btn btn-warning col-md-3 float-right" id="addGameButton"
-                            onclick="openModal('ratingCategoryForm')">
+                            onclick="openModal('categoryForm')">
                         Új értékelési kategória hozzáadása
                     </button>
                 </div>
             </div>
             <div class="card-body">
             <?php 
-            $tableLabels = App\Models\RatingCategory::$tableLabels;
-            $redirectUrl = route('admin.rating_categories.index');
+            $tableLabels = App\Models\Category::$tableLabels;
+            $redirectUrl = route('admin.categories.index');
             ?>
                 @include('admin._parts.table_list')
             </div>
@@ -24,7 +24,7 @@
     <!-- Add Modal-->
     <?php
     // Datas for adding game
-    $name = 'ratingCategory'; 
+    $name = 'category'; 
     $displayName = 'Értékelési kategória';
     ?>
     @include('admin._modals.add_modal');

@@ -5,11 +5,11 @@ namespace Database\MigrationHelpers;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RatingCategoriesMigrationHelper
+class CategoriesMigrationHelper
 {
     public static function runMigration()
     {
-        Schema::create("rating_categories", function (Blueprint $table) {
+        Schema::create("categories", function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name')->unique();
@@ -20,6 +20,6 @@ class RatingCategoriesMigrationHelper
 
     public static function dropIfExists()
     {
-        Schema::dropIfExists("rating_categories");
+        Schema::dropIfExists("categories");
     } 
 }

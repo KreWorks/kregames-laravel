@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationHelpers\RatingCategoriesMigrationHelper;
+use Database\MigrationHelpers\CategoriesMigrationHelper;
 
-class CreateRatingCategoriesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRatingCategoriesTable extends Migration
      */
     public function up()
     {
-        RatingCategoriesMigrationHelper::runMigration();
+        CategoriesMigrationHelper::runMigration();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreateRatingCategoriesTable extends Migration
      */
     public function down()
     {
-        RatingCategoriesMigrationHelper::dropIfExists();
+        CategoriesMigrationHelper::dropIfExists();
     }
 }
