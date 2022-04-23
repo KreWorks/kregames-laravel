@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationHelpers\JamRatingCategoriesMigrationHelper;
+use Database\MigrationHelpers\CategoryJamMigrationHelper;
 
 class CreateJamRatingCategoriesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateJamRatingCategoriesTable extends Migration
      */
     public function up()
     {
-        JamRatingCategoriesMigrationHelper::runMigration();
+        CategoryJamMigrationHelper::runMigration();
     }
 
     /**
@@ -22,6 +22,6 @@ class CreateJamRatingCategoriesTable extends Migration
      */
     public function down()
     {
-        JamRatingCategoriesMigrationHelper::dropIfExists();
+        CategoryJamMigrationHelper::dropIfExists();
     }
 }

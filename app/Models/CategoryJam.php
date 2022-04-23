@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
+class CategoryJam extends Pivot
+{
+    public $timestamps = false;
+    
+    public static $tableLabels = [
+        'id' => 'id',
+        'jam_name' => 'jam',
+        'category_name' => 'kategória',
+        'fontawesome' => "FontAwesome"
+    ];
+
+    protected $fillable = [];
+
+    public function jam()
+    {
+        return $this->belongsTo(Jam::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    
+    public function getJamNameAttribute()
+    {
+        return $this->jam->name;
+    }
+
+    public function getCategoryNameAttribute()
+    {
+        return $this->category->name;
+    }
+    public function getFontawesomeAttribute()
+    {
+        return $this->category->fontawesome;
+    }
+}

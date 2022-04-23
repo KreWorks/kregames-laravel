@@ -48,6 +48,14 @@ class Jam extends Model
         return $this->morphOne(Image::class, 'imageable')->where('type', Image::ICON);
     }
 
+   /**
+     * The ratingCategories that belong to the jam.
+     */
+    public function ratingCategories()
+    {
+        return $this->belongsToMany(RatingCategory::class);
+    } 
+
 
     /**
      * Return the path to the icon of the jam
