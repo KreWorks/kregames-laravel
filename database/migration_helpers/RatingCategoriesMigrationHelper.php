@@ -13,6 +13,7 @@ class RatingCategoriesMigrationHelper
             $table->id();
             $table->timestamps();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('fontawesome');
         });
     }

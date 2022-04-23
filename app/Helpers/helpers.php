@@ -13,6 +13,11 @@ const MENUS = [
         'icon' => 'icon-award'
     ],
     [
+        'name' => 'Értékelés kategóriák',
+        'route' => 'admin.rating_categories.index',
+        'icon' => 'icon-award'
+    ],
+    [
         'name' => 'Játékok',
         'route' => 'admin.games.index',
         'icon' => 'icon-compass'
