@@ -14,8 +14,10 @@
                 <td class="align-middle">
                     @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
                         <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
-                    @elseif ($key == 'fontawesome')
+                    @elseif ($key == 'fontawesome' && $data->__get('fontawesome_icon'))
                         <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: {{$data->fontawesome_color}}">
+                    @elseif ($key == 'fontawesome' && !$data->__get('fontawesome_icon'))
+                        <i class="fa fa-2x {{$data->__get('fontawesome')}}" style="color: #666666">
                     @elseif ($key == 'visible') 
                         @if($data->visible)
                             <div class="btn btn-success disabled" >
