@@ -51,11 +51,10 @@ class Jam extends Model
    /**
      * The ratingCategories that belong to the jam.
      */
-    public function ratingCategories()
+    public function categories()
     {
-        return $this->belongsToMany(RatingCategory::class);
+        return $this->belongsToMany(Category::class)->withPivot('id');
     } 
-
 
     /**
      * Return the path to the icon of the jam

@@ -1,8 +1,8 @@
 @if (isset($entity))
-<form method="POST" action="{{ route('admin.category_jam.update', $entity->id) }}" enctype="multipart/form-data" name="rating_category-form" id="rating_category-form">
+<form method="POST" action="{{ route('admin.category_jam.update', $entity->id) }}" enctype="multipart/form-data" name="category_jam-form" id="category_jam-form">
     @method('PUT')
 @else 
-<form method="POST" action="{{ route('admin.category_jam.store')}}" enctype="multipart/form-data" name="rating_category-form" id="rating_category-form">
+<form method="POST" action="{{ route('admin.category_jam.store')}}" enctype="multipart/form-data" name="category_jam-form" id="category_jam-form">
 @endif
     @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
@@ -12,7 +12,7 @@
                 <select class="form-control" id="jam_id" name="jam_id">
                     <option value="0" {{ isset($entity) && $entity->jam_id == '' ? 'selected' : ''}}>Nincs jam</option>
                     @foreach($extraDatas['jams'] as $jam)
-                        <option value="{{$jam->id}}" {{isset($entity) && $entity->jam_id == $jam->id ? 'selected' : ''}}>{{$jam->name}}</option>
+                        <option value="{{$jam->id}}" {{ (isset($entity) && $entity->jam_id == $jam->id) || (isset($jam_id) && $jam_id == $jam->id) ? 'selected' : ''}}>{{$jam->name}}</option>
 
                     @endforeach
                 <select>
@@ -37,4 +37,5 @@
     @endif
         <button type="submit" class="btn btn-primary" >Mentés</button>
     </div>
+    <input type="hidden" id="redirect_route" name="redirect_route" value="{{isset($redirectUrl) ? $redirectUrl : ''}}">
 </form>

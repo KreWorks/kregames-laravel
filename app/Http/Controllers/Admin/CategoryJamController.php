@@ -25,9 +25,39 @@ class CategoryJamController extends ResourceController
      */
     public function store(Request $request)
     {
-        CategoryJam::create($this->getDataFromRequest($request));
+        $cj = CategoryJam::create($this->getDataFromRequest($request));
+        
+        $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.category_jam.index");
+        
+        return redirect($redirectRoute);
+    }
 
-        return redirect(route("admin.category_jam.index"));
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id, Request $request)
+    {
+        $entity = $this->getEntity($id);
+
+        if ($request->input('redirect_route')){
+            $jamId = $this->getJamId($request->input('redirect_route'));
+
+            $entity = CategoryJam::where('jam_id', '=', $jamId)->where('category_id', '=', $id)->first();
+        }
+        
+        $data = [
+            'controller' => 'Jam',
+            'action' => 'Szerkesztés',
+            'entity' => $entity,
+            'extraDatas' => $this->getExtraDatasForUpdate(),
+            'redirectUrl' => $request->input('redirect_route'),
+        ];
+
+        return  view('admin.'.$this->_route.'.edit', $data);
     }
 
      /**
@@ -47,11 +77,39 @@ class CategoryJamController extends ResourceController
                 $categoryJam->update($this->getDataFromRequest($request));
             }
 
-            return redirect(route("admin.category_jam.index"));
+            $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.category_jam.index");
+
+            return redirect($redirectRoute);
 
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
         }
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id, Request $request)
+    {
+        if ($request->input('redirect_route_on_delete')) {
+            $jamId = $this->getJamId($request->input('redirect_route_on_delete'));
+
+            CategoryJam::where('jam_id', '=', $jamId)->where('category_id', '=', $id)->first()->delete();
+        } else {
+            $this->delete($id);
+        }
+        
+        $redirect = route("admin.".$this->_route.".index");
+        if($request->input('redirect_route_on_delete'))
+        {
+            $redirect = $request->input("redirect_route_on_delete");
+        }
+
+        return redirect($redirect);
     }
 
     protected function getDataFromRequest(Request $request)
@@ -90,6 +148,14 @@ class CategoryJamController extends ResourceController
     protected function delete($id)
     {       
         CategoryJam::destroy($id);
+    }
+
+    private function getJamId($redirectRoute) 
+    {
+        $jamId = preg_replace('/.+\/jams\//', "", $redirectRoute);
+        $jamId = preg_replace('/\/edit/',"", $jamId);
+
+        return $jamId;
     }
 
 }

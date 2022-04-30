@@ -16,6 +16,12 @@ class Category extends Model
         'name' => 'név',
         'fontawesome' => "FontAwesome"
     ];
+    
+    public static $pivotLabels = [
+        'pivot_id' => 'id',
+        'jam_name' => 'jam',
+        'name' => 'kategória'
+    ];
 
     protected $fillable = ['name', 'slug','fontawesome'];
 
@@ -24,7 +30,16 @@ class Category extends Model
      */
     public function jams()
     {
-        return $this->belongsToMany(Jam::class);
+        return $this->belongsToMany(Jam::class)->withPivot('id');
     }
-    
+
+    public function GetPivotIdAttribute()
+    {
+        return $this->pivot->id;
+    }
+
+    public function GetJamNameAttribute()
+    {
+        return $this->jams()->first()->name;
+    }
 }

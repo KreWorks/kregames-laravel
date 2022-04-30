@@ -17,7 +17,7 @@ class CategoryJam extends Pivot
         'fontawesome' => "FontAwesome"
     ];
 
-    protected $fillable = [];
+    protected $fillable = ['jam_id', 'category_id'];
 
     public function jam()
     {
@@ -27,6 +27,11 @@ class CategoryJam extends Pivot
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->category->name;
     }
     
     public function getJamNameAttribute()

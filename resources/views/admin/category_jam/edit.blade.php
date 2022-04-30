@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <div class="row">
-                    <span class="col-md-8 my-auto">Értékelési kategória szerkesztése: {{ $entity->name }}</span>
+                    <span class="col-md-8 my-auto">Értékelési kategória szerkesztése: {{ gettype($entity) }}</span>
                 </div>
             </div>
             <div class="card-body">
