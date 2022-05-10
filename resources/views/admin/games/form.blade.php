@@ -27,7 +27,7 @@
                         <option value="{{$jam->id}}" {{isset($entity) && $entity->jam_id == $jam->id ? 'selected' : ''}}>{{$jam->name}}</option>
 
                     @endforeach
-                    <select>
+                <select>
             </div>
             <div class="form-group col-lg-12">
                 <label for="publish_date" class="col-form-label">Láthatóság</label>  

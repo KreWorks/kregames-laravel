@@ -60,6 +60,11 @@ class Game extends Model
         return $this->morphMany('App\Models\Link', 'linkable');
     }
 
+    public function ratings()
+    {
+        return $this->belongsToMany(Category::class)->withPivot('id','place', 'average_point', 'rating_count');
+    }
+
     /**
      * Return the path to the icon of the jam
      */

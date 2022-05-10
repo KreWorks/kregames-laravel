@@ -33,6 +33,11 @@ class Category extends Model
         return $this->belongsToMany(Jam::class)->withPivot('id');
     }
 
+    public function games()
+    {
+        return $this->belongsToMany(Games::class)->withPivot('id','place', 'average_point', 'rating_count');
+    }
+
     public function GetPivotIdAttribute()
     {
         return $this->pivot->id;

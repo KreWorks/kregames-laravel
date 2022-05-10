@@ -13,7 +13,7 @@ class RatingsMigrationHelper
             $table->id();
             $table->foreignId('game_id');
             $table->foreignId('category_id');
-            $table->integer('place');
+            $table->integer('rank');
             $table->float('average_point', 5, 2);
             $table->integer('rating_count');
             

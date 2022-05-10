@@ -56,6 +56,18 @@ class Jam extends Model
         return $this->belongsToMany(Category::class)->withPivot('id');
     } 
 
+    public function hasCategory($categoryId)
+    {
+        foreach($this->categories as $category) 
+        {
+            if ($category->id == $categoryId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Return the path to the icon of the jam
      */
