@@ -1,18 +1,38 @@
 {
     "id": 4,
-    "name": "One True Pairing",
-    "slug": "one-true-pairing",
-    "publish_date": "2019-02-23 08:12:00",
+    "name": "Pothole Panic",
+    "slug": "pothole-panic",
+    "publish_date": "2020-02-22 15:51:00",
     "user_id": 1,
-    "jam_id": 1,
+    "logo": {
+        "path": "pothole-panic/icon.png",
+        "title": "Pothole Panic icon"
+    },
     "links": [
         {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "linktype_id": 6,
+            "link": "https://upallnight.itch.io/potholepanic"
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "linktype_id": 7,
+            "link": "https://itch.io/jam/brackeys-3/rate/571671"
+        },
+        {
+            "linktype_id": 4,
+            "link": "https://github.com/KreWorks/PotholePanic"
         }
-    ]
+    ],
+    "jam": {
+        "id": 4,
+        "name": "Brackeys Game Jam 2020.1",
+        "slug": "brackeys-3",
+        "entries": 700,
+        "theme": "Holes",
+        "start_date": "2020-02-16 09:00:00",
+        "end_date": "2020-02-23 09:00:00",
+        "logo": {
+            "path": "jams/brackeys-3.png",
+            "title": "Brackeys Game Jam icon"
+        }
+    }
 }

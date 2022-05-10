@@ -1,18 +1,33 @@
 {
-    "id": 1,
+    "id": 5,
     "name": "One True Pairing",
     "slug": "one-true-pairing",
     "publish_date": "2019-02-23 08:12:00",
     "user_id": 1,
-    "jam_id": 1,
+    "logo": {
+        "path": "one-true-pairing/icon.png",
+        "title": "One True Pairing icon"
+    },
     "links": [
         {
-            "linktype_id": 5,
+            "linktype_id": 6,
             "link": "https://kregames.itch.io/one-true-pairing"
         },
         {
-            "linktype_id": 5,
+            "linktype_id": 7,
             "link": "https://itch.io/jam/brackeys-2/rate/374589"
+        },
+        {
+            "linktype_id": 4,
+            "link": "https://github.com/KreWorks/onetruepairing"
+        },
+        {
+            "linktype_id": 3,
+            "link": "https://www.youtube.com/watch?v=ZCWUJEVnd08"
+        },
+        {
+            "linktype_id": 3,
+            "link": "https://www.youtube.com/watch?v=yWx8x3boR90"
         }
     ]
 }

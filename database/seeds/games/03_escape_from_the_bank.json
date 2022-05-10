@@ -1,18 +1,34 @@
 {
     "id": 3,
-    "name": "One True Pairing",
-    "slug": "one-true-pairing",
-    "publish_date": "2019-02-23 08:12:00",
+    "name": "Escape from the Bank",
+    "slug": "escape-from-the-bank",
+    "publish_date": "2019-04-29 20:42:00",
     "user_id": 1,
-    "jam_id": 1,
+    "logo": {
+        "path": "escape-from-the-bank/icon.png",
+        "title": "Escape from the Bank icon"
+    },
     "links": [
         {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "linktype_id": 6,
+            "link": "https://kregames.itch.io/escape-from-the-bank"
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "linktype_id": 8,
+            "link": "https://ldjam.com/events/ludum-dare/44/escape-from-the-bank"
         }
-    ]
+    ],
+    "jam": {
+        "id": 3,
+        "name": "Ludum Dare 44",
+        "slug": "ludum-dare-44",
+        "entries": 2538,
+        "theme": "Your life is currency",
+        "start_date": "2019-04-27 03:00:00",
+        "end_date": "2019-04-30 03:00:00",
+        "logo": {
+            "path": "jam/ludum-dare-44.jpg",
+            "title": "Ludum Dare icon"
+        }
+    }
 }

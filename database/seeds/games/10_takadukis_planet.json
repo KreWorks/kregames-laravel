@@ -1,9 +1,13 @@
 {
-    "id": 1,
+    "id": 10,
     "name": "One True Pairing",
     "slug": "one-true-pairing",
     "publish_date": "2019-02-23 08:12:00",
     "user_id": 1,
+    "logo": {
+        "path": "one-true-pairing/icon.png",
+        "title": "One True Pairing icon"
+    },
     "jam_id": 1,
     "links": [
         {

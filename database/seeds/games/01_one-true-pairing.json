@@ -3,39 +3,104 @@
     "name": "One True Pairing",
     "slug": "one-true-pairing",
     "publish_date": "2019-02-23 08:12:00",
-    "display": true,
+    "visible": true,
     "user_id": 1,
+    "logo": {
+        "path": "one-true-pairing/icon.png",
+        "title": "One True Pairing icon"
+    },
+    "links": [
+        {
+            "linktype_id": 6,
+            "link": "https://kregames.itch.io/one-true-pairing"
+        },
+        {
+            "linktype_id": 7,
+            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+        },
+        {
+            "linktype_id": 4,
+            "link": "https://github.com/KreWorks/onetruepairing"
+        },
+        {
+            "linktype_id": 3,
+            "link": "https://www.youtube.com/watch?v=ZCWUJEVnd08"
+        },
+        {
+            "linktype_id": 3,
+            "link": "https://www.youtube.com/watch?v=yWx8x3boR90"
+        }
+    ],
     "jam": {
         "id": 1,
         "name": "Brackeys Game Jam #2",
         "slug": "brackeys-2",
-        "entries": "317",
+        "entries": 318,
         "theme": "Love is Blind",
         "start_date": "2019-02-16 09:00:00",
         "end_date": "2019-02-23 09:00:00",
+        "logo": {
+            "path": "jams/brackeys-2.jpg",
+            "title": "Brackey's Game Jam #2 icon"
+        },
         "links": [
             {
                 "linktype_id": 5,
                 "link": "https://itch.io/jam/brackeys-2"
             }
+        ],
+        "categories": [
+            "Fun",
+            "Graphics",
+            "Overall",
+            "Game Design",
+            "Audio",
+            "Theme",
+            "Innovation"
         ]
     },
-    "images": [
+    "ratings": [
         {
-            "type": "Image::ICON",
-            "path": "one-true-pairing/icon.png",
-            "title": "One True Pairing icon",
-            "alt_title": "One True Pairing icon"
-        }
-    ],
-    "links": [
-        {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "category": "Fun",
+            "place": 50,
+            "average_point": 3.455,
+            "rating_count": 11
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "category": "Graphics",
+            "place": 54,
+            "average_point": 3.818,
+            "rating_count": 11
+        },
+        {
+            "category": "Overall",
+            "place": 94,
+            "average_point": 3.167,
+            "rating_count": 11
+        },
+        {
+            "category": "Game Design",
+            "place": 99,
+            "average_point": 3.182,
+            "rating_count": 11
+        },
+        {
+            "category": "Audio",
+            "place": 115,
+            "average_point": 2.818,
+            "rating_count": 11
+        },
+        {
+            "category": "Theme",
+            "place": 134,
+            "average_point": 3.091,
+            "rating_count": 11
+        },
+        {
+            "category": "Innovation",
+            "place": 169,
+            "average_point": 2.636,
+            "rating_count": 11
         }
     ]
 }

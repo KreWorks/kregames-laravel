@@ -7,54 +7,72 @@
     },
     {
         "id": 2,
-        "name": "YouTube",
+        "name": "YouTube - GamePlay",
         "fontawesome": "fa-brands fa-youtube",
         "color": "ff0000"
     },
     {
         "id": 3,
+        "name": "YouTube - Tutorial",
+        "fontawesome": "fa-brands fa-youtube",
+        "color": "ff0000"
+    },
+    {
+        "id": 4,
         "name": "Github",
         "fontawesome": "fa-brands fa-github",
         "color": "000000"
     },
     {
-        "id": 4,
+        "id": 5,
         "name": "Twitter",
         "fontawesome": "fa-brands fa-twitter",
         "color": "1DA1F2"
     },
     {
-        "id": 5,
-        "name": "itch.io",
+        "id": 6,
+        "name": "itch.io - Page",
         "fontawesome": "fa-brands fa-itch-io",
         "color": "fa5c5c"
     },
     {
-        "id": 6,
+        "id": 7,
+        "name": "itch.io - Results",
+        "fontawesome": "fa-brands fa-itch-io",
+        "color": "fa5c5c"
+    },
+    {
+        "id": 8,
+        "name": "LudumDare - Results",
+        "fontawesome": "fa-brands fa-itch-io",
+        "color": "fa5c5c"
+    },
+    {
+        "id": 9,
         "name": "email",
         "fontawesome": "fa-solid fa-envelope",
         "color": "421C52"
     },
     {
-        "id": 7,
+        "id": 10,
         "name": "Facebook",
         "fontawesome": "fa-brands fa-facebook-f",
         "color": "4267B3"
     },
     {
-        "id": 8,
+        "id": 11,
         "name": "LinkedIn",
         "fontawesome": "fa-brands fa-linkedin-in",
         "color": "0077B5"
     },
     {
-        "id": 9,
+        "id": 12,
         "name": "Steam",
         "fontawesome": "fa-brands fa-steam",
         "color": "171a21"
     },
     {
-        "id": 10,
+        "id": 13,
         "name": "Google Play",
         "fontawesome": "fa-brands fa-google-play",
         "color": "3BCCFF"

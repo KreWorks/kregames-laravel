@@ -1,18 +1,36 @@
 {
     "id": 2,
-    "name": "One True Pairing",
-    "slug": "one-true-pairing",
-    "publish_date": "2019-02-23 08:12:00",
+    "name": "Dark Liquid Company",
+    "slug": "dark-liquid-company",
+    "publish_date": "2019-03-24 14:26:00",
+    "visible": true,
     "user_id": 1,
-    "jam_id": 1,
+    "logo": {
+        "path": "dark-liquid-company/icon.png",
+        "title": "One True Pairing icon"
+    },
     "links": [
         {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "linktype_id": 6,
+            "link": "https://kregames.itch.io/dark-liquid-company"
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "linktype_id": 7,
+            "link": "https://itch.io/jam/pizzajam2019/rate/395501"
         }
-    ]
+    ],
+    "jam": {
+        "id": 2,
+        "name": "Pizza Jam",
+        "slug": "pizza-jam",
+        "entries": 53,
+        "theme": "I am the strongest!",
+        "start_date": "2019-03-22 19:00:00",
+        "end_date": "2019-03-24 19:00:00",
+        "links": [],
+        "logo": {
+            "path": "jams/pizza-jam.jpg",
+            "title": "Pizza Jam icon"
+        }
+    }
 }
