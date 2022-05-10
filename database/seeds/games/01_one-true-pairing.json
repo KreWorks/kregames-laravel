@@ -1,0 +1,41 @@
+{
+    "id": 1,
+    "name": "One True Pairing",
+    "slug": "one-true-pairing",
+    "publish_date": "2019-02-23 08:12:00",
+    "display": true,
+    "user_id": 1,
+    "jam": {
+        "id": 1,
+        "name": "Brackeys Game Jam #2",
+        "slug": "brackeys-2",
+        "entries": "317",
+        "theme": "Love is Blind",
+        "start_date": "2019-02-16 09:00:00",
+        "end_date": "2019-02-23 09:00:00",
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://itch.io/jam/brackeys-2"
+            }
+        ]
+    },
+    "images": [
+        {
+            "type": "Image::ICON",
+            "path": "one-true-pairing/icon.png",
+            "title": "One True Pairing icon",
+            "alt_title": "One True Pairing icon"
+        }
+    ],
+    "links": [
+        {
+            "linktype_id": 5,
+            "link": "https://kregames.itch.io/one-true-pairing"
+        },
+        {
+            "linktype_id": 5,
+            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+        }
+    ]
+}

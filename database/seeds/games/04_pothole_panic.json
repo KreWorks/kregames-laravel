@@ -1,0 +1,18 @@
+{
+    "id": 4,
+    "name": "One True Pairing",
+    "slug": "one-true-pairing",
+    "publish_date": "2019-02-23 08:12:00",
+    "user_id": 1,
+    "jam_id": 1,
+    "links": [
+        {
+            "linktype_id": 5,
+            "link": "https://kregames.itch.io/one-true-pairing"
+        },
+        {
+            "linktype_id": 5,
+            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+        }
+    ]
+}

@@ -10,6 +10,7 @@ use App\Models\Game;
 
 class GameSeeder extends Seeder
 {
+    const FILE_DIR = __DIR__.'/../seeds/games/';
     const GAME_DATAS = [
         [
             'game' => [
@@ -137,9 +138,17 @@ class GameSeeder extends Seeder
      */
     public function run()
     {
-        foreach(self::GAME_DATAS as $data) {
-            $game = null;
+        $files = $this->getGameFiles();
 
+        foreach($files as $file) {
+            if (file_exists(self::FILE_DIR.$file)) 
+            {
+                $data = json_decode(file_get_contents(self::FILE_DIR.$file));
+                var_dump($data->id);
+            }
+            
+
+            /*
             if (array_key_exists('jam', $data)) {
                 $jam = Jam::create($data['jam']);   
                 $jam->icon()->create($data['jam_icon']);
@@ -150,7 +159,24 @@ class GameSeeder extends Seeder
             }
             
             $game->images()->create($data['game_icon']);
+            */
 
         }
+    }
+
+    protected function getGameFiles()
+    {
+        $folderScan = scandir(self::FILE_DIR);
+
+        $files = [];
+        foreach($folderScan as $file) {
+            if ($file != '.' && $file != '..') {
+                $files[] = $file;
+            }
+        }
+
+        sort($files);
+        
+        return $files;
     }
 }
