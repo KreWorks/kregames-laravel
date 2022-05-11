@@ -22,6 +22,8 @@ class Jam extends Model
         'duration' => 'hossz'
     ];
 
+    public static $jsonFields = ['name', 'slug','entries', 'theme', 'start_date', 'end_date'];
+
     protected $fillable = ['name', 'slug','entries', 'theme', 'start_date', 'end_date'];
     protected $_imageBaseFolder = "/images/jams";
     /**

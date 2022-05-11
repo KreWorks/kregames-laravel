@@ -49,6 +49,7 @@ class GameSeeder extends Seeder
 
                         if ($jam) {
                             $game->jam()->associate($jam);
+                            $game->save();
                             //$user->account()->dissociate();
                         }
                     }
@@ -63,6 +64,9 @@ class GameSeeder extends Seeder
                     }
 
                     // Check for ratings and add if exists
+                    if (array_key_exists('jam', $data) && array_key_exists('ratings', $data)) {
+                        $jam = Jam::find($data['jam']['id']);
+                    }
                 }
             }
         }
