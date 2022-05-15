@@ -122,8 +122,22 @@ class MigrationController extends ResourceController
      */
     public function destroy($id, Request $request)
     {
-        $this->dropMigrationById($id);
-        
+        $migration = Migration::find($id);
+
+        $migrations = Migration::where('batch', ">=", $migration->batch)->orderBy('batch', 'desc')->get();
+
+        if ($migrations->count() > 1) 
+        {
+            foreach($migrations as $migr) 
+            {
+                $this->dropMigrationById($migr->id);
+            }
+        }
+        else 
+        {
+            $this->dropMigrationById($id);
+        }
+
         return redirect(route("admin.".$this->_route.".index"));
     }
 
