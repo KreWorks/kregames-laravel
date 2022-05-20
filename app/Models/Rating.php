@@ -9,12 +9,15 @@ class Rating extends Pivot
 {
     use HasFactory;
     
+    public $timestamps = false; 
+    public $incrementing = true;
+   
     protected $table = 'ratings';
 
     public static $tableLabels = [
         'id' => 'id',
-        'game_name' => 'játék',
-        'category_name' => 'kategória',
+        'game' => 'játék',
+        'category' => 'kategória',
         'rank' => "helyezés",
         'average_point' => 'átlag pont',
         'rating_count' => 'szavazat'
@@ -32,13 +35,4 @@ class Rating extends Pivot
         return $this->belongsTo(Category::class);
     }
 
-    public function getGameNameAttribute()
-    {
-        return $this->game->name;
-    }
-
-    public function getCategoryNameAttribute()
-    {
-        return $this->category->name;
-    }
 }

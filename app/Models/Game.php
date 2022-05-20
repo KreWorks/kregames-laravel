@@ -62,7 +62,12 @@ class Game extends Model
 
     public function ratings()
     {
-        return $this->belongsToMany(Category::class)->withPivot('id','place', 'average_point', 'rating_count');
+        return $this->belongsToMany(Category::class, 'ratings')->using(Rating::class)->withPivot('id','place', 'average_point', 'rating_count');
+    }
+
+    public function categories()
+    {
+        return $this->hasManyThrough(Category::class, Jam::class);
     }
 
     /**
@@ -71,15 +76,6 @@ class Game extends Model
     public function getIconPathAttribute()
     {
         return $this->icon ? $this->icon->path : '';
-    }
-
-    public function getJamNameAttribute()
-    {
-        if ($this->jam != null) {
-            return $this->jam->name;
-        } else {
-            return '-';
-        }
     }
 
     public function getReleaseDateAttribute()

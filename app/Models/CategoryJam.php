@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CategoryJam extends Pivot
 {
     public $timestamps = false;
+    public $incrementing = true;
     
     public static $tableLabels = [
         'id' => 'id',

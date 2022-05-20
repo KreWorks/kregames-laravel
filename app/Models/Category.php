@@ -26,16 +26,16 @@ class Category extends Model
     protected $fillable = ['name', 'slug','fontawesome'];
 
     /**
-     * The jams that belong to the ratingCategory.
+     * The jams that belong to the category.
      */
     public function jams()
     {
-        return $this->belongsToMany(Jam::class)->withPivot('id');
+        return $this->belongsToMany(Jam::class, 'category_jam')->using(CategoryJam::class)->withPivot('id');
     }
 
-    public function games()
+    public function ratings()
     {
-        return $this->belongsToMany(Games::class)->withPivot('id','place', 'average_point', 'rating_count');
+        return $this->belongsToMany(Games::class, 'ratings')->using(Rating::class)->withPivot('id','place', 'average_point', 'rating_count');
     }
 
     public function GetPivotIdAttribute()
@@ -46,5 +46,21 @@ class Category extends Model
     public function GetJamNameAttribute()
     {
         return $this->jams()->first()->name;
+    }
+
+    public function GetJamClassesAttribute()
+    {
+        //  Category::with('jams')->all()
+        $jams = $this->jams()->get();
+        $class= "";
+
+        if (count($jams) > 0) 
+        {
+            foreach($jams as $jam) {
+                $class .= " jam-".$jam->id;
+            }
+        }
+
+        return $class;
     }
 }

@@ -12,7 +12,7 @@
                 <select class="form-control" id="game_id" name="game_id">
                     <option value="0" {{ isset($entity) && $entity->game_id == '' ? 'selected' : ''}}>Nincs játék</option>
                     @foreach($extraDatas['games'] as $game)
-                        <option value="{{$game->id}}" {{isset($entity) && $entity->game_id == $game->id ? 'selected' : ''}}>{{$game->name}}</option>
+                        <option value="{{$game->id}}" {{isset($entity) && $entity->game->id == $game->id ? 'selected' : ''}}>{{$game->name}}</option>
 
                     @endforeach
                 <select>
@@ -22,7 +22,7 @@
                 <select class="form-control" id="category_id" name="category_id">
                     <option value="0" {{ isset($entity) && $entity->category_id == '' ? 'selected' : ''}}>Nincs kategória</option>
                     @foreach($extraDatas['categories'] as $category)
-                        <option value="{{$category->id}}" {{isset($entity) && $entity->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                        <option value="{{$category->id}}" {{isset($entity) && $entity->category->id == $category->id ? 'selected' : ''}} class="category {{$category->jam_classes}}">{{$category->name}}</option>
                     @endforeach
                 <select>
             </div>

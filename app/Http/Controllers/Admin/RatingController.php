@@ -26,28 +26,16 @@ class RatingController extends ResourceController
     {
         $game = Game::find($request->input('game_id'));
 
-        if ($game->jam()->hasCategory($request->input('category_id')))
+        if ($this->JamHasCategory($game->jam, $request->input('category_id')))
         {
             $game->ratings()->attach($request->input('category_id'), $this->getDataFromRequest($request));
         } 
         else 
         {
-            
+            throw Exception("Wrong category ");
         }
 
-        
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rating  $rating
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id, Request $request)
-    {
-        //
+        return redirect(route("admin.ratings.index"));
     }
 
     /**
@@ -57,22 +45,25 @@ class RatingController extends ResourceController
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
-    }
+        try
+        {
+            $rating = Rating::find($id);
+            if ($rating->game->id != $request->input('game_id') || $rating->category->id != $request->input('category_id')) {
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rating  $rating
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id, Request $request)
-    {
-        //
-    }
+                $rating->update($this->getDataFromRequest($request));
+            }
 
+            $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.ratings.index");
+
+            return redirect($redirectRoute);
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
+    }
+    
     protected function getExtraDatasForCreate()
     {
         return [
@@ -113,5 +104,18 @@ class RatingController extends ResourceController
     protected function delete($id)
     {
         Rating::destroy($id);
+    }
+
+    protected function JamHasCategory($jam, $categoryId)
+    {
+        foreach($jam->categories as $category) 
+        {
+            if ($category->id == $categoryId)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
