@@ -15,6 +15,7 @@
                 <label for="display_text" class="col-form-label">Megjelenő szöveg</label>
                 <input class="form-control" type="text" value="{{ isset($entity) ? $entity->display_text : ''}}" id="display_text" name="display_text">
             </div>
+            @if (isset($entity) || (!isset($linkable_id) && !isset($linkable_type)))
             <div class="form-group col-lg-12">
                 <label for="linkable_type" class="col-form-label">Link szülő kategória</label>
                 <select class="form-control" id="linkable_type" name="linkable_type" onchange="onChangeLinkable(value)">
@@ -29,17 +30,22 @@
                     <option value="0" {{ isset($entity) && $entity->linktype_id == '' ? 'selected' : ''}}>Nincs szülő</option>
                     @foreach($extraDatas['linkables'] as $group)
                         @foreach($group['items'] as $linkable)
-                        <option value="{{$linkable->id}}" {{ (isset($entity) && $entity->linkable_id == $linkable->id && $entity->linkable_type == $group['model']) || (isset($linkable_id) && $linkable_id == $linkable->id && $linkable_type == $group['model']) ? 'selected' : ''}} class="linkable {{$group['css-class']}}">{{$linkable->name}} </option>
+                        <option value="{{$linkable->id}}" class="linkable {{$group['css-class']}}">{{$linkable->name}} </option>
                         @endforeach
                     @endforeach
                 </select>
             </div>
+            
+            @else 
+            <input type="hidden" id="linkable_type" name="linkable_type" value="{{$entity->linkable_type}}" >
+            <input type="hidden" id="linkable_id" name="linkable_id" value="{{$entity->linkable_id}}" >
+            @endif
             <div class="form-group col-lg-12">
                 <label for="linktype_id" class="col-form-label">Linktípus</label>
                 <select class="form-control" id="linktype_id" name="linktype_id">
-                    <option value="0" {{ isset($entity) && $entity->linktype_id == '' ? 'selected' : ''}}>Nincs típus</option>
+                    <option value="0" selected >Nincs típus</option>
                     @foreach($extraDatas['linktypes'] as $linktype)
-                        <option value="{{$linktype->id}}" {{isset($entity) && $entity->linktype_id == $linktype->id ? 'selected' : ''}}>{{$linktype->name}}</option>
+                        <option value="{{$linktype->id}}">{{$linktype->name}}</option>
 
                     @endforeach
                     <select>
