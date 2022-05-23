@@ -7,9 +7,7 @@
             <form action="{{route('admin.'.$route.'.edit', $data->id) }}" method="GET">
                 <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
                 <button type="submit" class="btn btn-info" >
-                    <svg class="card__icon--delete">
-                        <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
-                    </svg>
+                <i class="fa fa-edit fa-lg"></i>
                 </button>
             </form>
         </li>
@@ -17,9 +15,7 @@
             <div class="btn btn-danger"
                 data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{ route("admin.".$route.".destroy", $data->id) }}',
                     '{{$data->deleteString}}', '{{$redirectUrl}}');">
-                <svg class="card__icon--delete">
-                    <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
-                </svg>
+                <i class="fa fa-trash-can fa-lg"></i>
             </div>
         </li>
     </ul>

@@ -1,45 +1,36 @@
-@foreach($tableLabels as $key => $column)
-    <td class="align-middle">
-        @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
-            <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
-        @elseif ($key == 'fontawesome' && $data->__get('fontawesome_icon'))
-            <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: {{$data->fontawesome_color}}">
-        @elseif ($key == 'fontawesome' && !$data->__get('fontawesome_icon'))
-            <i class="fa fa-2x {{$data->__get('fontawesome')}}" style="color: #666666">
-        @elseif ($key == 'visible') 
-            @if($data->visible)
-                <div class="btn btn-success disabled" >
-                    <i class="fa fa-eye fa-lg"></i>
-                </div>
-            @else
-                <div class="btn btn-danger disabled">
-                    <i class="fa fa-eye-slash fa-lg"></i>
-                </div>
-            @endif
-        @else
-            {{ $data->__get($key) }}
-        @endif
-    </td>
-@endforeach
+<td class="align-middle">{{$data->id}}</td>
+<td class="align-middle">{{$data->link}}</td>
+@if (array_key_exists('link_owner', $tableLabels)) 
+<td class="align-middle">{{$data->link_owner}}</td>
+@endif
+<td class="align-middle">{{$data->display_text}}</td>
+<td class="align-middle"><i class="fa fa-2x {{$data->linktype->fontawesome}}" style="color: {{$data->linktype->color}}"></td>
+<td class="align-middle">
+@if($data->visible)
+    <div class="btn btn-success disabled" >
+        <i class="fa fa-eye fa-lg"></i>
+    </div>
+@else
+    <div class="btn btn-danger disabled">
+        <i class="fa fa-eye-slash fa-lg"></i>
+    </div>
+@endif
+</td>
 <td class="align-middle">
     <ul class="list-inline" style="margin-bottom:0px;">
         <li class="list-inline-item">
             <form action="{{route('admin.'.$route.'.edit', $data->id) }}" method="GET">
                 <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
                 <button type="submit" class="btn btn-info" >
-                    <svg class="card__icon--delete">
-                        <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
-                    </svg>
+                    <i class="fa fa-edit fa-lg"></i>
                 </button>
             </form>
         </li>
         <li class="list-inline-item">
             <div class="btn btn-danger"
-                data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{ route("admin.".$route.".destroy", $data->id) }}',
-                    '{{$data->deleteString}}', '{{$redirectUrl}}');">
-                <svg class="card__icon--delete">
-                    <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
-                </svg>
+                data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{ route('admin.links.destroy', $data->id) }}',
+                    `{{$data->deleteString}}`, '{{$redirectUrl}}');">
+                <i class="fa fa-trash-can fa-lg"></i>
             </div>
         </li>
     </ul>

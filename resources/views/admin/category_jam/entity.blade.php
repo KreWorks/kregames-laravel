@@ -18,7 +18,7 @@
             <div class="btn btn-danger"
                 data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{ route('admin.category_jam.destroy', $data->id) }}',
                     `{{$data->deleteString}}`, '{{$redirectUrl}}');">
-                    <i class="fa fa-trash-can fa-lg"></i>
+                <i class="fa fa-trash-can fa-lg"></i>
             </div>
         </li>
     </ul>

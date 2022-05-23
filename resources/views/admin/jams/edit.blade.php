@@ -58,7 +58,7 @@
             <div class="card-body">
                 <?php 
                 // Datas for link table
-                $tableLabels = App\Models\Link::$tableLabels;
+                $tableLabels = App\Models\Link::$tableLabelsForParent;
                 $datas = $entity->links;               
                 $route = 'links';
                 $redirectUrl  = route('admin.jams.edit', $entity->id);

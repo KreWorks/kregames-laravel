@@ -18,7 +18,14 @@ class Link extends Model
         'display_text' => 'Megjelenő szöveg',
         'fontawesome' => "típus",
         'visible' => "láthatóság"
+    ];
 
+    public static $tableLabelsForParent = [
+        'id' => 'id',
+        'link' => 'link',
+        'display_text' => 'Megjelenő szöveg',
+        'fontawesome' => "típus",
+        'visible' => "láthatóság"
     ];
 
     public static $morphs = [
