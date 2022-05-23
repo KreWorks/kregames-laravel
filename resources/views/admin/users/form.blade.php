@@ -30,11 +30,11 @@
         </div>
         <div class="col-md-6">
             <div class="form-group col-lg-12">
-                <label for="icon" class="form-label">Logó</label>
-                <input class="form-control" type="file" id="icon" name="icon">
+                <label for="avatar" class="form-label">Avatár</label>
+                <input class="form-control" type="file" id="avatar" name="avatar">
             </div>
             <div class="col-lg-12">
-                <img class="col-lg-3" src="/{{ isset($entity) ? $entity->avatarPath : '' }}">
+                <img class="col-lg-3" src="/{{ isset($entity) ? $entity->avatar_path : '' }}">
             </div>
 
         </div>

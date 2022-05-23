@@ -18,22 +18,37 @@ trait ImageTrait
         ]
     ];
 
-    protected function storeIcon(Request $request, $parent, $folder, $filename)
+    protected function storeIcon(Request $request, $parent, $folder, $filename, $title)
     {
-
-        $path = $request->icon->storeAs($folder, $filename);
-
-        $imageData = [
-            'type' => Image::ICON, 
-            'path' => $path, 
-            'title' => "/app/".$parent->deleteString. 'icon', 
-        ];
+        $imageData = $this->storeFile($request->icon, $folder, $filename, $title);
 
         if ($parent->icon == null) {
             $icon = $parent->icon()->create($imageData);
         } else {
             $icon = Image::where('id', $parent->icon->id)->update($imageData);
-        }   
+        }
+    }
+
+    protected function storeAvatar(Request $request, $parent, $folder, $filename)
+    {
+        $imageData = $this->storeFile($request->avatar, $folder, $filename, $parent->username. ' avatar');
+
+        if ($parent->avatar == null) {
+            $icon = $parent->avatar()->create($imageData);
+        } else {
+            $icon = Image::where('id', $parent->avatar->id)->update($imageData);
+        }
+    }
+
+    private function storeFile($file, $folder, $filename, $title)
+    {
+        $path = $file->storeAs($folder, $filename);
+
+        return [
+            'type' => Image::ICON, 
+            'path' => $path, 
+            'title' => $title, 
+        ];
     }
 
 //TODO

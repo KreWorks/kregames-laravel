@@ -95,8 +95,7 @@ class JamController extends ResourceController
     {
         if ($request->hasFile('icon')) {
             $filename = 'jam-icon_' . $entity->id . "." . $request->icon->extension();
-            $this->storeIcon($request, $entity,  $this->imageFolder, $filename);
-
+            $this->storeIcon($request, $entity,  $this->imageFolder, $filename, $entity->name." icon");
         }
     }
 

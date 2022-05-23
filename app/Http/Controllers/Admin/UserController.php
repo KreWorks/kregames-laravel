@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\ImageTrait;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Link;
 
-class UserController extends ResourceWithIconController
+class UserController extends ResourceController
 {
+    use ImageTrait;
+
+    protected $imageFolder = '/images/avatars';
+
     public function __construct()
     {
         parent::__construct();
@@ -93,35 +98,12 @@ class UserController extends ResourceWithIconController
         User::destroy($id);
     }
 
-    protected function checkImage(Request $request, $user)
+    protected function checkImage(Request $request, $entity)
     {
-
-        $file = new Filesystem();
-        $folder = '/images/avatars';
-
-        if (!$file->isDirectory(storage_path($folder))) {
-            $file->makeDirectory(storage_path($folder), 755, true, true);
-        }
-
         if ($request->hasFile('avatar')) {
-            $filename = 'avatar_'.$user->id.'.' . $request->avatar->extension();
-            $this->storeIcon($request, $user, $folder, $filename);
+            $filename = 'avatar_'.$entity->id.'.' . $request->avatar->extension();
+            $this->storeAvatar($request, $entity,  $this->imageFolder, $filename);
         }
     }
 
-    protected function storeIcon(Request $request, $parent, $folder, $filename)
-    {
-        $path = $request->avatar->storeAs($folder, $filename);
-
-        $imageData = [
-            'type' => Image::ICON,
-            'path' => $path
-        ];
-
-        if ($parent->avatar == null) {
-            $avatar = $parent->avatar()->create($imageData);
-        } else {
-            $avatar = Image::where('id', $parent->avatar->id)->update($imageData);
-        }
-    }
 }
