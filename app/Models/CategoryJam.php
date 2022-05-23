@@ -12,8 +12,14 @@ class CategoryJam extends Pivot
     
     public static $tableLabels = [
         'id' => 'id',
-        'jam_name' => 'jam',
-        'category_name' => 'kategória',
+        'jam' => 'jam',
+        'category' => 'kategória',
+        'fontawesome' => "FontAwesome"
+    ];
+
+    public static $tableLabelsForParent = [
+        'id' => 'id',
+        'category' => 'kategória',
         'fontawesome' => "FontAwesome"
     ];
 

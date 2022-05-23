@@ -17,12 +17,6 @@ class Category extends Model
         'fontawesome' => "FontAwesome"
     ];
     
-    public static $pivotLabels = [
-        'pivot_id' => 'id',
-        'jam_name' => 'jam',
-        'name' => 'kategória'
-    ];
-
     protected $fillable = ['name', 'slug','fontawesome'];
 
     /**

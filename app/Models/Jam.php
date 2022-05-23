@@ -19,7 +19,6 @@ class Jam extends Model
         'theme' => 'téma',
         'entries' => 'versenyzők',
         'start_date' => 'kezdés',
-        'end_date' => 'vég',
         'duration' => 'hossz'
     ];
 

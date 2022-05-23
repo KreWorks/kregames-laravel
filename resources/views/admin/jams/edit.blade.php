@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="col-md-9">
+        @if (Session::has('error'))
+        <div class="card">
+            <div class="alert alert-danger" style="margin-bottom:0px;"> 
+                {{ Session::get('error') }}
+            </div>
+        </div>
+        <hr/>
+        @endif
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <div class="row">
@@ -26,8 +34,8 @@
             <div class="card-body">
                 <?php 
                 // Datas for category table
-                $tableLabels = App\Models\Category::$pivotLabels;
-                $datas = $entity->categories;               
+                $tableLabels = App\Models\CategoryJam::$tableLabelsForParent;
+                $datas = App\Models\CategoryJam::where('jam_id', '=', $entity->id)->get();               
                 $route = 'category_jam';
                 $jam = $entity;
                 $redirectUrl  = route('admin.jams.edit', $entity->id);

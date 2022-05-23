@@ -10,7 +10,8 @@
     <tbody>
     @foreach($datas as $data)
         <tr>
-            @foreach($tableLabels as $key => $column)
+            @include('admin.'.$route.'.entity')
+            <!--@foreach($tableLabels as $key => $column)
                 <td class="align-middle">
                     @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
                         <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
@@ -47,14 +48,15 @@
                     </li>
                     <li class="list-inline-item">
                         <div class="btn btn-danger"
-                            data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{route('admin.'.$route.'.destroy', $data->id) }}', '{{$data->deleteString}}', '{{$redirectUrl}}')">
+                            data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{ route("admin.".$route.".destroy", $data->id) }}',
+                             '{{$data->deleteString}}', '{{$redirectUrl}}');">
                             <svg class="card__icon--delete">
                                 <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
                             </svg>
                         </div>
                     </li>
                 </ul>
-            </td>
+            </td>-->
         </tr>
     @endforeach
     </tbody>

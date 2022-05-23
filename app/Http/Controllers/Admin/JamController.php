@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 use App\Models\Jam;
 use App\Models\Image;
 use App\Models\Link;
 
-class JamController extends ResourceWithIconController
+class JamController extends ResourceController
 {
+    use ImageTrait;
+
+    protected $imageFolder = '/images/jams';
+    
     public function __construct()
     {
         parent::__construct();
@@ -89,8 +94,9 @@ class JamController extends ResourceWithIconController
     protected function checkImage(Request $request, $entity)
     {
         if ($request->hasFile('icon')) {
-            $filename = $request->input('slug') . "." . $request->icon->extension();
-            $this->storeIcon($request, $entity, '/images/jams', $filename);
+            $filename = 'jam-icon_' . $entity->id . "." . $request->icon->extension();
+            $this->storeIcon($request, $entity,  $this->imageFolder, $filename);
+
         }
     }
 

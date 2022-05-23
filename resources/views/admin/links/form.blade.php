@@ -35,10 +35,12 @@
                     @endforeach
                 </select>
             </div>
-            
-            @else 
+            @elseif(isset($entity))
             <input type="hidden" id="linkable_type" name="linkable_type" value="{{$entity->linkable_type}}" >
             <input type="hidden" id="linkable_id" name="linkable_id" value="{{$entity->linkable_id}}" >
+            @else 
+            <input type="hidden" id="linkable_type" name="linkable_type" value="{{$linkable_type}}" >
+            <input type="hidden" id="linkable_id" name="linkable_id" value="{{$linkable_id}}" >
             @endif
             <div class="form-group col-lg-12">
                 <label for="linktype_id" class="col-form-label">Linktípus</label>

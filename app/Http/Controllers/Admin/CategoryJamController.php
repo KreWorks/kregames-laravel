@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
+use App\Traits\CategoryCheckerTrait;
 use App\Models\CategoryJam;
-use App\Models\RatingCategory;
 use App\Models\Category;
 use App\Models\Jam;
-use Illuminate\Http\Request;
 
 class CategoryJamController extends ResourceController
 {
+    use CategoryCheckerTrait;
+
     public function __construct()
     {
         parent::__construct();
@@ -25,11 +27,18 @@ class CategoryJamController extends ResourceController
      */
     public function store(Request $request)
     {
+        // TODO check if already exists
+        $jam = Jam::find($request->input('jam_id'));
+        if ($jam && $this->hasCategory($jam, $request->input('category_id'))) 
+        {
+            return redirect()->back()->with('error', 'Ez a kategória már hozzá van adva.');
+        }
+
         $cj = CategoryJam::create($this->getDataFromRequest($request));
         
         $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.category_jam.index");
         
-        return redirect($redirectRoute);
+        return redirect($redirectRoute)->with('success', 'A kategória sikeresen hozzáadva.');
     }
 
     /**
@@ -43,7 +52,8 @@ class CategoryJamController extends ResourceController
     {
         $entity = $this->getEntity($id);
 
-        if ($request->input('redirect_route')){
+        if ($request->input('redirect_route'))
+        {
             $jamId = $this->getJamId($request->input('redirect_route'));
 
             $entity = CategoryJam::where('jam_id', '=', $jamId)->where('category_id', '=', $id)->first();
@@ -72,14 +82,23 @@ class CategoryJamController extends ResourceController
         try
         {
             $categoryJam = CategoryJam::find($id);
-            if ($categoryJam->jam_id != $request->input('jam_id') || $categoryJam->category_id != $request->input('category_id')) {
 
-                $categoryJam->update($this->getDataFromRequest($request));
+            if ($categoryJam->jam_id != $request->input('jam_id') || $categoryJam->category_id != $request->input('category_id')) 
+            {
+                $jam = Jam::find($request->input('jam_id'));
+                if ($this->hasCategory($jam, $request->input('category_id')))
+                {
+                    return redirect()->back()->with('error', 'Ez a kategória már hozzá van adva.');
+                } 
+                else 
+                {
+                    $categoryJam->update($this->getDataFromRequest($request));
+                }
             }
 
             $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.category_jam.index");
 
-            return redirect($redirectRoute);
+            return redirect($redirectRoute)->wwith('success', 'A kategória sikeresen frissítve.');
 
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
@@ -95,7 +114,8 @@ class CategoryJamController extends ResourceController
      */
     public function destroy($id, Request $request)
     {
-        if ($request->input('redirect_route_on_delete')) {
+        if ($request->input('redirect_route_on_delete')) 
+        {
             $jamId = $this->getJamId($request->input('redirect_route_on_delete'));
 
             CategoryJam::where('jam_id', '=', $jamId)->where('category_id', '=', $id)->first()->delete();
@@ -109,7 +129,7 @@ class CategoryJamController extends ResourceController
             $redirect = $request->input("redirect_route_on_delete");
         }
 
-        return redirect($redirect);
+        return redirect($redirect)->with('success', 'Törlés sikeres');
     }
 
     protected function getDataFromRequest(Request $request)

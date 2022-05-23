@@ -16,7 +16,6 @@ abstract class ResourceWithIconController extends ResourceController
             'type' => Image::ICON, 
             'path' => $path, 
             'title' => $parent->deleteString. 'icon', 
-            'alt_title' => $parent->deleteString. ' icon'
         ];
 
         if ($parent->icon == null) {

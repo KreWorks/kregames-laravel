@@ -7,6 +7,7 @@
     @csrf <!-- {{ csrf_field() }} -->
     <div class="row">
         <div class="col-md-12">
+            @if (!isset($jam_id))
             <div class="form-group col-lg-12">
                 <label for="name" class="col-form-label">Jam</label>
                 <select class="form-control" id="jam_id" name="jam_id">
@@ -17,6 +18,9 @@
                     @endforeach
                 <select>
             </div>
+            @else 
+            <input type="hidden" id="jam_id" name="jam_id" value="{{$jam_id}}">
+            @endif
             <div class="form-group col-lg-12">
                 <label for="slug" class="col-form-label">Értékelési kategória</label>
                 <select class="form-control" id="category_id" name="category_id">
