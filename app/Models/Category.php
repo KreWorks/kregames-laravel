@@ -29,7 +29,7 @@ class Category extends Model
 
     public function ratings()
     {
-        return $this->belongsToMany(Games::class, 'ratings')->using(Rating::class)->withPivot('id','place', 'average_point', 'rating_count');
+        return $this->belongsToMany(Games::class, 'ratings')->using(Rating::class)->withPivot('id','rank', 'average_point', 'rating_count');
     }
 
     public function GetPivotIdAttribute()

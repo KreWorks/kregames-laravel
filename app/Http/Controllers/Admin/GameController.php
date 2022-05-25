@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
+use App\Traits\ImageTrait;
 use App\Models\Game;
 use App\Models\Image;
 use App\Models\Jam;
 use App\Models\Link;
 
-class GameController extends ResourceWithIconController
+class GameController extends ResourceController
 {
+    use ImageTrait;
+
     public function __construct()
     {
         parent::__construct();
@@ -35,7 +38,7 @@ class GameController extends ResourceWithIconController
 
         $this->checkImage($request, $game);
 
-        return redirect(route("admin.games.index"));
+        return redirect(route("admin.games.index"))->with('success', 'Sikeres mentés.');
     }
 
 
@@ -63,7 +66,7 @@ class GameController extends ResourceWithIconController
 
             $this->checkImage($request, $game);
 
-            return redirect(route("admin.games.index"));
+            return redirect(route("admin.games.index"))->with('success', 'Sikeres mentés');
 
         }catch(QueryException $ex) {
             return ['success'=>false, 'error'=>$ex->getMessage()];
@@ -119,7 +122,7 @@ class GameController extends ResourceWithIconController
     protected function checkImage(Request $request, $game)
     {
         $file = new Filesystem();
-        $folder = '/images/games/'.$game->slug;
+        $folder = $game->imageFolder;
 
         if (!$file->isDirectory(storage_path($folder))) {
             $file->makeDirectory(storage_path($folder), 755, true, true);
@@ -127,7 +130,7 @@ class GameController extends ResourceWithIconController
 
         if ($request->hasFile('icon')) {
             $filename = 'icon.' . $request->icon->extension();
-            $this->storeIcon($request, $game, $folder, $filename);
+            $this->storeIcon($request, $game, $filename, $game->title." icon");
         }
     }
 }

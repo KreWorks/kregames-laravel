@@ -1,4 +1,4 @@
-<td class="align-middle"><img src="/{{ $data->avatar_path }}" style="width:50px; height:50px;" alt="icon"></td>
+<td class="align-middle"><img src="/{{ $data->avatar->path }}" style="width:50px; height:50px;" alt="icon"></td>
 <td class="align-middle">{{$data->id}}</td>
 <td class="align-middle">{{$data->name}}</td>
 <td class="align-middle">{{$data->username}}</td>

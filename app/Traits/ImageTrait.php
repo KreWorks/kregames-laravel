@@ -18,8 +18,9 @@ trait ImageTrait
         ]
     ];
 
-    protected function storeIcon(Request $request, $parent, $folder, $filename, $title)
+    protected function storeIcon(Request $request, $parent, $filename, $title)
     {
+        $folder = $parent->imageFolder;
         $imageData = $this->storeFile($request->icon, $folder, $filename, $title);
 
         if ($parent->icon == null) {
@@ -29,8 +30,9 @@ trait ImageTrait
         }
     }
 
-    protected function storeAvatar(Request $request, $parent, $folder, $filename)
+    protected function storeAvatar(Request $request, $parent, $filename)
     {
+        $folder = $parent->imageFolder;
         $imageData = $this->storeFile($request->avatar, $folder, $filename, $parent->username. ' avatar');
 
         if ($parent->avatar == null) {

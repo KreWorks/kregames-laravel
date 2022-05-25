@@ -23,6 +23,7 @@ class Jam extends Model
     ];
 
     protected $fillable = ['name', 'slug','entries', 'theme', 'start_date', 'end_date'];
+    protected $_imageBaseFolder = "/images/jams/";
     /**
      * The games related to this jam
      */
@@ -58,9 +59,9 @@ class Jam extends Model
     /**
      * Return the path to the icon of the jam
      */
-    public function getIconPathAttribute()
+    public function getImageFolderAttribute()
     {
-        return $this->icon ? $this->icon->path : '';
+        return $this->_imageBaseFolder;
     }
 
     /**

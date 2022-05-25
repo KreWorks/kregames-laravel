@@ -22,7 +22,7 @@ class Game extends Model
     ];
 
     protected $fillable = ['name', 'slug','publish_date', 'user_id','visible'];
-
+    private $_imageBaseFolder = '/images/games/';
     /**
      * Get the jam of the game
      */
@@ -62,20 +62,38 @@ class Game extends Model
 
     public function ratings()
     {
-        return $this->belongsToMany(Category::class, 'ratings')->using(Rating::class)->withPivot('id','place', 'average_point', 'rating_count');
+        return $this->belongsToMany(Category::class, 'ratings')->using(Rating::class)->withPivot('id','rank','average_point', 'rating_count');
     }
 
     public function categories()
     {
-        return $this->hasManyThrough(Category::class, Jam::class);
+        //return $this->hasManyThrough(Jam::class, CategoryJam::class);
+
+        return $this->hasManyThrough(
+            Category::class,
+            CategoryJam::class,
+            'category_id', // Foreign key on the environments table...
+            'id', // Foreign key on the jam table...
+            'jam_id', // Local key on the projects table...
+            'jam_id' // Local key on the environments table...
+        );
+/*
+        return $this->hasManyThrough(
+            Deployment::class,
+            Environment::class,
+            'project_id', // Foreign key on the environments table...
+            'environment_id', // Foreign key on the deployments table...
+            'id', // Local key on the projects table...
+            'id' // Local key on the environments table...
+        );*/
     }
 
     /**
      * Return the path to the icon of the jam
      */
-    public function getIconPathAttribute()
+    public function getImageFolderAttribute()
     {
-        return $this->icon ? $this->icon->path : '';
+        return $this->_imageBaseFolder.$this->slug."/";
     }
 
     public function getReleaseDateAttribute()

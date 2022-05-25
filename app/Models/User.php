@@ -26,12 +26,8 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name','username','email','password'];
+    private $_imageBaseFolder = "/images/avatars/";
 
     /**
      * The attributes that should be hidden for serialization.
@@ -76,9 +72,9 @@ class User extends Authenticatable
         return $this->morphMany('App\Models\Link', 'linkable');
     }
 
-    public function getAvatarPathAttribute()
+    public function getImageFolderAttribute()
     {
-        return $this->avatar ? $this->avatar->path : '';
+        return $this->_imageBaseFolder;
     }
 
     public function getDeleteStringAttribute()

@@ -35,6 +35,32 @@
 
             </div>
         </div>
+        <hr/>
+        @if($entity->jam !== null)
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <div class="row">
+                    <span class="col-md-8 my-auto">Értékelések</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <?php 
+                // Datas for rating table
+                $tableLabels = App\Models\Rating::$tableLabelsForParent;
+                $datas = App\Models\Rating::where('game_id', '=', $entity->id)->get();
+                $categories = $entity->categories;           
+                $route = 'ratings';
+                $redirectUrl  = route('admin.games.edit', $entity->id);
+                echo count($categories);
+                echo ($categories[0]->name);
+                ?>
+
+                
+                @include('admin._parts.table_list')
+
+            </div>
+        </div>
+        @endif
     </div>
 
     <!-- Add Modal Link-->
