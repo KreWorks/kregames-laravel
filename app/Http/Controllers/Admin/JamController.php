@@ -30,7 +30,7 @@ class JamController extends ResourceController
     public function store(Request $request)
     {
         $jam = Jam::create($this->getDataFromRequest($request));
-        $this->checkImage($request, $jam);
+        $this->handleImage($request, $jam);
 
         return redirect(route("admin.jams.index"));
     }
@@ -49,7 +49,7 @@ class JamController extends ResourceController
             $jam = Jam::find($id);
             $jam->update($this->getDataFromRequest($request));
 
-            $this->checkImage($request, $jam);
+            $this->handleImage($request, $jam);
 
             return redirect(route("admin.jams.index"));
 
@@ -89,14 +89,6 @@ class JamController extends ResourceController
         $deletedImageIds = Image::where(['imageable_type' => Jam::class, 'imageable_id' => $id])->delete();
         $deletedLinkIds = Link::where(['linkable_type' => Jam::class, 'linkable_id' => $id])->delete();
         Jam::destroy($id);
-    }
-
-    protected function checkImage(Request $request, $entity)
-    {
-        if ($request->hasFile('icon')) {
-            $filename = 'jam-icon_' . $entity->id . "." . $request->icon->extension();
-            $this->storeIcon($request, $entity,  $this->imageFolder, $filename, $entity->name." icon");
-        }
     }
 
 }

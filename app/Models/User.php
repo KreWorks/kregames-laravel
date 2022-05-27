@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = ['name','username','email','password'];
-    private $_imageBaseFolder = "/images/avatars/";
+    private $_imageBaseFolder = "/images/avatars";
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,6 +54,14 @@ class User extends Authenticatable
     public function avatar()
     {
         return $this->morphOne(Image::class, 'imageable')->where('type', Image::ICON);
+    }
+
+    /**
+     * Get the user's images
+     */
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 
     /**

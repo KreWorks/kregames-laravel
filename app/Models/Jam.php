@@ -23,7 +23,7 @@ class Jam extends Model
     ];
 
     protected $fillable = ['name', 'slug','entries', 'theme', 'start_date', 'end_date'];
-    protected $_imageBaseFolder = "/images/jams/";
+    protected $_imageBaseFolder = "/images/jams";
     /**
      * The games related to this jam
      */
@@ -46,6 +46,14 @@ class Jam extends Model
     public function icon()
     {
         return $this->morphOne(Image::class, 'imageable')->where('type', Image::ICON);
+    }
+
+    /**
+     * Get the jam's images
+     */
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 
    /**

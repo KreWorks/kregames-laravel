@@ -33,7 +33,7 @@ class UserController extends ResourceController
     {
         $user = User::create($this->getDataFromRequest($request));
 
-        $this->checkImage($request, $user);
+        $this->handleImage($request, $user);
 
         return redirect(route("admin.users.index"));
     }
@@ -52,7 +52,7 @@ class UserController extends ResourceController
             $user = User::find($id);
             $user->update($this->getDataFromRequest($request));
 
-            $this->checkImage($request, $user);
+            $this->handleImage($request, $user);
 
             return redirect(route("admin.users.index"));
 
@@ -96,14 +96,6 @@ class UserController extends ResourceController
         $deletedImageIds = Image::where(['imageable_type' => User::class, 'imageable_id' => $id])->delete();
         $deletedLinkIds = Link::where(['linkable_type' => User::class, 'linkable_id' => $id])->delete();
         User::destroy($id);
-    }
-
-    protected function checkImage(Request $request, $entity)
-    {
-        if ($request->hasFile('avatar')) {
-            $filename = 'avatar_'.$entity->id.'.' . $request->avatar->extension();
-            $this->storeAvatar($request, $entity,  $this->imageFolder, $filename);
-        }
     }
 
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Filesystem\Filesystem;
 use App\Traits\ImageTrait;
 use App\Models\Game;
 use App\Models\Image;
@@ -36,7 +35,7 @@ class GameController extends ResourceController
             $jam->games()->save($game);
         }
 
-        $this->checkImage($request, $game);
+        $this->handleImage($request, $game);
 
         return redirect(route("admin.games.index"))->with('success', 'Sikeres mentés.');
     }
@@ -64,7 +63,7 @@ class GameController extends ResourceController
                 $game->save();
             }
 
-            $this->checkImage($request, $game);
+            $this->handleImage($request, $game);
 
             return redirect(route("admin.games.index"))->with('success', 'Sikeres mentés');
 
@@ -117,20 +116,5 @@ class GameController extends ResourceController
         $deletedImageIds = Image::where(['imageable_type' => Game::class, 'imageable_id' => $id])->delete();
         $deleteLinkids = Link::where(['linkable_type' => Game::class, 'linkable_id' => $id])->delete();
         Game::destroy($id);
-    }
-
-    protected function checkImage(Request $request, $game)
-    {
-        $file = new Filesystem();
-        $folder = $game->imageFolder;
-
-        if (!$file->isDirectory(storage_path($folder))) {
-            $file->makeDirectory(storage_path($folder), 755, true, true);
-        }
-
-        if ($request->hasFile('icon')) {
-            $filename = 'icon.' . $request->icon->extension();
-            $this->storeIcon($request, $game, $filename, $game->title." icon");
-        }
     }
 }

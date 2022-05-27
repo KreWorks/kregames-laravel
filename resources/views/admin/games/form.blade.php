@@ -50,7 +50,7 @@
                 <input class="form-control" type="file" id="icon" name="icon">
             </div>
             <div class="col-lg-12">
-                <img class="col-lg-3" src="/{{ isset($entity) ? $entity->icon->path : '' }} ">
+                <img class="col-lg-3" src="/{{ isset($entity) && $entity->icon ? $entity->icon->path : '' }} ">
             </div>
 
         </div>

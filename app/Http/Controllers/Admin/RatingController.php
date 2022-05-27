@@ -35,7 +35,9 @@ class RatingController extends ResourceController
             throw Exception("Wrong category ");
         }
 
-        return redirect(route("admin.ratings.index"));
+        $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.ratings.index");
+
+        return redirect($redirectRoute);
     }
 
     /**

@@ -59,6 +59,15 @@ function deleteConfirm(route, deleteString, redirectRoute)
     document.getElementById('redirect_route_on_delete').value = redirectRoute;
 }
 
+function enableEdit(id)
+{
+    document.querySelector(".rank-" + id).disabled = false;
+    document.querySelector(".average_point-" + id).disabled = false;
+    document.querySelector(".rating_count-" + id).disabled = false;
+    document.querySelector(".edit-btn-" + id).style.display = 'none';
+    document.querySelector(".submit-btn-" + id).style.display = '';
+}
+
 function onChange(field)
 {
     var visibleTrueIcon = document.getElementById("visible_true");

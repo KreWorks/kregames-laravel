@@ -10,37 +10,43 @@ const MENUS = [
     [
         'name' => 'Jamek',
         'route' => 'admin.jams.index',
-        'icon' => 'icon-award'
-    ],
-    [
-        'name' => 'Jam értékelési kategóriák',
-        'route' => 'admin.category_jam.index',
-        'icon' => 'icon-award'
-    ],
-    [
-        'name' => 'Értékelés kategóriák',
-        'route' => 'admin.categories.index',
-        'icon' => 'icon-award'
-    ],
+        'icon' => 'icon-award',
+        'sub' => [
+            [
+                'name' => 'Kategóriák',
+                'route' => 'admin.categories.index',
+                'icon' => 'icon-award'
+            ],
+            [
+                'name' => 'Jam értékelési kategóriák',
+                'route' => 'admin.category_jam.index',
+                'icon' => 'icon-award'
+            ]
+        ]
+    ],    
     [
         'name' => 'Játékok',
         'route' => 'admin.games.index',
-        'icon' => 'icon-compass'
-    ],
-    [
-        'name' => 'Értékelések',
-        'route' => 'admin.ratings.index',
-        'icon' => 'icon-award'
-    ],
-    [
-        'name' => 'Link típusok',
-        'route' => 'admin.linktypes.index',
-        'icon' => 'icon-link'
-    ],
+        'icon' => 'icon-compass',
+        'sub' => [
+            [
+                'name' => 'Értékelések',
+                'route' => 'admin.ratings.index',
+                'icon' => 'icon-award'
+            ]
+        ]
+    ],   
     [
         'name' => 'Linkek',
         'route' => 'admin.links.index',
-        'icon' => 'icon-link'
+        'icon' => 'icon-link',
+        'sub' => [
+            [
+                'name' => 'Link típusok',
+                'route' => 'admin.linktypes.index',
+                'icon' => 'icon-link'
+            ]
+        ]
     ],
     [
         'name' => 'Felhasználók',
@@ -63,6 +69,13 @@ if (!function_exists('get_menu')) {
 
             $menus[$index]['isActive'] = $current === $menu['route'] ? 'active' : '';
             $menus[$index]['iconColor'] = $current === $menu['route'] ? 'card__icon--white' : 'card__icon--dark';
+            if (array_key_exists('sub', $menu)) 
+            {
+                foreach ($menu['sub'] as $subIndex => $subMenu) {
+                    $menus[$index]['sub'][$subIndex]['isActive'] = $current === $subMenu['route'] ? 'active' : '';
+                    $menus[$index]['sub'][$subIndex]['iconColor'] = $current === $subMenu['route'] ? 'card__icon--white' : 'card__icon--dark';
+                }
+            }
         }
 
         return $menus;

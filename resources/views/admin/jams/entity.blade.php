@@ -1,5 +1,5 @@
 <td class="align-middle">
-    <img src="/{{ $data->icon->path }}" style="width:50px; height:50px;" alt="icon">
+    <img src="/{{ $data->icon ? $data->icon->path : '' }}" style="width:50px; height:50px;" alt="icon">
 </td>
 <td class="align-middle">{{$data->id}}</td>
 <td class="align-middle">{{$data->name}}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use App\Models\Image;
 
@@ -18,28 +19,84 @@ trait ImageTrait
         ]
     ];
 
-    protected function storeIcon(Request $request, $parent, $filename, $title)
+    protected function handleImage(Request $request, $parent)
     {
         $folder = $parent->imageFolder;
-        $imageData = $this->storeFile($request->icon, $folder, $filename, $title);
+        $class = get_class($parent);
 
-        if ($parent->icon == null) {
-            $icon = $parent->icon()->create($imageData);
-        } else {
-            $icon = Image::where('id', $parent->icon->id)->update($imageData);
+        $fieldName = 'image';
+
+        if ($class == "App\Models\Game") {
+            $file = new Filesystem;
+            if (!$file->isDirectory(storage_path($folder))) {
+                $file->makeDirectory(storage_path($folder), 755, true, true);
+            }
+            if ($request->hasFile('icon')) {
+                $fieldName = 'icon';
+            }
+        }
+        else if ($class == "App\Models\Jam") {
+            $fieldName = 'icon';
+        }
+        else if ($class == "App\Models\User") {
+            $fieldName = 'avatar';
+        }
+
+        if ($request->hasFile($fieldName)) {
+            $filename = $this->getFileName($request, $class, $parent);
+            $title = $this->getTitle($request, $class, $parent);
+
+            $imageData = $this->storeFile($request->file($fieldName), $folder, $filename, $title);
+
+            $image = $this->saveImageToDB($imageData, $parent, $fieldName);
         }
     }
 
-    protected function storeAvatar(Request $request, $parent, $filename)
+    private function saveImageToDB($imageData, $parent, $fieldName)
     {
-        $folder = $parent->imageFolder;
-        $imageData = $this->storeFile($request->avatar, $folder, $filename, $parent->username. ' avatar');
+        $image = null;
 
-        if ($parent->avatar == null) {
-            $icon = $parent->avatar()->create($imageData);
+        if ($fieldName == 'image' || $parent->__get($fieldName) == null) {
+            $image = $parent->images()->create($imageData);
         } else {
-            $icon = Image::where('id', $parent->avatar->id)->update($imageData);
+            $image = Image::where('id', $parent->__get($fieldName)->id)->update($imageData);
         }
+
+        return $image;
+    }
+
+    private function getFileName(Request $request, $class, $parent)
+    {
+        if ($class == "App\Models\Game" && $request->hasFile('icon')) {
+            return 'icon.' . $request->icon->extension();
+        }
+        else if ($class == "App\Models\Game") {
+            return $request->image->getClientOriginalName();
+        }
+        else if ($class == "App\Models\Jam") {
+            return 'jam-'.$parent->id.'-icon.' . $request->icon->extension();
+        }
+        else if ($class == "App\Models\User") {
+            return 'avatar_'.$parent->id.'.' . $request->avatar->extension();
+        }
+    }
+
+    private function getTitle(Request $request, $class, $parent)
+    {
+        if ($class == "App\Models\Game" && $request->hasFile('icon')) {
+            return $parent->name.' icon';
+        }
+        else if ($class == "App\Models\Game") {
+            return $request->input('title');
+        }
+        else if ($class == "App\Models\Jam") {
+            return $parent->name.' icon';
+        }
+        else if ($class == "App\Models\User") {
+            return $parent->name.' avatar';
+        }
+
+        return 'Nem találtunk feliratot.';
     }
 
     private function storeFile($file, $folder, $filename, $title)

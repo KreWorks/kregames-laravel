@@ -14,6 +14,35 @@ class Image extends Model
     public const ICON = 'icon'; 
     public const SCREENSHOT = 'screenshot';
 
+    public static $morphs = [
+        'Game' => 'App\Models\Game',
+        'Jam' => 'App\Models\Jam',
+        'User' => 'App\Models\User'
+    ];
+
+    public static function getImageables()
+    {
+        $imageables = []; 
+        foreach(Image::$morphs as $key => $class)
+        {
+            $imageables[$key] = [
+                'css-class' => strtolower($key), 
+                'model' => $class,
+                'items' => $class::all()
+            ];
+        }
+
+        return $imageables;
+    }
+
+    public static function getImageTypes()
+    {
+        return [
+            self::ICON => 'icon',
+            self::SCREENSHOT => 'screenshot'
+        ];
+    }
+
     protected $fillable = ['type', 'path', 'title', 'alt_title'];
 
     /**

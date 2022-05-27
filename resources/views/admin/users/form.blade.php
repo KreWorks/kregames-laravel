@@ -34,7 +34,7 @@
                 <input class="form-control" type="file" id="avatar" name="avatar">
             </div>
             <div class="col-lg-12">
-                <img class="col-lg-3" src="/{{ isset($entity) ? $entity->avatar->path : '' }}">
+                <img class="col-lg-3" src="/{{ isset($entity) && $entity->avatar ? $entity->avatar->path : '' }}">
             </div>
 
         </div>

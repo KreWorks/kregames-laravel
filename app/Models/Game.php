@@ -67,25 +67,10 @@ class Game extends Model
 
     public function categories()
     {
-        //return $this->hasManyThrough(Jam::class, CategoryJam::class);
+        return $this->belongsToMany(Category::class, 'category_jam', 'jam_id', 'category_id')->using(CategoryJam::class, 'jam_id');
 
-        return $this->hasManyThrough(
-            Category::class,
-            CategoryJam::class,
-            'category_id', // Foreign key on the environments table...
-            'id', // Foreign key on the jam table...
-            'jam_id', // Local key on the projects table...
-            'jam_id' // Local key on the environments table...
-        );
-/*
-        return $this->hasManyThrough(
-            Deployment::class,
-            Environment::class,
-            'project_id', // Foreign key on the environments table...
-            'environment_id', // Foreign key on the deployments table...
-            'id', // Local key on the projects table...
-            'id' // Local key on the environments table...
-        );*/
+        // user to toles return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+        
     }
 
     /**
@@ -93,7 +78,7 @@ class Game extends Model
      */
     public function getImageFolderAttribute()
     {
-        return $this->_imageBaseFolder.$this->slug."/";
+        return $this->_imageBaseFolder.$this->slug;
     }
 
     public function getReleaseDateAttribute()

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Filesystem\Filesystem;
+use App\Traits\ImageTrait;
 use App\Models\Image;
 use App\Models\Game;
 use App\Models\Jam;
 
 class ImageController extends ResourceController
 {
+    use ImageTrait;
+
     public function __construct()
     {
         parent::__construct();
@@ -31,14 +35,9 @@ class ImageController extends ResourceController
      */
     public function store(Request $request)
     {
-        $game = Game::create($this->getDataFromRequest($request));
+        $game = Game::find($request->input("imageable_id"));
 
-        if ($request->input('jam_id')) {
-            $jam = Jam::find($request->input('jam_id'));
-            $jam->games()->save($game);
-        }
-
-        $this->checkImage($request, $game);
+        $this->handleImage($request, $game);
 
         return redirect(route("admin.games.index"));
     }
@@ -54,34 +53,6 @@ class ImageController extends ResourceController
     {
         try
         {
-            $image = Image::find($id);
-            $folder = $image->path;
-            $filename = $request->input('slug') . "." . $request->icon->extension();
-            $path = $request->icon->storeAs($folder, $filename);
-
-            $imageData = [
-                'type' => Image::ICON,
-                'path' => $path
-            ];
-
-            if ($parent->icon == null) {
-                $icon = $parent->icon()->create($imageData);
-            } else {
-                $icon = Image::where('id', $parent->icon->id)->update($imageData);
-            }
-            $image = Image::find($id);
-            $game->update($this->getDataFromRequest($request));
-
-            if ($request->input('jam_id') && $request->input('jam_id') != 0) {
-                $jam = Jam::find($request->input('jam_id'));
-                $jam->games()->save($game);
-            } else {
-                $game->jam_id = null;
-                $game->save();
-            }
-
-            $this->checkImage($request, $game);
-
             return redirect(route("admin.games.index"));
 
         }catch(QueryException $ex) {
@@ -98,11 +69,24 @@ class ImageController extends ResourceController
     protected function getDataFromRequest(Request $request)
     {
         return [
-            'title' => $request->input('name'),
-            'alt_title' => $request->input('slug'),
+            'title' => $request->input('title'),
         ];
     }
 
+    protected function checkImage(Request $request, $game)
+    {
+        $file = new Filesystem();
+        $folder = $game->imageFolder;
+
+        if (!$file->isDirectory(storage_path($folder))) {
+            $file->makeDirectory(storage_path($folder), 755, true, true);
+        }
+
+        if ($request->hasFile('image')) {
+            $filename = 'image.' . $request->image->extension();
+            $this->storeIcon($request, $game, $filename, $game->title." image");
+        }
+    }
 
     protected function getAll()
     {
