@@ -41,35 +41,6 @@ class CategoryJamController extends ResourceController
         return redirect($redirectRoute)->with('success', 'A kategória sikeresen hozzáadva.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id, Request $request)
-    {
-        $entity = $this->getEntity($id);
-
-        if ($request->input('redirect_route'))
-        {
-            $jamId = $this->getJamId($request->input('redirect_route'));
-
-            $entity = CategoryJam::where('jam_id', '=', $jamId)->where('category_id', '=', $id)->first();
-        }
-        
-        $data = [
-            'controller' => 'Jam',
-            'action' => 'Szerkesztés',
-            'entity' => $entity,
-            'extraDatas' => $this->getExtraDatasForUpdate(),
-            'redirectUrl' => $request->input('redirect_route'),
-        ];
-
-        return  view('admin.'.$this->_route.'.edit', $data);
-    }
-
      /**
      * Update the specified resource in storage.
      *
@@ -118,7 +89,7 @@ class CategoryJamController extends ResourceController
         {
             $jamId = $this->getJamId($request->input('redirect_route_on_delete'));
 
-            CategoryJam::where('jam_id', '=', $jamId)->where('category_id', '=', $id)->first()->delete();
+            CategoryJam::find($id)->delete();
         } else {
             $this->delete($id);
         }
@@ -157,7 +128,7 @@ class CategoryJamController extends ResourceController
 
     protected function getAll()
     {
-        return CategoryJam::all();
+        return CategoryJam::orderBy('jam_id', 'asc')->get();
     }
 
     protected function getEntity($id)

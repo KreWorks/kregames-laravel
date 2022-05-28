@@ -27,10 +27,10 @@
             <div class="form-group col-lg-12">
                 <label for="linkable_id" class="col-form-label">Link szülő</label>
                 <select class="form-control" id="linkable_id" name="linkable_id" >
-                    <option value="0" {{ isset($entity) && $entity->linktype_id == '' ? 'selected' : ''}}>Nincs szülő</option>
+                    <option value="0" {{ isset($entity) && $entity->linkable_id == '' ? 'selected' : ''}}>Nincs szülő</option>
                     @foreach($extraDatas['linkables'] as $group)
                         @foreach($group['items'] as $linkable)
-                        <option value="{{$linkable->id}}" class="linkable {{$group['css-class']}}">{{$linkable->name}} </option>
+                        <option value="{{$linkable->id}}" class="linkable {{$group['css-class']}}" {{isset($entity) && $group['model'] == $entity->linkable_type && $entity->linkable_id == $linkable->id ? 'selected' : ''}}>{{$linkable->name}} </option>
                         @endforeach
                     @endforeach
                 </select>
@@ -47,7 +47,7 @@
                 <select class="form-control" id="linktype_id" name="linktype_id">
                     <option value="0" selected >Nincs típus</option>
                     @foreach($extraDatas['linktypes'] as $linktype)
-                        <option value="{{$linktype->id}}">{{$linktype->name}}</option>
+                        <option value="{{$linktype->id}}" {{isset($entity) && $entity->linktype_id == $linktype->id ? 'selected' : ''}}>{{$linktype->name}}</option>
 
                     @endforeach
                     <select>

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="card-body">
-                @include('admin.rating_categories.form')
+                @include('admin.ratings.form')
             </div>
         </div>
     </div>
