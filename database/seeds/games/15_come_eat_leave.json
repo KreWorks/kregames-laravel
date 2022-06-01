@@ -8,7 +8,34 @@
         "path": "one-true-pairing/icon.png",
         "title": "One True Pairing icon"
     },
-    "jam_id": 1,
+    "jam": {
+        "id": 1,
+        "name": "Brackeys Game Jam #2",
+        "slug": "brackeys-2",
+        "entries": 318,
+        "theme": "Love is Blind",
+        "start_date": "2019-02-16 09:00:00",
+        "end_date": "2019-02-23 09:00:00",
+        "logo": {
+            "path": "jams/brackeys-2.jpg",
+            "title": "Brackey's Game Jam #2 icon"
+        },
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://itch.io/jam/brackeys-2"
+            }
+        ],
+        "categories": [
+            "Fun",
+            "Graphics",
+            "Overall",
+            "Game Design",
+            "Audio",
+            "Theme",
+            "Innovation"
+        ]
+    },
     "links": [
         {
             "linktype_id": 5,

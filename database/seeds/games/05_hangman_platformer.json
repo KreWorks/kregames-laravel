@@ -29,5 +29,31 @@
             "linktype_id": 3,
             "link": "https://www.youtube.com/watch?v=yWx8x3boR90"
         }
-    ]
+    ],
+    "jam": {
+        "id": 5,
+        "name": "Stay Safe! Jam",
+        "slug": "stay-save-jam",
+        "entries": 251,
+        "theme": "Solidarity",
+        "start_date": "2020-03-27 22:00:00",
+        "end_date": "2020-03-30 01:00:00",
+        "logo": {
+            "path": "jams/stay-save-jam.jpg",
+            "title": "Stay Safe! Jam icon"
+        },
+        "links": [
+            {
+                "linktype_id": 5,
+                "link": "https://itch.io/jam/stay-safe-jam"
+            }
+        ],
+        "categories": [
+            "Innovative Impact",
+            "Overall Creative Craze",
+            "Best Mood Mojo",
+            "Relevant to the StaySave! Jam Theme",
+            "Player Engagement Power"
+        ]
+    }
 }
