@@ -1,47 +1,51 @@
 {
     "id": 6,
-    "name": "One True Pairing",
-    "slug": "one-true-pairing",
-    "publish_date": "2019-02-23 08:12:00",
+    "name": "Mr Ficus",
+    "slug": "mr-ficus",
+    "publish_date": "2020-04-20 21:38:00",
+    "visible": true,
     "user_id": 1,
     "logo": {
-        "path": "one-true-pairing/icon.png",
-        "title": "One True Pairing icon"
+        "path": "mr-ficus/icon.png",
+        "title": "Mr Ficus icon"
     },
     "links": [
         {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "linktype_id": 6,
+            "link": "https://kregames.itch.io/mr-ficus"
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "linktype_id": 9,
+            "link": "https://ldjam.com/events/ludum-dare/46/mr-ficus"
         }
     ],
     "jam": {
-        "id": 5,
-        "name": "Stay Safe! Jam",
-        "slug": "stay-save-jam",
-        "entries": 251,
-        "theme": "Solidarity",
-        "start_date": "2020-03-27 22:00:00",
-        "end_date": "2020-03-30 01:00:00",
+        "id": 6,
+        "name": "Ludum Dare 46",
+        "slug": "ludum-dare-46",
+        "entries": 4959,
+        "theme": "Keep it alive",
+        "start_date": "2020-04-18 03:00:00",
+        "end_date": "2020-04-21 03:00:00",
         "logo": {
-            "path": "jams/stay-save-jam.jpg",
-            "title": "Stay Safe! Jam icon"
+            "path": "jams/ludum-dare-26.jpg",
+            "title": "Ludum Dare 46 icon"
         },
         "links": [
             {
-                "linktype_id": 5,
-                "link": "https://itch.io/jam/stay-safe-jam"
+                "linktype_id": 8,
+                "link": "https://ldjam.com/events/ludum-dare/46"
             }
         ],
         "categories": [
-            "Innovative Impact",
-            "Overall Creative Craze",
-            "Best Mood Mojo",
-            "Relevant to the StaySave! Jam Theme",
-            "Player Engagement Power"
+            "Overall",
+            "Fun",
+            "Innovaion",
+            "Theme",
+            "Graphics",
+            "Audio",
+            "Humor",
+            "Mood"
         ]
     }
 }

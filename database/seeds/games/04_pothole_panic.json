@@ -3,6 +3,7 @@
     "name": "Pothole Panic",
     "slug": "pothole-panic",
     "publish_date": "2020-02-22 15:51:00",
+    "visible": true,
     "user_id": 1,
     "logo": {
         "path": "pothole-panic/icon.png",

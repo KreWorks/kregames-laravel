@@ -1,8 +1,9 @@
 {
     "id": 14,
-    "name": "One True Pairing",
-    "slug": "one-true-pairing",
+    "name": "In My Head",
+    "slug": "in-my-head",
     "publish_date": "2019-02-23 08:12:00",
+    "visible": true,
     "user_id": 1,
     "logo": {
         "path": "one-true-pairing/icon.png",

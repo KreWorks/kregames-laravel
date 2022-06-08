@@ -3,6 +3,7 @@
     "name": "Escape from the Bank",
     "slug": "escape-from-the-bank",
     "publish_date": "2019-04-29 20:42:00",
+    "visible": true,
     "user_id": 1,
     "logo": {
         "path": "escape-from-the-bank/icon.png",
