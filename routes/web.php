@@ -62,6 +62,7 @@ Route::get('/admin/login', [AdminController::class, 'login'])->name('admin/login
 Route::post('/admin/authenticate', [AdminController::class, 'authenticate'])->name('/admin/authenticate');
 */
 Route::get('/{slug}', [IndexController::class, 'game']);
+Route::get('/refact/{slug}', [IndexController::class, 'newGame']);
 
 Route::get('/',[IndexController::class, 'index']);
 

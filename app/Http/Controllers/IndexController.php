@@ -28,4 +28,12 @@ class IndexController extends Controller
         return view('main.game', ['games' => $games, 'game' => $game]);
     }
 
+    public function newGame($slug)
+    {
+        $games = Game::all(); 
+        $game = Game::where('slug', $slug)->first(); 
+
+        return view('main.newgame', ['games' => $games, 'game' => $game]);
+    }
+
 }
