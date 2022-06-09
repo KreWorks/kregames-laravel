@@ -11,14 +11,12 @@ class CategoryJam extends Pivot
     public $incrementing = true;
     
     public static $tableLabels = [
-        'id' => 'id',
         'jam' => 'jam',
         'category' => 'kategória',
         'fontawesome' => "FontAwesome"
     ];
 
     public static $tableLabelsForParent = [
-        'id' => 'id',
         'category' => 'kategória',
         'fontawesome' => "FontAwesome"
     ];
@@ -33,24 +31,5 @@ class CategoryJam extends Pivot
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function getNameAttribute()
-    {
-        return $this->category->name;
-    }
-    
-    public function getJamNameAttribute()
-    {
-        return $this->jam->name;
-    }
-
-    public function getCategoryNameAttribute()
-    {
-        return $this->category->name;
-    }
-    public function getFontawesomeAttribute()
-    {
-        return $this->category->fontawesome;
     }
 }

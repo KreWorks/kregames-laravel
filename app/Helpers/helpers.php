@@ -89,3 +89,17 @@ if (!function_exists('get_current_route')) {
     }
 }
 
+if (!function_exists('create_slug')) {
+    function create_slug($name) 
+    {
+        $slug = strtolower($name);
+        $toLine = ['/ /'];
+        $toNothing = ['/\'/'];
+
+        $slug = preg_replace($toLine, '-', $slug);
+        $slug = preg_replace($toNothing, '', $slug);
+
+        return $slug;
+    }
+}
+

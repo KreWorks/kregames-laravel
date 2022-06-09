@@ -4,7 +4,7 @@
 <td class="align-middle">{{$data->link_owner}}</td>
 @endif
 <td class="align-middle">{{$data->display_text}}</td>
-<td class="align-middle"><i class="fa fa-2x {{$data->linktype->fontawesome}}" style="color: {{$data->linktype->color}}"></td>
+<td class="align-middle"><i class="fa fa-2x {{isset($data->linktype) ? $data->linktype->fontawesome : ''}}" style="color: {{isset($data->linktype) ? $data->linktype->color : '#ffffff'}}"></td>
 <td class="align-middle">
 @if($data->visible)
     <div class="btn btn-success disabled" >

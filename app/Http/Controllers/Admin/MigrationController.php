@@ -124,20 +124,8 @@ class MigrationController extends ResourceController
     {
         $migration = Migration::find($id);
 
-        $migrations = Migration::where('batch', ">=", $migration->batch)->orderBy('batch', 'desc')->get();
-
-        if ($migrations->count() > 1) 
-        {
-            foreach($migrations as $migr) 
-            {
-                $this->dropMigrationById($migr->id);
-            }
-        }
-        else 
-        {
-            $this->dropMigrationById($id);
-        }
-
+        $this->deleteEarlierMigrations($migration->batch);
+        
         return redirect(route("admin.".$this->_route.".index"));
     }
 
@@ -149,11 +137,13 @@ class MigrationController extends ResourceController
     {
         $files = $this->getMigrationFiles();
         $userMigrationFiles = [];
+        $smallestBatch = 100;
         foreach($files as $file) {
             if(preg_match('/users/', $file)) {
                 $type = $this->GetType($file);
                 $userMigrationFiles[$type][] = $file;
                 $migration = Migration::where('migration', '=', $file)->first();
+                $smallestBatch = $smallestBatch > $migration->batch ? $migration->batch : $smallestBatch;
                 if ($migration)
                 {
                     $this->dropMigrationById($migration->id);
@@ -161,6 +151,7 @@ class MigrationController extends ResourceController
             }
         }
 
+        $this->deleteEarlierMigrations($smallestBatch);
         $this->runMigrationByFileName($userMigrationFiles['create'][0]);
         
         if (array_key_exists('update', $userMigrationFiles)) {
@@ -171,9 +162,23 @@ class MigrationController extends ResourceController
 
         $createMigration = Migration::where('migration', '=', $userMigrationFiles['create'][0])->first();
 
+        $this->runSeederByClassName('LinktypeSeeder');
         $this->seedMigrationTableById($createMigration->id);
         
         return redirect(route("admin.".$this->_route.".index"));
+    }
+
+    protected function deleteEarlierMigrations($batch)
+    {
+        $migrations = Migration::where('batch', ">=", $batch)->orderBy('batch', 'desc')->get();
+
+        if ($migrations->count() > 1) 
+        {
+            foreach($migrations as $migr) 
+            {
+                $this->dropMigrationById($migr->id);
+            }
+        }
     }
 
     protected function getMaxBatch()
@@ -234,10 +239,14 @@ class MigrationController extends ResourceController
         $entity = $this->getEntity($id);
         if ($entity->hasSeeder())
         {
-            $className = $entity->getSeederClass();
-            $seeder = new $className();
-            $seeder->run();
+            $this->runSeederByClassName($entity->getSeederClass());
         }
+    }
+
+    protected function runSeederByClassName($className)
+    {
+        $seeder = new $className();
+        $seeder->run();
     }
 
     /**
