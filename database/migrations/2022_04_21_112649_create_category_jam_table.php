@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Database\MigrationHelpers\CategoryJamMigrationHelper;
 
-class CreateJamRatingCategoriesTable extends Migration
+class CreateCategoryJamTable extends Migration
 {
     /**
      * Run the migrations.

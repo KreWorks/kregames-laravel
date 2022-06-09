@@ -8,6 +8,8 @@ use App\Models\Image;
 use App\Models\Jam; 
 use App\Models\Link;
 use App\Models\Game;
+use App\Models\Category;
+use App\Models\CategoryJam;
 
 class JamSeeder extends Seeder
 {
@@ -27,7 +29,7 @@ class JamSeeder extends Seeder
             {
                 $data = json_decode(file_get_contents(self::FILE_DIR.$file), true);
                 
-                if ($index < 4 && array_key_exists('jam', $data)) {
+                if (array_key_exists('jam', $data)) {
                     $jamData = $data['jam'];
                     // Create or update the game itself
                     $jam = $this->createOrUpdate($jamData);
@@ -58,21 +60,34 @@ class JamSeeder extends Seeder
                         Link::where(['linkable_type' => Jam::class, 'linkable_id' => $jam->id])->delete();
 
                         foreach($jamData['links'] as $linkData) {
-                            $jam->links()->create($linkData);
+                            $link = $jam->links()->create($linkData);
+
+                            $link->linktype_id = $linkData['linktype_id'];
+                            $link->save();
                         }
                     }
 
                     // Check for categories and add if exists
-                    /*if (array_key_exists('categories', $jamData) && count($jamData['categories']) > 0) {
-                        foreach($jamData['categories'] as $category) {
-                            $category = Category::updateOrCreate(
-                                ['name' => $category], 
-                                [$category]
-                            );
-                            // todo check if exists (or delete all related stuff)
-                            $jam->categories()->attach($category->id);
+                    if (array_key_exists('categories', $jamData) && count($jamData['categories']) > 0) {
+                        foreach($jamData['categories'] as $categoryString) {
+                            $categoryData = [
+                                'name' => $categoryString, 
+                                'slug' => create_slug($categoryString),
+                                'fontawesome' => 'fa-solid fa-star'
+                            ];
+                            $category = Category::where(['name' => $categoryString])->first();
+                            if ($category) {
+                                $category->update($categoryData);
+                            } else {
+                                $category = Category::create($categoryData);
+                            }
+                
+                            // check if exists (or delete all related stuff)
+                            $categoryJam = CategoryJam::where(['jam_id' => $jamData['id'], 'category_id' => $category->id])->first(); 
+                            if (!$categoryJam)
+                                $jam->categories()->attach($category->id);
                         }
-                    }*/
+                    }
                 }
             }
         }
@@ -80,12 +95,17 @@ class JamSeeder extends Seeder
 
     protected function createOrUpdate($data)
     {
-        $game = Jam::updateOrCreate(
-            ['id' =>  $data['id']],
-            $this->getData($data)
-        );
+        $jam = Jam::find($data['id']);
 
-        return $game;
+        if ($jam) {
+            $jam->update($this->getData($data));
+        } else {
+            $jam = Jam::create($data);
+            $jam->id = $data['id'];
+            $jam->save();
+        }
+
+        return $jam;
     }
 
     protected function getData($dataJson) 

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Database\MigrationHelpers\ImageMigrationHelper;
+use Database\MigrationHelpers\ImagesMigrationHelper;
 
 class CreateImagesTable extends Migration
 {
