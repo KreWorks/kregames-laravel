@@ -2,49 +2,21 @@
     "id": 15,
     "name": "Come, Eat, Leave",
     "slug": "come-eat-leave",
-    "publish_date": "2019-02-23 08:12:00",
+    "publish_date": "2022-04-04 21:52:00",
     "visible": true,
     "user_id": 1,
     "logo": {
-        "path": "one-true-pairing/icon.png",
-        "title": "One True Pairing icon"
-    },
-    "jam": {
-        "id": 1,
-        "name": "Brackeys Game Jam #2",
-        "slug": "brackeys-2",
-        "entries": 318,
-        "theme": "Love is Blind",
-        "start_date": "2019-02-16 09:00:00",
-        "end_date": "2019-02-23 09:00:00",
-        "logo": {
-            "path": "jams/brackeys-2.jpg",
-            "title": "Brackey's Game Jam #2 icon"
-        },
-        "links": [
-            {
-                "linktype_id": 5,
-                "link": "https://itch.io/jam/brackeys-2"
-            }
-        ],
-        "categories": [
-            "Fun",
-            "Graphics",
-            "Overall",
-            "Game Design",
-            "Audio",
-            "Theme",
-            "Innovation"
-        ]
+        "path": "images/games/come-eat-leave/icon.png",
+        "title": "Come, Eat, Leave icon"
     },
     "links": [
         {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "linktype_id": 6,
+            "link": "https://kregames.itch.io/come-eat-leave"
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "linktype_id": 9,
+            "link": "https://ldjam.com/events/ludum-dare/50/they-come-they-eat-they-leave"
         }
     ]
 }

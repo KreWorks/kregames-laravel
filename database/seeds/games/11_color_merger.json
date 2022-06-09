@@ -6,10 +6,9 @@
     "visible": true,
     "user_id": 1,
     "logo": {
-        "path": "one-true-pairing/icon.png",
-        "title": "One True Pairing icon"
+        "path": "images/games/color-merger/icon.png",
+        "title": "Color Merger icon"
     },
-    "jam_id": 1,
     "links": [
         {
             "linktype_id": 5,
