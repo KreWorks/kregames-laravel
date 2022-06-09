@@ -6,8 +6,8 @@
     "visible": true,
     "user_id": 1,
     "logo": {
-        "path": "dark-liquid-company/icon.png",
-        "title": "One True Pairing icon"
+        "path": "images/games/dark-liquid-company/icon.png",
+        "title": "Dark Liquid Company icon"
     },
     "links": [
         {
@@ -29,7 +29,7 @@
         "end_date": "2019-03-24 19:00:00",
         "links": [],
         "logo": {
-            "path": "jams/pizza-jam.jpg",
+            "path": "images/jams/pizza-jam.jpg",
             "title": "Pizza Jam icon"
         }
     }

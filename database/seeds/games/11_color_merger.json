@@ -2,7 +2,7 @@
     "id": 11,
     "name": "Color Merger",
     "slug": "color-merger",
-    "publish_date": "2019-02-23 08:12:00",
+    "publish_date": "2021-02-15 20:54:00",
     "visible": true,
     "user_id": 1,
     "logo": {
@@ -13,11 +13,11 @@
     "links": [
         {
             "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "link": "https://kregames.itch.io/color-merger"
         },
         {
             "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "link": "https://itch.io/jam/brackeys-5/rate/922201"
         }
     ]
 }

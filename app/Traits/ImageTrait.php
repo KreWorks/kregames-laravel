@@ -74,7 +74,7 @@ trait ImageTrait
             return $request->image->getClientOriginalName();
         }
         else if ($class == "App\Models\Jam") {
-            return 'jam-'.$parent->id.'-icon.' . $request->icon->extension();
+            return $parent->slug.'.' . $request->icon->extension();
         }
         else if ($class == "App\Models\User") {
             return 'avatar_'.$parent->id.'.' . $request->avatar->extension();

@@ -2,21 +2,21 @@
     "id": 8,
     "name": "Loop Fare",
     "slug": "loop-fare",
-    "publish_date": "2019-02-23 08:12:00",
     "visible": true,
+    "publish_date": "2020-10-05 19:07:00",
     "user_id": 1,
     "logo": {
-        "path": "one-true-pairing/icon.png",
-        "title": "One True Pairing icon"
+        "path": "images/games/loop-fare/icon.png",
+        "title": "Loop Fare icon"
     },
     "links": [
         {
-            "linktype_id": 5,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "linktype_id": 6,
+            "link": "https://kregames.itch.io/loop-fare"
         },
         {
-            "linktype_id": 5,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
+            "linktype_id": 8,
+            "link": "https://ldjam.com/events/ludum-dare/47/loop-fare"
         }
     ]
 }

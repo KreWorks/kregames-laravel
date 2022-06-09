@@ -1,34 +1,22 @@
 {
     "id": 5,
-    "name": "One True Pairing",
-    "slug": "one-true-pairing",
-    "publish_date": "2019-02-23 08:12:00",
+    "name": "Hangman Platformer",
+    "slug": "hangman-platformer",
+    "publish_date": "2020-03-29 19:05:00",
     "visible": true,
     "user_id": 1,
     "logo": {
-        "path": "one-true-pairing/icon.png",
-        "title": "One True Pairing icon"
+        "path": "images/games/hangman-platformer/icon.png",
+        "title": "Hangman Platformer icon"
     },
     "links": [
         {
             "linktype_id": 6,
-            "link": "https://kregames.itch.io/one-true-pairing"
+            "link": "https://kregames.itch.io/hangman-platformer"
         },
         {
             "linktype_id": 7,
-            "link": "https://itch.io/jam/brackeys-2/rate/374589"
-        },
-        {
-            "linktype_id": 4,
-            "link": "https://github.com/KreWorks/onetruepairing"
-        },
-        {
-            "linktype_id": 3,
-            "link": "https://www.youtube.com/watch?v=ZCWUJEVnd08"
-        },
-        {
-            "linktype_id": 3,
-            "link": "https://www.youtube.com/watch?v=yWx8x3boR90"
+            "link": "https://itch.io/jam/stay-safe-jam/rate/597628"
         }
     ],
     "jam": {
@@ -40,8 +28,8 @@
         "start_date": "2020-03-27 22:00:00",
         "end_date": "2020-03-30 01:00:00",
         "logo": {
-            "path": "jams/stay-save-jam.jpg",
-            "title": "Stay Safe! Jam icon"
+            "path": "images/jams/brackeys-3.png",
+            "title": "Brackeys 3 Game Jam icon"
         },
         "links": [
             {

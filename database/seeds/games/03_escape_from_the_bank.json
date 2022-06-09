@@ -6,7 +6,7 @@
     "visible": true,
     "user_id": 1,
     "logo": {
-        "path": "escape-from-the-bank/icon.png",
+        "path": "images/games/escape-from-the-bank/icon.png",
         "title": "Escape from the Bank icon"
     },
     "links": [
@@ -28,8 +28,8 @@
         "start_date": "2019-04-27 03:00:00",
         "end_date": "2019-04-30 03:00:00",
         "logo": {
-            "path": "jam/ludum-dare-44.jpg",
-            "title": "Ludum Dare icon"
+            "path": "images/jams/ludum-dare-44.jpg",
+            "title": "Ludum Dare 44 icon"
         }
     }
 }
