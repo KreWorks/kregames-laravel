@@ -34,6 +34,59 @@
         "logo": {
             "path": "images/jams/brackeys-3.png",
             "title": "Brackeys 2 Game Jam icon"
+        },
+        "categories": [
+            "Graphics",
+            "Theme",
+            "Innovation",
+            "Overall",
+            "Game Design",
+            "Audio",
+            "Fun"
+        ]
+    },
+    "ratings": [
+        {
+            "category": "Graphics",
+            "place": 128,
+            "average_point": 3.647,
+            "rating_count": 34
+        },
+        {
+            "category": "Theme",
+            "place": 133,
+            "average_point": 3.676,
+            "rating_count": 34
+        },
+        {
+            "category": "Innovation",
+            "place": 161,
+            "average_point": 3.294,
+            "rating_count": 34
+        },
+        {
+            "category": "Overall",
+            "place": 223,
+            "average_point": 3.147,
+            "rating_count": 34
+        },
+        {
+            "category": "Game Design",
+            "place": 248,
+            "average_point": 3.147,
+            "rating_count": 34
+        },
+        {
+            "category": "Audio",
+            "place": 348,
+            "average_point": 2.471,
+            "rating_count": 34
+        },
+        {
+            "category": "Fun",
+            "place": 370,
+            "average_point": 2.647,
+            "rating_count": 34
         }
-    }
+    ]
 }

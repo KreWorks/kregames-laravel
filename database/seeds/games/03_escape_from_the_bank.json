@@ -30,6 +30,66 @@
         "logo": {
             "path": "images/jams/ludum-dare-44.jpg",
             "title": "Ludum Dare 44 icon"
+        },
+        "categories": [
+            "Overall",
+            "Fun",
+            "Innovation",
+            "Theme",
+            "Graphics",
+            "Audio",
+            "Humor",
+            "Mood"
+        ]
+    },
+    "ratings": [
+        {
+            "category": "Overall",
+            "place": 1135,
+            "average_point": 2.448,
+            "rating_count": 31
+        },
+        {
+            "category": "Fun",
+            "place": 1122,
+            "average_point": 2.31,
+            "rating_count": 31
+        },
+        {
+            "category": "Innovation",
+            "place": 1112,
+            "average_point": 2.241,
+            "rating_count": 31
+        },
+        {
+            "category": "Theme",
+            "place": 980,
+            "average_point": 2.759,
+            "rating_count": 31
+        },
+        {
+            "category": "Graphics",
+            "place": 1038,
+            "average_point": 2.033,
+            "rating_count": 32
+        },
+        {
+            "category": "Audio",
+            "place": 708,
+            "average_point": 1.455,
+            "rating_count": 24
+        },
+        {
+            "category": "Humor",
+            "place": 931,
+            "average_point": 1.86,
+            "rating_count": 27
+        },
+        {
+            "category": "Mood",
+            "place": 1084,
+            "average_point": 1.963,
+            "rating_count": 29
         }
-    }
+    ]
 }

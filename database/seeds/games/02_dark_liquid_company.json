@@ -31,6 +31,45 @@
         "logo": {
             "path": "images/jams/pizza-jam.jpg",
             "title": "Pizza Jam icon"
+        },
+        "categories": [
+            "Use of Theme",
+            "Innovation",
+            "Overall",
+            "Aesthetics",
+            "Feel"
+        ]
+    },
+    "ratings": [
+        {
+            "category": "Use of Theme",
+            "place": 30,
+            "average_point": 3.357,
+            "rating_count": 14
+        },
+        {
+            "category": "Innovation",
+            "place": 30,
+            "average_point": 2.786,
+            "rating_count": 14
+        },
+        {
+            "category": "Overall",
+            "place": 37,
+            "average_point": 2.821,
+            "rating_count": 14
+        },
+        {
+            "category": "Aesthetics",
+            "place": 38,
+            "average_point": 2.786,
+            "rating_count": 14
+        },
+        {
+            "category": "Feel",
+            "place": 41,
+            "average_point": 2.357,
+            "rating_count": 14
         }
-    }
+    ]
 }
