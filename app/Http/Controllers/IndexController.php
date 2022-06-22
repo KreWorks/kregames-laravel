@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $games = Game::all();
+        $games = Game::where(['visible' => 1])->get();
 
         return view('main.index', ['games' => $games]);
     }
@@ -22,7 +22,8 @@ class IndexController extends Controller
      */
     public function game($slug)
     {
-        $games = Game::all();
+        $games = Game::where(['visible' => 1])->get() ;
+
         $game = Game::where('slug', $slug)->first();
 
         return view('main.game', ['games' => $games, 'game' => $game]);
@@ -30,7 +31,7 @@ class IndexController extends Controller
 
     public function newGame($slug)
     {
-        $games = Game::all(); 
+        $games = Game::where(['visible' => 1])->get() ;
         $game = Game::where('slug', $slug)->first(); 
 
         return view('main.newgame', ['games' => $games, 'game' => $game]);
