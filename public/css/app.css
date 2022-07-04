@@ -57,6 +57,7 @@
   
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
   #main {
+    min-height:100vh;
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
     margin-left:300px;
@@ -79,6 +80,18 @@
     display:inline;
   }
   
+  .tab-content{
+    margin-top:-17px;
+    padding:10px;
+    background-color: #dc9;
+    height: calc(100vh-200px);
+    
+  }
+  .nav-tabs .nav-link.active {
+    background-color: #dc9;
+    border-bottom-color: #dc9;
+  }
+
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}

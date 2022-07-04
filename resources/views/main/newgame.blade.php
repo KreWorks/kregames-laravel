@@ -14,7 +14,7 @@
         <!-- css -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    <body>
         <div id="menu" class="sidebar">
             <button id="open-btn" class="openbtn" onclick="openNav()">&#9776;</button>
             <button id="close-btn" class="closebtn" onclick="closeNav()">&times;</button>
@@ -33,7 +33,7 @@
             @endforeach
             </ul>
         </div>
-        <div id="main">
+        <div id="main" style="border:2px solid black;">
             <div class="row">
                 <div class="col-lg-2 col-4 mb-5">
                     <img class="img-responsive" src="/{{$game->icon->path}}" alt="{{$game->icon->alt}}" style="width:100%" />
@@ -55,7 +55,7 @@
                 </nav>
                 <!-- Tabs nav end -->
                 <!-- Tab contents -->
-                <div class="tab-content col-lg-8 col-md-12" id="nav-tabContent">
+                <div class="tab-content col-lg-10 col-md-10" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
                         <p>A(z) <b>{{$game->name}}</b> játék a(z) {{$game->jam->name}} keretein belül készült {{$game->jam->start_date}} és {{$game->jam->end_date}} között. A jam témája <i>{{$game->jam->theme}}</i> volt. </p>
                     </div>

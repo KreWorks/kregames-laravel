@@ -34,7 +34,7 @@ class IndexController extends Controller
         $games = Game::where(['visible' => 1])->get() ;
         $game = Game::where('slug', $slug)->first(); 
 
-        return view('main.newgame', ['games' => $games, 'game' => $game]);
+        return view('main.flex', ['games' => $games, 'game' => $game]);
     }
 
 }
