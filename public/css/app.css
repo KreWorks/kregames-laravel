@@ -6,10 +6,14 @@
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
-    background-color: #111; /* Black*/
+    background-color: #471871; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  }
+
+  #page-name{
+    color:#74B652;
   }
   
   /* The sidebar links */
@@ -17,13 +21,13 @@
     padding: 10px 0px;
     text-decoration: none;
     font-size: 18px;
-    color: #818181;
+    color: #7B52AE;
     transition: 0.3s;
   }
   
   /* When you mouse over the navigation links, change their color */
   .sidebar a:hover {
-    color: #f1f1f1;
+    color: #94C773;
   }
   
   /* Position and style the close button (top right corner) */
@@ -45,22 +49,15 @@
     top: 0;
     font-size: 30px;
     cursor: pointer;
-    background-color: #111;
-    color: white;
+    background-color: #653496   ;
+    color: #471871;
     padding: 10px 15px;
     border: none;
   }
   
-  .openbtn:hover {
-    background-color: #444;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    min-height:100vh;
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20px;
-    margin-left:300px;
+  .openbtn:hover,
+  .closebtn:hover {
+    background-color: #7B52AE;
   }
 
   .game-menu-icon {
@@ -80,16 +77,38 @@
     display:inline;
   }
   
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  .content {
+    min-height:100vh;
+    transition: margin-left .5s; /* If you want a transition effect */
+    padding: 20px;
+    margin-left:300px;
+  }
+
   .tab-content{
+    height:500px;
+    border-radius:20px;
     margin-top:-17px;
-    padding:10px;
-    background-color: #dc9;
-    height: calc(100vh-200px);
+    padding:30px 50px;
+    background-color: #94C77388;
+    font-size:20px;
     
   }
+  .nav-tabs .nav-link {
+    padding:15px;
+  }
   .nav-tabs .nav-link.active {
-    background-color: #dc9;
-    border-bottom-color: #dc9;
+    background-color: #94C77399;
+    border-bottom-color: #94C77399;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  .nav-tabs .nav-link:hover {
+    background-color: #95c773bb;
+    border-bottom-color: #95c773bb;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

@@ -36,7 +36,7 @@ html {
 </head>
 <body>
   <div class="sidebar">
-</div>
+  </div>
   <div class="container">
     <div class="column column-a">
       1
