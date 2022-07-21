@@ -14,7 +14,7 @@ class LanguagesMigrationHelper
             $table->timestamps();
             $table->string('short')->unique()->index('idx_languages_short');
             $table->string('name');
-            $table->boolean('is_active')->default(true);
+            $table->boolean('visible')->default(true);
         });
     }
 

@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\MigrationController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryJamController;
 use App\Http\Controllers\Admin\RatingController;
+use App\Http\Controllers\Admin\LanguageController; 
+use App\Http\Controllers\Admin\TranslationController; 
+use App\Http\Controllers\Admin\ContenttypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +55,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('categories', CategoryController::class);
     Route::resource('category_jam', CategoryJamController::class);
     Route::resource('ratings', RatingController::class);
+    Route::resource('languages', LanguageController::class);
+    Route::resource('translations', TranslationController::class);
+    Route::resource('contenttypes', ContenttypeController::class);
 });
 
 /*

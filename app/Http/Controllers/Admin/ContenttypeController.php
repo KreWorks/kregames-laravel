@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\ResourceController;
 use App\Models\Contenttype;
+use App\Models\Translation;
 
 class ContenttypeController extends ResourceController
 {
@@ -22,19 +24,30 @@ class ContenttypeController extends ResourceController
      */
     public function store(Request $request)
     {
-        //
+        $contenttype = Contenttype::create($this->getDataFromRequest($request));
+
+        return redirect(route("admin.contenttypes.index"))->with('success', 'Sikeres mentés.');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contenttype  $contenttype
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contenttype $contenttype)
+    public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $contenttype = Contenttype::find($id);
+            $contenttype->update($this->getDataFromRequest($request));
+
+            return redirect(route("admin.contenttypes.index"))->with('success', 'Sikeres mentés');
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
     }
 
     /**
@@ -46,11 +59,8 @@ class ContenttypeController extends ResourceController
     protected function getDataFromRequest(Request $request)
     {
         return [
+            'model' => $request->input('model'),
             'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date'),
-            'user_id' => auth()->user()->id, 
-            'visible' => $request->input('visible') == null ? false : true
         ];
     }
 
@@ -61,12 +71,12 @@ class ContenttypeController extends ResourceController
 
     protected function getExtraDatasForCreate()
     {
-        return ['jams' => Jam::all()];
+        return ['types' => Contenttype::$modelTypes];
     }
 
     protected function getExtraDatasForUpdate()
     {
-        return [];
+        return ['types' => Contenttype::$modelTypes];
     }
 
     protected function getEntity($id)
@@ -76,6 +86,7 @@ class ContenttypeController extends ResourceController
 
     protected function delete($id)
     {
-
+        $deleteTranslationIds = Translation::where(['contenttype_id' => $id])->delete();
+        Contenttype::destroy($id);
     }
 }
