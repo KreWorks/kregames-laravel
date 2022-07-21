@@ -49,6 +49,23 @@ const MENUS = [
         ]
     ],
     [
+        'name' => 'Nyelvi tartalmak',
+        'route' => 'admin.translations.index',
+        'icon' => 'icon-flag',
+        'sub' => [
+            [
+                'name' => 'Nyelvek',
+                'route' => 'admin.languages.index',
+                'icon' => 'icon-flag'
+            ],
+            [
+                'name' => 'Tartalmi típusok',
+                'route' => 'admin.contenttypes.index',
+                'icon' => 'icon-file-text'
+            ]
+        ]
+    ],
+    [
         'name' => 'Felhasználók',
         'route' => 'admin.users.index',
         'icon' => 'icon-user'

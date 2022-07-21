@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\ResourceController;
 use App\Models\Language;
+use App\Models\Translation;
 
 class LanguageController extends ResourceController
 {
@@ -22,19 +24,30 @@ class LanguageController extends ResourceController
      */
     public function store(Request $request)
     {
-        //
+        $language = Language::create($this->getDataFromRequest($request));
+
+        return redirect(route("admin.languages.index"))->with('success', 'Sikeres mentés.');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Language  $language
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Language $language)
+    public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $language = Language::find($id);
+            $language->update($this->getDataFromRequest($request));
+
+            return redirect(route("admin.languages.index"))->with('success', 'Sikeres mentés');
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
     }
 
     /**
@@ -46,38 +59,25 @@ class LanguageController extends ResourceController
     protected function getDataFromRequest(Request $request)
     {
         return [
+            'short' => $request->input('short'),
             'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date'),
-            'user_id' => auth()->user()->id, 
             'visible' => $request->input('visible') == null ? false : true
         ];
     }
 
     protected function getAll()
     {
-        return Languages::all();
-    }
-
-    protected function getExtraDatasForCreate()
-    {
-        return ['jams' => Jam::all()];
-    }
-
-    protected function getExtraDatasForUpdate()
-    {
-        return [
-            'jams' => Jam::all(),
-        ];
+        return Language::all();
     }
 
     protected function getEntity($id)
     {
-        return Languages::find($id);
+        return Language::find($id);
     }
 
     protected function delete($id)
     {
-
+        $deleteTranslationIds = Translation::where(['language_id' => $id])->delete();
+        Language::destroy($id);
     }
 }

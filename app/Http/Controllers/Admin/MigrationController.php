@@ -125,7 +125,7 @@ class MigrationController extends ResourceController
         $migration = Migration::find($id);
 
         $this->deleteEarlierMigrations($migration->batch);
-        
+
         return redirect(route("admin.".$this->_route.".index"));
     }
 
@@ -172,7 +172,7 @@ class MigrationController extends ResourceController
     {
         $migrations = Migration::where('batch', ">=", $batch)->orderBy('batch', 'desc')->get();
 
-        if ($migrations->count() > 1) 
+        if ($migrations->count() > 0) 
         {
             foreach($migrations as $migr) 
             {
