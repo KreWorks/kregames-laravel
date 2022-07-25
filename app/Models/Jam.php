@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use App\Models\Game;
+use App\Models\Link;
 use App\Models\Image;
+use App\Models\Category;
+use App\Models\CategoryJam;
+
 use DateTime;
 
 class Jam extends Model
@@ -39,7 +44,7 @@ class Jam extends Model
      */
     public function links()
     {
-        return $this->morphMany('App\Models\Link', 'linkable');
+        return $this->morphMany(Link::class, 'linkable');
     }
 
     /**
@@ -55,7 +60,7 @@ class Jam extends Model
      */
     public function images()
     {
-        return $this->morphMany('App\Models\Image', 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 
    /**

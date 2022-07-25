@@ -5,6 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Game;
+use App\Models\Jam;
+use App\Models\CategoryJam;
+use App\Models\Rating;
+
 class Category extends Model
 {
     use HasFactory;

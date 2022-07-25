@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
+use App\Models\Link;
 use App\Models\Jam;
 use App\Models\User;
+use App\Models\Translation;
 
 class Game extends Model
 {
@@ -49,7 +51,7 @@ class Game extends Model
      */
     public function images()
     {
-        return $this->morphMany('App\Models\Image', 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 
     /**
@@ -57,7 +59,15 @@ class Game extends Model
      */
     public function links()
     {
-        return $this->morphMany('App\Models\Link', 'linkable');
+        return $this->morphMany(Link::class, 'linkable');
+    }
+
+    /**
+     * Get the game's translations
+     */
+    public function translations()
+    {
+        return $this->morphMany(Translation::class, 'translatable');
     }
 
     public function ratings()

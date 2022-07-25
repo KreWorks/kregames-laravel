@@ -19,9 +19,17 @@ class Contenttype extends Model
 
     public static $modelTypes = [
         'Page' => 'PAGE',
-        'Game' => 'App\Models\Game',
-        'User' => 'App\Models\User'
+        'Game' => Game::class,
+        'User' => User::class
     ];
+
+    /**
+     * The translations related to this contenttype
+     */
+    public function translations()
+    {
+        return $this->hasMany(Contenttype::class);
+    }
 
     public function getDeleteStringAttribute()
     {

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Linktype;
+use App\Models\Game;
+use App\Models\Jam;
+use App\Models\User;
 
 class Link extends Model
 {
@@ -29,9 +32,9 @@ class Link extends Model
     ];
 
     public static $morphs = [
-        'Game' => 'App\Models\Game',
-        'Jam' => 'App\Models\Jam',
-        'User' => 'App\Models\User'
+        'Game' => Game::class,
+        'Jam' => Jam::class,
+        'User' => User::class
     ];
 
     public static function getLinkables()

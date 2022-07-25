@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Image;
+use App\Models\Link;
+use App\Models\Game;
+use App\Models\Translation;
 
 class User extends Authenticatable
 {
@@ -61,7 +64,15 @@ class User extends Authenticatable
      */
     public function images()
     {
-        return $this->morphMany('App\Models\Image', 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    /**
+     * Get the user's translations
+     */
+    public function translations()
+    {
+        return $this->morphMany(Translation::class, 'translatable');
     }
 
     /**
@@ -77,7 +88,7 @@ class User extends Authenticatable
      */
     public function links()
     {
-        return $this->morphMany('App\Models\Link', 'linkable');
+        return $this->morphMany(Link::class, 'linkable');
     }
 
     public function getImageFolderAttribute()

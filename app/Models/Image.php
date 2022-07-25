@@ -15,9 +15,9 @@ class Image extends Model
     public const SCREENSHOT = 'screenshot';
 
     public static $morphs = [
-        'Game' => 'App\Models\Game',
-        'Jam' => 'App\Models\Jam',
-        'User' => 'App\Models\User'
+        'Game' => Game::class,
+        'Jam' => Jam::class,
+        'User' => User::class_alias
     ];
 
     public static function getImageables()
