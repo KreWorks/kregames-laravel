@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\ResourceController;
+
 use App\Models\Translation;
+use App\Models\Contenttype; 
+use App\Models\Language;
 
 class TranslationController extends ResourceController
 {
@@ -22,7 +26,11 @@ class TranslationController extends ResourceController
      */
     public function store(Request $request)
     {
-        //
+        $translation = Translation::create($this->getDataFromRequest($request));
+        
+        $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.translations.index");
+
+        return redirect($redirectRoute)->with('success', 'Sikeres mentés.');;
     }
 
 
@@ -30,12 +38,26 @@ class TranslationController extends ResourceController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Translation  $translation
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Translation $translation)
+    public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $translation = Translation::find($id);
+            if ($translation->game->id != $request->input('game_id') || $translation->category->id != $request->input('category_id')) {
+
+                $rating->update($this->getDataFromRequest($request));
+            }
+
+            $redirectRoute = $request->input('redirect_route') != '' ? $request->input('redirect_route') : route("admin.translations.index");
+
+            return redirect($redirectRoute)->with('success', 'Sikeres mentés.');;
+
+        }catch(QueryException $ex) {
+            return ['success'=>false, 'error'=>$ex->getMessage()];
+        }
     }
 
 
@@ -48,38 +70,44 @@ class TranslationController extends ResourceController
     protected function getDataFromRequest(Request $request)
     {
         return [
-            'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
-            'publish_date' => $request->input('publish_date'),
-            'user_id' => auth()->user()->id, 
-            'visible' => $request->input('visible') == null ? false : true
+            'language_id' => $request->input('language_id'),
+            'contenttype_id' => $request->input('contenttype_id'),
+            'translatable_type' => $request->input('translatable_type'),
+            'translatable_id' => $request->input('translatable_id'), 
+            'content' => $request->input('content')
         ];
     }
 
     protected function getAll()
     {
-        return Translations::all();
+        return Translation::all();
     }
 
     protected function getExtraDatasForCreate()
     {
-        return ['jams' => Jam::all()];
+        return [
+            'languages' => Language::where(['visible' => 1])->get(),
+            'contenttypes' => Contenttype::all(), 
+            'translatables' => Translation::getTranslatables()
+        ];
     }
 
     protected function getExtraDatasForUpdate()
     {
         return [
-            'jams' => Jam::all(),
+            'languages' => Language::where(['visible' => 1])->get(),
+            'contenttypes' => Contenttype::all(),
+            'translatables' => Translation::getTranslatables()
         ];
     }
 
     protected function getEntity($id)
     {
-        return Translations::find($id);
+        return Translation::find($id);
     }
 
     protected function delete($id)
     {
-
+        Translation::destroy($id);
     }
 }

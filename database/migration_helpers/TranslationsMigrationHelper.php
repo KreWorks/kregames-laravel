@@ -5,7 +5,7 @@ namespace Database\MigrationHelpers;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class LanguagesMigrationHelper 
+class TranslationsMigrationHelper 
 {
     public static function runMigration()
     {
@@ -13,7 +13,8 @@ class LanguagesMigrationHelper
             $table->id();
             $table->timestamps();
             $table->foreignId('language_id');
-            $table->foreignId('contenttype_id');  
+            $table->foreignId('contenttype_id');
+            $table->morphs('translatable')->nullable();
             $table->text('content');
         });
     }
