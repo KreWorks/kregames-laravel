@@ -54,9 +54,12 @@
                     <option value="0" {{ isset($entity) && $entity->language_id == '' ? 'selected' : ''}}>Nincs nyelv</option>
                     @foreach($extraDatas['contenttypes'] as $contenttype)
                         <option value="{{$contenttype->id}}" class="translatable {{str_replace('app\\models\\','',strtolower($contenttype->model))}}" {{isset($entity) && $entity->contenttype_id == $contenttype->id ? 'selected' : ''}}>{{$contenttype->name}}</option>
-
                     @endforeach
                 <select>
+            </div>
+            <div class="form-group col-lg-12">
+                <label for="content" class="col-form-label">Tartalom</label>
+                <textarea class="form-control" id="content" name="content" cols="3"></textarea>
             </div>
         </div>                 
     </div>

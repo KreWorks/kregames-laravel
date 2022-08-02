@@ -1,3 +1,6 @@
+<?php
+$currentPage = 1;
+?>
 <table class="table table-striped table-hover">
     <thead>
     <tr>
@@ -8,56 +11,69 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($datas as $data)
-        <tr>
+    @foreach($datas as $index => $data)
+    <?php
+    $groupIndex = floor($index / 10) + 1;
+    ?>
+        <tr class=" table-row table-row-{{$groupIndex}}" style="display: {{$groupIndex == $currentPage ? 'table-row' : 'none'}}">
             @include('admin.'.$route.'.entity')
-            <!--@foreach($tableLabels as $key => $column)
-                <td class="align-middle">
-                    @if ($key == 'iconPath' || $key == 'path' || $key == 'avatarPath')
-                        <img src="/{{ $data->__get($key) }}" style="width:50px; height:50px;" alt="icon">
-                    @elseif ($key == 'fontawesome' && $data->__get('fontawesome_icon'))
-                        <i class="fa fa-2x {{$data->__get('fontawesome_icon')}}" style="color: {{$data->fontawesome_color}}">
-                    @elseif ($key == 'fontawesome' && !$data->__get('fontawesome_icon'))
-                        <i class="fa fa-2x {{$data->__get('fontawesome')}}" style="color: #666666">
-                    @elseif ($key == 'visible') 
-                        @if($data->visible)
-                            <div class="btn btn-success disabled" >
-                                <i class="fa fa-eye fa-lg"></i>
-                            </div>
-                        @else
-                            <div class="btn btn-danger disabled">
-                                <i class="fa fa-eye-slash fa-lg"></i>
-                            </div>
-                        @endif
-                    @else
-                        {{ $data->__get($key) }}
-                    @endif
-                </td>
-            @endforeach
-            <td class="align-middle">
-                <ul class="list-inline" style="margin-bottom:0px;">
-                    <li class="list-inline-item">
-                        <form action="{{route('admin.'.$route.'.edit', $data->id) }}" method="GET">
-                            <input type="hidden" id="redirect_route" name="redirect_route" value="{{ $redirectUrl }}">
-                            <button type="submit" class="btn btn-info" >
-                                <svg class="card__icon--delete">
-                                    <use xlink:href="/apa/img/icons.svg#icon-edit"></use>
-                                </svg>
-                            </button>
-                        </form>
-                    </li>
-                    <li class="list-inline-item">
-                        <div class="btn btn-danger"
-                            data-toggle="modal" data-target="#deleteModal" onclick="deleteConfirm('{{ route("admin.".$route.".destroy", $data->id) }}',
-                             '{{$data->deleteString}}', '{{$redirectUrl}}');">
-                            <svg class="card__icon--delete">
-                                <use xlink:href="/apa/img/icons.svg#icon-trash-2"></use>
-                            </svg>
-                        </div>
-                    </li>
-                </ul>
-            </td>-->
         </tr>
     @endforeach
     </tbody>
 </table>
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item disabled" id="previousButton" onClick="paginate('previous')">
+            <a class="page-link">Előző</a>
+        </li>
+        @for($i = 1; $i <= ceil(count($datas) / 10); $i++)
+        <?php 
+        $isActive = $currentPage == $i ? 'active': '';
+        ?>
+        <li class="page-item {{$isActive}}" onClick="paginate({{$i}})" data-index="{{$i}}"><a class="page-link" >{{$i}}</a></li>
+        @endfor
+        <li class="page-item" id="nextButton" onClick="paginate('next')">
+            <a class="page-link">Következő</a>
+        </li>
+    </ul>
+</nav>
+<script>
+var currentPage = {{$currentPage}};
+var itemCount = {{count($datas)}};
+paginate(1); 
+function paginate(index) {
+    setDisplayForAGroup('.table-row-' + currentPage, 'none');
+    if (index == 'previous') currentPage--;
+    else if (index == 'next') currentPage++;
+    else currentPage = index;
+
+    setDisplayForAGroup('.table-row-' + currentPage, 'table-row');
+
+    var nextButton = document.getElementById('nextButton');
+    var previousButton = document.getElementById('previousButton');
+    var buttons = document.querySelectorAll('.page-item');
+
+    buttons.forEach((button) => {
+        button.classList.remove('active'); 
+        if (button.getAttribute('data-index') == currentPage) {
+            button.classList.add('active');
+        }
+    });
+
+    previousButton.classList.remove('disabled');
+    nextButton.classList.remove('disabled');
+    if (currentPage == 1) {
+        nextButton.classList.add('disabled');
+    }
+    if (currentPage == Math.ceil(itemCount / 10)) {
+        previousButton.classList.add('disabled');
+    }
+}
+
+function setDisplayForAGroup(groupName, displayText) {
+    var rows = document.querySelectorAll(groupName);
+    rows.forEach((row) => {
+        row.style.display = displayText;
+    });
+}
+</script>

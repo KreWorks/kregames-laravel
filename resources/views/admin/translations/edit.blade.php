@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="card-body">
-                @include('admin.contenttypes.form')
+                @include('admin.translations.form')
             </div>
         </div>
     </div>

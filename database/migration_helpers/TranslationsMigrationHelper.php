@@ -14,7 +14,7 @@ class TranslationsMigrationHelper
             $table->timestamps();
             $table->foreignId('language_id');
             $table->foreignId('contenttype_id');
-            $table->morphs('translatable')->nullable();
+            $table->morphs('translatable');
             $table->text('content');
         });
     }

@@ -16,11 +16,12 @@ class Translation extends Model
     public static $tableLabels = [
         'id' => 'id',
         'language' => 'nyelv',
+        'parent' => 'szülő',
         'contenttype' => "típus",
         'content' => 'tartalom'
     ];
 
-    protected $fillable = ['language_id', 'contettype_id','content'];
+    protected $fillable = ['language_id', 'contenttype_id','content','translatable_type','translatable_id'];
 
     public static $morphs = [
         'Page' => 'Page',
@@ -73,6 +74,14 @@ class Translation extends Model
     public function translatable()
     {
         return $this->morphTo();
+    }
+
+    public function getParentAttribute()
+    {
+        $owner = $this->translatable_type::find($this->translatable_id);
+        $type = str_replace("App\\Models\\", '', $this->translatable_type);
+
+        return (isset($owner) ? $owner->name : 'MI VAN'). " (".$type.")";
     }
 
     public function getDeleteStringAttribute()

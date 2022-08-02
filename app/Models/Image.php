@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Game; 
-use App\Models\Jam;
 
 class Image extends Model
 {
@@ -17,7 +15,7 @@ class Image extends Model
     public static $morphs = [
         'Game' => Game::class,
         'Jam' => Jam::class,
-        'User' => User::class_alias
+        'User' => User::class
     ];
 
     public static function getImageables()
