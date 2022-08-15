@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Linktype;
+use App\Models\Contenttype;
 
-class LinktypeSeeder extends DatabaseSeeder
+class ContenttypeSeeder extends DatabaseSeeder
 {
-    protected $seederFile = "/database/seeds/linktypes.json";
+    protected $seederFile = "/database/seeds/contenttypes.json";
 
     protected function createOrUpdate($data)
     {
         $id = $data['id'];
         unset($data['id']);
 
-        $user = Linktype::updateOrCreate(
+        $user = Contenttype::updateOrCreate(
             ['id' =>  $id],
             $data
         );

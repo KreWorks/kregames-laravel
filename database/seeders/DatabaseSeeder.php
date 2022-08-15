@@ -4,17 +4,24 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+abstract class DatabaseSeeder extends Seeder
 {
+    protected $seederFile = "/database/seeds/languages.json";
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(UserSeeder::class);
-        $this->call(GameSeeder::class);
+        $jsonData = file_get_contents(base_path().$this->seederFile);
+        $datas = json_decode($jsonData, true);
+
+        foreach($datas as $data)
+        {
+            $this->createOrUpdate($data);
+        }
     }
+
+    abstract protected function createOrUpdate($data);
 }

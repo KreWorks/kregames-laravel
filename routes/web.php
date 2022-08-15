@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\RatingController;
 use App\Http\Controllers\Admin\LanguageController; 
 use App\Http\Controllers\Admin\TranslationController; 
 use App\Http\Controllers\Admin\ContenttypeController;
+use App\Http\Controllers\Admin\SeederController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,14 +51,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('users', UserController::class);
     Route::resource('linktypes', LinktypeController::class);
     Route::resource('links', LinkController::class);
-    Route::resource('migrations', MigrationController::class);
-    Route::post('migration', [MigrationController::class, 'userrebuild'])->name('migrations.userrebuild');
     Route::resource('categories', CategoryController::class);
     Route::resource('category_jam', CategoryJamController::class);
     Route::resource('ratings', RatingController::class);
     Route::resource('languages', LanguageController::class);
     Route::resource('translations', TranslationController::class);
     Route::resource('contenttypes', ContenttypeController::class);
+    Route::resource('migrations', MigrationController::class);
+    Route::post('migration', [MigrationController::class, 'userrebuild'])->name('migrations.userrebuild');
+    Route::get('seeders', [SeederController::class, 'index'])->name('seeders.index');
 });
 
 /*

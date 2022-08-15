@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "model": "App\\Models\\Game",
+        "name": "description"
+    },
+    {
+        "id": 2,
+        "model": "App\\Models\\Game",
+        "name": "short_description"
+    },
+    {
+        "id": 3,
+        "model": "App\\Models\\User",
+        "name": "introduction"
+    },
+    {
+        "id": 4,
+        "model": "App\\Models\\User",
+        "name": "short_bio"
+    }
+]

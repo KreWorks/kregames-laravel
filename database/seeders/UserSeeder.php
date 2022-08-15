@@ -10,21 +10,7 @@ use App\Models\Link;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $jsonData = file_get_contents(base_path()."/database/seeds/users.json");
-        $datas = json_decode($jsonData, true);
-
-        foreach($datas as $data)
-        {
-            $this->createOrUpdate($data);
-        }
-    }
+    protected $seederFile = "/database/seeds/users.json";
 
     protected function createOrUpdate($data)
     {

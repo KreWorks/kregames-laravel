@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "short": "hu",
+        "name": "magyar",
+        "visible": 1
+    },
+    {
+        "id": 2,
+        "short": "en",
+        "name": "english",
+        "visible": 1
+    },
+    {
+        "id": 3,
+        "short": "de",
+        "name": "deutsch",
+        "visible": 0
+    }
+]

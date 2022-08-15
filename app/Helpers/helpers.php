@@ -74,6 +74,11 @@ const MENUS = [
         'name' => 'Migartions',
         'route' => 'admin.migrations.index',
         'icon' => 'icon-database'
+    ],
+    [
+        'name' => 'Seederek',
+        'route' => 'admin.seeders.index',
+        'icon' => 'icon-database'
     ]
 ];
 
